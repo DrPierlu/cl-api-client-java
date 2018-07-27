@@ -1,0 +1,45 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>io.commercelayer.api</groupId>
+		<artifactId>cl-api-client-java</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../../</relativePath>
+	</parent>
+
+	<artifactId>cl-client-codegen</artifactId>
+	<name>Commerce Layer API Java Client - Code Generator</name>
+	<description>Commerce Layer API Java Client - Code Generator</description>
+
+	<repositories>
+		<repository>
+			<id>kamikat</id>
+			<url>https://dl.bintray.com/kamikat/maven/</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+	
+		<dependency>
+			<groupId>io.commercelayer.api</groupId>
+			<artifactId>cl-client-core</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.reprezen.kaizen</groupId>
+			<artifactId>openapi-parser</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.jasminb</groupId>
+			<artifactId>jsonapi-converter</artifactId>
+		</dependency>
+
+	</dependencies>
+
+</project>

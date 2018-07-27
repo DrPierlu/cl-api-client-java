@@ -1,0 +1,118 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>io.commercelayer.api</groupId>
+	<artifactId>cl-api-client-java</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>modules/cl-client-codegen</module>
+		<module>modules/cl-client</module>
+		<module>modules/cl-client-core</module>
+	</modules>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<slf4j.version>1.6.4</slf4j.version>
+		<logback.version>1.2.3</logback.version>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.7.0</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencyManagement>
+		<dependencies>
+
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>3.7</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-text</artifactId>
+				<version>1.1</version>
+			</dependency>
+
+
+			<dependency>
+				<groupId>com.github.jasminb</groupId>
+				<artifactId>jsonapi-converter</artifactId>
+				<version>0.8.1</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.squareup.retrofit2</groupId>
+				<artifactId>retrofit</artifactId>
+				<version>2.3.0</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.squareup.moshi</groupId>
+				<artifactId>moshi</artifactId>
+				<version>1.6.0</version>
+			</dependency>
+
+<!-- 			<dependency> -->
+<!-- 				<groupId>com.squareup.moshi</groupId> -->
+<!-- 				<artifactId>moshi-adapters</artifactId> -->
+<!-- 				<version>1.6.0</version> -->
+<!-- 			</dependency> -->
+
+
+			<!-- GitHub imported libraries -->
+
+			<dependency>
+				<groupId>moe.banana</groupId>
+				<artifactId>moshi-jsonapi</artifactId>
+				<version>3.5.0</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.reprezen.kaizen</groupId>
+				<artifactId>openapi-parser</artifactId>
+				<version>2.2.0-SNAPSHOT</version>
+			</dependency>
+
+
+
+			<!-- LOG -->
+
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>1.7.25</version>
+			</dependency>
+
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>${logback.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-core</artifactId>
+				<version>${logback.version}</version>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+</project>

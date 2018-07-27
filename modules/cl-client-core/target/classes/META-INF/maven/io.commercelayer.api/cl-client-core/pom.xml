@@ -1,0 +1,70 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>io.commercelayer.api</groupId>
+		<artifactId>cl-api-client-java</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../../</relativePath>
+	</parent>
+
+	<artifactId>cl-client-core</artifactId>
+	<name>Commerce Layer API Java Client - Core</name>
+	<description>Commerce Layer API Java Client - Core</description>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.squareup.moshi</groupId>
+			<artifactId>moshi</artifactId>
+		</dependency>
+
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.squareup.moshi</groupId> -->
+<!-- 			<artifactId>moshi-adapters</artifactId> -->
+<!-- 		</dependency> -->
+
+		<dependency>
+			<groupId>moe.banana</groupId>
+			<artifactId>moshi-jsonapi</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.squareup.retrofit2</groupId>
+			<artifactId>retrofit</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-text</artifactId>
+		</dependency>
+
+
+		<!-- LOG -->
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+		</dependency>
+
+	</dependencies>
+
+</project>
