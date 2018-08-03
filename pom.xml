@@ -49,6 +49,14 @@
 				<artifactId>commons-text</artifactId>
 				<version>1.1</version>
 			</dependency>
+			<!--
+			<dependency>
+				<groupId>org.jboss.dna</groupId>
+				<artifactId>dna-common</artifactId>
+				<version>0.7</version>
+			</dependency>
+			-->
+
 
 
 			<!-- CODEGEN -->

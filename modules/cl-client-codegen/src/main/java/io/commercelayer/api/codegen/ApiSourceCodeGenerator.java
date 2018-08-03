@@ -7,6 +7,7 @@ import io.commercelayer.api.codegen.model.ApiModel;
 import io.commercelayer.api.codegen.model.generator.ModelGeneratorExecutor;
 import io.commercelayer.api.codegen.schema.ApiSchema;
 import io.commercelayer.api.codegen.schema.parser.SchemaParserExecutor;
+import io.commercelayer.api.codegen.source.SourceWriterExecutor;
 import io.commercelayer.api.util.LogUtils;
 
 public class ApiSourceCodeGenerator {
@@ -24,6 +25,8 @@ public class ApiSourceCodeGenerator {
 			ApiSchema apiSchema = new SchemaParserExecutor().execute();
 			logger.info("---------- ---------- ---------- ----------");
 			ApiModel apiModel = new ModelGeneratorExecutor().execute(apiSchema);
+			logger.info("---------- ---------- ---------- ----------");
+			new SourceWriterExecutor().execute(apiModel);
 			logger.info("---------- ---------- ---------- ----------");
 			
 			logger.info("Source Code Generation successfully terminated.");

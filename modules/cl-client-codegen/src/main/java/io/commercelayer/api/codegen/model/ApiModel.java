@@ -7,9 +7,13 @@ import com.squareup.javapoet.TypeSpec;
 
 public class ApiModel {
 
-	private String sourceDirectory;
+	private String rootPackage;
 	private List<TypeSpec> classes = new LinkedList<>();
 
+	public ApiModel(String rootPackage) {
+		this.rootPackage = rootPackage;
+	}
+	
 	public List<TypeSpec> getClasses() {
 		return classes;
 	}
@@ -22,12 +26,8 @@ public class ApiModel {
 		this.classes.add(class_);
 	}
 
-	public String getSourceDirectory() {
-		return sourceDirectory;
-	}
-
-	public void setSourceDirectory(String sourceDirectory) {
-		this.sourceDirectory = sourceDirectory;
+	public String getRootPackage() {
+		return rootPackage;
 	}
 
 }

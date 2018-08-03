@@ -22,7 +22,7 @@ public class SchemaParserExecutor {
 		
 		try {
 			ApiSchema schema = schemaParser.parse(new URL(CodegenConfig.getProperty("schema.parser.url")));
-			logger.info("Schema Parsing successfully terinated.");
+			logger.info("Schema Parsing successfully terminated.");
 			return schema;
 		} catch (Exception e) {
 			logger.error("Schema Parsing ended with errors.");

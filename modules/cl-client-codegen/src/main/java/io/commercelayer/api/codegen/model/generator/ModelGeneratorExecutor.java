@@ -19,8 +19,8 @@ public class ModelGeneratorExecutor {
 		ModelGenerator modelGenerator = ModelGeneratorFactory.get(ModelGeneratorDef.Moshi_JsonApi);
 
 		try {
-			ApiModel model = modelGenerator.generateModel(apiSchema);
-			logger.info("Class Model Generation successfully terinated.");
+			ApiModel model = modelGenerator.generate(apiSchema);
+			logger.info("Class Model Generation successfully terminated.");
 			return model;
 		} catch (Exception e) {
 			logger.error("Class Model Generation ended with errors.");

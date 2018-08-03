@@ -9,6 +9,9 @@ import com.squareup.javapoet.FieldSpec;
 import com.squareup.javapoet.MethodSpec;
 
 public class ModelGeneratorUtils {
+	
+	public static final String MODEL_BASE_PACKAGE = "io.commercelayer.api.model";
+	
 
 	private ModelGeneratorUtils() {
 		

@@ -14,7 +14,7 @@ public class SchemaParserFactory {
 			return new OpenAPIParserV3();
 		}
 
-		throw new SchemaException(String.format("Specifica Schema API non valida o non supportata %s", schemaParser.specInfo()));
+		throw new SchemaException(String.format("Unsupported Schema API specification [%s]", schemaParser.specInfo()));
 
 	}
 

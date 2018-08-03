@@ -5,6 +5,6 @@ import io.commercelayer.api.codegen.schema.ApiSchema;
 
 public interface ModelGenerator {
 
-	public ApiModel generateModel(ApiSchema apiSchema) throws ModelException;
+	public ApiModel generate(ApiSchema apiSchema) throws ModelException;
 	
 }
