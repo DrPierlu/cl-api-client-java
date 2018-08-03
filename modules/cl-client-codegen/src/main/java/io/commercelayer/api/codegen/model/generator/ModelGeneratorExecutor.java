@@ -16,7 +16,7 @@ public class ModelGeneratorExecutor {
 		
 		logger.info("Class Model Generation started ...");
 
-		ModelGenerator modelGenerator = ModelGeneratorFactory.get(ModelGeneratorDef.JsonApi_Converter);
+		ModelGenerator modelGenerator = ModelGeneratorFactory.get(ModelGeneratorDef.Moshi_JsonApi);
 
 		try {
 			ApiModel model = modelGenerator.generateModel(apiSchema);

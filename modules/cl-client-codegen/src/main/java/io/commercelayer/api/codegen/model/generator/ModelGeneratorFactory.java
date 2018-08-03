@@ -1,6 +1,6 @@
 package io.commercelayer.api.codegen.model.generator;
 
-import io.commercelayer.api.codegen.model.generator.impl.JACModelGenerator;
+import io.commercelayer.api.codegen.model.generator.impl.MoshiJAModelGenerator;
 
 public class ModelGeneratorFactory {
 
@@ -10,11 +10,11 @@ public class ModelGeneratorFactory {
 
 	public static ModelGenerator get(ModelGeneratorDef mgd) throws ModelException {
 
-		if (ModelGeneratorDef.JsonApi_Converter.equals(mgd)) {
-			return new JACModelGenerator();
+		switch (mgd) {
+			case Moshi_JsonApi:	return new MoshiJAModelGenerator();
+			case JsonApi_Converter:
+			default: throw new ModelException(String.format("Unsupported Api Model Generator [%s]", mgd.id()));
 		}
-
-		throw new ModelException(String.format("Model Generator non valido o non supportato [%s]", mgd.id()));
 
 	}
 

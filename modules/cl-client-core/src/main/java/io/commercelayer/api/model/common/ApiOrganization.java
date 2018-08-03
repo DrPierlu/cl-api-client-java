@@ -1,6 +1,4 @@
-package io.commercelayer.api.auth;
-
-import io.commercelayer.api.model.common.ApiObject;
+package io.commercelayer.api.model.common;
 
 public class ApiOrganization extends ApiObject {
 

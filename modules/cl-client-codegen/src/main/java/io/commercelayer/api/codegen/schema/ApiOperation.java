@@ -2,6 +2,8 @@ package io.commercelayer.api.codegen.schema;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -14,8 +16,8 @@ public class ApiOperation {
 	private OperationType type;
 	private String summary;
 
-	private Map<ResponseType, ApiResponse> responses;
-	private List<ApiParameter> parameters;
+	private Map<ResponseType, ApiResponse> responses = new LinkedHashMap<>();
+	private List<ApiParameter> parameters = new LinkedList<>();
 	private ApiRequestBody requestBody;
 
 	public ApiOperation(OperationType type) {
@@ -55,8 +57,6 @@ public class ApiOperation {
 	}
 
 	public void addResponse(ApiResponse response) {
-		if (this.responses == null)
-			this.responses = new HashMap<ResponseType, ApiResponse>();
 		this.responses.put(response.getType(), response);
 	}
 
@@ -69,8 +69,6 @@ public class ApiOperation {
 	}
 
 	public void addParameter(ApiParameter param) {
-		if (this.parameters == null)
-			this.parameters = new ArrayList<ApiParameter>();
 		this.parameters.add(param);
 	}
 

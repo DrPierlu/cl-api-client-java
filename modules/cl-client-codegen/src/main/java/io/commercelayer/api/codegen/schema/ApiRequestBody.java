@@ -1,15 +1,16 @@
 package io.commercelayer.api.codegen.schema;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class ApiRequestBody {
 
 	private boolean required;
-	private List<String> requiredFields;
-	private List<ApiAttribute> attributes;
+	private List<String> requiredFields = new ArrayList<>();
+	private List<ApiAttribute> attributes = new LinkedList<>();
 	private String type;
-	private List<String> relationships;
+	private List<ApiRelationship> relationships = new LinkedList<>();
 
 	public boolean isRequired() {
 		return required;
@@ -28,8 +29,6 @@ public class ApiRequestBody {
 	}
 
 	public void addRequiredField(String field) {
-		if (this.requiredFields == null)
-			this.requiredFields = new ArrayList<String>();
 		this.requiredFields.add(field);
 	}
 
@@ -50,20 +49,18 @@ public class ApiRequestBody {
 	}
 	
 	public void addAttribute(ApiAttribute attribute) {
-		if (this.attributes == null) this.attributes = new ArrayList<ApiAttribute>();
 		this.attributes.add(attribute);
 	}
 
-	public List<String> getRelationships() {
+	public List<ApiRelationship> getRelationships() {
 		return relationships;
 	}
 
-	public void setRelationships(List<String> relationships) {
+	public void setRelationships(List<ApiRelationship> relationships) {
 		this.relationships = relationships;
 	}
 	
-	public void addRelationship(String relationship) {
-		if (this.relationships == null) this.relationships = new ArrayList<String>();
+	public void addRelationship(ApiRelationship relationship) {
 		this.relationships.add(relationship);
 	}
 

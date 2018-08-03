@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import io.commercelayer.api.auth.ApiAuth;
-import io.commercelayer.api.auth.ApiOrganization;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.auth.AuthRequest;
 import io.commercelayer.api.auth.AuthorizationCode;
@@ -21,7 +20,8 @@ import io.commercelayer.api.http.HttpRequest;
 import io.commercelayer.api.http.HttpRequest.Method;
 import io.commercelayer.api.http.HttpResponse;
 import io.commercelayer.api.model.common.ApiError;
-import io.commercelayer.api.util.JSONUtil;
+import io.commercelayer.api.model.common.ApiOrganization;
+import io.commercelayer.api.util.JSONUtils;
 
 
 public class CLApiAuthenticator {
@@ -38,7 +38,7 @@ public class CLApiAuthenticator {
 	
 	public CLApiAuthenticator(ApiOrganization org) {
 		this.apiOrg = org;
-		this.apiBaseUrl = ApiConfig.getApiBaseUrl(this.apiOrg.getSubdomain());
+		this.apiBaseUrl = ApiConfig.getApiBaseUrl(this.apiOrg);
 		this.httpClient = HttpClientFactory.getHttpClientInstance();
 	}
 	
@@ -58,7 +58,7 @@ public class CLApiAuthenticator {
 
 		httpRequest.setUrl(authRequest.getTokenUrl());
 		if (authRequest.getHttpAuth() != null) httpRequest.setHttpAuth(authRequest.getHttpAuth());
-		httpRequest.setBody(JSONUtil.toJSON(authRequest.getApiAuth()));
+		httpRequest.setBody(JSONUtils.toJSON(authRequest.getApiAuth()));
 		httpRequest.setContentType(ContentType.JSON);
 
 		logger.debug("Auth Request Body: {}", httpRequest.getBody());
@@ -68,14 +68,14 @@ public class CLApiAuthenticator {
 		logger.debug("Auth Response Body: {}", httpResponse.getBody());
 		
 		if (httpResponse.hasErrorCode()) {
-			ApiError apiError = JSONUtil.fromJSON(httpResponse.getBody(), ApiError.class);
+			ApiError apiError = JSONUtils.fromJSON(httpResponse.getBody(), ApiError.class);
 			apiError.setHttpErrorCode(httpResponse.getCode());
 			throw new AuthException(apiError);
 		}
 		else
 			if (!ContentType.JSON.equals(httpResponse.getContentType())) throw new CallException("Expected JSON Content Type [%s]", httpResponse.getContentType());
 
-		ApiToken token = JSONUtil.fromJSON(httpResponse.getBody(), ApiToken.class);
+		ApiToken token = JSONUtils.fromJSON(httpResponse.getBody(), ApiToken.class);
 
 		return token;
 

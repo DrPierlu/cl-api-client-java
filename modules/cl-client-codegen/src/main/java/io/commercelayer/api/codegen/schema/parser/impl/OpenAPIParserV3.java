@@ -21,6 +21,8 @@ import io.commercelayer.api.codegen.schema.ApiAttribute;
 import io.commercelayer.api.codegen.schema.ApiOperation;
 import io.commercelayer.api.codegen.schema.ApiParameter;
 import io.commercelayer.api.codegen.schema.ApiPath;
+import io.commercelayer.api.codegen.schema.ApiRelationship;
+import io.commercelayer.api.codegen.schema.ApiRelationship.Cardinality;
 import io.commercelayer.api.codegen.schema.ApiRequestBody;
 import io.commercelayer.api.codegen.schema.ApiResponse;
 import io.commercelayer.api.codegen.schema.ApiSchema;
@@ -197,8 +199,11 @@ public class OpenAPIParserV3 implements SchemaParser {
 		
 		logger.debug("    Relationships:");
 		for (Map.Entry<String, Schema> er : rels.getProperties().entrySet()) {
-			body.addRelationship(er.getKey());
-			logger.debug("      {}", er.getKey());
+			String res = er.getKey();
+			Cardinality card = Cardinality.HAS_ONE;
+			if (res.endsWith("s") && !res.endsWith("ss")) card = Cardinality.HAS_MANY;
+			body.addRelationship(new ApiRelationship(res, card));
+			logger.debug("      {}", res);
 		}
 		if ((body.getRelationships() == null) || body.getRelationships().isEmpty()) logger.info("      <empty>");
 		

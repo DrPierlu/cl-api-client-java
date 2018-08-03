@@ -85,6 +85,8 @@ public class HttpRequest extends HttpMessage {
 		String ACCEPT 				= "Accept";
 		String PROXY_AUTHORIZATION	= "Proxy-Authorization";
 		String AUTHORIZATION		= "Authorization";
+		String CONTENT_TYPE			= "Content-Type";
+		String USER_AGENT			= "User-Agent";
 	}
 	
 }

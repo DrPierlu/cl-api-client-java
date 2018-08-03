@@ -38,12 +38,12 @@
 	<dependencyManagement>
 		<dependencies>
 
+			<!-- COMMON -->
 			<dependency>
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-lang3</artifactId>
 				<version>3.7</version>
 			</dependency>
-
 			<dependency>
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-text</artifactId>
@@ -51,10 +51,16 @@
 			</dependency>
 
 
+			<!-- CODEGEN -->
 			<dependency>
 				<groupId>com.github.jasminb</groupId>
 				<artifactId>jsonapi-converter</artifactId>
 				<version>0.8.1</version>
+			</dependency>
+			<dependency>
+				<groupId>com.squareup</groupId>
+				<artifactId>javapoet</artifactId>
+				<version>1.11.1</version>
 			</dependency>
 
 			<dependency>
@@ -69,21 +75,19 @@
 				<version>1.6.0</version>
 			</dependency>
 
-<!-- 			<dependency> -->
-<!-- 				<groupId>com.squareup.moshi</groupId> -->
-<!-- 				<artifactId>moshi-adapters</artifactId> -->
-<!-- 				<version>1.6.0</version> -->
-<!-- 			</dependency> -->
+			<!-- <dependency> -->
+			<!-- <groupId>com.squareup.moshi</groupId> -->
+			<!-- <artifactId>moshi-adapters</artifactId> -->
+			<!-- <version>1.6.0</version> -->
+			<!-- </dependency> -->
 
 
 			<!-- GitHub imported libraries -->
-
 			<dependency>
 				<groupId>moe.banana</groupId>
 				<artifactId>moshi-jsonapi</artifactId>
 				<version>3.5.0</version>
 			</dependency>
-
 			<dependency>
 				<groupId>com.reprezen.kaizen</groupId>
 				<artifactId>openapi-parser</artifactId>
@@ -91,21 +95,17 @@
 			</dependency>
 
 
-
 			<!-- LOG -->
-
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-api</artifactId>
 				<version>1.7.25</version>
 			</dependency>
-
 			<dependency>
 				<groupId>ch.qos.logback</groupId>
 				<artifactId>logback-classic</artifactId>
 				<version>${logback.version}</version>
 			</dependency>
-
 			<dependency>
 				<groupId>ch.qos.logback</groupId>
 				<artifactId>logback-core</artifactId>

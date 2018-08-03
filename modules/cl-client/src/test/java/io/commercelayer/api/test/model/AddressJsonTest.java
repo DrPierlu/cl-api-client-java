@@ -5,21 +5,16 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.HashMap;
 import java.util.Map;
 
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 
 import io.commercelayer.api.model.Address;
-import io.commercelayer.api.model.Geocoder;
 import io.commercelayer.api.model.adapter.BooleanAdapter;
-import io.commercelayer.api.model.adapter.CLLinksAdapter;
 import io.commercelayer.api.model.adapter.ZonedDateTimeAdapter;
-import io.commercelayer.api.util.LogUtils;
 import moe.banana.jsonapi2.ArrayDocument;
 import moe.banana.jsonapi2.Document;
-import moe.banana.jsonapi2.JsonBuffer;
 import moe.banana.jsonapi2.ResourceAdapterFactory;
 
 public class AddressJsonTest {
@@ -72,6 +67,8 @@ public class AddressJsonTest {
 		
 		Map<String, String> gl = address.getGeocoderLinksMap();
 		System.out.println(gl);
+		
+		System.out.println(address.getGeocoderResource());
 		
 	}
 

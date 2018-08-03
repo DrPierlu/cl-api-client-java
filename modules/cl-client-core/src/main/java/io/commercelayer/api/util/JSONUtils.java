@@ -11,7 +11,7 @@ import io.commercelayer.api.model.adapter.ZonedDateTimeAdapter;
 import moe.banana.jsonapi2.Resource;
 import moe.banana.jsonapi2.ResourceAdapterFactory;
 
-public class JSONUtil {
+public class JSONUtils {
 	
 	public static <T> JsonAdapter<T> getJSONAdapter(Class<T> class_) {
 

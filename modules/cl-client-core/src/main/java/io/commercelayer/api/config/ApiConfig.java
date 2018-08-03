@@ -6,6 +6,8 @@ import java.util.Properties;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.util.LogUtils;
 
 public final class ApiConfig {
@@ -64,10 +66,14 @@ public final class ApiConfig {
 		
 	}
 	
+	public static String getApiBaseUrl(ApiOrganization apiOrg) {
+		return getApiBaseUrl(apiOrg.getSubdomain());
+	}
+	
 	public static String getApiBaseUrl(String subdomain) {
 		String url = ApiConfig.getProperty(Group.api, "service.url");
 		if (subdomain != null) url = url.replaceFirst("\\{subdomain\\}", subdomain);
-		if ((url != null) && url.endsWith("/")) url = url.substring(0, url.lastIndexOf('/'));
+		if (url.endsWith("/")) url = url.substring(0, url.lastIndexOf('/'));
 		return url;
 		
 	}

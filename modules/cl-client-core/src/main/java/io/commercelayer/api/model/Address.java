@@ -53,7 +53,7 @@ public class Address extends ApiResource {
 	private String staticMapUrl;
 	@Json(name = "billing_info")
 	private String billingInfo;
-
+	
 	private HasOne<Geocoder> geocoder;
 
 	public Boolean isBusiness() {

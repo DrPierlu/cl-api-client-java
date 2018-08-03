@@ -1,7 +1,7 @@
 package io.commercelayer.api.test.model;
 
-import io.commercelayer.api.auth.ApiOrganization;
 import io.commercelayer.api.auth.ClientCredentials;
+import io.commercelayer.api.model.common.ApiOrganization;
 
 public final class TestData {
 

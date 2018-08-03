@@ -13,6 +13,7 @@ public class OAuth2Interceptor implements Interceptor {
 	private HttpAuthOAuth2 httpAuth;
 	
 	public OAuth2Interceptor(HttpAuthOAuth2 httpAuth) {
+		super();
 		this.httpAuth = httpAuth;
 	}
 	
@@ -24,6 +25,7 @@ public class OAuth2Interceptor implements Interceptor {
          Request.Builder builder = originalRequest.newBuilder().header(HttpRequest.Header.AUTHORIZATION, httpAuth.getHttpRequestAuthHeader());
 
          Request newRequest = builder.build();
+         
          return chain.proceed(newRequest);
 		
 	}

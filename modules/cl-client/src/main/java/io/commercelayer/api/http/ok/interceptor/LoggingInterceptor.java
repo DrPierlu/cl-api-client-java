@@ -13,6 +13,7 @@ public class LoggingInterceptor implements Interceptor {
 	private Logger logger;
 	
 	public LoggingInterceptor(Logger logger) {
+		super();
 		this.logger = logger;
 	}
 	
