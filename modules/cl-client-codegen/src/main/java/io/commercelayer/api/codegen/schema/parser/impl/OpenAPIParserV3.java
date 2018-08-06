@@ -28,6 +28,7 @@ import io.commercelayer.api.codegen.schema.ApiResponse;
 import io.commercelayer.api.codegen.schema.ApiSchema;
 import io.commercelayer.api.codegen.schema.parser.SchemaException;
 import io.commercelayer.api.codegen.schema.parser.SchemaParser;
+import io.commercelayer.api.domain.ContentType;
 import io.commercelayer.api.domain.OperationType;
 import io.commercelayer.api.domain.ResponseType;
 
@@ -92,14 +93,18 @@ public class OpenAPIParserV3 implements SchemaParser {
 					
 					logger.debug("  Operation {} ({})", apiOp.getType().code(), apiOp.getSummary());
 					
+					// Responses
 					for (Map.Entry<String, Response> er : op.getResponses().entrySet()) {
-						apiOp.addResponse(new ApiResponse(ResponseType.byCode(er.getKey()), er.getValue().getDescription()));
+						final Response r = er.getValue();
+						ApiResponse resp = new ApiResponse(ResponseType.byCode(er.getKey()), r.getDescription());
+						apiOp.addResponse(resp);
+						if (OperationType.GET.code().equalsIgnoreCase(eo.getKey()) && (r.getContentMediaType(ContentType.JSON_API) != null)) parseResponseContent(r, resp);
 					}
 					
-					
+					// Parameters
 					parseParameters(op, apiOp);
 					
-					
+					// Request Body
 					if (OperationType.POST.code().equalsIgnoreCase(eo.getKey()) || OperationType.PATCH.code().equalsIgnoreCase(eo.getKey()) ) {
 						ApiRequestBody body = new ApiRequestBody();
 						apiOp.setRequestBody(body);
@@ -145,6 +150,48 @@ public class OpenAPIParserV3 implements SchemaParser {
 		if ((apiOp.getParameters() == null) || apiOp.getParameters().isEmpty()) logger.info("      <empty>");
 		
 	}
+	
+	
+	private void parseResponseContent(Response r, ApiResponse resp) {
+		
+		logger.debug("    RESPONSE CONTENT");
+		
+		MediaType md = r.getContentMediaType(ContentType.JSON_API);
+		Schema data = md.getSchema().getProperty("data");
+		
+		Schema attrs = data.getProperty("attributes");
+		
+		// Fields
+		logger.debug("    Attributes:");
+		for (Map.Entry<String, Schema> ea : attrs.getProperties().entrySet()) {
+			
+			ApiAttribute attribute = new ApiAttribute(ea.getKey());
+			resp.addAttribute(attribute);
+			
+			Schema attr = ea.getValue();
+			
+			attribute.setType(attr.getType());
+			attribute.setDescription(attr.getDescription());
+			
+			logger.debug("      {} [{}]", attribute.getName(), attribute.getType());
+			
+		}
+		
+		// Relationships
+		Schema rels = data.getProperty("relationships");
+		
+		logger.debug("    Relationships:");
+		for (Map.Entry<String, Schema> er : rels.getProperties().entrySet()) {
+			String res = er.getKey();
+			Cardinality card = Cardinality.HAS_ONE;
+			if (res.endsWith("s") && !res.endsWith("ss")) card = Cardinality.HAS_MANY;
+			resp.addRelationship(new ApiRelationship(res, card));
+			logger.debug("      {} : {}", res, card);
+		}
+		if ((resp.getRelationships() == null) || resp.getRelationships().isEmpty()) logger.info("      <empty>");
+		
+	}
+	
 	
 	private void parseRequestBody(RequestBody rb, ApiRequestBody body) {
 		
@@ -203,7 +250,7 @@ public class OpenAPIParserV3 implements SchemaParser {
 			Cardinality card = Cardinality.HAS_ONE;
 			if (res.endsWith("s") && !res.endsWith("ss")) card = Cardinality.HAS_MANY;
 			body.addRelationship(new ApiRelationship(res, card));
-			logger.debug("      {}", res);
+			logger.debug("      {} : {}", res, card);
 		}
 		if ((body.getRelationships() == null) || body.getRelationships().isEmpty()) logger.info("      <empty>");
 		

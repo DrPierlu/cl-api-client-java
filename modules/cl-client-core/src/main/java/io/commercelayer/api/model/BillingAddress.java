@@ -14,7 +14,7 @@ import moe.banana.jsonapi2.JsonApi;
 @JsonApi(
     type = "addresses"
 )
-public class Address extends ApiResource {
+public class BillingAddress extends ApiResource {
   public static final long serialVersionUID = -1;
 
   private Boolean business;

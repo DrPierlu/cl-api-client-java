@@ -2,7 +2,7 @@ package io.commercelayer.api.service;
 
 import java.util.Map;
 
-import io.commercelayer.api.model.Customer;
+import io.commercelayer.api.model.dev.Customer;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;

@@ -11,7 +11,13 @@ import com.squareup.javapoet.MethodSpec;
 public class ModelGeneratorUtils {
 	
 	public static final String MODEL_BASE_PACKAGE = "io.commercelayer.api.model";
-	
+	public static final String[] IGNORED_FIELDS = {
+		"reference",
+		"metadata",
+		"created_at",
+		"updated_at",
+		"id"
+	};
 
 	private ModelGeneratorUtils() {
 		
@@ -133,7 +139,10 @@ public class ModelGeneratorUtils {
 	
 	public static MethodSpec createMethodSetter(FieldSpec field) {
 		
-		String methodName = "set".concat(StringUtils.capitalize(field.name));
+		boolean _start = field.name.startsWith("_");
+				
+		String methodName = "set".concat(StringUtils.capitalize(field.name.replaceFirst("_", "")));
+		if (_start) methodName = methodName.concat("_");
 		
 		MethodSpec method = MethodSpec.methodBuilder(methodName)
 			.addModifiers(Modifier.PUBLIC)
@@ -148,7 +157,10 @@ public class ModelGeneratorUtils {
 	
 	public static MethodSpec createMethodGetter(FieldSpec field) {
 		
-		String methodName = "get".concat(StringUtils.capitalize(field.name));
+		boolean _start = field.name.startsWith("_");
+		
+		String methodName = "get".concat(StringUtils.capitalize(field.name.replaceFirst("_", "")));
+		if (_start) methodName = methodName.concat("_");
 		
 		MethodSpec method = MethodSpec.methodBuilder(methodName)
 			.addModifiers(Modifier.PUBLIC)

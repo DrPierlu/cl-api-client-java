@@ -6,7 +6,7 @@ import java.util.HashMap;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.CLApiClient;
 import io.commercelayer.api.exception.AuthException;
-import io.commercelayer.api.model.Address;
+import io.commercelayer.api.model.dev.Address;
 import io.commercelayer.api.service.AddressService;
 import io.commercelayer.api.util.ApiUtils;
 import retrofit2.Call;

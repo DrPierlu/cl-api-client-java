@@ -1,5 +1,6 @@
 package io.commercelayer.api.codegen.model.generator.impl;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -7,6 +8,7 @@ import java.util.Map;
 
 import javax.lang.model.element.Modifier;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,12 +31,14 @@ import io.commercelayer.api.codegen.schema.ApiOperation;
 import io.commercelayer.api.codegen.schema.ApiPath;
 import io.commercelayer.api.codegen.schema.ApiRelationship;
 import io.commercelayer.api.codegen.schema.ApiRelationship.Cardinality;
+import io.commercelayer.api.codegen.schema.ApiResponse;
 import io.commercelayer.api.codegen.schema.ApiSchema;
 import io.commercelayer.api.codegen.schema.parser.SchemaParserUtils;
 import io.commercelayer.api.domain.OperationType;
+import io.commercelayer.api.domain.ResponseType;
 import io.commercelayer.api.model.adapter.CLLinksAdapter;
 import io.commercelayer.api.model.common.ApiResource;
-import io.commercelayer.api.util.Inflector;
+import io.commercelayer.api.util.CLInflector;
 import io.commercelayer.api.util.ModelUtils;
 import moe.banana.jsonapi2.HasMany;
 import moe.banana.jsonapi2.HasOne;
@@ -65,34 +69,50 @@ public class MoshiJAModelGenerator implements ModelGenerator {
 				
 				if (res.startsWith(mainRes)) {
 					
-					ApiOperation op = null;
+					List<ApiOperation> ops = new ArrayList<>();
 					
 					if (res.equals(mainRes)) {
-						op = path.getOperations().get(OperationType.POST);
+						ops.add(path.getOperations().get(OperationType.POST));
 					}
 					else
 					if (res.endsWith("Id}")) {
-						op = path.getOperations().get(OperationType.PATCH);
-						resName = op.getParameters().get(0).getName();
+						ops.add(path.getOperations().get(OperationType.PATCH));
+						ops.add(path.getOperations().get(OperationType.GET));
+						resName = ops.get(0).getParameters().get(0).getName();
 						resName = resName.substring(0, resName.lastIndexOf("Id"));
 						resName = StringUtils.capitalize(resName);
 						logger.info("----- ----- ----- -----");
 						logger.info("Identified Resource: {}", resName);
 					}
 					
-					if ((op == null) || (op.getRequestBody() == null)) continue;
-										
-					// Fields
-					for (ApiAttribute attr : op.getRequestBody().getAttributes()) {
-						if ("reference".equalsIgnoreCase(attr.getName())) continue;
-						if ("metadata".equalsIgnoreCase(attr.getName())) continue;
-						if (!attributes.containsKey(attr.getName())) attributes.put(attr.getName(), attr);
-					}
 					
+					for (ApiOperation op : ops) {
 					
-					// Relationships
-					for (ApiRelationship rel : op.getRequestBody().getRelationships()) {
-						if (!relationships.containsKey(rel.getResourceName())) relationships.put(rel.getResourceName(), rel.getCardinality());
+						if (op.getRequestBody() != null) {
+							// Request Fields
+							for (ApiAttribute attr : op.getRequestBody().getAttributes()) {
+								if (ArrayUtils.contains(ModelGeneratorUtils.IGNORED_FIELDS, attr.getName())) continue;
+								if (!attributes.containsKey(attr.getName())) attributes.put(attr.getName(), attr);
+							}
+							// Request Relationships
+							for (ApiRelationship rel : op.getRequestBody().getRelationships()) {
+								if (!relationships.containsKey(rel.getResourceName())) relationships.put(rel.getResourceName(), rel.getCardinality());
+							}
+						}
+						
+						// Response Fields
+						for (Map.Entry<ResponseType, ApiResponse> r : op.getResponses().entrySet()) {
+							for (ApiAttribute attr : r.getValue().getAttributes()) {
+								if (ArrayUtils.contains(ModelGeneratorUtils.IGNORED_FIELDS, attr.getName())) continue;
+								if (!attributes.containsKey(attr.getName())) attributes.put(attr.getName(), attr);
+							}
+						}
+						// Response Relationships
+						for (Map.Entry<ResponseType, ApiResponse> r : op.getResponses().entrySet()) {
+							for (ApiRelationship rel : r.getValue().getRelationships())
+								if (!relationships.containsKey(rel.getResourceName())) relationships.put(rel.getResourceName(), rel.getCardinality());
+						}
+						
 					}
 					
 				}
@@ -158,6 +178,14 @@ public class MoshiJAModelGenerator implements ModelGenerator {
 		
 	}
 	
+	private void setJsonFieldAnnotation(String fieldName, FieldSpec.Builder fieldBuilder) {
+		if (fieldName.contains("_")) {
+			AnnotationSpec jsonAnnot = AnnotationSpec.builder(Json.class)
+				.addMember("name", "$S", fieldName)
+				.build();
+			fieldBuilder.addAnnotation(jsonAnnot);
+		}
+	}
 	
 	private void addResourceField(TypeSpec.Builder classe, FieldSpec field) {
 		classe.addField(field);
@@ -170,35 +198,43 @@ public class MoshiJAModelGenerator implements ModelGenerator {
 		
 		for (Map.Entry<String, Cardinality> rel : relationships.entrySet()) {
 			
-			// Relationship field
-			String relResName = StringUtils.capitalize(Inflector.getInstance().singularize(rel.getKey()));
-			ClassName relResType = ClassName.get(ModelGeneratorUtils.MODEL_BASE_PACKAGE, relResName);
+			boolean multiRel = Cardinality.HAS_MANY.equals(rel.getValue());
 			
-			ClassName cn = ClassName.get(Cardinality.HAS_ONE.equals(rel.getValue()) ? HasOne.class : HasMany.class);
+			// Relationship field
+			final String relFieldName = ModelUtils.toCamelCase(rel.getKey());
+			final String relFieldNameCap = StringUtils.capitalize(relFieldName);
+			final String relResName = CLInflector.getInstance().singularize(relFieldNameCap);
+			
+			TypeName relResType = ClassName.get(ModelGeneratorUtils.MODEL_BASE_PACKAGE, relResName);
+			
+			ClassName cn = ClassName.get(multiRel? HasMany.class : HasOne.class);
 			TypeName tn = ParameterizedTypeName.get(cn, relResType);
 			
-			FieldSpec field = FieldSpec.builder(tn, rel.getKey(), Modifier.PRIVATE).build();
-			addResourceField(classe, field);
+			FieldSpec.Builder field = FieldSpec.builder(tn, relFieldName, Modifier.PRIVATE);
+			setJsonFieldAnnotation(rel.getKey(), field);
+			addResourceField(classe, field.build());
 			
-			// Relationship get Resource method
-			MethodSpec relResMethod = MethodSpec.methodBuilder(String.format("get%sResource", relResName))
+			// Relationship get Resource/ResourceList method
+			final String relResMethosName = String.format("get%sResource%s", relResName, (multiRel? "List" : ""));
+			MethodSpec relResMethod = MethodSpec.methodBuilder(relResMethosName)
 				.addModifiers(Modifier.PUBLIC)
-				.returns(relResType)
-				.addStatement("return get$T().get(getDocument())", relResType)
+				.returns(multiRel? ParameterizedTypeName.get(ClassName.get(List.class), relResType) : relResType)
+				.addStatement("return get$L().get(getDocument())", relFieldNameCap)
 				.build();
 			classe.addMethod(relResMethod);
 			
 			// Relationship get Links method
+			final String relResLinksMethodName = String.format("get%sLinksMap", relFieldNameCap);
 			TypeName linksType = ParameterizedTypeName.get(Map.class, String.class, String.class);
-			MethodSpec relResLinks = MethodSpec.methodBuilder(String.format("get%sLinksMap", relResName))
+			MethodSpec relResLinksMethod = MethodSpec.methodBuilder(relResLinksMethodName)
 				.addModifiers(Modifier.PUBLIC)
 				.returns(linksType)
-				.addStatement("return ($T)get$T().getLinks().get(new $T())", linksType, relResType, CLLinksAdapter.class)
+				.addStatement("return ($T)get$L().getLinks().get(new $T())", linksType, relFieldNameCap, CLLinksAdapter.class)
 				.addAnnotation(AnnotationSpec.builder(SuppressWarnings.class)
 					.addMember("value", "$S", "unchecked")
 					.build())
 				.build();
-			classe.addMethod(relResLinks);
+			classe.addMethod(relResLinksMethod);
 			
 		}
 		
@@ -206,22 +242,11 @@ public class MoshiJAModelGenerator implements ModelGenerator {
 	
 	
 	private void generateFields(TypeSpec.Builder classe, Map<String, ApiAttribute> attributes) {
-		
-		for (ApiAttribute attr : attributes.values()) {
-			
-			FieldSpec.Builder field = FieldSpec.builder(SchemaParserUtils.decodeAttributeType(attr), ModelUtils.toCamelCase(attr.getName()))
-				.addModifiers(Modifier.PRIVATE);
-			if (attr.getName().contains("_")) {
-				AnnotationSpec jsonAnnot = AnnotationSpec.builder(Json.class)
-					.addMember("name", "$S", attr.getName())
-					.build();
-				field.addAnnotation(jsonAnnot);
-			}
-			
+		for (ApiAttribute attr : attributes.values()) {			
+			FieldSpec.Builder field = FieldSpec.builder(SchemaParserUtils.decodeAttributeType(attr), ModelUtils.toCamelCase(attr.getName()), Modifier.PRIVATE);
+			setJsonFieldAnnotation(attr.getName(), field);
 			addResourceField(classe, field.build());
-			
 		}
-
 	}
 
 }

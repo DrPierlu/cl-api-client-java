@@ -10,9 +10,9 @@ import java.util.Map;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 
-import io.commercelayer.api.model.Address;
 import io.commercelayer.api.model.adapter.BooleanAdapter;
 import io.commercelayer.api.model.adapter.ZonedDateTimeAdapter;
+import io.commercelayer.api.model.dev.Address;
 import moe.banana.jsonapi2.ArrayDocument;
 import moe.banana.jsonapi2.Document;
 import moe.banana.jsonapi2.ResourceAdapterFactory;

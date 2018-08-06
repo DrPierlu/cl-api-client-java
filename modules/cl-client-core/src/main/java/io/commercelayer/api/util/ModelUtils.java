@@ -136,11 +136,12 @@ public final class ModelUtils {
 	}
 	
 	public static String toCamelCase(String strWith_) {
+		String prefix = strWith_.startsWith("_")? "_" : "";
 		String cap = WordUtils.capitalize(strWith_, '_').replaceAll("_", "");
 		char c[] = cap.toCharArray();
 		c[0] = Character.toLowerCase(c[0]);
 		cap = new String(c);
-		return cap;
+		return prefix.concat(cap);
 	}
 	
 	

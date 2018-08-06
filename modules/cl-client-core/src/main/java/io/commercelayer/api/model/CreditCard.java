@@ -1,143 +1,190 @@
 package io.commercelayer.api.model;
 
-import java.util.Map;
-
 import com.squareup.moshi.Json;
-
 import io.commercelayer.api.model.adapter.CLLinksAdapter;
 import io.commercelayer.api.model.common.ApiResource;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Map;
 import moe.banana.jsonapi2.HasOne;
 import moe.banana.jsonapi2.JsonApi;
 
-@JsonApi(type = "credit_cards")
+@JsonApi(
+    type = "credit_cards"
+)
 public class CreditCard extends ApiResource {
+  public static final long serialVersionUID = -1;
 
-	private static final long serialVersionUID = 4133368950410457479L;
+  @Json(
+      name = "first_name"
+  )
+  private String firstName;
 
-	@Json(name = "first_name")
-	private String firstName;
-	@Json(name = "last_name")
-	private String lastName;
-	@Json(name = "full_name")
-	private String fullName;
-	private String month;
-	private String year;
-	@Json(name = "valid_thru")
-	private String validThru;
-	@Json(name = "card_type")
-	private String cardType;
-	@Json(name = "display_number")
-	private String displayNumber;
-	private String name;
-	private String fingerprint;
-	@Json(name = "storage_state")
-	private String storageState;
+  @Json(
+      name = "last_name"
+  )
+  private String lastName;
 
-	private HasOne<Order> order;
+  private String number;
 
-	public String getFirstName() {
-		return firstName;
-	}
+  private String month;
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+  private String year;
 
-	public String getLastName() {
-		return lastName;
-	}
+  @Json(
+      name = "verification_value"
+  )
+  private String verificationValue;
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+  @Json(
+      name = "full_name"
+  )
+  private String fullName;
 
-	public String getFullName() {
-		return fullName;
-	}
+  @Json(
+      name = "valid_thru"
+  )
+  private String validThru;
 
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
-	}
+  @Json(
+      name = "card_type"
+  )
+  private String cardType;
 
-	public String getMonth() {
-		return month;
-	}
+  @Json(
+      name = "display_number"
+  )
+  private String displayNumber;
 
-	public void setMonth(String month) {
-		this.month = month;
-	}
+  private String name;
 
-	public String getYear() {
-		return year;
-	}
+  private String fingerprint;
 
-	public void setYear(String year) {
-		this.year = year;
-	}
+  @Json(
+      name = "storage_state"
+  )
+  private String storageState;
 
-	public String getValidThru() {
-		return validThru;
-	}
+  private HasOne<Order> order;
 
-	public void setValidThru(String validThru) {
-		this.validThru = validThru;
-	}
+  public String getFirstName() {
+    return this.firstName;
+  }
 
-	public String getCardType() {
-		return cardType;
-	}
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
 
-	public void setCardType(String cardType) {
-		this.cardType = cardType;
-	}
+  public String getLastName() {
+    return this.lastName;
+  }
 
-	public String getDisplayNumber() {
-		return displayNumber;
-	}
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
 
-	public void setDisplayNumber(String displayNumber) {
-		this.displayNumber = displayNumber;
-	}
+  public String getNumber() {
+    return this.number;
+  }
 
-	public String getName() {
-		return name;
-	}
+  public void setNumber(String number) {
+    this.number = number;
+  }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+  public String getMonth() {
+    return this.month;
+  }
 
-	public String getFingerprint() {
-		return fingerprint;
-	}
+  public void setMonth(String month) {
+    this.month = month;
+  }
 
-	public void setFingerprint(String fingerprint) {
-		this.fingerprint = fingerprint;
-	}
+  public String getYear() {
+    return this.year;
+  }
 
-	public String getStorageState() {
-		return storageState;
-	}
+  public void setYear(String year) {
+    this.year = year;
+  }
 
-	public void setStorageState(String storageState) {
-		this.storageState = storageState;
-	}
+  public String getVerificationValue() {
+    return this.verificationValue;
+  }
 
-	public HasOne<Order> getOrder() {
-		return order;
-	}
+  public void setVerificationValue(String verificationValue) {
+    this.verificationValue = verificationValue;
+  }
 
-	public void setOrder(HasOne<Order> order) {
-		this.order = order;
-	}
-	
-	public Order getOrderResource() {
-		return getOrder().get(getDocument());
-	}
-	
-	@SuppressWarnings("unchecked")
-	public Map<String, String> getOrderLinksMap() {
-		return (Map<String, String>)getOrder().getLinks().get(new CLLinksAdapter());
-	}
+  public String getFullName() {
+    return this.fullName;
+  }
 
+  public void setFullName(String fullName) {
+    this.fullName = fullName;
+  }
+
+  public String getValidThru() {
+    return this.validThru;
+  }
+
+  public void setValidThru(String validThru) {
+    this.validThru = validThru;
+  }
+
+  public String getCardType() {
+    return this.cardType;
+  }
+
+  public void setCardType(String cardType) {
+    this.cardType = cardType;
+  }
+
+  public String getDisplayNumber() {
+    return this.displayNumber;
+  }
+
+  public void setDisplayNumber(String displayNumber) {
+    this.displayNumber = displayNumber;
+  }
+
+  public String getName() {
+    return this.name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getFingerprint() {
+    return this.fingerprint;
+  }
+
+  public void setFingerprint(String fingerprint) {
+    this.fingerprint = fingerprint;
+  }
+
+  public String getStorageState() {
+    return this.storageState;
+  }
+
+  public void setStorageState(String storageState) {
+    this.storageState = storageState;
+  }
+
+  public HasOne<Order> getOrder() {
+    return this.order;
+  }
+
+  public void setOrder(HasOne<Order> order) {
+    this.order = order;
+  }
+
+  public Order getOrderResource() {
+    return getOrder().get(getDocument());
+  }
+
+  @SuppressWarnings("unchecked")
+  public Map<String, String> getOrderLinksMap() {
+    return (Map<String, String>)getOrder().getLinks().get(new CLLinksAdapter());
+  }
 }
