@@ -2,7 +2,6 @@ package io.commercelayer.api.codegen.model.generator.impl;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -35,7 +34,6 @@ import io.commercelayer.api.codegen.schema.ApiResponse;
 import io.commercelayer.api.codegen.schema.ApiSchema;
 import io.commercelayer.api.codegen.schema.parser.SchemaParserUtils;
 import io.commercelayer.api.domain.OperationType;
-import io.commercelayer.api.domain.ResponseType;
 import io.commercelayer.api.model.adapter.CLLinksAdapter;
 import io.commercelayer.api.model.common.ApiResource;
 import io.commercelayer.api.util.CLInflector;
@@ -54,7 +52,7 @@ public class MoshiJAModelGenerator implements ModelGenerator {
 		
 		ApiModel apiModel = new ApiModel(ModelGeneratorUtils.MODEL_BASE_PACKAGE);
 		
-		List<String> mainPaths = getMainResourcePaths(apiSchema);
+		List<String> mainPaths = ModelGeneratorUtils.getMainResourcePaths(apiSchema);
 		
 		logger.info("Analizing main paths ...");
 		for (String mainRes : mainPaths) {
@@ -101,14 +99,14 @@ public class MoshiJAModelGenerator implements ModelGenerator {
 						}
 						
 						// Response Fields
-						for (Map.Entry<ResponseType, ApiResponse> r : op.getResponses().entrySet()) {
+						for (Map.Entry<String, ApiResponse> r : op.getResponses().entrySet()) {
 							for (ApiAttribute attr : r.getValue().getAttributes()) {
 								if (ArrayUtils.contains(ModelGeneratorUtils.IGNORED_FIELDS, attr.getName())) continue;
 								if (!attributes.containsKey(attr.getName())) attributes.put(attr.getName(), attr);
 							}
 						}
 						// Response Relationships
-						for (Map.Entry<ResponseType, ApiResponse> r : op.getResponses().entrySet()) {
+						for (Map.Entry<String, ApiResponse> r : op.getResponses().entrySet()) {
 							for (ApiRelationship rel : r.getValue().getRelationships())
 								if (!relationships.containsKey(rel.getResourceName())) relationships.put(rel.getResourceName(), rel.getCardinality());
 						}
@@ -157,26 +155,6 @@ public class MoshiJAModelGenerator implements ModelGenerator {
 		
 	}
 	
-	
-	private List<String> getMainResourcePaths(ApiSchema apiSchema) {
-		
-		logger.info("Reading main resource paths ...");
-		
-		List<String> mainPaths = new LinkedList<>();
-		
-		for (ApiPath path : apiSchema.getPaths()) {
-			String res = path.getResource();
-			if (res.indexOf('/') == res.lastIndexOf('/')) {
-				mainPaths.add(res);
-				logger.debug(res);
-			}
-		}
-		
-		logger.info("Done.");
-		
-		return mainPaths;
-		
-	}
 	
 	private void setJsonFieldAnnotation(String fieldName, FieldSpec.Builder fieldBuilder) {
 		if (fieldName.contains("_")) {

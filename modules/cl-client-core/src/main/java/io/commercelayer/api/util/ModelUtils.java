@@ -135,13 +135,19 @@ public final class ModelUtils {
 		return str.replaceFirst("^0+(?!$)", "");
 	}
 	
+	
 	public static String toCamelCase(String strWith_) {
+		
+		if (StringUtils.isBlank(strWith_)) return strWith_;
+		
 		String prefix = strWith_.startsWith("_")? "_" : "";
 		String cap = WordUtils.capitalize(strWith_, '_').replaceAll("_", "");
 		char c[] = cap.toCharArray();
 		c[0] = Character.toLowerCase(c[0]);
 		cap = new String(c);
+		
 		return prefix.concat(cap);
+		
 	}
 	
 	

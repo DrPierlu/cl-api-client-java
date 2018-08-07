@@ -5,7 +5,9 @@ import java.util.List;
 
 import com.squareup.javapoet.TypeSpec;
 
-public class ApiModel {
+import io.commercelayer.api.codegen.source.ApiWriteable;
+
+public class ApiModel implements ApiWriteable {
 
 	private String rootPackage;
 	private List<TypeSpec> classes = new LinkedList<>();

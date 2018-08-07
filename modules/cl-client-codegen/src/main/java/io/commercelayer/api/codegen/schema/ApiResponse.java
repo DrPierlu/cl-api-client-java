@@ -3,25 +3,23 @@ package io.commercelayer.api.codegen.schema;
 import java.util.LinkedList;
 import java.util.List;
 
-import io.commercelayer.api.domain.ResponseType;
-
 public class ApiResponse {
 
-	private ResponseType type;
+	private int type;
 	private String description;
 	private List<ApiAttribute> attributes = new LinkedList<>();
 	private List<ApiRelationship> relationships = new LinkedList<>();
 
-	public ApiResponse(ResponseType type) {
+	public ApiResponse(int type) {
 		this.type = type;
 	}
 
-	public ApiResponse(ResponseType type, String description) {
+	public ApiResponse(int type, String description) {
 		this(type);
 		this.description = description;
 	}
 
-	public ResponseType getType() {
+	public int getType() {
 		return type;
 	}
 

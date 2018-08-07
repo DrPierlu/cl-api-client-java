@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.TypeSpec;
 
-import io.commercelayer.api.codegen.model.ApiModel;
+import io.commercelayer.api.codegen.source.ApiWriteable;
 import io.commercelayer.api.codegen.source.SourceException;
 import io.commercelayer.api.codegen.source.SourceWriter;
 
@@ -20,16 +20,18 @@ public class JPoetSourceWriter implements SourceWriter {
 
 	
 	@Override
-	public void write(ApiModel apiModel, String destDir) throws SourceException {
+	public void write(ApiWriteable apiWriteable, String destDir) throws SourceException {
+		
+		if (apiWriteable == null) throw new SourceException("No classes to write");
 
 		Path rootDir = Paths.get(destDir);
 		logger.info("Root directory: {}", destDir);
-		logger.info("Root package: {}", apiModel.getRootPackage());
+		logger.info("Root package: {}", apiWriteable.getRootPackage());
 		
-		for (TypeSpec classe : apiModel.getClasses()) {
+		for (TypeSpec classe : apiWriteable.getClasses()) {
 			
 			logger.info("Writing file {}.java", classe.name);
-			JavaFile javaFile = JavaFile.builder(apiModel.getRootPackage(), classe).build();
+			JavaFile javaFile = JavaFile.builder(apiWriteable.getRootPackage(), classe).build();
 			
 			try {
 				javaFile.writeTo(rootDir);

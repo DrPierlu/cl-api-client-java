@@ -5,7 +5,7 @@ import java.util.Map;
 
 import io.commercelayer.api.domain.OperationType;
 
-public class ApiPath {
+public class ApiPath implements Comparable<ApiPath> {
 
 	private String resource;
 	private Map<OperationType, ApiOperation> operations;
@@ -29,6 +29,11 @@ public class ApiPath {
 	public void addOperation(ApiOperation op) {
 		if (this.operations == null) this.operations = new HashMap<OperationType, ApiOperation>();
 		this.operations.put(op.getType(), op);
+	}
+
+	@Override
+	public int compareTo(ApiPath o) {
+		return this.resource.compareTo(o.getResource());
 	}
 
 }

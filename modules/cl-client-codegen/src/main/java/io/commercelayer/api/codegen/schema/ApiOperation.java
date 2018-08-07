@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import io.commercelayer.api.domain.OperationType;
-import io.commercelayer.api.domain.ResponseType;
 
 public class ApiOperation {
 
@@ -14,7 +13,7 @@ public class ApiOperation {
 	private OperationType type;
 	private String summary;
 
-	private Map<ResponseType, ApiResponse> responses = new LinkedHashMap<>();
+	private Map<String, ApiResponse> responses = new LinkedHashMap<>();
 	private List<ApiParameter> parameters = new LinkedList<>();
 	private ApiRequestBody requestBody;
 
@@ -46,16 +45,16 @@ public class ApiOperation {
 		this.summary = summary;
 	}
 
-	public Map<ResponseType, ApiResponse> getResponses() {
+	public Map<String, ApiResponse> getResponses() {
 		return responses;
 	}
 
-	public void setResponses(Map<ResponseType, ApiResponse> responses) {
+	public void setResponses(Map<String, ApiResponse> responses) {
 		this.responses = responses;
 	}
 
 	public void addResponse(ApiResponse response) {
-		this.responses.put(response.getType(), response);
+		this.responses.put(String.valueOf(response.getType()), response);
 	}
 
 	public List<ApiParameter> getParameters() {
@@ -76,6 +75,10 @@ public class ApiOperation {
 
 	public void setRequestBody(ApiRequestBody requestBody) {
 		this.requestBody = requestBody;
+	}
+	
+	public boolean hasRequestBody() {
+		return (this.requestBody != null) && !this.requestBody.getAttributes().isEmpty();
 	}
 
 }

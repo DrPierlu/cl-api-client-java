@@ -30,7 +30,6 @@ import io.commercelayer.api.codegen.schema.parser.SchemaException;
 import io.commercelayer.api.codegen.schema.parser.SchemaParser;
 import io.commercelayer.api.domain.ContentType;
 import io.commercelayer.api.domain.OperationType;
-import io.commercelayer.api.domain.ResponseType;
 
 public class OpenAPIParserV3 implements SchemaParser {
 	
@@ -96,7 +95,7 @@ public class OpenAPIParserV3 implements SchemaParser {
 					// Responses
 					for (Map.Entry<String, Response> er : op.getResponses().entrySet()) {
 						final Response r = er.getValue();
-						ApiResponse resp = new ApiResponse(ResponseType.byCode(er.getKey()), r.getDescription());
+						ApiResponse resp = new ApiResponse(Integer.parseInt(er.getKey()), r.getDescription());
 						apiOp.addResponse(resp);
 						if (OperationType.GET.code().equalsIgnoreCase(eo.getKey()) && (r.getContentMediaType(ContentType.JSON_API) != null)) parseResponseContent(r, resp);
 					}

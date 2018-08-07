@@ -1,5 +1,135 @@
 package io.commercelayer.api.codegen.service.generator.impl;
 
-public class RetrofitServiceGenerator {
+import java.util.List;
+import java.util.Map;
+import java.util.SortedSet;
+import java.util.TreeSet;
+
+import javax.lang.model.element.Modifier;
+
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.squareup.javapoet.AnnotationSpec;
+import com.squareup.javapoet.ClassName;
+import com.squareup.javapoet.MethodSpec;
+import com.squareup.javapoet.ParameterSpec;
+import com.squareup.javapoet.ParameterizedTypeName;
+import com.squareup.javapoet.TypeSpec;
+
+import io.commercelayer.api.codegen.model.generator.ModelGeneratorUtils;
+import io.commercelayer.api.codegen.schema.ApiOperation;
+import io.commercelayer.api.codegen.schema.ApiParameter;
+import io.commercelayer.api.codegen.schema.ApiPath;
+import io.commercelayer.api.codegen.schema.ApiSchema;
+import io.commercelayer.api.codegen.service.ApiService;
+import io.commercelayer.api.codegen.service.generator.ServiceException;
+import io.commercelayer.api.codegen.service.generator.ServiceGenerator;
+import io.commercelayer.api.codegen.service.generator.ServiceGeneratorUtils;
+import io.commercelayer.api.domain.OperationType;
+import io.commercelayer.api.util.CLInflector;
+import io.commercelayer.api.util.ModelUtils;
+import retrofit2.http.Body;
+import retrofit2.http.Path;
+import retrofit2.http.QueryMap;
+
+public class RetrofitServiceGenerator implements ServiceGenerator {
+
+	private static final Logger logger = LoggerFactory.getLogger(RetrofitServiceGenerator.class);
+
+	@Override
+	public ApiService generate(ApiSchema apiSchema) throws ServiceException {
+
+		ApiService apiService = new ApiService(ServiceGeneratorUtils.SERVICE_BASE_PACKAGE);
+
+		List<String> mainPaths = ModelGeneratorUtils.getMainResourcePaths(apiSchema);
+
+		logger.info("Analizing main paths ...");
+		for (String mainRes : mainPaths) {
+
+			SortedSet<ApiPath> servicePaths = new TreeSet<>();
+
+			for (ApiPath path : apiSchema.getPaths()) {
+				if (path.getResource().startsWith(mainRes))
+					servicePaths.add(path);
+			}
+
+			TypeSpec service = createService(mainRes, servicePaths);
+			apiService.addClass(service);
+
+		}
+
+		return apiService;
+
+	}
+
+	private TypeSpec createService(String resource, SortedSet<ApiPath> paths) throws ServiceException {
+		
+		final String resourceName = CLInflector.getInstance().singularize(StringUtils.capitalize(ModelUtils.toCamelCase(resource.substring(1))));
+		final String serviceName = String.format("%sService", resourceName);
+		
+		TypeSpec.Builder service = TypeSpec.interfaceBuilder(serviceName)
+			.addModifiers(Modifier.PUBLIC);
+		
+		logger.info("Generating Service Interface [{}]", serviceName);
+		
+		for (ApiPath path : paths) {
+			for (Map.Entry<OperationType, ApiOperation> ope : path.getOperations().entrySet()) {
+				
+				final ApiOperation op = ope.getValue();
+				final String serOpName = ServiceGeneratorUtils.getServiceOperationName(ope.getKey(), path.getResource());
+				
+				MethodSpec.Builder serOpMethod = MethodSpec.methodBuilder(serOpName)
+					.addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
+					.returns(ServiceGeneratorUtils.getOperationReturnType(path.getResource(), op));
+				
+				// Path Parameters
+				for (ApiParameter p : op.getParameters()) {
+					serOpMethod.addParameter(
+						ParameterSpec.builder(p.getType().getClass(), p.getName())
+							.addAnnotation(AnnotationSpec.builder(Path.class).addMember("value", "$S", p.getName())
+							.build()
+						).build()
+					);
+				}
+				
+				// Operation Annotation
+				serOpMethod.addAnnotation(
+					AnnotationSpec.builder(ServiceGeneratorUtils.getOperationAnnotation(op))
+						.addMember("value", "$S", path.getResource())
+						.build()
+				);
+				
+				// Body Parameter
+				if (op.hasRequestBody())
+					serOpMethod.addParameter(
+						ParameterSpec.builder(ClassName.get(ModelGeneratorUtils.MODEL_BASE_PACKAGE, resourceName), StringUtils.uncapitalize(resourceName))
+							.addAnnotation(AnnotationSpec.builder(Body.class)
+							.build()
+						).build()
+					);
+				
+				// QueryMap Parameter for filters and sparse fieldset
+				if (OperationType.GET.equals(op.getType()))
+					serOpMethod.addParameter(
+						ParameterSpec.builder(ParameterizedTypeName.get(Map.class, String.class, String.class), "queryStringParams")
+							.addAnnotation(AnnotationSpec.builder(QueryMap.class)
+							.build()
+						).build()
+					);
+				
+				service.addMethod(serOpMethod.build());
+				
+				logger.info("    Created Operation Interface [{}]", serOpName);
+				
+			}
+		}
+		
+		logger.info("Service Interface generated [{}]", serviceName);
+		
+		return service.build();
+		
+	}
 
 }
