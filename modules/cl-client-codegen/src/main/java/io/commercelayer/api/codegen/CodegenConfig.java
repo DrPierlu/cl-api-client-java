@@ -33,13 +33,37 @@ public final class CodegenConfig {
 	}
 
 
-	
 	public static String getProperty(String key) {
 		return (key == null)? null : settings.getProperty(key);
 	}
 	
-	public static Boolean isPropertyEnabled(String key) {
-		return Boolean.valueOf(getProperty(key));
+	public static String getProperty(Module module, String subKey) {
+		return ((module == null) || (subKey == null))? null : settings.getProperty(module.code().concat(".").concat(subKey));
+	}
+	
+	public static boolean isPropertyEnabled(String key) {
+		return Boolean.parseBoolean(getProperty(key));
+	}
+	
+	
+	// Codegen Modules
+	public static enum Module {
+		Schema("schema"),
+		Model("model"),
+		Service("service"),
+		Test("test"),
+		Source("source");
+		
+		private String code;
+		
+		private Module(String code) {
+			this.code = code;
+		}
+		
+		public String code() {
+			return this.code;
+		}
+		
 	}
 	
 }

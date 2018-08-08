@@ -13,6 +13,8 @@ import org.slf4j.LoggerFactory;
 import com.squareup.javapoet.FieldSpec;
 import com.squareup.javapoet.MethodSpec;
 
+import io.commercelayer.api.codegen.CodegenConfig;
+import io.commercelayer.api.codegen.CodegenConfig.Module;
 import io.commercelayer.api.codegen.schema.ApiPath;
 import io.commercelayer.api.codegen.schema.ApiSchema;
 
@@ -20,15 +22,24 @@ public final class ModelGeneratorUtils {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ModelGeneratorUtils.class);
 	
-	public static final String MODEL_BASE_PACKAGE = "io.commercelayer.api.model";
-	
-	public static final String[] IGNORED_FIELDS = {
-		"reference",
-		"metadata",
-		"created_at",
-		"updated_at",
-		"id"
-	};
+	public static final String 		MODEL_BASE_PACKAGE;	
+	public static final String[] 	MODEL_IGNORED_FIELDS;
+
+	static {
+		
+		// MODEL_BASE_PACKAGE
+		MODEL_BASE_PACKAGE = CodegenConfig.getProperty(Module.Model, "base.package");
+		
+		// IGNORED_FIELDS
+		String propIgnoredFields = CodegenConfig.getProperty(Module.Model, "ignored.fields");
+		if (StringUtils.isNotBlank(propIgnoredFields)) {
+			String[] fields = propIgnoredFields.split("[,;|]");
+			if (fields != null) MODEL_IGNORED_FIELDS = fields;
+			else MODEL_IGNORED_FIELDS = new String[0];
+		}
+		else MODEL_IGNORED_FIELDS = new String[0];
+		
+	}
 
 	private ModelGeneratorUtils() {
 		

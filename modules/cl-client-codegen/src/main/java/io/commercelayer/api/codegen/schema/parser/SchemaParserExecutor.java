@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import io.commercelayer.api.codegen.CodegenConfig;
+import io.commercelayer.api.codegen.CodegenConfig.Module;
 import io.commercelayer.api.codegen.CodegenException;
 import io.commercelayer.api.codegen.schema.ApiSchema;
 
@@ -21,7 +22,7 @@ public class SchemaParserExecutor {
 		SchemaParser schemaParser = SchemaParserFactory.get(SchemaParserDef.OpenAPI_V3);
 		
 		try {
-			ApiSchema schema = schemaParser.parse(new URL(CodegenConfig.getProperty("schema.parser.url")));
+			ApiSchema schema = schemaParser.parse(new URL(CodegenConfig.getProperty(Module.Schema, "parser.url")));
 			logger.info("Schema Parsing successfully terminated.");
 			return schema;
 		} catch (Exception e) {
