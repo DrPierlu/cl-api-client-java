@@ -21,6 +21,8 @@ import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import com.squareup.moshi.Json;
 
+import io.commercelayer.api.codegen.CodegenConfig;
+import io.commercelayer.api.codegen.CodegenConfig.Module;
 import io.commercelayer.api.codegen.model.ApiModel;
 import io.commercelayer.api.codegen.model.generator.ModelException;
 import io.commercelayer.api.codegen.model.generator.ModelGenerator;
@@ -89,7 +91,7 @@ public class MoshiJAModelGenerator implements ModelGenerator {
 						if (op.getRequestBody() != null) {
 							// Request Fields
 							for (ApiAttribute attr : op.getRequestBody().getAttributes()) {
-								if (ArrayUtils.contains(ModelGeneratorUtils.IGNORED_FIELDS, attr.getName())) continue;
+								if (ArrayUtils.contains(ModelGeneratorUtils.MODEL_IGNORED_FIELDS, attr.getName())) continue;
 								if (!attributes.containsKey(attr.getName())) attributes.put(attr.getName(), attr);
 							}
 							// Request Relationships
@@ -101,7 +103,7 @@ public class MoshiJAModelGenerator implements ModelGenerator {
 						// Response Fields
 						for (Map.Entry<String, ApiResponse> r : op.getResponses().entrySet()) {
 							for (ApiAttribute attr : r.getValue().getAttributes()) {
-								if (ArrayUtils.contains(ModelGeneratorUtils.IGNORED_FIELDS, attr.getName())) continue;
+								if (ArrayUtils.contains(ModelGeneratorUtils.MODEL_IGNORED_FIELDS, attr.getName())) continue;
 								if (!attributes.containsKey(attr.getName())) attributes.put(attr.getName(), attr);
 							}
 						}
@@ -129,7 +131,7 @@ public class MoshiJAModelGenerator implements ModelGenerator {
 			;
 			
 			FieldSpec serialVer = FieldSpec.builder(long.class, "serialVersionUID", Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
-				.initializer("$L", -1L)
+				.initializer("$L", CodegenConfig.getProperty(Module.Model, "object.serialVersionUID"))
 				.build();
 			classe.addField(serialVer);
 			

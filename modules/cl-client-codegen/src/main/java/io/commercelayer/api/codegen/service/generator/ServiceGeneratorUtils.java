@@ -11,6 +11,8 @@ import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.ParameterizedTypeName;
 import com.squareup.javapoet.TypeName;
 
+import io.commercelayer.api.codegen.CodegenConfig;
+import io.commercelayer.api.codegen.CodegenConfig.Module;
 import io.commercelayer.api.codegen.model.generator.ModelGeneratorUtils;
 import io.commercelayer.api.codegen.schema.ApiOperation;
 import io.commercelayer.api.domain.OperationType;
@@ -25,16 +27,23 @@ import retrofit2.http.POST;
 
 public final class ServiceGeneratorUtils {
 	
-	public static final String SERVICE_BASE_PACKAGE = "io.commercelayer.api.service";
+	public static final String SERVICE_BASE_PACKAGE;
 	
 	// Service Operation prefix remapping configuration
 	private static final Map<String, String> SERVICE_OP_PREFIX = new HashMap<>();
+	
 	static {
-		SERVICE_OP_PREFIX.put("retrieve", "retrieve");
-		SERVICE_OP_PREFIX.put("list", "list");
-		SERVICE_OP_PREFIX.put("update", "update");
-		SERVICE_OP_PREFIX.put("create", "create");
-		SERVICE_OP_PREFIX.put("delete", "delete");
+		
+		// SERVICE_BASE_PACKAGE
+		SERVICE_BASE_PACKAGE = CodegenConfig.getProperty(Module.Service, "base.package");
+		
+		// SERVICE_OP_PREFIX
+		SERVICE_OP_PREFIX.put("retrieve", 	CodegenConfig.getProperty(Module.Service, "operation.prefix.retrieve"));
+		SERVICE_OP_PREFIX.put("list", 		CodegenConfig.getProperty(Module.Service, "operation.prefix.list"));
+		SERVICE_OP_PREFIX.put("update", 	CodegenConfig.getProperty(Module.Service, "operation.prefix.update"));
+		SERVICE_OP_PREFIX.put("create", 	CodegenConfig.getProperty(Module.Service, "operation.prefix.create"));
+		SERVICE_OP_PREFIX.put("delete", 	CodegenConfig.getProperty(Module.Service, "operation.prefix.delete"));
+		
 	}
 	
 	
