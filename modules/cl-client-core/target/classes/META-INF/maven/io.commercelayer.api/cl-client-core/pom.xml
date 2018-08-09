@@ -29,7 +29,11 @@
 
 		<dependency>
 			<groupId>moe.banana</groupId>
-			<artifactId>moshi-jsonapi</artifactId>
+			<artifactId>moshi-jsonapi-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>moe.banana</groupId>
+			<artifactId>moshi-jsonapi-retrofit-converter</artifactId>
 		</dependency>
 
 		<dependency>

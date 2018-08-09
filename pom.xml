@@ -17,8 +17,9 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<slf4j.version>1.6.4</slf4j.version>
+		<slf4j.version>1.7.25</slf4j.version>
 		<logback.version>1.2.3</logback.version>
+		<moshi-jsonapi.version>3.5.0</moshi-jsonapi.version>
 	</properties>
 
 	<build>
@@ -93,8 +94,13 @@
 			<!-- GitHub imported libraries -->
 			<dependency>
 				<groupId>moe.banana</groupId>
-				<artifactId>moshi-jsonapi</artifactId>
-				<version>3.5.0</version>
+				<artifactId>moshi-jsonapi-core</artifactId>
+				<version>${moshi-jsonapi.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>moe.banana</groupId>
+				<artifactId>moshi-jsonapi-retrofit-converter</artifactId>
+				<version>${moshi-jsonapi.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.reprezen.kaizen</groupId>
@@ -107,7 +113,7 @@
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-api</artifactId>
-				<version>1.7.25</version>
+				<version>${slf4j.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>ch.qos.logback</groupId>
