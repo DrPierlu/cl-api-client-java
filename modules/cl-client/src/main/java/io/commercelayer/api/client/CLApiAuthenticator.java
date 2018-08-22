@@ -10,17 +10,16 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.auth.AuthRequest;
 import io.commercelayer.api.auth.AuthorizationCode;
+import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.config.ApiConfig;
 import io.commercelayer.api.domain.ContentType;
-import io.commercelayer.api.exception.AuthException;
-import io.commercelayer.api.exception.CallException;
 import io.commercelayer.api.http.HttpClient;
 import io.commercelayer.api.http.HttpClientFactory;
 import io.commercelayer.api.http.HttpRequest;
 import io.commercelayer.api.http.HttpRequest.Method;
 import io.commercelayer.api.http.HttpResponse;
-import io.commercelayer.api.model.common.ApiError;
 import io.commercelayer.api.model.common.ApiOrganization;
+import io.commercelayer.api.model.common.error.AuthError;
 import io.commercelayer.api.util.JSONUtils;
 
 
@@ -68,12 +67,12 @@ public class CLApiAuthenticator {
 		logger.debug("Auth Response Body: {}", httpResponse.getBody());
 		
 		if (httpResponse.hasErrorCode()) {
-			ApiError apiError = JSONUtils.fromJSON(httpResponse.getBody(), ApiError.class);
-			apiError.setHttpErrorCode(httpResponse.getCode());
-			throw new AuthException(apiError);
+			AuthError authError = JSONUtils.fromJSON(httpResponse.getBody(), AuthError.class);
+			authError.setHttpErrorCode(httpResponse.getCode());
+			throw new AuthException(authError);
 		}
 		else
-			if (!ContentType.JSON.equals(httpResponse.getContentType())) throw new CallException("Expected JSON Content Type [%s]", httpResponse.getContentType());
+			if (!ContentType.JSON.equals(httpResponse.getContentType())) throw new RuntimeException(String.format("Expected JSON Content Type [%s]", httpResponse.getContentType()));
 
 		ApiToken token = JSONUtils.fromJSON(httpResponse.getBody(), ApiToken.class);
 

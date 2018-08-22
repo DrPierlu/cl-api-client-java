@@ -5,7 +5,7 @@ import java.io.IOException;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.CLApiClient;
 import io.commercelayer.api.client.QueryFilter;
-import io.commercelayer.api.exception.ApiException;
+import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.model.dev.Address;
 import io.commercelayer.api.service.dev.AddressService;
 import io.commercelayer.api.test.AuthenticationTest;

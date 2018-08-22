@@ -1,7 +1,7 @@
 package io.commercelayer.api.http.trace;
 
 import io.commercelayer.api.domain.ContentType;
-import io.commercelayer.api.exception.ConnectionException;
+import io.commercelayer.api.http.HttpCallException;
 import io.commercelayer.api.http.HttpClient;
 import io.commercelayer.api.http.HttpRequest;
 import io.commercelayer.api.http.HttpResponse;
@@ -9,7 +9,7 @@ import io.commercelayer.api.http.HttpResponse;
 public class HttpClientTrace extends HttpClient {
 	
 	@Override
-	public HttpResponse send(HttpRequest request) throws ConnectionException {
+	public HttpResponse send(HttpRequest request) throws HttpCallException {
 		
 		logger.debug("********** HttpClientTrace.HttpRequest **********");
 		

@@ -5,7 +5,7 @@ import java.util.Map;
 
 import io.commercelayer.api.config.ApiConfig;
 import io.commercelayer.api.config.ApiConfig.Group;
-import io.commercelayer.api.exception.ConnectionException;
+import io.commercelayer.api.http.HttpCallException;
 import io.commercelayer.api.http.HttpClient;
 import io.commercelayer.api.http.HttpProxy;
 import io.commercelayer.api.http.HttpRequest;
@@ -47,7 +47,7 @@ public class HttpClientOkHttpImpl extends HttpClient {
 		return RequestBody.create(MediaType.parse(httpRequest.getContentType()), httpRequest.getBody());
 	}
 
-	public HttpResponse send(HttpRequest httpRequest) throws ConnectionException {
+	public HttpResponse send(HttpRequest httpRequest) throws HttpCallException {
 
 		// REQUEST
 		Request.Builder requestBuilder = new Request.Builder().url(httpRequest.getUrl());
@@ -80,7 +80,7 @@ public class HttpClientOkHttpImpl extends HttpClient {
 		try {
 			response = httpClient.newCall(request).execute();
 		} catch (IOException ioe) {
-			throw new ConnectionException("HTTP Error calling [%s:%s]", httpRequest.getMethod(), httpRequest.getUrl());
+			throw new HttpCallException("HTTP Error calling [%s:%s]", httpRequest.getMethod(), httpRequest.getUrl());
 		}
 
 		HttpResponse httpResponse = new HttpResponse();
@@ -98,7 +98,7 @@ public class HttpClientOkHttpImpl extends HttpClient {
 		try {
 			httpResponse.setBody(response.body().string());
 		} catch (IOException ioe) {
-			throw new ConnectionException(String.format("HTTP Error reading body response [%s:%s]", httpRequest.getMethod(), httpRequest.getUrl()));
+			throw new HttpCallException(String.format("HTTP Error reading body response [%s:%s]", httpRequest.getMethod(), httpRequest.getUrl()));
 		}
 
 		// HTTP Content Type

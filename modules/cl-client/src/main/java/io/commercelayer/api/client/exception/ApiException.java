@@ -1,6 +1,6 @@
-package io.commercelayer.api.exception;
+package io.commercelayer.api.client.exception;
 
-import io.commercelayer.api.model.common.ApiError;
+import io.commercelayer.api.model.common.error.ApiError;
 
 public class ApiException extends Exception {
 
@@ -15,10 +15,6 @@ public class ApiException extends Exception {
 
 	public ApiError getApiError() {
 		return apiError;
-	}
-	
-	public String getApiErrorInfo() {
-		return errorMessage(getApiError());
 	}
 	
 	private static String errorMessage(ApiError apiError) {

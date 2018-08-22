@@ -1,8 +1,10 @@
-package io.commercelayer.api.model.common;
+package io.commercelayer.api.model.common.error;
 
 import com.squareup.moshi.Json;
 
-public class ApiError extends ApiObject {
+import io.commercelayer.api.model.common.ApiObject;
+
+public class AuthError extends ApiObject {
 
 	private String error;
 	@Json(name = "error_description") private String errorDescription;

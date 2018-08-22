@@ -5,14 +5,12 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.commercelayer.api.exception.ConnectionException;
-
 public abstract class HttpClient {
 	
 	protected final Logger logger = LoggerFactory.getLogger(getClass());
 	
 	
-	public abstract HttpResponse send(HttpRequest httpRequest) throws ConnectionException;
+	public abstract HttpResponse send(HttpRequest httpRequest) throws HttpCallException;
 
 
 	protected String getQueryString(HttpRequest httpRequest, boolean withQuestionMark) {
