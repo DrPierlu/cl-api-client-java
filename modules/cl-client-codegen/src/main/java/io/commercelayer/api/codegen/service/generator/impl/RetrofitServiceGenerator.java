@@ -111,13 +111,20 @@ public class RetrofitServiceGenerator implements ServiceGenerator {
 					);
 				
 				// QueryMap Parameter for filters and sparse fieldset
-				if (OperationType.GET.equals(op.getType()))
+				if (OperationType.GET.equals(op.getType())) {
+					
+					// Add overloaded method without filter parameters
+					service.addMethod(serOpMethod.build());
+					
+					// Add a new method with filter
 					serOpMethod.addParameter(
 						ParameterSpec.builder(ParameterizedTypeName.get(Map.class, String.class, String.class), "queryStringParams")
 							.addAnnotation(AnnotationSpec.builder(QueryMap.class)
 							.build()
 						).build()
 					);
+					
+				}
 				
 				service.addMethod(serOpMethod.build());
 				
