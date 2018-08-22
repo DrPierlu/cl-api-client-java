@@ -5,8 +5,8 @@
 	<modelVersion>4.0.0</modelVersion>
 	
 	<artifactId>cl-client</artifactId>
-	<name>Commerce Layer API Java Client - Implementation</name>
-	<description>Commerce Layer API Java Client - Implementation</description>
+	<name>CLAPI-Client</name>
+	<description>Commerce Layer API Java Client - Client Implementation</description>
 
 	<parent>
 		<groupId>io.commercelayer.api</groupId>

@@ -5,8 +5,8 @@
 	<modelVersion>4.0.0</modelVersion>
 	
 	<artifactId>cl-client-codegen</artifactId>
-	<name>Commerce Layer API Java Client - Code Generator</name>
-	<description>Commerce Layer API Java Client - Code Generator</description>
+	<name>CLAPI-CodeGen</name>
+	<description>Commerce Layer API Java Client - Source Code Generator</description>
 
 	<parent>
 		<groupId>io.commercelayer.api</groupId>

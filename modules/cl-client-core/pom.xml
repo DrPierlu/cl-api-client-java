@@ -5,8 +5,8 @@
 	<modelVersion>4.0.0</modelVersion>
 	
 	<artifactId>cl-client-core</artifactId>
-	<name>Commerce Layer API Java Client - Core</name>
-	<description>Commerce Layer API Java Client - Core</description>
+	<name>CLAPI-Core</name>
+	<description>Commerce Layer API Java Client - Core Components</description>
 
 	<parent>
 		<groupId>io.commercelayer.api</groupId>
