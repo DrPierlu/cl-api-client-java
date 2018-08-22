@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -116,6 +117,10 @@ public final class LogUtils {
 
 	public static void singleInfoMessage(Class<?> classe, String message) {
 		getLogger(classe).info(message);
+	}
+	
+	public static String toString(Object o) {
+		return ReflectionToStringBuilder.toString(o, TO_STRING_STYLE);
 	}
 
 }
