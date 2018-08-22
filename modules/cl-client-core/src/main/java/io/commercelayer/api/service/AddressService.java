@@ -1,8 +1,11 @@
 package io.commercelayer.api.service;
 
+import io.commercelayer.api.model.Address;
+import io.commercelayer.api.model.Geocoder;
+import java.lang.String;
+import java.lang.Void;
+import java.util.List;
 import java.util.Map;
-
-import io.commercelayer.api.model.dev.Address;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -13,20 +16,32 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface AddressService {
+  @GET("/addresses")
+  Call<List<Address>> listAddresses();
 
-	@POST("addresses")
-	Call<Address> createAddress(@Body Address address);
-	
-	@GET("addresses")
-	Call<Address> listAddresses(@QueryMap Map<String, String> queryStringParams);
-	
-	@GET("addresses/{id}")
-	Call<Address> retrieveAddress(@Path("id") String id, @QueryMap Map<String, String> queryStringParams);
-	
-	@PATCH("addresses/{id}")
-	Call<Address> updateAddress(@Path("id") String id, @Body Address address);
-	
-	@DELETE("addresses/{id}")
-	Call<Address> deleteAddress(@Path("id") String id);
-	
+  @GET("/addresses")
+  Call<List<Address>> listAddresses(@QueryMap Map<String, String> queryStringParams);
+
+  @POST("/addresses")
+  Call<Address> createAddress(@Body Address address);
+
+  @GET("/addresses/{addressId}")
+  Call<Address> retrieveAddress(@Path("addressId") String addressId);
+
+  @GET("/addresses/{addressId}")
+  Call<Address> retrieveAddress(@Path("addressId") String addressId,
+      @QueryMap Map<String, String> queryStringParams);
+
+  @PATCH("/addresses/{addressId}")
+  Call<Address> updateAddress(@Path("addressId") String addressId, @Body Address address);
+
+  @DELETE("/addresses/{addressId}")
+  Call<Void> deleteAddress(@Path("addressId") String addressId);
+
+  @GET("/addresses/{addressId}/geocoder")
+  Call<Geocoder> retrieveAddressGeocoder(@Path("addressId") String addressId);
+
+  @GET("/addresses/{addressId}/geocoder")
+  Call<Geocoder> retrieveAddressGeocoder(@Path("addressId") String addressId,
+      @QueryMap Map<String, String> queryStringParams);
 }
