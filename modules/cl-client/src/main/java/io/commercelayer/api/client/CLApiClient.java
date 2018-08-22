@@ -8,6 +8,7 @@ import com.squareup.moshi.Moshi;
 
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.config.ApiConfig;
+import io.commercelayer.api.config.ApiConfig.Group;
 import io.commercelayer.api.domain.ContentType;
 import io.commercelayer.api.http.auth.HttpAuthOAuth2;
 import io.commercelayer.api.http.ok.OkHttpClientBuilder;
@@ -24,7 +25,7 @@ public class CLApiClient {
 
 	private static final Logger logger = LoggerFactory.getLogger(CLApiClient.class);
 
-	private static final String PATH_API = "/api";
+	private static final String PATH_API = ApiConfig.getProperty(Group.api, "service.path");
 
 	private final String apiBaseUrl;
 	private final ApiToken apiToken;
