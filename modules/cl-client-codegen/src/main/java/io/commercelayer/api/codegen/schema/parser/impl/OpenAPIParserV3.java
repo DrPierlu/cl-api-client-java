@@ -97,7 +97,7 @@ public class OpenAPIParserV3 implements SchemaParser {
 						final Response r = er.getValue();
 						ApiResponse resp = new ApiResponse(Integer.parseInt(er.getKey()), r.getDescription());
 						apiOp.addResponse(resp);
-						if (OperationType.GET.code().equalsIgnoreCase(eo.getKey()) && (r.getContentMediaType(ContentType.JSON_API) != null)) parseResponseContent(r, resp);
+						if (OperationType.GET.code().equalsIgnoreCase(eo.getKey()) && r.hasContentMediaType(ContentType.JSON_API)) parseResponseContent(r, resp);
 					}
 					
 					// Parameters
