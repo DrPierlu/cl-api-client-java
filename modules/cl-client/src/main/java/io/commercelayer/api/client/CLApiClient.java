@@ -82,5 +82,27 @@ public class CLApiClient {
 		return retrofit.create(service);
 
 	}
+	
+	
+
+	public final <T> T getRawClient(Class<T> service) {
+
+//		JsonAdapter.Factory jsonApiAdapterFactory = ResourceAdapterFactory.builder()
+//				.add(Unknown.class)
+//				.build();
+
+		Moshi moshi = new Moshi.Builder()
+//			.add(jsonApiAdapterFactory)
+			.build();
+
+		Retrofit retrofit = new Retrofit.Builder()
+			.baseUrl(this.apiBaseUrl)
+			.client(this.httpClient)
+			.addConverterFactory(JsonApiConverterFactory.create(moshi))
+			.build();
+
+		return retrofit.create(service);
+
+	}
 
 }
