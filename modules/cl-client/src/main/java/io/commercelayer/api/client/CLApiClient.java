@@ -15,6 +15,7 @@ import io.commercelayer.api.http.ok.OkHttpClientBuilder;
 import io.commercelayer.api.http.ok.interceptor.ContentTypeInterceptor;
 import io.commercelayer.api.http.ok.interceptor.OAuth2Interceptor;
 import io.commercelayer.api.model.common.ApiOrganization;
+import io.commercelayer.api.model.common.Unknown;
 import moe.banana.jsonapi2.JsonApiConverterFactory;
 import moe.banana.jsonapi2.Resource;
 import moe.banana.jsonapi2.ResourceAdapterFactory;
@@ -63,7 +64,10 @@ public class CLApiClient {
 	@SafeVarargs
 	public final <T> T getRawClient(Class<T> service, Class<? extends Resource>... resources) {
 
-		JsonAdapter.Factory jsonApiAdapterFactory = ResourceAdapterFactory.builder().add(resources).add(Unknown.class).build();
+		JsonAdapter.Factory jsonApiAdapterFactory = ResourceAdapterFactory.builder()
+				.add(resources)
+				.add(Unknown.class)
+				.build();
 
 		Moshi moshi = new Moshi.Builder()
 			.add(jsonApiAdapterFactory)
