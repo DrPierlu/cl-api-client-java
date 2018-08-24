@@ -33,14 +33,19 @@ public class CLApiClient {
 
 
 	public CLApiClient(ApiOrganization apiOrg, ApiToken apiToken) {
+		this(ApiConfig.getApiBaseUrl(apiOrg).concat(PATH_API), apiToken);
+	}
+	
+	public CLApiClient(String apiBaseUrl, ApiToken apiToken) {
 
-		this.apiBaseUrl = ApiConfig.getApiBaseUrl(apiOrg).concat(PATH_API);
+		this.apiBaseUrl = apiBaseUrl;
 		this.apiToken = apiToken;
 		this.httpClient = buildHttpClient();
 
 		logger.info("Built client for {}", this.apiBaseUrl);
 
 	}
+	
 
 	private OkHttpClient buildHttpClient() {
 

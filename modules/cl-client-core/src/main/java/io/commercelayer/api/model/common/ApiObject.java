@@ -1,13 +1,14 @@
 package io.commercelayer.api.model.common;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+
+import io.commercelayer.api.util.LogUtils;
 
 public abstract class ApiObject {
 	
 	@Override
 	public String toString() {
-		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+		return ToStringBuilder.reflectionToString(this, LogUtils.TO_STRING_STYLE);
 	}
 	
 }
