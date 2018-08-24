@@ -2,7 +2,8 @@ package io.commercelayer.api.codegen.service.generator;
 
 public enum ServiceGeneratorDef {
 	
-	Retrofit("Retrofit");
+	Retrofit_Resource("Retrofit-Resource"),	// Moshi-JsonApi->JPoet with Retrofit Resource return type
+	Retrofit_Document("Retrofit-Document");	// Moshi-JsonApi->JPoet with Retrofit Document return type
 	
 	private String id;
 	

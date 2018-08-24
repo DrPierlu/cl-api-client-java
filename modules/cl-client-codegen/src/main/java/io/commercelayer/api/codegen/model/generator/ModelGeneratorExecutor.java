@@ -11,12 +11,22 @@ public class ModelGeneratorExecutor {
 
 	private static final Logger logger = LoggerFactory.getLogger(ModelGeneratorExecutor.class);
 	
+	private ModelGeneratorDef def;
+	
+	public ModelGeneratorExecutor() {
+		this(ModelGeneratorDef.Moshi_JsonApi);
+	}
+	
+	public ModelGeneratorExecutor(ModelGeneratorDef def) {
+		this.def = def;
+		logger.info(String.format("ModelGenerator implementation: %s", def.id()));
+	}
 	
 	public ApiModel execute(ApiSchema apiSchema) throws CodegenException {
 		
 		logger.info("Class Model Generation started ...");
 
-		ModelGenerator modelGenerator = ModelGeneratorFactory.get(ModelGeneratorDef.Moshi_JsonApi);
+		ModelGenerator modelGenerator = ModelGeneratorFactory.get(this.def);
 
 		try {
 			ApiModel model = modelGenerator.generate(apiSchema);

@@ -12,10 +12,8 @@ public final class NetUtils {
 	public static String getHostName() {
 
 		try {
-			
 			InetAddress addr = InetAddress.getLocalHost();
-			return addr.getHostName();
-						
+			return addr.getHostName();			
 		}
 		catch (UnknownHostException ex) {
 			LogUtils.singleErrorMessage(NetUtils.class, "Hostname can not be resolved");

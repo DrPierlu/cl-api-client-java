@@ -16,6 +16,7 @@ import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.ParameterSpec;
 import com.squareup.javapoet.ParameterizedTypeName;
+import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 
 import io.commercelayer.api.codegen.model.generator.ModelGeneratorUtils;
@@ -36,12 +37,12 @@ import retrofit2.http.QueryMap;
 
 public class RetrofitServiceGenerator implements ServiceGenerator {
 
-	private static final Logger logger = LoggerFactory.getLogger(RetrofitServiceGenerator.class);
+	private static final Logger logger = LoggerFactory.getLogger(RetrofitDocServiceGenerator.class);
 
 	@Override
 	public ApiService generate(ApiSchema apiSchema) throws ServiceException {
 
-		ApiService apiService = new ApiService(ServiceGeneratorUtils.SERVICE_BASE_PACKAGE);
+		ApiService apiService = new ApiService(getServiceBasePackage());
 
 		List<String> mainPaths = ModelGeneratorUtils.getMainResourcePaths(apiSchema);
 
@@ -82,7 +83,7 @@ public class RetrofitServiceGenerator implements ServiceGenerator {
 				
 				MethodSpec.Builder serOpMethod = MethodSpec.methodBuilder(serOpName)
 					.addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
-					.returns(ServiceGeneratorUtils.getOperationReturnType(path.getResource(), op));
+					.returns(getOperationReturnType(path.getResource(), op));
 				
 				// Path Parameters
 				for (ApiParameter p : op.getParameters()) {
@@ -137,6 +138,15 @@ public class RetrofitServiceGenerator implements ServiceGenerator {
 		
 		return service.build();
 		
+	}
+	
+	
+	protected TypeName getOperationReturnType(String resource, ApiOperation operation) {
+		return ServiceGeneratorUtils.getOperationReturnType(resource, operation);
+	}
+	
+	protected String getServiceBasePackage() {
+		return ServiceGeneratorUtils.SERVICE_BASE_PACKAGE;
 	}
 
 }

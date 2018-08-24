@@ -105,7 +105,7 @@ public final class ServiceGeneratorUtils {
 		
 	}
 	
-	public static TypeName getOperationReturnType(String resourcePath, ApiOperation op) throws ServiceException {
+	public static TypeName getOperationReturnType(String resourcePath, ApiOperation op) {
 		
 		if (OperationType.DELETE.equals(op.getType())) return ParameterizedTypeName.get(Call.class, Void.class);
 		

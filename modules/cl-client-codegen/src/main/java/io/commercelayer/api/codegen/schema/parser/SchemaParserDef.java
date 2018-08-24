@@ -16,4 +16,8 @@ public enum SchemaParserDef {
 		return new SpecInfo(id, version);
 	}
 	
+	public String id() {
+		return specInfo().getName();
+	}
+	
 }

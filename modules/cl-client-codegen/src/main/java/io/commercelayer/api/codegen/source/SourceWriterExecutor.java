@@ -11,12 +11,22 @@ public class SourceWriterExecutor {
 	
 	private static final Logger logger = LoggerFactory.getLogger(SourceWriterExecutor.class);
 	
+	private SourceWriterDef def;
+	
+	public SourceWriterExecutor() {
+		this(SourceWriterDef.JPoet);
+	}
+	
+	public SourceWriterExecutor(SourceWriterDef def) {
+		this.def = def;
+		logger.info(String.format("SourceWriter implementation: %s", def.id()));
+	}
 	
 	public void execute(ApiWriteable apiWriteable) throws CodegenException {
 		
 		logger.info("Source Writing started ...");
 		
-		SourceWriter sourceWriter = SourceWriterFactory.get();
+		SourceWriter sourceWriter = SourceWriterFactory.get(this.def);
 
 		try {
 			sourceWriter.write(apiWriteable, CodegenConfig.getProperty(Module.Source, "output.dir"));

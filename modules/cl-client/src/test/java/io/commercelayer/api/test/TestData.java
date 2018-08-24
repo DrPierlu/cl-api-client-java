@@ -1,4 +1,4 @@
-package io.commercelayer.api.test.model;
+package io.commercelayer.api.test;
 
 import io.commercelayer.api.auth.ClientCredentials;
 import io.commercelayer.api.model.common.ApiOrganization;

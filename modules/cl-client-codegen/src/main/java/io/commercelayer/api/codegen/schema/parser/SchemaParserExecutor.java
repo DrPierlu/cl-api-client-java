@@ -14,12 +14,22 @@ public class SchemaParserExecutor {
 	
 	private static final Logger logger = LoggerFactory.getLogger(SchemaParserExecutor.class);
 	
+	private SchemaParserDef def;
+	
+	public SchemaParserExecutor() {
+		this(SchemaParserDef.OpenAPI_V3);
+	}
+	
+	public SchemaParserExecutor(SchemaParserDef def) {
+		this.def = def;
+		logger.info(String.format("SchemaParser implementation: %s", def.id()));
+	}
 	
 	public ApiSchema execute() throws CodegenException {
 		
 		logger.info("Schema Parsing started ...");
 		
-		SchemaParser schemaParser = SchemaParserFactory.get(SchemaParserDef.OpenAPI_V3);
+		SchemaParser schemaParser = SchemaParserFactory.get(this.def);
 		
 		try {
 			ApiSchema schema = schemaParser.parse(new URL(CodegenConfig.getProperty(Module.Schema, "parser.url")));

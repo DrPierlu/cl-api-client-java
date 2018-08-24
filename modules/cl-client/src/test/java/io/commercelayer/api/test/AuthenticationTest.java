@@ -3,7 +3,6 @@ package io.commercelayer.api.test;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.CLApiAuthenticator;
 import io.commercelayer.api.client.exception.AuthException;
-import io.commercelayer.api.test.model.TestData;
 
 
 public class AuthenticationTest {

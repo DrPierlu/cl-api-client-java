@@ -8,8 +8,13 @@ public class SourceWriterFactory {
 
 	}
 
-	public static SourceWriter get() throws SourceException {
-		return new JPoetSourceWriter();
+	public static SourceWriter get(SourceWriterDef swd) throws SourceException {
+		
+		switch (swd) {
+			case JPoet:	return new JPoetSourceWriter();
+			default: throw new SourceException(String.format("Unsupported Source Writer [%s]", swd.id()));
+		}
+		
 	}
 
 }

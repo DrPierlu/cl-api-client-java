@@ -63,7 +63,7 @@ public class CLApiClient {
 	@SafeVarargs
 	public final <T> T getRawClient(Class<T> service, Class<? extends Resource>... resources) {
 
-		JsonAdapter.Factory jsonApiAdapterFactory = ResourceAdapterFactory.builder().add(resources).build();
+		JsonAdapter.Factory jsonApiAdapterFactory = ResourceAdapterFactory.builder().add(resources).add(Unknown.class).build();
 
 		Moshi moshi = new Moshi.Builder()
 			.add(jsonApiAdapterFactory)
