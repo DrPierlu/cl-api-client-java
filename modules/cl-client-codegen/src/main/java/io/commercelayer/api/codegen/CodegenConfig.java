@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,6 +44,11 @@ public final class CodegenConfig {
 	
 	public static boolean isPropertyEnabled(String key) {
 		return Boolean.parseBoolean(getProperty(key));
+	}
+	
+	public static String mapResource(String resName) {
+		String remap = getProperty("model.resource.mapping.".concat(resName));
+		return (StringUtils.isBlank(remap))? resName : remap;
 	}
 	
 	

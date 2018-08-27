@@ -4,6 +4,7 @@ import io.commercelayer.api.model.DeliveryLeadTime;
 import io.commercelayer.api.model.Price;
 import io.commercelayer.api.model.ShippingCategory;
 import io.commercelayer.api.model.Sku;
+import io.commercelayer.api.model.SkuOption;
 import io.commercelayer.api.model.StockItem;
 import java.lang.String;
 import java.lang.Void;
@@ -60,6 +61,13 @@ public interface SkuService {
 
   @GET("/skus/{skuId}/shipping_category")
   Call<ShippingCategory> retrieveSkuShippingCategory(@Path("skuId") String skuId,
+      @QueryMap Map<String, String> queryStringParams);
+
+  @GET("/skus/{skuId}/sku_options")
+  Call<List<SkuOption>> listSkuSkuOptions(@Path("skuId") String skuId);
+
+  @GET("/skus/{skuId}/sku_options")
+  Call<List<SkuOption>> listSkuSkuOptions(@Path("skuId") String skuId,
       @QueryMap Map<String, String> queryStringParams);
 
   @GET("/skus/{skuId}/stock_items")

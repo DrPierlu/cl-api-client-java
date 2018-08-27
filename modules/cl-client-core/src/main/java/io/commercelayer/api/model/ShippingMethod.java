@@ -83,7 +83,7 @@ public class ShippingMethod extends ApiResource {
   @Json(
       name = "delivery_lead_time_for_shipment"
   )
-  private HasOne<DeliveryLeadTimeForShipment> deliveryLeadTimeForShipment;
+  private HasOne<DeliveryLeadTime> deliveryLeadTimeForShipment;
 
   public String getName() {
     return this.name;
@@ -224,16 +224,15 @@ public class ShippingMethod extends ApiResource {
     return (Map<String, String>)getShippingCategory().getLinks().get(new CLLinksAdapter());
   }
 
-  public HasOne<DeliveryLeadTimeForShipment> getDeliveryLeadTimeForShipment() {
+  public HasOne<DeliveryLeadTime> getDeliveryLeadTimeForShipment() {
     return this.deliveryLeadTimeForShipment;
   }
 
-  public void setDeliveryLeadTimeForShipment(
-      HasOne<DeliveryLeadTimeForShipment> deliveryLeadTimeForShipment) {
+  public void setDeliveryLeadTimeForShipment(HasOne<DeliveryLeadTime> deliveryLeadTimeForShipment) {
     this.deliveryLeadTimeForShipment = deliveryLeadTimeForShipment;
   }
 
-  public DeliveryLeadTimeForShipment getDeliveryLeadTimeForShipmentResource() {
+  public DeliveryLeadTime getDeliveryLeadTimeForShipmentResource() {
     return getDeliveryLeadTimeForShipment().get(getDocument());
   }
 

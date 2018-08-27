@@ -1,8 +1,9 @@
 package io.commercelayer.api.service.document;
 
-import java.util.Map;
-
 import io.commercelayer.api.model.Address;
+import java.lang.String;
+import java.lang.Void;
+import java.util.Map;
 import moe.banana.jsonapi2.Document;
 import retrofit2.Call;
 import retrofit2.http.Body;

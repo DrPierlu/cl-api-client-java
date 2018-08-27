@@ -63,6 +63,11 @@ public class Sku extends ApiResource {
   )
   private HasMany<DeliveryLeadTime> deliveryLeadTimes;
 
+  @Json(
+      name = "sku_options"
+  )
+  private HasMany<SkuOption> skuOptions;
+
   public String getCode() {
     return this.code;
   }
@@ -193,5 +198,22 @@ public class Sku extends ApiResource {
   @SuppressWarnings("unchecked")
   public Map<String, String> getDeliveryLeadTimesLinksMap() {
     return (Map<String, String>)getDeliveryLeadTimes().getLinks().get(new CLLinksAdapter());
+  }
+
+  public HasMany<SkuOption> getSkuOptions() {
+    return this.skuOptions;
+  }
+
+  public void setSkuOptions(HasMany<SkuOption> skuOptions) {
+    this.skuOptions = skuOptions;
+  }
+
+  public List<SkuOption> getSkuOptionResourceList() {
+    return getSkuOptions().get(getDocument());
+  }
+
+  @SuppressWarnings("unchecked")
+  public Map<String, String> getSkuOptionsLinksMap() {
+    return (Map<String, String>)getSkuOptions().getLinks().get(new CLLinksAdapter());
   }
 }

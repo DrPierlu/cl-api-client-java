@@ -7,7 +7,9 @@ import java.lang.Integer;
 import java.lang.Object;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.List;
 import java.util.Map;
+import moe.banana.jsonapi2.HasMany;
 import moe.banana.jsonapi2.HasOne;
 import moe.banana.jsonapi2.JsonApi;
 
@@ -57,6 +59,21 @@ public class LineItem extends ApiResource {
   private String formattedUnitAmount;
 
   @Json(
+      name = "options_amount_cents"
+  )
+  private Integer optionsAmountCents;
+
+  @Json(
+      name = "options_amount_float"
+  )
+  private Integer optionsAmountFloat;
+
+  @Json(
+      name = "formatted_options_amount"
+  )
+  private String formattedOptionsAmount;
+
+  @Json(
       name = "total_amount_cents"
   )
   private Integer totalAmountCents;
@@ -89,6 +106,11 @@ public class LineItem extends ApiResource {
   private HasOne<Order> order;
 
   private HasOne<Item> item;
+
+  @Json(
+      name = "line_item_options"
+  )
+  private HasMany<LineItemOption> lineItemOptions;
 
   public String getSkuCode() {
     return this.skuCode;
@@ -160,6 +182,30 @@ public class LineItem extends ApiResource {
 
   public void setFormattedUnitAmount(String formattedUnitAmount) {
     this.formattedUnitAmount = formattedUnitAmount;
+  }
+
+  public Integer getOptionsAmountCents() {
+    return this.optionsAmountCents;
+  }
+
+  public void setOptionsAmountCents(Integer optionsAmountCents) {
+    this.optionsAmountCents = optionsAmountCents;
+  }
+
+  public Integer getOptionsAmountFloat() {
+    return this.optionsAmountFloat;
+  }
+
+  public void setOptionsAmountFloat(Integer optionsAmountFloat) {
+    this.optionsAmountFloat = optionsAmountFloat;
+  }
+
+  public String getFormattedOptionsAmount() {
+    return this.formattedOptionsAmount;
+  }
+
+  public void setFormattedOptionsAmount(String formattedOptionsAmount) {
+    this.formattedOptionsAmount = formattedOptionsAmount;
   }
 
   public Integer getTotalAmountCents() {
@@ -242,5 +288,22 @@ public class LineItem extends ApiResource {
   @SuppressWarnings("unchecked")
   public Map<String, String> getItemLinksMap() {
     return (Map<String, String>)getItem().getLinks().get(new CLLinksAdapter());
+  }
+
+  public HasMany<LineItemOption> getLineItemOptions() {
+    return this.lineItemOptions;
+  }
+
+  public void setLineItemOptions(HasMany<LineItemOption> lineItemOptions) {
+    this.lineItemOptions = lineItemOptions;
+  }
+
+  public List<LineItemOption> getLineItemOptionResourceList() {
+    return getLineItemOptions().get(getDocument());
+  }
+
+  @SuppressWarnings("unchecked")
+  public Map<String, String> getLineItemOptionsLinksMap() {
+    return (Map<String, String>)getLineItemOptions().getLinks().get(new CLLinksAdapter());
   }
 }

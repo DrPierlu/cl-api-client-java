@@ -7,6 +7,7 @@ import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.CLApiClient;
 import io.commercelayer.api.client.QueryFilter;
 import io.commercelayer.api.client.exception.ApiException;
+import io.commercelayer.api.client.exception.ConnectionException;
 import io.commercelayer.api.model.Address;
 import io.commercelayer.api.service.AddressService;
 import io.commercelayer.api.test.AuthenticationTest;
@@ -45,6 +46,29 @@ public class AddressTest {
 		}
 		
 		System.out.println("TEST OK");
+		
+	}
+	
+	
+	private static Address updateAddress(String addressId, Address address) throws ApiException, ConnectionException {
+	
+		ApiToken token = new AuthenticationTest().authenticate();
+		
+		CLApiClient client = new CLApiClient(TestData.getOrganization(), token);
+		
+		AddressService rawClient = client.getRawClient(AddressService.class, Address.class);
+		
+		Call<Address> call = rawClient.updateAddress(addressId, address);
+		
+		Response<Address> response;
+		try {
+			response = call.execute();
+		} catch (IOException e) {
+			throw new ConnectionException(e.getMessage());
+		}
+		
+		if (response.isSuccessful()) return response.body();
+		else throw new ApiException(ApiUtils.getError(response));
 		
 	}
 	

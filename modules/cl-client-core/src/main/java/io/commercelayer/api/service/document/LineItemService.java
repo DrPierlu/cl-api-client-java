@@ -1,12 +1,10 @@
-package io.commercelayer.api.service;
+package io.commercelayer.api.service.document;
 
 import io.commercelayer.api.model.LineItem;
-import io.commercelayer.api.model.LineItemOption;
-import io.commercelayer.api.model.Order;
 import java.lang.String;
 import java.lang.Void;
-import java.util.List;
 import java.util.Map;
+import moe.banana.jsonapi2.Document;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -18,38 +16,38 @@ import retrofit2.http.QueryMap;
 
 public interface LineItemService {
   @GET("/line_items")
-  Call<List<LineItem>> listLineItems();
+  Call<Document> listLineItems();
 
   @GET("/line_items")
-  Call<List<LineItem>> listLineItems(@QueryMap Map<String, String> queryStringParams);
+  Call<Document> listLineItems(@QueryMap Map<String, String> queryStringParams);
 
   @POST("/line_items")
-  Call<LineItem> createLineItem(@Body LineItem lineItem);
+  Call<Document> createLineItem(@Body LineItem lineItem);
 
   @GET("/line_items/{lineItemId}")
-  Call<LineItem> retrieveLineItem(@Path("lineItemId") String lineItemId);
+  Call<Document> retrieveLineItem(@Path("lineItemId") String lineItemId);
 
   @GET("/line_items/{lineItemId}")
-  Call<LineItem> retrieveLineItem(@Path("lineItemId") String lineItemId,
+  Call<Document> retrieveLineItem(@Path("lineItemId") String lineItemId,
       @QueryMap Map<String, String> queryStringParams);
 
   @PATCH("/line_items/{lineItemId}")
-  Call<LineItem> updateLineItem(@Path("lineItemId") String lineItemId, @Body LineItem lineItem);
+  Call<Document> updateLineItem(@Path("lineItemId") String lineItemId, @Body LineItem lineItem);
 
   @DELETE("/line_items/{lineItemId}")
   Call<Void> deleteLineItem(@Path("lineItemId") String lineItemId);
 
   @GET("/line_items/{lineItemId}/line_item_options")
-  Call<List<LineItemOption>> listLineItemLineItemOptions(@Path("lineItemId") String lineItemId);
+  Call<Document> listLineItemLineItemOptions(@Path("lineItemId") String lineItemId);
 
   @GET("/line_items/{lineItemId}/line_item_options")
-  Call<List<LineItemOption>> listLineItemLineItemOptions(@Path("lineItemId") String lineItemId,
+  Call<Document> listLineItemLineItemOptions(@Path("lineItemId") String lineItemId,
       @QueryMap Map<String, String> queryStringParams);
 
   @GET("/line_items/{lineItemId}/order")
-  Call<Order> retrieveLineItemOrder(@Path("lineItemId") String lineItemId);
+  Call<Document> retrieveLineItemOrder(@Path("lineItemId") String lineItemId);
 
   @GET("/line_items/{lineItemId}/order")
-  Call<Order> retrieveLineItemOrder(@Path("lineItemId") String lineItemId,
+  Call<Document> retrieveLineItemOrder(@Path("lineItemId") String lineItemId,
       @QueryMap Map<String, String> queryStringParams);
 }

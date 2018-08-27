@@ -12,13 +12,18 @@ public class ApiException extends Exception {
 		super(errorMessage(apiError));
 		this.apiError = apiError;
 	}
+	
+	public ApiException(ApiError apiError, Throwable t) {
+		super(errorMessage(apiError), t);
+		this.apiError = apiError;
+	}
 
 	public ApiError getApiError() {
 		return apiError;
 	}
 	
 	private static String errorMessage(ApiError apiError) {
-		return (apiError == null)? "" : apiError.toString();
+		return (apiError == null)? null : apiError.getTitle();
 	}
 
 }

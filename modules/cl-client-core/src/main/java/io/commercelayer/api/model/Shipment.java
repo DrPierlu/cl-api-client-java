@@ -98,17 +98,17 @@ public class Shipment extends ApiResource {
   @Json(
       name = "shipping_address"
   )
-  private HasOne<ShippingAddress> shippingAddress;
+  private HasOne<Address> shippingAddress;
 
   @Json(
       name = "shipment_line_items"
   )
-  private HasMany<ShipmentLineItem> shipmentLineItems;
+  private HasMany<LineItem> shipmentLineItems;
 
   @Json(
       name = "available_shipping_methods"
   )
-  private HasMany<AvailableShippingMethod> availableShippingMethods;
+  private HasMany<ShippingMethod> availableShippingMethods;
 
   private HasMany<Parcel> parcels;
 
@@ -267,15 +267,15 @@ public class Shipment extends ApiResource {
     return (Map<String, String>)getStockLocation().getLinks().get(new CLLinksAdapter());
   }
 
-  public HasOne<ShippingAddress> getShippingAddress() {
+  public HasOne<Address> getShippingAddress() {
     return this.shippingAddress;
   }
 
-  public void setShippingAddress(HasOne<ShippingAddress> shippingAddress) {
+  public void setShippingAddress(HasOne<Address> shippingAddress) {
     this.shippingAddress = shippingAddress;
   }
 
-  public ShippingAddress getShippingAddressResource() {
+  public Address getShippingAddressResource() {
     return getShippingAddress().get(getDocument());
   }
 
@@ -284,15 +284,15 @@ public class Shipment extends ApiResource {
     return (Map<String, String>)getShippingAddress().getLinks().get(new CLLinksAdapter());
   }
 
-  public HasMany<ShipmentLineItem> getShipmentLineItems() {
+  public HasMany<LineItem> getShipmentLineItems() {
     return this.shipmentLineItems;
   }
 
-  public void setShipmentLineItems(HasMany<ShipmentLineItem> shipmentLineItems) {
+  public void setShipmentLineItems(HasMany<LineItem> shipmentLineItems) {
     this.shipmentLineItems = shipmentLineItems;
   }
 
-  public List<ShipmentLineItem> getShipmentLineItemResourceList() {
+  public List<LineItem> getShipmentLineItemResourceList() {
     return getShipmentLineItems().get(getDocument());
   }
 
@@ -301,16 +301,15 @@ public class Shipment extends ApiResource {
     return (Map<String, String>)getShipmentLineItems().getLinks().get(new CLLinksAdapter());
   }
 
-  public HasMany<AvailableShippingMethod> getAvailableShippingMethods() {
+  public HasMany<ShippingMethod> getAvailableShippingMethods() {
     return this.availableShippingMethods;
   }
 
-  public void setAvailableShippingMethods(
-      HasMany<AvailableShippingMethod> availableShippingMethods) {
+  public void setAvailableShippingMethods(HasMany<ShippingMethod> availableShippingMethods) {
     this.availableShippingMethods = availableShippingMethods;
   }
 
-  public List<AvailableShippingMethod> getAvailableShippingMethodResourceList() {
+  public List<ShippingMethod> getAvailableShippingMethodResourceList() {
     return getAvailableShippingMethods().get(getDocument());
   }
 

@@ -185,7 +185,9 @@ public class MoshiJAModelGenerator implements ModelGenerator {
 			final String relFieldNameCap = StringUtils.capitalize(relFieldName);
 			final String relResName = CLInflector.getInstance().singularize(relFieldNameCap);
 			
-			TypeName relResType = ClassName.get(ModelGeneratorUtils.MODEL_BASE_PACKAGE, relResName);
+			
+			
+			TypeName relResType = ClassName.get(ModelGeneratorUtils.MODEL_BASE_PACKAGE, CodegenConfig.mapResource(relResName));
 			
 			ClassName cn = ClassName.get(multiRel? HasMany.class : HasOne.class);
 			TypeName tn = ParameterizedTypeName.get(cn, relResType);
@@ -195,8 +197,8 @@ public class MoshiJAModelGenerator implements ModelGenerator {
 			addResourceField(classe, field.build());
 			
 			// Relationship get Resource/ResourceList method
-			final String relResMethosName = String.format("get%sResource%s", relResName, (multiRel? "List" : ""));
-			MethodSpec relResMethod = MethodSpec.methodBuilder(relResMethosName)
+			final String relResMethodName = String.format("get%sResource%s", relResName, (multiRel? "List" : ""));
+			MethodSpec relResMethod = MethodSpec.methodBuilder(relResMethodName)
 				.addModifiers(Modifier.PUBLIC)
 				.returns(multiRel? ParameterizedTypeName.get(ClassName.get(List.class), relResType) : relResType)
 				.addStatement("return get$L().get(getDocument())", relFieldNameCap)

@@ -477,12 +477,12 @@ public class Order extends ApiResource {
   @Json(
       name = "shipping_address"
   )
-  private HasOne<ShippingAddress> shippingAddress;
+  private HasOne<Address> shippingAddress;
 
   @Json(
       name = "billing_address"
   )
-  private HasOne<BillingAddress> billingAddress;
+  private HasOne<Address> billingAddress;
 
   @Json(
       name = "payment_method"
@@ -1281,15 +1281,15 @@ public class Order extends ApiResource {
     return (Map<String, String>)getCustomer().getLinks().get(new CLLinksAdapter());
   }
 
-  public HasOne<ShippingAddress> getShippingAddress() {
+  public HasOne<Address> getShippingAddress() {
     return this.shippingAddress;
   }
 
-  public void setShippingAddress(HasOne<ShippingAddress> shippingAddress) {
+  public void setShippingAddress(HasOne<Address> shippingAddress) {
     this.shippingAddress = shippingAddress;
   }
 
-  public ShippingAddress getShippingAddressResource() {
+  public Address getShippingAddressResource() {
     return getShippingAddress().get(getDocument());
   }
 
@@ -1298,15 +1298,15 @@ public class Order extends ApiResource {
     return (Map<String, String>)getShippingAddress().getLinks().get(new CLLinksAdapter());
   }
 
-  public HasOne<BillingAddress> getBillingAddress() {
+  public HasOne<Address> getBillingAddress() {
     return this.billingAddress;
   }
 
-  public void setBillingAddress(HasOne<BillingAddress> billingAddress) {
+  public void setBillingAddress(HasOne<Address> billingAddress) {
     this.billingAddress = billingAddress;
   }
 
-  public BillingAddress getBillingAddressResource() {
+  public Address getBillingAddressResource() {
     return getBillingAddress().get(getDocument());
   }
 
