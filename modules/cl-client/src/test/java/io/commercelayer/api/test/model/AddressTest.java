@@ -1,20 +1,16 @@
 package io.commercelayer.api.test.model;
 
-import java.io.IOException;
 import java.util.List;
 
 import io.commercelayer.api.auth.ApiToken;
-import io.commercelayer.api.client.ApiUtils;
 import io.commercelayer.api.client.CLApiClient;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.ConnectionException;
 import io.commercelayer.api.model.Address;
-import io.commercelayer.api.model.Geocoder;
 import io.commercelayer.api.service.AddressService;
 import io.commercelayer.api.test.AuthenticationTest;
 import io.commercelayer.api.test.TestData;
 import retrofit2.Call;
-import retrofit2.Response;
 
 public class AddressTest {
 	
