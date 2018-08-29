@@ -16,32 +16,32 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface ParcelService {
-  @GET("/parcels")
-  Call<List<Parcel>> listParcels();
-
-  @GET("/parcels")
-  Call<List<Parcel>> listParcels(@QueryMap Map<String, String> queryStringParams);
-
-  @POST("/parcels")
+  @POST("parcels")
   Call<Parcel> createParcel(@Body Parcel parcel);
 
-  @GET("/parcels/{parcelId}")
+  @GET("parcels")
+  Call<List<Parcel>> listParcels();
+
+  @GET("parcels")
+  Call<List<Parcel>> listParcels(@QueryMap Map<String, String> queryStringParams);
+
+  @PATCH("parcels/{parcelId}")
+  Call<Parcel> updateParcel(@Path("parcelId") String parcelId, @Body Parcel parcel);
+
+  @DELETE("parcels/{parcelId}")
+  Call<Void> deleteParcel(@Path("parcelId") String parcelId);
+
+  @GET("parcels/{parcelId}")
   Call<Parcel> retrieveParcel(@Path("parcelId") String parcelId);
 
-  @GET("/parcels/{parcelId}")
+  @GET("parcels/{parcelId}")
   Call<Parcel> retrieveParcel(@Path("parcelId") String parcelId,
       @QueryMap Map<String, String> queryStringParams);
 
-  @PATCH("/parcels/{parcelId}")
-  Call<Parcel> updateParcel(@Path("parcelId") String parcelId, @Body Parcel parcel);
-
-  @DELETE("/parcels/{parcelId}")
-  Call<Void> deleteParcel(@Path("parcelId") String parcelId);
-
-  @GET("/parcels/{parcelId}/shipment")
+  @GET("parcels/{parcelId}/shipment")
   Call<Shipment> retrieveParcelShipment(@Path("parcelId") String parcelId);
 
-  @GET("/parcels/{parcelId}/shipment")
+  @GET("parcels/{parcelId}/shipment")
   Call<Shipment> retrieveParcelShipment(@Path("parcelId") String parcelId,
       @QueryMap Map<String, String> queryStringParams);
 }

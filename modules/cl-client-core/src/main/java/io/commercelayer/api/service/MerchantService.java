@@ -16,32 +16,32 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface MerchantService {
-  @GET("/merchants")
-  Call<List<Merchant>> listMerchants();
-
-  @GET("/merchants")
-  Call<List<Merchant>> listMerchants(@QueryMap Map<String, String> queryStringParams);
-
-  @POST("/merchants")
+  @POST("merchants")
   Call<Merchant> createMerchant(@Body Merchant merchant);
 
-  @GET("/merchants/{merchantId}")
+  @GET("merchants")
+  Call<List<Merchant>> listMerchants();
+
+  @GET("merchants")
+  Call<List<Merchant>> listMerchants(@QueryMap Map<String, String> queryStringParams);
+
+  @PATCH("merchants/{merchantId}")
+  Call<Merchant> updateMerchant(@Path("merchantId") String merchantId, @Body Merchant merchant);
+
+  @DELETE("merchants/{merchantId}")
+  Call<Void> deleteMerchant(@Path("merchantId") String merchantId);
+
+  @GET("merchants/{merchantId}")
   Call<Merchant> retrieveMerchant(@Path("merchantId") String merchantId);
 
-  @GET("/merchants/{merchantId}")
+  @GET("merchants/{merchantId}")
   Call<Merchant> retrieveMerchant(@Path("merchantId") String merchantId,
       @QueryMap Map<String, String> queryStringParams);
 
-  @PATCH("/merchants/{merchantId}")
-  Call<Merchant> updateMerchant(@Path("merchantId") String merchantId, @Body Merchant merchant);
-
-  @DELETE("/merchants/{merchantId}")
-  Call<Void> deleteMerchant(@Path("merchantId") String merchantId);
-
-  @GET("/merchants/{merchantId}/address")
+  @GET("merchants/{merchantId}/address")
   Call<Address> retrieveMerchantAddress(@Path("merchantId") String merchantId);
 
-  @GET("/merchants/{merchantId}/address")
+  @GET("merchants/{merchantId}/address")
   Call<Address> retrieveMerchantAddress(@Path("merchantId") String merchantId,
       @QueryMap Map<String, String> queryStringParams);
 }

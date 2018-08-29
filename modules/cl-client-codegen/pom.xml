@@ -29,10 +29,10 @@
 			<artifactId>openapi-parser</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>com.github.jasminb</groupId>
-			<artifactId>jsonapi-converter</artifactId>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.github.jasminb</groupId> -->
+<!-- 			<artifactId>jsonapi-converter</artifactId> -->
+<!-- 		</dependency> -->
 
 		<dependency>
 			<groupId>com.squareup</groupId>

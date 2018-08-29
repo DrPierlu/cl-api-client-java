@@ -18,46 +18,46 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface MarketService {
-  @GET("/markets")
-  Call<List<Market>> listMarkets();
-
-  @GET("/markets")
-  Call<List<Market>> listMarkets(@QueryMap Map<String, String> queryStringParams);
-
-  @POST("/markets")
+  @POST("markets")
   Call<Market> createMarket(@Body Market market);
 
-  @GET("/markets/{marketId}")
+  @GET("markets")
+  Call<List<Market>> listMarkets();
+
+  @GET("markets")
+  Call<List<Market>> listMarkets(@QueryMap Map<String, String> queryStringParams);
+
+  @PATCH("markets/{marketId}")
+  Call<Market> updateMarket(@Path("marketId") String marketId, @Body Market market);
+
+  @DELETE("markets/{marketId}")
+  Call<Void> deleteMarket(@Path("marketId") String marketId);
+
+  @GET("markets/{marketId}")
   Call<Market> retrieveMarket(@Path("marketId") String marketId);
 
-  @GET("/markets/{marketId}")
+  @GET("markets/{marketId}")
   Call<Market> retrieveMarket(@Path("marketId") String marketId,
       @QueryMap Map<String, String> queryStringParams);
 
-  @PATCH("/markets/{marketId}")
-  Call<Market> updateMarket(@Path("marketId") String marketId, @Body Market market);
-
-  @DELETE("/markets/{marketId}")
-  Call<Void> deleteMarket(@Path("marketId") String marketId);
-
-  @GET("/markets/{marketId}/inventory_model")
+  @GET("markets/{marketId}/inventory_model")
   Call<InventoryModel> retrieveMarketInventoryModel(@Path("marketId") String marketId);
 
-  @GET("/markets/{marketId}/inventory_model")
+  @GET("markets/{marketId}/inventory_model")
   Call<InventoryModel> retrieveMarketInventoryModel(@Path("marketId") String marketId,
       @QueryMap Map<String, String> queryStringParams);
 
-  @GET("/markets/{marketId}/merchant")
+  @GET("markets/{marketId}/merchant")
   Call<Merchant> retrieveMarketMerchant(@Path("marketId") String marketId);
 
-  @GET("/markets/{marketId}/merchant")
+  @GET("markets/{marketId}/merchant")
   Call<Merchant> retrieveMarketMerchant(@Path("marketId") String marketId,
       @QueryMap Map<String, String> queryStringParams);
 
-  @GET("/markets/{marketId}/price_list")
+  @GET("markets/{marketId}/price_list")
   Call<PriceList> retrieveMarketPriceList(@Path("marketId") String marketId);
 
-  @GET("/markets/{marketId}/price_list")
+  @GET("markets/{marketId}/price_list")
   Call<PriceList> retrieveMarketPriceList(@Path("marketId") String marketId,
       @QueryMap Map<String, String> queryStringParams);
 }

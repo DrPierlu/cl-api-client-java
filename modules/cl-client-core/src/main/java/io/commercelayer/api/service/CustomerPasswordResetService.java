@@ -16,40 +16,40 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface CustomerPasswordResetService {
-  @GET("/customer_password_resets")
-  Call<List<CustomerPasswordReset>> listCustomerPasswordResets();
-
-  @GET("/customer_password_resets")
-  Call<List<CustomerPasswordReset>> listCustomerPasswordResets(
-      @QueryMap Map<String, String> queryStringParams);
-
-  @POST("/customer_password_resets")
+  @POST("customer_password_resets")
   Call<CustomerPasswordReset> createCustomerPasswordReset(
       @Body CustomerPasswordReset customerPasswordReset);
 
-  @GET("/customer_password_resets/{customerPasswordResetId}")
-  Call<CustomerPasswordReset> retrieveCustomerPasswordReset(
-      @Path("customerPasswordResetId") String customerPasswordResetId);
+  @GET("customer_password_resets")
+  Call<List<CustomerPasswordReset>> listCustomerPasswordResets();
 
-  @GET("/customer_password_resets/{customerPasswordResetId}")
-  Call<CustomerPasswordReset> retrieveCustomerPasswordReset(
-      @Path("customerPasswordResetId") String customerPasswordResetId,
+  @GET("customer_password_resets")
+  Call<List<CustomerPasswordReset>> listCustomerPasswordResets(
       @QueryMap Map<String, String> queryStringParams);
 
-  @PATCH("/customer_password_resets/{customerPasswordResetId}")
+  @PATCH("customer_password_resets/{customerPasswordResetId}")
   Call<CustomerPasswordReset> updateCustomerPasswordReset(
       @Path("customerPasswordResetId") String customerPasswordResetId,
       @Body CustomerPasswordReset customerPasswordReset);
 
-  @DELETE("/customer_password_resets/{customerPasswordResetId}")
+  @DELETE("customer_password_resets/{customerPasswordResetId}")
   Call<Void> deleteCustomerPasswordReset(
       @Path("customerPasswordResetId") String customerPasswordResetId);
 
-  @GET("/customer_password_resets/{customerPasswordResetId}/customer")
+  @GET("customer_password_resets/{customerPasswordResetId}")
+  Call<CustomerPasswordReset> retrieveCustomerPasswordReset(
+      @Path("customerPasswordResetId") String customerPasswordResetId);
+
+  @GET("customer_password_resets/{customerPasswordResetId}")
+  Call<CustomerPasswordReset> retrieveCustomerPasswordReset(
+      @Path("customerPasswordResetId") String customerPasswordResetId,
+      @QueryMap Map<String, String> queryStringParams);
+
+  @GET("customer_password_resets/{customerPasswordResetId}/customer")
   Call<Customer> retrieveCustomerPasswordResetCustomer(
       @Path("customerPasswordResetId") String customerPasswordResetId);
 
-  @GET("/customer_password_resets/{customerPasswordResetId}/customer")
+  @GET("customer_password_resets/{customerPasswordResetId}/customer")
   Call<Customer> retrieveCustomerPasswordResetCustomer(
       @Path("customerPasswordResetId") String customerPasswordResetId,
       @QueryMap Map<String, String> queryStringParams);

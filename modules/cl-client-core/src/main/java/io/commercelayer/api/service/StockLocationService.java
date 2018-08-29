@@ -18,49 +18,49 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface StockLocationService {
-  @GET("/stock_locations")
-  Call<List<StockLocation>> listStockLocations();
-
-  @GET("/stock_locations")
-  Call<List<StockLocation>> listStockLocations(@QueryMap Map<String, String> queryStringParams);
-
-  @POST("/stock_locations")
+  @POST("stock_locations")
   Call<StockLocation> createStockLocation(@Body StockLocation stockLocation);
 
-  @GET("/stock_locations/{stockLocationId}")
-  Call<StockLocation> retrieveStockLocation(@Path("stockLocationId") String stockLocationId);
+  @GET("stock_locations")
+  Call<List<StockLocation>> listStockLocations();
 
-  @GET("/stock_locations/{stockLocationId}")
-  Call<StockLocation> retrieveStockLocation(@Path("stockLocationId") String stockLocationId,
-      @QueryMap Map<String, String> queryStringParams);
+  @GET("stock_locations")
+  Call<List<StockLocation>> listStockLocations(@QueryMap Map<String, String> queryStringParams);
 
-  @PATCH("/stock_locations/{stockLocationId}")
+  @PATCH("stock_locations/{stockLocationId}")
   Call<StockLocation> updateStockLocation(@Path("stockLocationId") String stockLocationId,
       @Body StockLocation stockLocation);
 
-  @DELETE("/stock_locations/{stockLocationId}")
+  @DELETE("stock_locations/{stockLocationId}")
   Call<Void> deleteStockLocation(@Path("stockLocationId") String stockLocationId);
 
-  @GET("/stock_locations/{stockLocationId}/address")
+  @GET("stock_locations/{stockLocationId}")
+  Call<StockLocation> retrieveStockLocation(@Path("stockLocationId") String stockLocationId);
+
+  @GET("stock_locations/{stockLocationId}")
+  Call<StockLocation> retrieveStockLocation(@Path("stockLocationId") String stockLocationId,
+      @QueryMap Map<String, String> queryStringParams);
+
+  @GET("stock_locations/{stockLocationId}/address")
   Call<Address> retrieveStockLocationAddress(@Path("stockLocationId") String stockLocationId);
 
-  @GET("/stock_locations/{stockLocationId}/address")
+  @GET("stock_locations/{stockLocationId}/address")
   Call<Address> retrieveStockLocationAddress(@Path("stockLocationId") String stockLocationId,
       @QueryMap Map<String, String> queryStringParams);
 
-  @GET("/stock_locations/{stockLocationId}/stock_items")
+  @GET("stock_locations/{stockLocationId}/stock_items")
   Call<List<StockItem>> listStockLocationStockItems(
       @Path("stockLocationId") String stockLocationId);
 
-  @GET("/stock_locations/{stockLocationId}/stock_items")
+  @GET("stock_locations/{stockLocationId}/stock_items")
   Call<List<StockItem>> listStockLocationStockItems(@Path("stockLocationId") String stockLocationId,
       @QueryMap Map<String, String> queryStringParams);
 
-  @GET("/stock_locations/{stockLocationId}/stock_levels")
+  @GET("stock_locations/{stockLocationId}/stock_levels")
   Call<List<StockLevel>> listStockLocationStockLevels(
       @Path("stockLocationId") String stockLocationId);
 
-  @GET("/stock_locations/{stockLocationId}/stock_levels")
+  @GET("stock_locations/{stockLocationId}/stock_levels")
   Call<List<StockLevel>> listStockLocationStockLevels(
       @Path("stockLocationId") String stockLocationId,
       @QueryMap Map<String, String> queryStringParams);

@@ -16,34 +16,34 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface InventoryModelService {
-  @GET("/inventory_models")
-  Call<List<InventoryModel>> listInventoryModels();
-
-  @GET("/inventory_models")
-  Call<List<InventoryModel>> listInventoryModels(@QueryMap Map<String, String> queryStringParams);
-
-  @POST("/inventory_models")
+  @POST("inventory_models")
   Call<InventoryModel> createInventoryModel(@Body InventoryModel inventoryModel);
 
-  @GET("/inventory_models/{inventoryModelId}")
-  Call<InventoryModel> retrieveInventoryModel(@Path("inventoryModelId") String inventoryModelId);
+  @GET("inventory_models")
+  Call<List<InventoryModel>> listInventoryModels();
 
-  @GET("/inventory_models/{inventoryModelId}")
-  Call<InventoryModel> retrieveInventoryModel(@Path("inventoryModelId") String inventoryModelId,
-      @QueryMap Map<String, String> queryStringParams);
+  @GET("inventory_models")
+  Call<List<InventoryModel>> listInventoryModels(@QueryMap Map<String, String> queryStringParams);
 
-  @PATCH("/inventory_models/{inventoryModelId}")
+  @PATCH("inventory_models/{inventoryModelId}")
   Call<InventoryModel> updateInventoryModel(@Path("inventoryModelId") String inventoryModelId,
       @Body InventoryModel inventoryModel);
 
-  @DELETE("/inventory_models/{inventoryModelId}")
+  @DELETE("inventory_models/{inventoryModelId}")
   Call<Void> deleteInventoryModel(@Path("inventoryModelId") String inventoryModelId);
 
-  @GET("/inventory_models/{inventoryModelId}/stock_levels")
+  @GET("inventory_models/{inventoryModelId}")
+  Call<InventoryModel> retrieveInventoryModel(@Path("inventoryModelId") String inventoryModelId);
+
+  @GET("inventory_models/{inventoryModelId}")
+  Call<InventoryModel> retrieveInventoryModel(@Path("inventoryModelId") String inventoryModelId,
+      @QueryMap Map<String, String> queryStringParams);
+
+  @GET("inventory_models/{inventoryModelId}/stock_levels")
   Call<List<StockLevel>> listInventoryModelStockLevels(
       @Path("inventoryModelId") String inventoryModelId);
 
-  @GET("/inventory_models/{inventoryModelId}/stock_levels")
+  @GET("inventory_models/{inventoryModelId}/stock_levels")
   Call<List<StockLevel>> listInventoryModelStockLevels(
       @Path("inventoryModelId") String inventoryModelId,
       @QueryMap Map<String, String> queryStringParams);

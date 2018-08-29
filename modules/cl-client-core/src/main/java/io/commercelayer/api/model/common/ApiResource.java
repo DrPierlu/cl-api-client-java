@@ -10,6 +10,8 @@ import com.squareup.moshi.Json;
 
 import io.commercelayer.api.model.adapter.CLLinksAdapter;
 import io.commercelayer.api.model.adapter.CLMetaAdapter;
+import io.commercelayer.api.util.JSONUtils;
+import io.commercelayer.api.util.LogUtils;
 import moe.banana.jsonapi2.Resource;
 
 public class ApiResource extends Resource {
@@ -66,7 +68,7 @@ public class ApiResource extends Resource {
 
 	@Override
 	public String toString() {
-		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+		return ToStringBuilder.reflectionToString(this, LogUtils.TO_STRING_STYLE);
 	}
 	
 	@SuppressWarnings("unchecked")

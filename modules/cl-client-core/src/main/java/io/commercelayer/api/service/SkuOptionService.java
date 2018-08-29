@@ -16,33 +16,33 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface SkuOptionService {
-  @GET("/sku_options")
-  Call<List<SkuOption>> listSkuOptions();
-
-  @GET("/sku_options")
-  Call<List<SkuOption>> listSkuOptions(@QueryMap Map<String, String> queryStringParams);
-
-  @POST("/sku_options")
+  @POST("sku_options")
   Call<SkuOption> createSkuOption(@Body SkuOption skuOption);
 
-  @GET("/sku_options/{skuOptionId}")
-  Call<SkuOption> retrieveSkuOption(@Path("skuOptionId") String skuOptionId);
+  @GET("sku_options")
+  Call<List<SkuOption>> listSkuOptions();
 
-  @GET("/sku_options/{skuOptionId}")
-  Call<SkuOption> retrieveSkuOption(@Path("skuOptionId") String skuOptionId,
-      @QueryMap Map<String, String> queryStringParams);
+  @GET("sku_options")
+  Call<List<SkuOption>> listSkuOptions(@QueryMap Map<String, String> queryStringParams);
 
-  @PATCH("/sku_options/{skuOptionId}")
+  @PATCH("sku_options/{skuOptionId}")
   Call<SkuOption> updateSkuOption(@Path("skuOptionId") String skuOptionId,
       @Body SkuOption skuOption);
 
-  @DELETE("/sku_options/{skuOptionId}")
+  @DELETE("sku_options/{skuOptionId}")
   Call<Void> deleteSkuOption(@Path("skuOptionId") String skuOptionId);
 
-  @GET("/sku_options/{skuOptionId}/market")
+  @GET("sku_options/{skuOptionId}")
+  Call<SkuOption> retrieveSkuOption(@Path("skuOptionId") String skuOptionId);
+
+  @GET("sku_options/{skuOptionId}")
+  Call<SkuOption> retrieveSkuOption(@Path("skuOptionId") String skuOptionId,
+      @QueryMap Map<String, String> queryStringParams);
+
+  @GET("sku_options/{skuOptionId}/market")
   Call<Market> retrieveSkuOptionMarket(@Path("skuOptionId") String skuOptionId);
 
-  @GET("/sku_options/{skuOptionId}/market")
+  @GET("sku_options/{skuOptionId}/market")
   Call<Market> retrieveSkuOptionMarket(@Path("skuOptionId") String skuOptionId,
       @QueryMap Map<String, String> queryStringParams);
 }

@@ -17,39 +17,39 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface PriceService {
-  @GET("/prices")
-  Call<List<Price>> listPrices();
-
-  @GET("/prices")
-  Call<List<Price>> listPrices(@QueryMap Map<String, String> queryStringParams);
-
-  @POST("/prices")
+  @POST("prices")
   Call<Price> createPrice(@Body Price price);
 
-  @GET("/prices/{priceId}")
+  @GET("prices")
+  Call<List<Price>> listPrices();
+
+  @GET("prices")
+  Call<List<Price>> listPrices(@QueryMap Map<String, String> queryStringParams);
+
+  @PATCH("prices/{priceId}")
+  Call<Price> updatePrice(@Path("priceId") String priceId, @Body Price price);
+
+  @DELETE("prices/{priceId}")
+  Call<Void> deletePrice(@Path("priceId") String priceId);
+
+  @GET("prices/{priceId}")
   Call<Price> retrievePrice(@Path("priceId") String priceId);
 
-  @GET("/prices/{priceId}")
+  @GET("prices/{priceId}")
   Call<Price> retrievePrice(@Path("priceId") String priceId,
       @QueryMap Map<String, String> queryStringParams);
 
-  @PATCH("/prices/{priceId}")
-  Call<Price> updatePrice(@Path("priceId") String priceId, @Body Price price);
-
-  @DELETE("/prices/{priceId}")
-  Call<Void> deletePrice(@Path("priceId") String priceId);
-
-  @GET("/prices/{priceId}/price_list")
+  @GET("prices/{priceId}/price_list")
   Call<PriceList> retrievePricePriceList(@Path("priceId") String priceId);
 
-  @GET("/prices/{priceId}/price_list")
+  @GET("prices/{priceId}/price_list")
   Call<PriceList> retrievePricePriceList(@Path("priceId") String priceId,
       @QueryMap Map<String, String> queryStringParams);
 
-  @GET("/prices/{priceId}/sku")
+  @GET("prices/{priceId}/sku")
   Call<Sku> retrievePriceSku(@Path("priceId") String priceId);
 
-  @GET("/prices/{priceId}/sku")
+  @GET("prices/{priceId}/sku")
   Call<Sku> retrievePriceSku(@Path("priceId") String priceId,
       @QueryMap Map<String, String> queryStringParams);
 }

@@ -24,7 +24,9 @@ public class JSONUtils {
 		Moshi.Builder moshiBuilder = new Moshi.Builder();
 		
 		if (Resource.class.isAssignableFrom(class_)) {
-			JsonAdapter.Factory jsonApiAdapterFactory = ResourceAdapterFactory.builder().build();
+			JsonAdapter.Factory jsonApiAdapterFactory = ResourceAdapterFactory.builder()
+				.add(class_.asSubclass(Resource.class))
+				.build();
 			moshiBuilder.add(jsonApiAdapterFactory);
 		}
 			

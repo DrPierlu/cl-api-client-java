@@ -42,6 +42,10 @@ public final class CodegenConfig {
 		return ((module == null) || (subKey == null))? null : settings.getProperty(module.code().concat(".").concat(subKey));
 	}
 	
+	public static boolean isPropertyEnabled(Module module, String key) {
+		return Boolean.parseBoolean(getProperty(module, key));
+	}
+	
 	public static boolean isPropertyEnabled(String key) {
 		return Boolean.parseBoolean(getProperty(key));
 	}

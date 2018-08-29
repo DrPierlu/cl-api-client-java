@@ -19,55 +19,55 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface CustomerService {
-  @GET("/customers")
-  Call<List<Customer>> listCustomers();
-
-  @GET("/customers")
-  Call<List<Customer>> listCustomers(@QueryMap Map<String, String> queryStringParams);
-
-  @POST("/customers")
+  @POST("customers")
   Call<Customer> createCustomer(@Body Customer customer);
 
-  @GET("/customers/{customerId}")
+  @GET("customers")
+  Call<List<Customer>> listCustomers();
+
+  @GET("customers")
+  Call<List<Customer>> listCustomers(@QueryMap Map<String, String> queryStringParams);
+
+  @PATCH("customers/{customerId}")
+  Call<Customer> updateCustomer(@Path("customerId") String customerId, @Body Customer customer);
+
+  @DELETE("customers/{customerId}")
+  Call<Void> deleteCustomer(@Path("customerId") String customerId);
+
+  @GET("customers/{customerId}")
   Call<Customer> retrieveCustomer(@Path("customerId") String customerId);
 
-  @GET("/customers/{customerId}")
+  @GET("customers/{customerId}")
   Call<Customer> retrieveCustomer(@Path("customerId") String customerId,
       @QueryMap Map<String, String> queryStringParams);
 
-  @PATCH("/customers/{customerId}")
-  Call<Customer> updateCustomer(@Path("customerId") String customerId, @Body Customer customer);
-
-  @DELETE("/customers/{customerId}")
-  Call<Void> deleteCustomer(@Path("customerId") String customerId);
-
-  @GET("/customers/{customerId}/customer_addresses")
+  @GET("customers/{customerId}/customer_addresses")
   Call<List<CustomerAddress>> listCustomerCustomerAddresses(@Path("customerId") String customerId);
 
-  @GET("/customers/{customerId}/customer_addresses")
+  @GET("customers/{customerId}/customer_addresses")
   Call<List<CustomerAddress>> listCustomerCustomerAddresses(@Path("customerId") String customerId,
       @QueryMap Map<String, String> queryStringParams);
 
-  @GET("/customers/{customerId}/customer_payment_sources")
+  @GET("customers/{customerId}/customer_payment_sources")
   Call<List<CustomerPaymentSource>> listCustomerCustomerPaymentSources(
       @Path("customerId") String customerId);
 
-  @GET("/customers/{customerId}/customer_payment_sources")
+  @GET("customers/{customerId}/customer_payment_sources")
   Call<List<CustomerPaymentSource>> listCustomerCustomerPaymentSources(
       @Path("customerId") String customerId, @QueryMap Map<String, String> queryStringParams);
 
-  @GET("/customers/{customerId}/customer_subscriptions")
+  @GET("customers/{customerId}/customer_subscriptions")
   Call<List<CustomerSubscription>> listCustomerCustomerSubscriptions(
       @Path("customerId") String customerId);
 
-  @GET("/customers/{customerId}/customer_subscriptions")
+  @GET("customers/{customerId}/customer_subscriptions")
   Call<List<CustomerSubscription>> listCustomerCustomerSubscriptions(
       @Path("customerId") String customerId, @QueryMap Map<String, String> queryStringParams);
 
-  @GET("/customers/{customerId}/orders")
+  @GET("customers/{customerId}/orders")
   Call<List<Order>> listCustomerOrders(@Path("customerId") String customerId);
 
-  @GET("/customers/{customerId}/orders")
+  @GET("customers/{customerId}/orders")
   Call<List<Order>> listCustomerOrders(@Path("customerId") String customerId,
       @QueryMap Map<String, String> queryStringParams);
 }

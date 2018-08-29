@@ -17,43 +17,43 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface CustomerAddressService {
-  @GET("/customer_addresses")
+  @POST("customer_addresses")
+  Call<CustomerAddress> createCustomerAddress(@Body CustomerAddress customerAddress);
+
+  @GET("customer_addresses")
   Call<List<CustomerAddress>> listCustomerAddresses();
 
-  @GET("/customer_addresses")
+  @GET("customer_addresses")
   Call<List<CustomerAddress>> listCustomerAddresses(
       @QueryMap Map<String, String> queryStringParams);
 
-  @POST("/customer_addresses")
-  Call<CustomerAddress> createCustomerAddress(@Body CustomerAddress customerAddress);
-
-  @GET("/customer_addresses/{customerAddressId}")
-  Call<CustomerAddress> retrieveCustomerAddress(
-      @Path("customerAddressId") String customerAddressId);
-
-  @GET("/customer_addresses/{customerAddressId}")
-  Call<CustomerAddress> retrieveCustomerAddress(@Path("customerAddressId") String customerAddressId,
-      @QueryMap Map<String, String> queryStringParams);
-
-  @PATCH("/customer_addresses/{customerAddressId}")
+  @PATCH("customer_addresses/{customerAddressId}")
   Call<CustomerAddress> updateCustomerAddress(@Path("customerAddressId") String customerAddressId,
       @Body CustomerAddress customerAddress);
 
-  @DELETE("/customer_addresses/{customerAddressId}")
+  @DELETE("customer_addresses/{customerAddressId}")
   Call<Void> deleteCustomerAddress(@Path("customerAddressId") String customerAddressId);
 
-  @GET("/customer_addresses/{customerAddressId}/address")
+  @GET("customer_addresses/{customerAddressId}")
+  Call<CustomerAddress> retrieveCustomerAddress(
+      @Path("customerAddressId") String customerAddressId);
+
+  @GET("customer_addresses/{customerAddressId}")
+  Call<CustomerAddress> retrieveCustomerAddress(@Path("customerAddressId") String customerAddressId,
+      @QueryMap Map<String, String> queryStringParams);
+
+  @GET("customer_addresses/{customerAddressId}/address")
   Call<Address> retrieveCustomerAddressAddress(@Path("customerAddressId") String customerAddressId);
 
-  @GET("/customer_addresses/{customerAddressId}/address")
+  @GET("customer_addresses/{customerAddressId}/address")
   Call<Address> retrieveCustomerAddressAddress(@Path("customerAddressId") String customerAddressId,
       @QueryMap Map<String, String> queryStringParams);
 
-  @GET("/customer_addresses/{customerAddressId}/customer")
+  @GET("customer_addresses/{customerAddressId}/customer")
   Call<Customer> retrieveCustomerAddressCustomer(
       @Path("customerAddressId") String customerAddressId);
 
-  @GET("/customer_addresses/{customerAddressId}/customer")
+  @GET("customer_addresses/{customerAddressId}/customer")
   Call<Customer> retrieveCustomerAddressCustomer(
       @Path("customerAddressId") String customerAddressId,
       @QueryMap Map<String, String> queryStringParams);

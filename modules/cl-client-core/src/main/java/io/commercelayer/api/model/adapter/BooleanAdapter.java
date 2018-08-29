@@ -10,12 +10,12 @@ public class BooleanAdapter extends JsonAdapter<Boolean> {
 
 	@Override
 	public Boolean fromJson(JsonReader reader) throws IOException {
-		return Boolean.valueOf(reader.nextString());
+		return Boolean.valueOf(reader.nextBoolean());
 	}
 
 	@Override
 	public void toJson(JsonWriter writer, Boolean value) throws IOException {
-		writer.value(String.valueOf(value));		
+		writer.value(value);		
 	}
 
 }

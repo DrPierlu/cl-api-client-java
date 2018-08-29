@@ -16,37 +16,37 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface ShippingCategoryService {
-  @GET("/shipping_categories")
+  @POST("shipping_categories")
+  Call<ShippingCategory> createShippingCategory(@Body ShippingCategory shippingCategory);
+
+  @GET("shipping_categories")
   Call<List<ShippingCategory>> listShippingCategories();
 
-  @GET("/shipping_categories")
+  @GET("shipping_categories")
   Call<List<ShippingCategory>> listShippingCategories(
       @QueryMap Map<String, String> queryStringParams);
 
-  @POST("/shipping_categories")
-  Call<ShippingCategory> createShippingCategory(@Body ShippingCategory shippingCategory);
-
-  @GET("/shipping_categories/{shippingCategoryId}")
-  Call<ShippingCategory> retrieveShippingCategory(
-      @Path("shippingCategoryId") String shippingCategoryId);
-
-  @GET("/shipping_categories/{shippingCategoryId}")
-  Call<ShippingCategory> retrieveShippingCategory(
-      @Path("shippingCategoryId") String shippingCategoryId,
-      @QueryMap Map<String, String> queryStringParams);
-
-  @PATCH("/shipping_categories/{shippingCategoryId}")
+  @PATCH("shipping_categories/{shippingCategoryId}")
   Call<ShippingCategory> updateShippingCategory(
       @Path("shippingCategoryId") String shippingCategoryId,
       @Body ShippingCategory shippingCategory);
 
-  @DELETE("/shipping_categories/{shippingCategoryId}")
+  @DELETE("shipping_categories/{shippingCategoryId}")
   Call<Void> deleteShippingCategory(@Path("shippingCategoryId") String shippingCategoryId);
 
-  @GET("/shipping_categories/{shippingCategoryId}/skus")
+  @GET("shipping_categories/{shippingCategoryId}")
+  Call<ShippingCategory> retrieveShippingCategory(
+      @Path("shippingCategoryId") String shippingCategoryId);
+
+  @GET("shipping_categories/{shippingCategoryId}")
+  Call<ShippingCategory> retrieveShippingCategory(
+      @Path("shippingCategoryId") String shippingCategoryId,
+      @QueryMap Map<String, String> queryStringParams);
+
+  @GET("shipping_categories/{shippingCategoryId}/skus")
   Call<List<Sku>> listShippingCategorySkus(@Path("shippingCategoryId") String shippingCategoryId);
 
-  @GET("/shipping_categories/{shippingCategoryId}/skus")
+  @GET("shipping_categories/{shippingCategoryId}/skus")
   Call<List<Sku>> listShippingCategorySkus(@Path("shippingCategoryId") String shippingCategoryId,
       @QueryMap Map<String, String> queryStringParams);
 }

@@ -16,40 +16,40 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface CustomerPaymentSourceService {
-  @GET("/customer_payment_sources")
-  Call<List<CustomerPaymentSource>> listCustomerPaymentSources();
-
-  @GET("/customer_payment_sources")
-  Call<List<CustomerPaymentSource>> listCustomerPaymentSources(
-      @QueryMap Map<String, String> queryStringParams);
-
-  @POST("/customer_payment_sources")
+  @POST("customer_payment_sources")
   Call<CustomerPaymentSource> createCustomerPaymentSource(
       @Body CustomerPaymentSource customerPaymentSource);
 
-  @GET("/customer_payment_sources/{customerPaymentSourceId}")
-  Call<CustomerPaymentSource> retrieveCustomerPaymentSource(
-      @Path("customerPaymentSourceId") String customerPaymentSourceId);
+  @GET("customer_payment_sources")
+  Call<List<CustomerPaymentSource>> listCustomerPaymentSources();
 
-  @GET("/customer_payment_sources/{customerPaymentSourceId}")
-  Call<CustomerPaymentSource> retrieveCustomerPaymentSource(
-      @Path("customerPaymentSourceId") String customerPaymentSourceId,
+  @GET("customer_payment_sources")
+  Call<List<CustomerPaymentSource>> listCustomerPaymentSources(
       @QueryMap Map<String, String> queryStringParams);
 
-  @PATCH("/customer_payment_sources/{customerPaymentSourceId}")
+  @PATCH("customer_payment_sources/{customerPaymentSourceId}")
   Call<CustomerPaymentSource> updateCustomerPaymentSource(
       @Path("customerPaymentSourceId") String customerPaymentSourceId,
       @Body CustomerPaymentSource customerPaymentSource);
 
-  @DELETE("/customer_payment_sources/{customerPaymentSourceId}")
+  @DELETE("customer_payment_sources/{customerPaymentSourceId}")
   Call<Void> deleteCustomerPaymentSource(
       @Path("customerPaymentSourceId") String customerPaymentSourceId);
 
-  @GET("/customer_payment_sources/{customerPaymentSourceId}/customer")
+  @GET("customer_payment_sources/{customerPaymentSourceId}")
+  Call<CustomerPaymentSource> retrieveCustomerPaymentSource(
+      @Path("customerPaymentSourceId") String customerPaymentSourceId);
+
+  @GET("customer_payment_sources/{customerPaymentSourceId}")
+  Call<CustomerPaymentSource> retrieveCustomerPaymentSource(
+      @Path("customerPaymentSourceId") String customerPaymentSourceId,
+      @QueryMap Map<String, String> queryStringParams);
+
+  @GET("customer_payment_sources/{customerPaymentSourceId}/customer")
   Call<Customer> retrieveCustomerPaymentSourceCustomer(
       @Path("customerPaymentSourceId") String customerPaymentSourceId);
 
-  @GET("/customer_payment_sources/{customerPaymentSourceId}/customer")
+  @GET("customer_payment_sources/{customerPaymentSourceId}/customer")
   Call<Customer> retrieveCustomerPaymentSourceCustomer(
       @Path("customerPaymentSourceId") String customerPaymentSourceId,
       @QueryMap Map<String, String> queryStringParams);

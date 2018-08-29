@@ -4,71 +4,107 @@ import java.io.IOException;
 import java.util.List;
 
 import io.commercelayer.api.auth.ApiToken;
+import io.commercelayer.api.client.ApiUtils;
 import io.commercelayer.api.client.CLApiClient;
-import io.commercelayer.api.client.QueryFilter;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.ConnectionException;
 import io.commercelayer.api.model.Address;
+import io.commercelayer.api.model.Geocoder;
 import io.commercelayer.api.service.AddressService;
 import io.commercelayer.api.test.AuthenticationTest;
 import io.commercelayer.api.test.TestData;
-import io.commercelayer.api.util.ApiUtils;
 import retrofit2.Call;
 import retrofit2.Response;
 
 public class AddressTest {
 	
-	public static void main(String[] args) throws ApiException {
-		
+	private static CLApiClient apiClient;
+	private static AddressService service;
+	
+	private static void initServiceClient() {
 		ApiToken token = new AuthenticationTest().authenticate();
+		apiClient = new CLApiClient(TestData.getOrganization(), token);
+		service = apiClient.getRawClient(AddressService.class);
+	}
+	
+	public static void main(String[] args) {
 		
-		CLApiClient client = new CLApiClient(TestData.getOrganization(), token);
-
-		AddressService rawClient = client.getRawClient(AddressService.class, Address.class);
+		initServiceClient();
 		
-		Call<List<Address>> apiCall = rawClient.listAddresses(QueryFilter.empty());
+		Address address = null;
 		
-		Response<List<Address>> response = null;
-		
-		
+		System.out.println("********** CREATE");
 		try {
-			response = apiCall.execute();
-		} catch (IOException e) {
+			address = createAddress();
+			System.out.println(address);
+		} catch (ConnectionException | ApiException e) {
 			e.printStackTrace();
 		}
 		
-		if (response != null) {
-			if (!response.isSuccessful()) {
-				throw new ApiException(ApiUtils.getError(response));
-			}
-			List<Address> address = response.body();
-			System.out.println("Addresses: " + address.size());
+		System.out.println("********** LIST");
+		try {
+			List<Address> addresses = listAddresses();
+			System.out.println(addresses);
+		} catch (ConnectionException | ApiException e) {
+			e.printStackTrace();
 		}
 		
-		System.out.println("TEST OK");
+		System.out.println("********** UPDATE");
+		try {
+			address = updateAddress(address.getId());
+			System.out.println(address);
+		} catch (ConnectionException | ApiException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	
 	
-	private static Address updateAddress(String addressId, Address address) throws ApiException, ConnectionException {
+	private static Address createAddress() throws ApiException, ConnectionException {
+		
+		Address a = new Address();
+		
+		a.setLine1("Via Roma");
+		a.setCity("Siena");
+		a.setZipCode("53100");
+		a.setStateCode("SI");
+		a.setCountryCode("IT");
+		a.setPhone("0577123456789");
+		a.setFirstName("Mario");
+		a.setLastName("Rossi");
+		
+		Call<Address> call = service.createAddress(a);
+		
+		return apiClient.execute(call);
+		
+	}
 	
-		ApiToken token = new AuthenticationTest().authenticate();
+	private static Address updateAddress(String id) throws ApiException, ConnectionException {
 		
-		CLApiClient client = new CLApiClient(TestData.getOrganization(), token);
+		Address a = new Address();
 		
-		AddressService rawClient = client.getRawClient(AddressService.class, Address.class);
+		a.setId(id);
 		
-		Call<Address> call = rawClient.updateAddress(addressId, address);
+		a.setLine1("Via Milano");
+		a.setCity("Poggibonsi");
+		a.setZipCode("53036");
+		a.setStateCode("SI");
+		a.setCountryCode("IT");
+		a.setPhone("0577123456789");
+		a.setFirstName("Mario");
+		a.setLastName("Rossi");
 		
-		Response<Address> response;
-		try {
-			response = call.execute();
-		} catch (IOException e) {
-			throw new ConnectionException(e.getMessage());
-		}
+		Call<Address> call = service.updateAddress(id, a);
 		
-		if (response.isSuccessful()) return response.body();
-		else throw new ApiException(ApiUtils.getError(response));
+		return apiClient.execute(call);
+		
+	}
+	
+	private static List<Address> listAddresses() throws ApiException, ConnectionException {
+		
+		Call<List<Address>> apiCall = service.listAddresses();
+		
+		return apiClient.execute(apiCall);
 		
 	}
 	

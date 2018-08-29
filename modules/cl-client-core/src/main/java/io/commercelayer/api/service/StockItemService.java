@@ -17,40 +17,40 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface StockItemService {
-  @GET("/stock_items")
-  Call<List<StockItem>> listStockItems();
-
-  @GET("/stock_items")
-  Call<List<StockItem>> listStockItems(@QueryMap Map<String, String> queryStringParams);
-
-  @POST("/stock_items")
+  @POST("stock_items")
   Call<StockItem> createStockItem(@Body StockItem stockItem);
 
-  @GET("/stock_items/{stockItemId}")
-  Call<StockItem> retrieveStockItem(@Path("stockItemId") String stockItemId);
+  @GET("stock_items")
+  Call<List<StockItem>> listStockItems();
 
-  @GET("/stock_items/{stockItemId}")
-  Call<StockItem> retrieveStockItem(@Path("stockItemId") String stockItemId,
-      @QueryMap Map<String, String> queryStringParams);
+  @GET("stock_items")
+  Call<List<StockItem>> listStockItems(@QueryMap Map<String, String> queryStringParams);
 
-  @PATCH("/stock_items/{stockItemId}")
+  @PATCH("stock_items/{stockItemId}")
   Call<StockItem> updateStockItem(@Path("stockItemId") String stockItemId,
       @Body StockItem stockItem);
 
-  @DELETE("/stock_items/{stockItemId}")
+  @DELETE("stock_items/{stockItemId}")
   Call<Void> deleteStockItem(@Path("stockItemId") String stockItemId);
 
-  @GET("/stock_items/{stockItemId}/sku")
+  @GET("stock_items/{stockItemId}")
+  Call<StockItem> retrieveStockItem(@Path("stockItemId") String stockItemId);
+
+  @GET("stock_items/{stockItemId}")
+  Call<StockItem> retrieveStockItem(@Path("stockItemId") String stockItemId,
+      @QueryMap Map<String, String> queryStringParams);
+
+  @GET("stock_items/{stockItemId}/sku")
   Call<Sku> retrieveStockItemSku(@Path("stockItemId") String stockItemId);
 
-  @GET("/stock_items/{stockItemId}/sku")
+  @GET("stock_items/{stockItemId}/sku")
   Call<Sku> retrieveStockItemSku(@Path("stockItemId") String stockItemId,
       @QueryMap Map<String, String> queryStringParams);
 
-  @GET("/stock_items/{stockItemId}/stock_location")
+  @GET("stock_items/{stockItemId}/stock_location")
   Call<StockLocation> retrieveStockItemStockLocation(@Path("stockItemId") String stockItemId);
 
-  @GET("/stock_items/{stockItemId}/stock_location")
+  @GET("stock_items/{stockItemId}/stock_location")
   Call<StockLocation> retrieveStockItemStockLocation(@Path("stockItemId") String stockItemId,
       @QueryMap Map<String, String> queryStringParams);
 }

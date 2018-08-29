@@ -17,41 +17,41 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface PaymentMethodService {
-  @GET("/payment_methods")
-  Call<List<PaymentMethod>> listPaymentMethods();
-
-  @GET("/payment_methods")
-  Call<List<PaymentMethod>> listPaymentMethods(@QueryMap Map<String, String> queryStringParams);
-
-  @POST("/payment_methods")
+  @POST("payment_methods")
   Call<PaymentMethod> createPaymentMethod(@Body PaymentMethod paymentMethod);
 
-  @GET("/payment_methods/{paymentMethodId}")
-  Call<PaymentMethod> retrievePaymentMethod(@Path("paymentMethodId") String paymentMethodId);
+  @GET("payment_methods")
+  Call<List<PaymentMethod>> listPaymentMethods();
 
-  @GET("/payment_methods/{paymentMethodId}")
-  Call<PaymentMethod> retrievePaymentMethod(@Path("paymentMethodId") String paymentMethodId,
-      @QueryMap Map<String, String> queryStringParams);
+  @GET("payment_methods")
+  Call<List<PaymentMethod>> listPaymentMethods(@QueryMap Map<String, String> queryStringParams);
 
-  @PATCH("/payment_methods/{paymentMethodId}")
+  @PATCH("payment_methods/{paymentMethodId}")
   Call<PaymentMethod> updatePaymentMethod(@Path("paymentMethodId") String paymentMethodId,
       @Body PaymentMethod paymentMethod);
 
-  @DELETE("/payment_methods/{paymentMethodId}")
+  @DELETE("payment_methods/{paymentMethodId}")
   Call<Void> deletePaymentMethod(@Path("paymentMethodId") String paymentMethodId);
 
-  @GET("/payment_methods/{paymentMethodId}/market")
+  @GET("payment_methods/{paymentMethodId}")
+  Call<PaymentMethod> retrievePaymentMethod(@Path("paymentMethodId") String paymentMethodId);
+
+  @GET("payment_methods/{paymentMethodId}")
+  Call<PaymentMethod> retrievePaymentMethod(@Path("paymentMethodId") String paymentMethodId,
+      @QueryMap Map<String, String> queryStringParams);
+
+  @GET("payment_methods/{paymentMethodId}/market")
   Call<Market> retrievePaymentMethodMarket(@Path("paymentMethodId") String paymentMethodId);
 
-  @GET("/payment_methods/{paymentMethodId}/market")
+  @GET("payment_methods/{paymentMethodId}/market")
   Call<Market> retrievePaymentMethodMarket(@Path("paymentMethodId") String paymentMethodId,
       @QueryMap Map<String, String> queryStringParams);
 
-  @GET("/payment_methods/{paymentMethodId}/payment_gateway")
+  @GET("payment_methods/{paymentMethodId}/payment_gateway")
   Call<PaymentGateway> retrievePaymentMethodPaymentGateway(
       @Path("paymentMethodId") String paymentMethodId);
 
-  @GET("/payment_methods/{paymentMethodId}/payment_gateway")
+  @GET("payment_methods/{paymentMethodId}/payment_gateway")
   Call<PaymentGateway> retrievePaymentMethodPaymentGateway(
       @Path("paymentMethodId") String paymentMethodId,
       @QueryMap Map<String, String> queryStringParams);

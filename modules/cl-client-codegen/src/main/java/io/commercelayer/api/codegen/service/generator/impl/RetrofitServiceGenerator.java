@@ -19,6 +19,8 @@ import com.squareup.javapoet.ParameterizedTypeName;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 
+import io.commercelayer.api.codegen.CodegenConfig;
+import io.commercelayer.api.codegen.CodegenConfig.Module;
 import io.commercelayer.api.codegen.model.generator.ModelGeneratorUtils;
 import io.commercelayer.api.codegen.schema.ApiOperation;
 import io.commercelayer.api.codegen.schema.ApiParameter;
@@ -96,9 +98,11 @@ public class RetrofitServiceGenerator implements ServiceGenerator {
 				}
 				
 				// Operation Annotation
+				String resPath = path.getResource();
+				if (CodegenConfig.isPropertyEnabled(Module.Service, "resource.path.relative")) resPath = resPath.replaceFirst("/", "");
 				serOpMethod.addAnnotation(
 					AnnotationSpec.builder(ServiceGeneratorUtils.getOperationAnnotation(op))
-						.addMember("value", "$S", path.getResource())
+						.addMember("value", "$S", resPath)
 						.build()
 				);
 				

@@ -17,40 +17,40 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface StockLevelService {
-  @GET("/stock_levels")
-  Call<List<StockLevel>> listStockLevels();
-
-  @GET("/stock_levels")
-  Call<List<StockLevel>> listStockLevels(@QueryMap Map<String, String> queryStringParams);
-
-  @POST("/stock_levels")
+  @POST("stock_levels")
   Call<StockLevel> createStockLevel(@Body StockLevel stockLevel);
 
-  @GET("/stock_levels/{stockLevelId}")
-  Call<StockLevel> retrieveStockLevel(@Path("stockLevelId") String stockLevelId);
+  @GET("stock_levels")
+  Call<List<StockLevel>> listStockLevels();
 
-  @GET("/stock_levels/{stockLevelId}")
-  Call<StockLevel> retrieveStockLevel(@Path("stockLevelId") String stockLevelId,
-      @QueryMap Map<String, String> queryStringParams);
+  @GET("stock_levels")
+  Call<List<StockLevel>> listStockLevels(@QueryMap Map<String, String> queryStringParams);
 
-  @PATCH("/stock_levels/{stockLevelId}")
+  @PATCH("stock_levels/{stockLevelId}")
   Call<StockLevel> updateStockLevel(@Path("stockLevelId") String stockLevelId,
       @Body StockLevel stockLevel);
 
-  @DELETE("/stock_levels/{stockLevelId}")
+  @DELETE("stock_levels/{stockLevelId}")
   Call<Void> deleteStockLevel(@Path("stockLevelId") String stockLevelId);
 
-  @GET("/stock_levels/{stockLevelId}/inventory_model")
+  @GET("stock_levels/{stockLevelId}")
+  Call<StockLevel> retrieveStockLevel(@Path("stockLevelId") String stockLevelId);
+
+  @GET("stock_levels/{stockLevelId}")
+  Call<StockLevel> retrieveStockLevel(@Path("stockLevelId") String stockLevelId,
+      @QueryMap Map<String, String> queryStringParams);
+
+  @GET("stock_levels/{stockLevelId}/inventory_model")
   Call<InventoryModel> retrieveStockLevelInventoryModel(@Path("stockLevelId") String stockLevelId);
 
-  @GET("/stock_levels/{stockLevelId}/inventory_model")
+  @GET("stock_levels/{stockLevelId}/inventory_model")
   Call<InventoryModel> retrieveStockLevelInventoryModel(@Path("stockLevelId") String stockLevelId,
       @QueryMap Map<String, String> queryStringParams);
 
-  @GET("/stock_levels/{stockLevelId}/stock_location")
+  @GET("stock_levels/{stockLevelId}/stock_location")
   Call<StockLocation> retrieveStockLevelStockLocation(@Path("stockLevelId") String stockLevelId);
 
-  @GET("/stock_levels/{stockLevelId}/stock_location")
+  @GET("stock_levels/{stockLevelId}/stock_location")
   Call<StockLocation> retrieveStockLevelStockLocation(@Path("stockLevelId") String stockLevelId,
       @QueryMap Map<String, String> queryStringParams);
 }

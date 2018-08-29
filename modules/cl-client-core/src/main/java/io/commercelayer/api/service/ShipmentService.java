@@ -22,75 +22,75 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface ShipmentService {
-  @GET("/shipments")
-  Call<List<Shipment>> listShipments();
-
-  @GET("/shipments")
-  Call<List<Shipment>> listShipments(@QueryMap Map<String, String> queryStringParams);
-
-  @POST("/shipments")
+  @POST("shipments")
   Call<Shipment> createShipment(@Body Shipment shipment);
 
-  @GET("/shipments/{shipmentId}")
+  @GET("shipments")
+  Call<List<Shipment>> listShipments();
+
+  @GET("shipments")
+  Call<List<Shipment>> listShipments(@QueryMap Map<String, String> queryStringParams);
+
+  @PATCH("shipments/{shipmentId}")
+  Call<Shipment> updateShipment(@Path("shipmentId") String shipmentId, @Body Shipment shipment);
+
+  @DELETE("shipments/{shipmentId}")
+  Call<Void> deleteShipment(@Path("shipmentId") String shipmentId);
+
+  @GET("shipments/{shipmentId}")
   Call<Shipment> retrieveShipment(@Path("shipmentId") String shipmentId);
 
-  @GET("/shipments/{shipmentId}")
+  @GET("shipments/{shipmentId}")
   Call<Shipment> retrieveShipment(@Path("shipmentId") String shipmentId,
       @QueryMap Map<String, String> queryStringParams);
 
-  @PATCH("/shipments/{shipmentId}")
-  Call<Shipment> updateShipment(@Path("shipmentId") String shipmentId, @Body Shipment shipment);
-
-  @DELETE("/shipments/{shipmentId}")
-  Call<Void> deleteShipment(@Path("shipmentId") String shipmentId);
-
-  @GET("/shipments/{shipmentId}/available_shipping_methods")
+  @GET("shipments/{shipmentId}/available_shipping_methods")
   Call<List<AvailableShippingMethod>> listShipmentAvailableShippingMethods(
       @Path("shipmentId") String shipmentId);
 
-  @GET("/shipments/{shipmentId}/available_shipping_methods")
+  @GET("shipments/{shipmentId}/available_shipping_methods")
   Call<List<AvailableShippingMethod>> listShipmentAvailableShippingMethods(
       @Path("shipmentId") String shipmentId, @QueryMap Map<String, String> queryStringParams);
 
-  @GET("/shipments/{shipmentId}/parcels")
+  @GET("shipments/{shipmentId}/parcels")
   Call<List<Parcel>> listShipmentParcels(@Path("shipmentId") String shipmentId);
 
-  @GET("/shipments/{shipmentId}/parcels")
+  @GET("shipments/{shipmentId}/parcels")
   Call<List<Parcel>> listShipmentParcels(@Path("shipmentId") String shipmentId,
       @QueryMap Map<String, String> queryStringParams);
 
-  @GET("/shipments/{shipmentId}/shipment_line_items")
+  @GET("shipments/{shipmentId}/shipment_line_items")
   Call<List<ShipmentLineItem>> listShipmentShipmentLineItems(@Path("shipmentId") String shipmentId);
 
-  @GET("/shipments/{shipmentId}/shipment_line_items")
+  @GET("shipments/{shipmentId}/shipment_line_items")
   Call<List<ShipmentLineItem>> listShipmentShipmentLineItems(@Path("shipmentId") String shipmentId,
       @QueryMap Map<String, String> queryStringParams);
 
-  @GET("/shipments/{shipmentId}/shipping_address")
+  @GET("shipments/{shipmentId}/shipping_address")
   Call<ShippingAddress> retrieveShipmentShippingAddress(@Path("shipmentId") String shipmentId);
 
-  @GET("/shipments/{shipmentId}/shipping_address")
+  @GET("shipments/{shipmentId}/shipping_address")
   Call<ShippingAddress> retrieveShipmentShippingAddress(@Path("shipmentId") String shipmentId,
       @QueryMap Map<String, String> queryStringParams);
 
-  @GET("/shipments/{shipmentId}/shipping_category")
+  @GET("shipments/{shipmentId}/shipping_category")
   Call<ShippingCategory> retrieveShipmentShippingCategory(@Path("shipmentId") String shipmentId);
 
-  @GET("/shipments/{shipmentId}/shipping_category")
+  @GET("shipments/{shipmentId}/shipping_category")
   Call<ShippingCategory> retrieveShipmentShippingCategory(@Path("shipmentId") String shipmentId,
       @QueryMap Map<String, String> queryStringParams);
 
-  @GET("/shipments/{shipmentId}/shipping_method")
+  @GET("shipments/{shipmentId}/shipping_method")
   Call<ShippingMethod> retrieveShipmentShippingMethod(@Path("shipmentId") String shipmentId);
 
-  @GET("/shipments/{shipmentId}/shipping_method")
+  @GET("shipments/{shipmentId}/shipping_method")
   Call<ShippingMethod> retrieveShipmentShippingMethod(@Path("shipmentId") String shipmentId,
       @QueryMap Map<String, String> queryStringParams);
 
-  @GET("/shipments/{shipmentId}/stock_location")
+  @GET("shipments/{shipmentId}/stock_location")
   Call<StockLocation> retrieveShipmentStockLocation(@Path("shipmentId") String shipmentId);
 
-  @GET("/shipments/{shipmentId}/stock_location")
+  @GET("shipments/{shipmentId}/stock_location")
   Call<StockLocation> retrieveShipmentStockLocation(@Path("shipmentId") String shipmentId,
       @QueryMap Map<String, String> queryStringParams);
 }

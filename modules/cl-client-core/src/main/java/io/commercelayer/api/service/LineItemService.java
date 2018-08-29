@@ -17,39 +17,39 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface LineItemService {
-  @GET("/line_items")
-  Call<List<LineItem>> listLineItems();
-
-  @GET("/line_items")
-  Call<List<LineItem>> listLineItems(@QueryMap Map<String, String> queryStringParams);
-
-  @POST("/line_items")
+  @POST("line_items")
   Call<LineItem> createLineItem(@Body LineItem lineItem);
 
-  @GET("/line_items/{lineItemId}")
+  @GET("line_items")
+  Call<List<LineItem>> listLineItems();
+
+  @GET("line_items")
+  Call<List<LineItem>> listLineItems(@QueryMap Map<String, String> queryStringParams);
+
+  @PATCH("line_items/{lineItemId}")
+  Call<LineItem> updateLineItem(@Path("lineItemId") String lineItemId, @Body LineItem lineItem);
+
+  @DELETE("line_items/{lineItemId}")
+  Call<Void> deleteLineItem(@Path("lineItemId") String lineItemId);
+
+  @GET("line_items/{lineItemId}")
   Call<LineItem> retrieveLineItem(@Path("lineItemId") String lineItemId);
 
-  @GET("/line_items/{lineItemId}")
+  @GET("line_items/{lineItemId}")
   Call<LineItem> retrieveLineItem(@Path("lineItemId") String lineItemId,
       @QueryMap Map<String, String> queryStringParams);
 
-  @PATCH("/line_items/{lineItemId}")
-  Call<LineItem> updateLineItem(@Path("lineItemId") String lineItemId, @Body LineItem lineItem);
-
-  @DELETE("/line_items/{lineItemId}")
-  Call<Void> deleteLineItem(@Path("lineItemId") String lineItemId);
-
-  @GET("/line_items/{lineItemId}/line_item_options")
+  @GET("line_items/{lineItemId}/line_item_options")
   Call<List<LineItemOption>> listLineItemLineItemOptions(@Path("lineItemId") String lineItemId);
 
-  @GET("/line_items/{lineItemId}/line_item_options")
+  @GET("line_items/{lineItemId}/line_item_options")
   Call<List<LineItemOption>> listLineItemLineItemOptions(@Path("lineItemId") String lineItemId,
       @QueryMap Map<String, String> queryStringParams);
 
-  @GET("/line_items/{lineItemId}/order")
+  @GET("line_items/{lineItemId}/order")
   Call<Order> retrieveLineItemOrder(@Path("lineItemId") String lineItemId);
 
-  @GET("/line_items/{lineItemId}/order")
+  @GET("line_items/{lineItemId}/order")
   Call<Order> retrieveLineItemOrder(@Path("lineItemId") String lineItemId,
       @QueryMap Map<String, String> queryStringParams);
 }

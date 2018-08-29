@@ -16,32 +16,32 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface AddressService {
-  @GET("/addresses")
-  Call<List<Address>> listAddresses();
-
-  @GET("/addresses")
-  Call<List<Address>> listAddresses(@QueryMap Map<String, String> queryStringParams);
-
-  @POST("/addresses")
+  @POST("addresses")
   Call<Address> createAddress(@Body Address address);
 
-  @GET("/addresses/{addressId}")
+  @GET("addresses")
+  Call<List<Address>> listAddresses();
+
+  @GET("addresses")
+  Call<List<Address>> listAddresses(@QueryMap Map<String, String> queryStringParams);
+
+  @PATCH("addresses/{addressId}")
+  Call<Address> updateAddress(@Path("addressId") String addressId, @Body Address address);
+
+  @DELETE("addresses/{addressId}")
+  Call<Void> deleteAddress(@Path("addressId") String addressId);
+
+  @GET("addresses/{addressId}")
   Call<Address> retrieveAddress(@Path("addressId") String addressId);
 
-  @GET("/addresses/{addressId}")
+  @GET("addresses/{addressId}")
   Call<Address> retrieveAddress(@Path("addressId") String addressId,
       @QueryMap Map<String, String> queryStringParams);
 
-  @PATCH("/addresses/{addressId}")
-  Call<Address> updateAddress(@Path("addressId") String addressId, @Body Address address);
-
-  @DELETE("/addresses/{addressId}")
-  Call<Void> deleteAddress(@Path("addressId") String addressId);
-
-  @GET("/addresses/{addressId}/geocoder")
+  @GET("addresses/{addressId}/geocoder")
   Call<Geocoder> retrieveAddressGeocoder(@Path("addressId") String addressId);
 
-  @GET("/addresses/{addressId}/geocoder")
+  @GET("addresses/{addressId}/geocoder")
   Call<Geocoder> retrieveAddressGeocoder(@Path("addressId") String addressId,
       @QueryMap Map<String, String> queryStringParams);
 }
