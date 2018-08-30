@@ -62,6 +62,10 @@ public class StockLevel extends ApiResource {
     return getStockLocation().get(getDocument());
   }
 
+  public void setStockLocationResource(StockLocation stockLocation) {
+    setStockLocation(new HasOne<StockLocation>(stockLocation));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getStockLocationLinksMap() {
     return (Map<String, String>)getStockLocation().getLinks().get(new CLLinksAdapter());
@@ -77,6 +81,10 @@ public class StockLevel extends ApiResource {
 
   public InventoryModel getInventoryModelResource() {
     return getInventoryModel().get(getDocument());
+  }
+
+  public void setInventoryModelResource(InventoryModel inventoryModel) {
+    setInventoryModel(new HasOne<InventoryModel>(inventoryModel));
   }
 
   @SuppressWarnings("unchecked")

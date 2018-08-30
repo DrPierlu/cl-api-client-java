@@ -183,6 +183,10 @@ public class CreditCard extends ApiResource {
     return getOrder().get(getDocument());
   }
 
+  public void setOrderResource(Order order) {
+    setOrder(new HasOne<Order>(order));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getOrderLinksMap() {
     return (Map<String, String>)getOrder().getLinks().get(new CLLinksAdapter());

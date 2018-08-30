@@ -7,5 +7,5 @@ import moe.banana.jsonapi2.JsonApi;
 public class Geocoder extends ApiResource {
 
 	private static final long serialVersionUID = -337334826785610617L;
-
+	
 }

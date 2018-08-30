@@ -316,6 +316,10 @@ public class Address extends ApiResource {
     return getGeocoder().get(getDocument());
   }
 
+  public void setGeocoderResource(Geocoder geocoder) {
+    setGeocoder(new HasOne<Geocoder>(geocoder));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getGeocoderLinksMap() {
     return (Map<String, String>)getGeocoder().getLinks().get(new CLLinksAdapter());

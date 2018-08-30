@@ -97,6 +97,10 @@ public class PaymentMethod extends ApiResource {
     return getMarket().get(getDocument());
   }
 
+  public void setMarketResource(Market market) {
+    setMarket(new HasOne<Market>(market));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getMarketLinksMap() {
     return (Map<String, String>)getMarket().getLinks().get(new CLLinksAdapter());
@@ -112,6 +116,10 @@ public class PaymentMethod extends ApiResource {
 
   public PaymentGateway getPaymentGatewayResource() {
     return getPaymentGateway().get(getDocument());
+  }
+
+  public void setPaymentGatewayResource(PaymentGateway paymentGateway) {
+    setPaymentGateway(new HasOne<PaymentGateway>(paymentGateway));
   }
 
   @SuppressWarnings("unchecked")

@@ -186,6 +186,10 @@ public class LineItemOption extends ApiResource {
     return getLineItem().get(getDocument());
   }
 
+  public void setLineItemResource(LineItem lineItem) {
+    setLineItem(new HasOne<LineItem>(lineItem));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getLineItemLinksMap() {
     return (Map<String, String>)getLineItem().getLinks().get(new CLLinksAdapter());
@@ -201,6 +205,10 @@ public class LineItemOption extends ApiResource {
 
   public SkuOption getSkuOptionResource() {
     return getSkuOption().get(getDocument());
+  }
+
+  public void setSkuOptionResource(SkuOption skuOption) {
+    setSkuOption(new HasOne<SkuOption>(skuOption));
   }
 
   @SuppressWarnings("unchecked")

@@ -314,6 +314,10 @@ public class Parcel extends ApiResource {
     return getShipment().get(getDocument());
   }
 
+  public void setShipmentResource(Shipment shipment) {
+    setShipment(new HasOne<Shipment>(shipment));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getShipmentLinksMap() {
     return (Map<String, String>)getShipment().getLinks().get(new CLLinksAdapter());

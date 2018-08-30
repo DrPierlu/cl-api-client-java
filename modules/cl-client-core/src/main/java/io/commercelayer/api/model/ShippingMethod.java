@@ -185,6 +185,10 @@ public class ShippingMethod extends ApiResource {
     return getMarket().get(getDocument());
   }
 
+  public void setMarketResource(Market market) {
+    setMarket(new HasOne<Market>(market));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getMarketLinksMap() {
     return (Map<String, String>)getMarket().getLinks().get(new CLLinksAdapter());
@@ -200,6 +204,10 @@ public class ShippingMethod extends ApiResource {
 
   public ShippingZone getShippingZoneResource() {
     return getShippingZone().get(getDocument());
+  }
+
+  public void setShippingZoneResource(ShippingZone shippingZone) {
+    setShippingZone(new HasOne<ShippingZone>(shippingZone));
   }
 
   @SuppressWarnings("unchecked")
@@ -219,6 +227,10 @@ public class ShippingMethod extends ApiResource {
     return getShippingCategory().get(getDocument());
   }
 
+  public void setShippingCategoryResource(ShippingCategory shippingCategory) {
+    setShippingCategory(new HasOne<ShippingCategory>(shippingCategory));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getShippingCategoryLinksMap() {
     return (Map<String, String>)getShippingCategory().getLinks().get(new CLLinksAdapter());
@@ -234,6 +246,10 @@ public class ShippingMethod extends ApiResource {
 
   public DeliveryLeadTime getDeliveryLeadTimeForShipmentResource() {
     return getDeliveryLeadTimeForShipment().get(getDocument());
+  }
+
+  public void setDeliveryLeadTimeForShipmentResource(DeliveryLeadTime deliveryLeadTimeForShipment) {
+    setDeliveryLeadTimeForShipment(new HasOne<DeliveryLeadTime>(deliveryLeadTimeForShipment));
   }
 
   @SuppressWarnings("unchecked")

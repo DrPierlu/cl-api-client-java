@@ -90,6 +90,10 @@ public class DeliveryLeadTime extends ApiResource {
     return getStockLocation().get(getDocument());
   }
 
+  public void setStockLocationResource(StockLocation stockLocation) {
+    setStockLocation(new HasOne<StockLocation>(stockLocation));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getStockLocationLinksMap() {
     return (Map<String, String>)getStockLocation().getLinks().get(new CLLinksAdapter());
@@ -105,6 +109,10 @@ public class DeliveryLeadTime extends ApiResource {
 
   public ShippingMethod getShippingMethodResource() {
     return getShippingMethod().get(getDocument());
+  }
+
+  public void setShippingMethodResource(ShippingMethod shippingMethod) {
+    setShippingMethod(new HasOne<ShippingMethod>(shippingMethod));
   }
 
   @SuppressWarnings("unchecked")

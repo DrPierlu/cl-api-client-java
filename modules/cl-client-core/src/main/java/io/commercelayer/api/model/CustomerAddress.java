@@ -40,6 +40,10 @@ public class CustomerAddress extends ApiResource {
     return getCustomer().get(getDocument());
   }
 
+  public void setCustomerResource(Customer customer) {
+    setCustomer(new HasOne<Customer>(customer));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getCustomerLinksMap() {
     return (Map<String, String>)getCustomer().getLinks().get(new CLLinksAdapter());
@@ -55,6 +59,10 @@ public class CustomerAddress extends ApiResource {
 
   public Address getAddressResource() {
     return getAddress().get(getDocument());
+  }
+
+  public void setAddressResource(Address address) {
+    setAddress(new HasOne<Address>(address));
   }
 
   @SuppressWarnings("unchecked")

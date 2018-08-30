@@ -139,6 +139,10 @@ public class Price extends ApiResource {
     return getPriceList().get(getDocument());
   }
 
+  public void setPriceListResource(PriceList priceList) {
+    setPriceList(new HasOne<PriceList>(priceList));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getPriceListLinksMap() {
     return (Map<String, String>)getPriceList().getLinks().get(new CLLinksAdapter());
@@ -154,6 +158,10 @@ public class Price extends ApiResource {
 
   public Sku getSkuResource() {
     return getSku().get(getDocument());
+  }
+
+  public void setSkuResource(Sku sku) {
+    setSku(new HasOne<Sku>(sku));
   }
 
   @SuppressWarnings("unchecked")

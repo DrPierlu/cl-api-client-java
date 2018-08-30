@@ -75,6 +75,10 @@ public class Customer extends ApiResource {
     return getCustomerAddresses().get(getDocument());
   }
 
+  public void setCustomerAddressResourceList(List<CustomerAddress> customerAddresses) {
+    setCustomerAddresses(new HasMany<CustomerAddress>(customerAddresses.toArray(new CustomerAddress[0])));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getCustomerAddressesLinksMap() {
     return (Map<String, String>)getCustomerAddresses().getLinks().get(new CLLinksAdapter());
@@ -90,6 +94,11 @@ public class Customer extends ApiResource {
 
   public List<CustomerPaymentSource> getCustomerPaymentSourceResourceList() {
     return getCustomerPaymentSources().get(getDocument());
+  }
+
+  public void setCustomerPaymentSourceResourceList(
+      List<CustomerPaymentSource> customerPaymentSources) {
+    setCustomerPaymentSources(new HasMany<CustomerPaymentSource>(customerPaymentSources.toArray(new CustomerPaymentSource[0])));
   }
 
   @SuppressWarnings("unchecked")
@@ -109,6 +118,11 @@ public class Customer extends ApiResource {
     return getCustomerSubscriptions().get(getDocument());
   }
 
+  public void setCustomerSubscriptionResourceList(
+      List<CustomerSubscription> customerSubscriptions) {
+    setCustomerSubscriptions(new HasMany<CustomerSubscription>(customerSubscriptions.toArray(new CustomerSubscription[0])));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getCustomerSubscriptionsLinksMap() {
     return (Map<String, String>)getCustomerSubscriptions().getLinks().get(new CLLinksAdapter());
@@ -124,6 +138,10 @@ public class Customer extends ApiResource {
 
   public List<Order> getOrderResourceList() {
     return getOrders().get(getDocument());
+  }
+
+  public void setOrderResourceList(List<Order> orders) {
+    setOrders(new HasMany<Order>(orders.toArray(new Order[0])));
   }
 
   @SuppressWarnings("unchecked")

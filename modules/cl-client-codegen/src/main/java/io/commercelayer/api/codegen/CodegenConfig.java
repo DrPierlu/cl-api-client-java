@@ -50,8 +50,8 @@ public final class CodegenConfig {
 		return Boolean.parseBoolean(getProperty(key));
 	}
 	
-	public static String mapResource(String resName) {
-		String remap = getProperty("model.resource.mapping.".concat(resName));
+	public static String mapModelResource(String resName) {
+		String remap = getProperty(Module.Model, "resource.mapping.".concat(resName));
 		return (StringUtils.isBlank(remap))? resName : remap;
 	}
 	

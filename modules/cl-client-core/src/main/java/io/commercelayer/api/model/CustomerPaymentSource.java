@@ -44,6 +44,10 @@ public class CustomerPaymentSource extends ApiResource {
     return getCustomer().get(getDocument());
   }
 
+  public void setCustomerResource(Customer customer) {
+    setCustomer(new HasOne<Customer>(customer));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getCustomerLinksMap() {
     return (Map<String, String>)getCustomer().getLinks().get(new CLLinksAdapter());
@@ -59,6 +63,10 @@ public class CustomerPaymentSource extends ApiResource {
 
   public PaymentSource getPaymentSourceResource() {
     return getPaymentSource().get(getDocument());
+  }
+
+  public void setPaymentSourceResource(PaymentSource paymentSource) {
+    setPaymentSource(new HasOne<PaymentSource>(paymentSource));
   }
 
   @SuppressWarnings("unchecked")

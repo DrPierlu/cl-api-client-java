@@ -38,6 +38,10 @@ public class Merchant extends ApiResource {
     return getAddress().get(getDocument());
   }
 
+  public void setAddressResource(Address address) {
+    setAddress(new HasOne<Address>(address));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getAddressLinksMap() {
     return (Map<String, String>)getAddress().getLinks().get(new CLLinksAdapter());

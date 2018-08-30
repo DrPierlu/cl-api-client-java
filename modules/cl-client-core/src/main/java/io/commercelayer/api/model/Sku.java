@@ -144,6 +144,10 @@ public class Sku extends ApiResource {
     return getShippingCategory().get(getDocument());
   }
 
+  public void setShippingCategoryResource(ShippingCategory shippingCategory) {
+    setShippingCategory(new HasOne<ShippingCategory>(shippingCategory));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getShippingCategoryLinksMap() {
     return (Map<String, String>)getShippingCategory().getLinks().get(new CLLinksAdapter());
@@ -159,6 +163,10 @@ public class Sku extends ApiResource {
 
   public List<Price> getPriceResourceList() {
     return getPrices().get(getDocument());
+  }
+
+  public void setPriceResourceList(List<Price> prices) {
+    setPrices(new HasMany<Price>(prices.toArray(new Price[0])));
   }
 
   @SuppressWarnings("unchecked")
@@ -178,6 +186,10 @@ public class Sku extends ApiResource {
     return getStockItems().get(getDocument());
   }
 
+  public void setStockItemResourceList(List<StockItem> stockItems) {
+    setStockItems(new HasMany<StockItem>(stockItems.toArray(new StockItem[0])));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getStockItemsLinksMap() {
     return (Map<String, String>)getStockItems().getLinks().get(new CLLinksAdapter());
@@ -195,6 +207,10 @@ public class Sku extends ApiResource {
     return getDeliveryLeadTimes().get(getDocument());
   }
 
+  public void setDeliveryLeadTimeResourceList(List<DeliveryLeadTime> deliveryLeadTimes) {
+    setDeliveryLeadTimes(new HasMany<DeliveryLeadTime>(deliveryLeadTimes.toArray(new DeliveryLeadTime[0])));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getDeliveryLeadTimesLinksMap() {
     return (Map<String, String>)getDeliveryLeadTimes().getLinks().get(new CLLinksAdapter());
@@ -210,6 +226,10 @@ public class Sku extends ApiResource {
 
   public List<SkuOption> getSkuOptionResourceList() {
     return getSkuOptions().get(getDocument());
+  }
+
+  public void setSkuOptionResourceList(List<SkuOption> skuOptions) {
+    setSkuOptions(new HasMany<SkuOption>(skuOptions.toArray(new SkuOption[0])));
   }
 
   @SuppressWarnings("unchecked")

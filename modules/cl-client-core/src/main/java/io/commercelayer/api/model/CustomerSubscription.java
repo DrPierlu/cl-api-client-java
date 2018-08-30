@@ -42,6 +42,10 @@ public class CustomerSubscription extends ApiResource {
     return getCustomer().get(getDocument());
   }
 
+  public void setCustomerResource(Customer customer) {
+    setCustomer(new HasOne<Customer>(customer));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getCustomerLinksMap() {
     return (Map<String, String>)getCustomer().getLinks().get(new CLLinksAdapter());

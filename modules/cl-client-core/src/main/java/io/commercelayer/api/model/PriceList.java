@@ -67,6 +67,10 @@ public class PriceList extends ApiResource {
     return getPrices().get(getDocument());
   }
 
+  public void setPriceResourceList(List<Price> prices) {
+    setPrices(new HasMany<Price>(prices.toArray(new Price[0])));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getPricesLinksMap() {
     return (Map<String, String>)getPrices().getLinks().get(new CLLinksAdapter());

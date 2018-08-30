@@ -39,6 +39,10 @@ public class ShippingCategory extends ApiResource {
     return getSkus().get(getDocument());
   }
 
+  public void setSkuResourceList(List<Sku> skus) {
+    setSkus(new HasMany<Sku>(skus.toArray(new Sku[0])));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getSkusLinksMap() {
     return (Map<String, String>)getSkus().getLinks().get(new CLLinksAdapter());

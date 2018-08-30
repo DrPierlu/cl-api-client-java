@@ -49,6 +49,10 @@ public class Market extends ApiResource {
     return getMerchant().get(getDocument());
   }
 
+  public void setMerchantResource(Merchant merchant) {
+    setMerchant(new HasOne<Merchant>(merchant));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getMerchantLinksMap() {
     return (Map<String, String>)getMerchant().getLinks().get(new CLLinksAdapter());
@@ -66,6 +70,10 @@ public class Market extends ApiResource {
     return getPriceList().get(getDocument());
   }
 
+  public void setPriceListResource(PriceList priceList) {
+    setPriceList(new HasOne<PriceList>(priceList));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getPriceListLinksMap() {
     return (Map<String, String>)getPriceList().getLinks().get(new CLLinksAdapter());
@@ -81,6 +89,10 @@ public class Market extends ApiResource {
 
   public InventoryModel getInventoryModelResource() {
     return getInventoryModel().get(getDocument());
+  }
+
+  public void setInventoryModelResource(InventoryModel inventoryModel) {
+    setInventoryModel(new HasOne<InventoryModel>(inventoryModel));
   }
 
   @SuppressWarnings("unchecked")

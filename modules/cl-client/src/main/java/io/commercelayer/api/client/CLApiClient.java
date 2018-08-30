@@ -75,8 +75,8 @@ public class CLApiClient {
 		logger.debug("Added ContentType Inteceptor: {}", added);
 		
 		HttpLoggingInterceptor hli = new HttpLoggingInterceptor(new HttpLogger(logger));
-		// hli.setLevel(ApiConfig.testModeEnabled()? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.BASIC);
-		hli.setLevel(HttpLoggingInterceptor.Level.BASIC);
+		hli.setLevel(ApiConfig.testModeEnabled()? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.BASIC);
+//		hli.setLevel(HttpLoggingInterceptor.Level.BASIC);
 		added = clientSetup.addInterceptor(hli);
 		logger.debug("Added Logging Inteceptor: {}", added);
 		

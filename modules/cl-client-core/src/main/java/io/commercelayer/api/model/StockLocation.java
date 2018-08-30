@@ -64,6 +64,10 @@ public class StockLocation extends ApiResource {
     return getAddress().get(getDocument());
   }
 
+  public void setAddressResource(Address address) {
+    setAddress(new HasOne<Address>(address));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getAddressLinksMap() {
     return (Map<String, String>)getAddress().getLinks().get(new CLLinksAdapter());
@@ -81,6 +85,10 @@ public class StockLocation extends ApiResource {
     return getStockLevels().get(getDocument());
   }
 
+  public void setStockLevelResourceList(List<StockLevel> stockLevels) {
+    setStockLevels(new HasMany<StockLevel>(stockLevels.toArray(new StockLevel[0])));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getStockLevelsLinksMap() {
     return (Map<String, String>)getStockLevels().getLinks().get(new CLLinksAdapter());
@@ -96,6 +104,10 @@ public class StockLocation extends ApiResource {
 
   public List<StockItem> getStockItemResourceList() {
     return getStockItems().get(getDocument());
+  }
+
+  public void setStockItemResourceList(List<StockItem> stockItems) {
+    setStockItems(new HasMany<StockItem>(stockItems.toArray(new StockItem[0])));
   }
 
   @SuppressWarnings("unchecked")

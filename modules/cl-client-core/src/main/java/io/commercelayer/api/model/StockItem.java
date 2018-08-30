@@ -58,6 +58,10 @@ public class StockItem extends ApiResource {
     return getStockLocation().get(getDocument());
   }
 
+  public void setStockLocationResource(StockLocation stockLocation) {
+    setStockLocation(new HasOne<StockLocation>(stockLocation));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getStockLocationLinksMap() {
     return (Map<String, String>)getStockLocation().getLinks().get(new CLLinksAdapter());
@@ -73,6 +77,10 @@ public class StockItem extends ApiResource {
 
   public Sku getSkuResource() {
     return getSku().get(getDocument());
+  }
+
+  public void setSkuResource(Sku sku) {
+    setSku(new HasOne<Sku>(sku));
   }
 
   @SuppressWarnings("unchecked")

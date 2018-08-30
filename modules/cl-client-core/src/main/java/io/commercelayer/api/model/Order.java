@@ -1259,6 +1259,10 @@ public class Order extends ApiResource {
     return getMarket().get(getDocument());
   }
 
+  public void setMarketResource(Market market) {
+    setMarket(new HasOne<Market>(market));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getMarketLinksMap() {
     return (Map<String, String>)getMarket().getLinks().get(new CLLinksAdapter());
@@ -1274,6 +1278,10 @@ public class Order extends ApiResource {
 
   public Customer getCustomerResource() {
     return getCustomer().get(getDocument());
+  }
+
+  public void setCustomerResource(Customer customer) {
+    setCustomer(new HasOne<Customer>(customer));
   }
 
   @SuppressWarnings("unchecked")
@@ -1293,6 +1301,10 @@ public class Order extends ApiResource {
     return getShippingAddress().get(getDocument());
   }
 
+  public void setShippingAddressResource(Address shippingAddress) {
+    setShippingAddress(new HasOne<Address>(shippingAddress));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getShippingAddressLinksMap() {
     return (Map<String, String>)getShippingAddress().getLinks().get(new CLLinksAdapter());
@@ -1308,6 +1320,10 @@ public class Order extends ApiResource {
 
   public Address getBillingAddressResource() {
     return getBillingAddress().get(getDocument());
+  }
+
+  public void setBillingAddressResource(Address billingAddress) {
+    setBillingAddress(new HasOne<Address>(billingAddress));
   }
 
   @SuppressWarnings("unchecked")
@@ -1327,6 +1343,10 @@ public class Order extends ApiResource {
     return getPaymentMethod().get(getDocument());
   }
 
+  public void setPaymentMethodResource(PaymentMethod paymentMethod) {
+    setPaymentMethod(new HasOne<PaymentMethod>(paymentMethod));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getPaymentMethodLinksMap() {
     return (Map<String, String>)getPaymentMethod().getLinks().get(new CLLinksAdapter());
@@ -1342,6 +1362,10 @@ public class Order extends ApiResource {
 
   public PaymentSource getPaymentSourceResource() {
     return getPaymentSource().get(getDocument());
+  }
+
+  public void setPaymentSourceResource(PaymentSource paymentSource) {
+    setPaymentSource(new HasOne<PaymentSource>(paymentSource));
   }
 
   @SuppressWarnings("unchecked")
@@ -1361,6 +1385,10 @@ public class Order extends ApiResource {
     return getLineItems().get(getDocument());
   }
 
+  public void setLineItemResourceList(List<LineItem> lineItems) {
+    setLineItems(new HasMany<LineItem>(lineItems.toArray(new LineItem[0])));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getLineItemsLinksMap() {
     return (Map<String, String>)getLineItems().getLinks().get(new CLLinksAdapter());
@@ -1376,6 +1404,10 @@ public class Order extends ApiResource {
 
   public List<Shipment> getShipmentResourceList() {
     return getShipments().get(getDocument());
+  }
+
+  public void setShipmentResourceList(List<Shipment> shipments) {
+    setShipments(new HasMany<Shipment>(shipments.toArray(new Shipment[0])));
   }
 
   @SuppressWarnings("unchecked")

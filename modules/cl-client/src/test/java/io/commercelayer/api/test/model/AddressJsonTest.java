@@ -11,6 +11,7 @@ import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 
 import io.commercelayer.api.model.Address;
+import io.commercelayer.api.model.Geocoder;
 import io.commercelayer.api.model.adapter.BooleanAdapter;
 import io.commercelayer.api.model.adapter.ZonedDateTimeAdapter;
 import moe.banana.jsonapi2.ArrayDocument;
@@ -44,7 +45,7 @@ public class AddressJsonTest {
 		
 		JsonAdapter.Factory jsonApiAdapterFactory = ResourceAdapterFactory.builder()
 				.add(Address.class)
-//				.add(Geocoder.class)
+				.add(Geocoder.class)
 				.build();
 
 		Moshi moshi = new Moshi.Builder()

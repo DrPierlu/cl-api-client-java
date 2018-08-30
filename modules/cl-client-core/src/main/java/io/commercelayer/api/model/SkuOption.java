@@ -118,6 +118,10 @@ public class SkuOption extends ApiResource {
     return getMarket().get(getDocument());
   }
 
+  public void setMarketResource(Market market) {
+    setMarket(new HasOne<Market>(market));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getMarketLinksMap() {
     return (Map<String, String>)getMarket().getLinks().get(new CLLinksAdapter());

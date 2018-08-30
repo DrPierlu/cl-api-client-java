@@ -43,6 +43,10 @@ public class InventoryModel extends ApiResource {
     return getStockLevels().get(getDocument());
   }
 
+  public void setStockLevelResourceList(List<StockLevel> stockLevels) {
+    setStockLevels(new HasMany<StockLevel>(stockLevels.toArray(new StockLevel[0])));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getStockLevelsLinksMap() {
     return (Map<String, String>)getStockLevels().getLinks().get(new CLLinksAdapter());

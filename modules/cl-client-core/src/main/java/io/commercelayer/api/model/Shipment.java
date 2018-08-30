@@ -228,6 +228,10 @@ public class Shipment extends ApiResource {
     return getShippingMethod().get(getDocument());
   }
 
+  public void setShippingMethodResource(ShippingMethod shippingMethod) {
+    setShippingMethod(new HasOne<ShippingMethod>(shippingMethod));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getShippingMethodLinksMap() {
     return (Map<String, String>)getShippingMethod().getLinks().get(new CLLinksAdapter());
@@ -243,6 +247,10 @@ public class Shipment extends ApiResource {
 
   public ShippingCategory getShippingCategoryResource() {
     return getShippingCategory().get(getDocument());
+  }
+
+  public void setShippingCategoryResource(ShippingCategory shippingCategory) {
+    setShippingCategory(new HasOne<ShippingCategory>(shippingCategory));
   }
 
   @SuppressWarnings("unchecked")
@@ -262,6 +270,10 @@ public class Shipment extends ApiResource {
     return getStockLocation().get(getDocument());
   }
 
+  public void setStockLocationResource(StockLocation stockLocation) {
+    setStockLocation(new HasOne<StockLocation>(stockLocation));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getStockLocationLinksMap() {
     return (Map<String, String>)getStockLocation().getLinks().get(new CLLinksAdapter());
@@ -277,6 +289,10 @@ public class Shipment extends ApiResource {
 
   public Address getShippingAddressResource() {
     return getShippingAddress().get(getDocument());
+  }
+
+  public void setShippingAddressResource(Address shippingAddress) {
+    setShippingAddress(new HasOne<Address>(shippingAddress));
   }
 
   @SuppressWarnings("unchecked")
@@ -296,6 +312,10 @@ public class Shipment extends ApiResource {
     return getShipmentLineItems().get(getDocument());
   }
 
+  public void setShipmentLineItemResourceList(List<LineItem> shipmentLineItems) {
+    setShipmentLineItems(new HasMany<LineItem>(shipmentLineItems.toArray(new ShipmentLineItem[0])));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getShipmentLineItemsLinksMap() {
     return (Map<String, String>)getShipmentLineItems().getLinks().get(new CLLinksAdapter());
@@ -313,6 +333,11 @@ public class Shipment extends ApiResource {
     return getAvailableShippingMethods().get(getDocument());
   }
 
+  public void setAvailableShippingMethodResourceList(
+      List<ShippingMethod> availableShippingMethods) {
+    setAvailableShippingMethods(new HasMany<ShippingMethod>(availableShippingMethods.toArray(new AvailableShippingMethod[0])));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getAvailableShippingMethodsLinksMap() {
     return (Map<String, String>)getAvailableShippingMethods().getLinks().get(new CLLinksAdapter());
@@ -328,6 +353,10 @@ public class Shipment extends ApiResource {
 
   public List<Parcel> getParcelResourceList() {
     return getParcels().get(getDocument());
+  }
+
+  public void setParcelResourceList(List<Parcel> parcels) {
+    setParcels(new HasMany<Parcel>(parcels.toArray(new Parcel[0])));
   }
 
   @SuppressWarnings("unchecked")

@@ -268,6 +268,10 @@ public class LineItem extends ApiResource {
     return getOrder().get(getDocument());
   }
 
+  public void setOrderResource(Order order) {
+    setOrder(new HasOne<Order>(order));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getOrderLinksMap() {
     return (Map<String, String>)getOrder().getLinks().get(new CLLinksAdapter());
@@ -285,6 +289,10 @@ public class LineItem extends ApiResource {
     return getItem().get(getDocument());
   }
 
+  public void setItemResource(Item item) {
+    setItem(new HasOne<Item>(item));
+  }
+
   @SuppressWarnings("unchecked")
   public Map<String, String> getItemLinksMap() {
     return (Map<String, String>)getItem().getLinks().get(new CLLinksAdapter());
@@ -300,6 +308,10 @@ public class LineItem extends ApiResource {
 
   public List<LineItemOption> getLineItemOptionResourceList() {
     return getLineItemOptions().get(getDocument());
+  }
+
+  public void setLineItemOptionResourceList(List<LineItemOption> lineItemOptions) {
+    setLineItemOptions(new HasMany<LineItemOption>(lineItemOptions.toArray(new LineItemOption[0])));
   }
 
   @SuppressWarnings("unchecked")

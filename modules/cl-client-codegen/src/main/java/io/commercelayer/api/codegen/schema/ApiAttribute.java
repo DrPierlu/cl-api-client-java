@@ -58,12 +58,12 @@ public class ApiAttribute {
 	}
 
 	public static interface Types {
-		String STRING = "string";
-		String INTEGER = "integer";
-		String NUMBER = "number";
-		String OBJECT = "object";
-		String ARRAY = "array";
-		String BOOLEAN = "boolean";
+		String STRING 	= "string";
+		String INTEGER 	= "integer";
+		String NUMBER 	= "number";
+		String OBJECT 	= "object";
+		String ARRAY 	= "array";
+		String BOOLEAN 	= "boolean";
 	}
 
 	public static interface Formats {

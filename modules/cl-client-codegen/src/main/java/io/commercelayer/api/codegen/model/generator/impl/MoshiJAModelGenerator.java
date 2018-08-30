@@ -183,27 +183,35 @@ public class MoshiJAModelGenerator implements ModelGenerator {
 			// Relationship field
 			final String relFieldName = ModelUtils.toCamelCase(rel.getKey());
 			final String relFieldNameCap = StringUtils.capitalize(relFieldName);
+			
 			final String relResName = CLInflector.getInstance().singularize(relFieldNameCap);
+			final String relResNameRemapped = CodegenConfig.mapModelResource(relResName);
+			final TypeName relResType = ClassName.get(ModelGeneratorUtils.MODEL_BASE_PACKAGE, relResNameRemapped);
 			
+			final ClassName relClassName = ClassName.get(multiRel? HasMany.class : HasOne.class);
+			final TypeName relTypeName = ParameterizedTypeName.get(relClassName, relResType);
+			final TypeName relResTypeName = multiRel? ParameterizedTypeName.get(ClassName.get(List.class), relResType) : relResType;
 			
-			
-			TypeName relResType = ClassName.get(ModelGeneratorUtils.MODEL_BASE_PACKAGE, CodegenConfig.mapResource(relResName));
-			
-			ClassName cn = ClassName.get(multiRel? HasMany.class : HasOne.class);
-			TypeName tn = ParameterizedTypeName.get(cn, relResType);
-			
-			FieldSpec.Builder field = FieldSpec.builder(tn, relFieldName, Modifier.PRIVATE);
+			FieldSpec.Builder field = FieldSpec.builder(relTypeName, relFieldName, Modifier.PRIVATE);
 			setJsonFieldAnnotation(rel.getKey(), field);
 			addResourceField(classe, field.build());
 			
 			// Relationship get Resource/ResourceList method
-			final String relResMethodName = String.format("get%sResource%s", relResName, (multiRel? "List" : ""));
-			MethodSpec relResMethod = MethodSpec.methodBuilder(relResMethodName)
+			final String relResGetMethodName = String.format("get%sResource%s", relResName, multiRel? "List" : "");
+			MethodSpec relResGetMethod = MethodSpec.methodBuilder(relResGetMethodName)
 				.addModifiers(Modifier.PUBLIC)
-				.returns(multiRel? ParameterizedTypeName.get(ClassName.get(List.class), relResType) : relResType)
+				.returns(relResTypeName)
 				.addStatement("return get$L().get(getDocument())", relFieldNameCap)
 				.build();
-			classe.addMethod(relResMethod);
+			classe.addMethod(relResGetMethod);
+			
+			final String relResSetMethodName = String.format("set%sResource%s", relResName, multiRel? "List" : "");
+			MethodSpec relResSetMethod = MethodSpec.methodBuilder(relResSetMethodName)
+				.addModifiers(Modifier.PUBLIC)
+				.addParameter(relResTypeName, relFieldName)
+				.addStatement("set$L(new $T<$L>($L$L))", relFieldNameCap, relClassName, relResNameRemapped, relFieldName, multiRel? String.format(".toArray(new %s[0])", relResName) : "")
+				.build();
+			classe.addMethod(relResSetMethod);
 			
 			// Relationship get Links method
 			final String relResLinksMethodName = String.format("get%sLinksMap", relFieldNameCap);
