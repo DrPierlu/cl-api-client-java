@@ -37,6 +37,7 @@ import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+
 public class CLApiClient {
 
 	private static final Logger logger = LoggerFactory.getLogger(CLApiClient.class);

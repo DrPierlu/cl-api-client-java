@@ -67,9 +67,9 @@ public class AddressJsonTest {
 		System.out.println("LINKS: " + address.getLinksMap());
 		
 		Map<String, String> gl = address.getGeocoderLinksMap();
-		System.out.println(gl);
+		System.out.println("GEOCODER LINKS: " + gl);
 		
-		System.out.println(address.getGeocoderResource());
+		System.out.println("GEOCODER RES: " + address.getGeocoderResource());
 		
 	}
 

@@ -1,18 +1,19 @@
 package io.commercelayer.api.test.model;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import io.commercelayer.api.client.QueryFilter;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.ConnectionException;
 import io.commercelayer.api.model.Address;
 import io.commercelayer.api.model.Geocoder;
 import io.commercelayer.api.service.AddressService;
-import io.commercelayer.api.util.LogUtils;
 import retrofit2.Call;
 
 public class AddressTest extends AbstractModelTest {
@@ -33,7 +34,7 @@ public class AddressTest extends AbstractModelTest {
 		logger.debug(out.toString());
 		
 		assertEquals(in.getFirstName(), out.getFirstName());
-		assertEquals(in.getFullAddress(), out.getFullAddress());
+		assertNotNull(out.getFullAddress());
 		
 	}
 	
@@ -51,14 +52,38 @@ public class AddressTest extends AbstractModelTest {
 	
 	
 	@Test
+	public void retrieveAddressTest() throws ConnectionException, ApiException {
+		
+		String id = "2753";
+		
+		Address a = retrieveAddress(id);
+		logger.debug(a.toString());
+		
+		assertNotNull(a);
+		assertNotNull(a.getFullAddress());
+		assertEquals(id, a.getId());
+		
+	}
+	
+	
+	public Address retrieveAddress(String id) throws ConnectionException, ApiException {
+		
+		Call<Address> call = service.retrieveAddress(id);
+		
+		return apiClient.execute(call);
+		
+	}
+	
+	
+	@Test
 	public void updateAddressTest() throws ConnectionException, ApiException {
 		
 		Address in = getAddressTestData_2();
-		Address out = updateAddress("4156", in);
+		Address out = updateAddress("2753", in);
 		logger.debug(out.toString());
 		
 		assertEquals(in.getFirstName(), out.getFirstName());
-		assertEquals(in.getFullAddress(), out.getFullAddress());
+		assertNotNull(out.getFullAddress());
 		
 	}
 	
@@ -76,14 +101,32 @@ public class AddressTest extends AbstractModelTest {
 	
 	@Test
 	public void listAddressesTest() throws ConnectionException, ApiException {
+		
+//		QueryFilter filter = QueryFilter.builder()
+//				.fields("addresses", "created_at", "first_name")
+//				.sort("created_at", false)
+//				.page(2, 2)
+//				.build();
+//		List<Address> addresses = listAddresses(filter);
+		
 		List<Address> addresses = listAddresses();
-		logger.debug(LogUtils.toString(addresses));
+		
+		for (Address a : addresses) logger.debug(a.toString());
+		
 	}
 	
 	
 	public List<Address> listAddresses() throws ApiException, ConnectionException {
 		
 		Call<List<Address>> apiCall = service.listAddresses();
+		
+		return apiClient.execute(apiCall);
+
+	}
+	
+	public List<Address> listAddresses(QueryFilter filter) throws ApiException, ConnectionException {
+		
+		Call<List<Address>> apiCall = service.listAddresses(filter);
 		
 		return apiClient.execute(apiCall);
 
@@ -132,6 +175,14 @@ public class AddressTest extends AbstractModelTest {
 		
 		return g;
 		
+	}
+	
+	
+	public static void main(String[] args) throws ConnectionException, ApiException {
+		initServiceClient();
+		AddressTest test = new AddressTest();
+		test.initServiceInterface();
+		test.listAddressesTest();
 	}
 	
 }

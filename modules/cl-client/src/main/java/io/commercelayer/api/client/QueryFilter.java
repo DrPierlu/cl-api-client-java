@@ -26,7 +26,7 @@ public class QueryFilter extends LinkedHashMap<String, String> {
 	}
 	
 	private QueryFilter putMap(Map<String, String> map) {
-		super.putAll(map);
+		if ((map != null) && !map.isEmpty()) super.putAll(map);
 		return this;
 	}
 	
@@ -48,6 +48,8 @@ public class QueryFilter extends LinkedHashMap<String, String> {
 		private Map<String, Set<String>> sparseFieldsets = new LinkedHashMap<>();
 		private List<String> sortFields = new LinkedList<>();
 		private Map<String, String> filterFields = new LinkedHashMap<>();
+		private Integer pageNumber;
+		private Integer pageSize;
 		
 		private Builder() {
 			
@@ -74,12 +76,23 @@ public class QueryFilter extends LinkedHashMap<String, String> {
 		}
 		
 		public Builder fields(String resource, String... fields) {
+			
+			if (StringUtils.isBlank(resource)) return this;
+			if ((fields == null) || (fields.length == 0)) return this;
+			
 			Set<String> filter = this.sparseFieldsets.get(resource);
 			if (filter == null) filter = new LinkedHashSet<>();
 			for (String f : fields) {
 				if (!filter.contains(f)) filter.add(f);
 			}
 			this.sparseFieldsets.put(resource, filter);
+			
+			return this;
+			
+		}
+		
+		public Builder field(String resource, String field) {
+			this.fields(resource, new String[] { field });
 			return this;
 		}
 		
@@ -97,6 +110,12 @@ public class QueryFilter extends LinkedHashMap<String, String> {
 			return this;
 		}
 		
+		public Builder page(Integer number, Integer size) {
+			this.pageNumber = number;
+			this.pageSize = size;
+			return this;
+		}
+		
 		public QueryFilter build() {
 			
 			QueryFilter qf = new QueryFilter();
@@ -107,6 +126,9 @@ public class QueryFilter extends LinkedHashMap<String, String> {
 			  .putMap(buildSortQueryMap())
 			  .putMap(this.queryStringParams)
 			;
+			
+			if (this.pageNumber != null) qf.put("page[number]", String.valueOf(this.pageNumber));
+			if (this.pageSize != null) qf.put("page[size]", String.valueOf(this.pageSize));
 			
 			return qf;
 			
@@ -126,7 +148,7 @@ public class QueryFilter extends LinkedHashMap<String, String> {
 			Map<String, String> params = new LinkedHashMap<>();
 			for (Map.Entry<String, Set<String>> fieldset : this.sparseFieldsets.entrySet()) {
 				if (fieldset.getValue().isEmpty()) continue;
-					params.put(String.format("fields[%s]", fieldset.getKey()), StringUtils.join(fieldset.getValue(), ','));
+				params.put(String.format("fields[%s]", fieldset.getKey()), StringUtils.join(fieldset.getValue(), ','));
 			}
 			return params;
 		}
@@ -134,14 +156,14 @@ public class QueryFilter extends LinkedHashMap<String, String> {
 		
 		private Map<String, String> buildIncludedQueryMap() {
 			Map<String, String> params = new LinkedHashMap<>();
-			params.put("include", StringUtils.join(this.includedResources, ','));
+			if (!this.includedResources.isEmpty()) params.put("include", StringUtils.join(this.includedResources, ','));
 			return params;
 		}
 		
 		
 		private Map<String, String> buildSortQueryMap() {
 			Map<String, String> params = new LinkedHashMap<>();
-			params.put("sort", StringUtils.join(this.sortFields, ','));
+			if (!this.sortFields.isEmpty()) params.put("sort", StringUtils.join(this.sortFields, ','));
 			return params;			
 		}
 		

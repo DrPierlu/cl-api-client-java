@@ -17,6 +17,7 @@ public class QueryFilterTest {
 			.fields("home_address", "city", "address", "state")
 			.param("param1", "value1")
 			.param("param2", "value2")
+			.page(2, 10)
 			.build();
 		
 		System.out.println(qf.queryString());
