@@ -3,6 +3,7 @@ package io.commercelayer.api.model;
 import com.squareup.moshi.Json;
 import io.commercelayer.api.model.adapter.CLLinksAdapter;
 import io.commercelayer.api.model.common.ApiResource;
+import java.lang.Float;
 import java.lang.Integer;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -36,7 +37,7 @@ public class ShippingMethod extends ApiResource {
   @Json(
       name = "price_amount_float"
   )
-  private Integer priceAmountFloat;
+  private Float priceAmountFloat;
 
   @Json(
       name = "formatted_price_amount"
@@ -46,7 +47,7 @@ public class ShippingMethod extends ApiResource {
   @Json(
       name = "free_over_amount_float"
   )
-  private Integer freeOverAmountFloat;
+  private Float freeOverAmountFloat;
 
   @Json(
       name = "formatted_free_over_amount"
@@ -61,7 +62,7 @@ public class ShippingMethod extends ApiResource {
   @Json(
       name = "price_amount_for_shipment_float"
   )
-  private Integer priceAmountForShipmentFloat;
+  private Float priceAmountForShipmentFloat;
 
   @Json(
       name = "formatted_price_amount_for_shipment"
@@ -117,11 +118,11 @@ public class ShippingMethod extends ApiResource {
     this.currencyCode = currencyCode;
   }
 
-  public Integer getPriceAmountFloat() {
+  public Float getPriceAmountFloat() {
     return this.priceAmountFloat;
   }
 
-  public void setPriceAmountFloat(Integer priceAmountFloat) {
+  public void setPriceAmountFloat(Float priceAmountFloat) {
     this.priceAmountFloat = priceAmountFloat;
   }
 
@@ -133,11 +134,11 @@ public class ShippingMethod extends ApiResource {
     this.formattedPriceAmount = formattedPriceAmount;
   }
 
-  public Integer getFreeOverAmountFloat() {
+  public Float getFreeOverAmountFloat() {
     return this.freeOverAmountFloat;
   }
 
-  public void setFreeOverAmountFloat(Integer freeOverAmountFloat) {
+  public void setFreeOverAmountFloat(Float freeOverAmountFloat) {
     this.freeOverAmountFloat = freeOverAmountFloat;
   }
 
@@ -157,11 +158,11 @@ public class ShippingMethod extends ApiResource {
     this.priceAmountForShipmentCents = priceAmountForShipmentCents;
   }
 
-  public Integer getPriceAmountForShipmentFloat() {
+  public Float getPriceAmountForShipmentFloat() {
     return this.priceAmountForShipmentFloat;
   }
 
-  public void setPriceAmountForShipmentFloat(Integer priceAmountForShipmentFloat) {
+  public void setPriceAmountForShipmentFloat(Float priceAmountForShipmentFloat) {
     this.priceAmountForShipmentFloat = priceAmountForShipmentFloat;
   }
 

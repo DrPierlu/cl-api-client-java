@@ -4,6 +4,7 @@ import com.squareup.moshi.Json;
 import io.commercelayer.api.model.adapter.CLLinksAdapter;
 import io.commercelayer.api.model.common.ApiResource;
 import java.lang.Boolean;
+import java.lang.Float;
 import java.lang.Integer;
 import java.lang.Object;
 import java.lang.String;
@@ -161,7 +162,7 @@ public class Order extends ApiResource {
   @Json(
       name = "tax_rate"
   )
-  private Integer taxRate;
+  private Float taxRate;
 
   @Json(
       name = "freight_taxable"
@@ -181,7 +182,7 @@ public class Order extends ApiResource {
   @Json(
       name = "subtotal_amount_float"
   )
-  private Integer subtotalAmountFloat;
+  private Float subtotalAmountFloat;
 
   @Json(
       name = "formatted_subtotal_amount"
@@ -196,7 +197,7 @@ public class Order extends ApiResource {
   @Json(
       name = "shipping_amount_float"
   )
-  private Integer shippingAmountFloat;
+  private Float shippingAmountFloat;
 
   @Json(
       name = "formatted_shipping_amount"
@@ -211,7 +212,7 @@ public class Order extends ApiResource {
   @Json(
       name = "payment_method_amount_float"
   )
-  private Integer paymentMethodAmountFloat;
+  private Float paymentMethodAmountFloat;
 
   @Json(
       name = "formatted_payment_method_amount"
@@ -226,7 +227,7 @@ public class Order extends ApiResource {
   @Json(
       name = "discount_amount_float"
   )
-  private Integer discountAmountFloat;
+  private Float discountAmountFloat;
 
   @Json(
       name = "formatted_discount_amount"
@@ -241,7 +242,7 @@ public class Order extends ApiResource {
   @Json(
       name = "total_tax_amount_float"
   )
-  private Integer totalTaxAmountFloat;
+  private Float totalTaxAmountFloat;
 
   @Json(
       name = "formatted_total_tax_amount"
@@ -256,7 +257,7 @@ public class Order extends ApiResource {
   @Json(
       name = "subtotal_tax_amount_float"
   )
-  private Integer subtotalTaxAmountFloat;
+  private Float subtotalTaxAmountFloat;
 
   @Json(
       name = "formatted_subtotal_tax_amount"
@@ -271,7 +272,7 @@ public class Order extends ApiResource {
   @Json(
       name = "shipping_tax_amount_float"
   )
-  private Integer shippingTaxAmountFloat;
+  private Float shippingTaxAmountFloat;
 
   @Json(
       name = "formatted_shipping_tax_amount"
@@ -286,7 +287,7 @@ public class Order extends ApiResource {
   @Json(
       name = "payment_method_tax_amount_float"
   )
-  private Integer paymentMethodTaxAmountFloat;
+  private Float paymentMethodTaxAmountFloat;
 
   @Json(
       name = "formatted_payment_method_tax_amount"
@@ -301,7 +302,7 @@ public class Order extends ApiResource {
   @Json(
       name = "discount_tax_amount_float"
   )
-  private Integer discountTaxAmountFloat;
+  private Float discountTaxAmountFloat;
 
   @Json(
       name = "formatted_discount_tax_amount"
@@ -316,7 +317,7 @@ public class Order extends ApiResource {
   @Json(
       name = "total_amount_float"
   )
-  private Integer totalAmountFloat;
+  private Float totalAmountFloat;
 
   @Json(
       name = "formatted_total_amount"
@@ -331,7 +332,7 @@ public class Order extends ApiResource {
   @Json(
       name = "total_taxable_amount_float"
   )
-  private Integer totalTaxableAmountFloat;
+  private Float totalTaxableAmountFloat;
 
   @Json(
       name = "formatted_total_taxable_amount"
@@ -346,7 +347,7 @@ public class Order extends ApiResource {
   @Json(
       name = "subtotal_taxable_amount_float"
   )
-  private Integer subtotalTaxableAmountFloat;
+  private Float subtotalTaxableAmountFloat;
 
   @Json(
       name = "formatted_subtotal_taxable_amount"
@@ -361,7 +362,7 @@ public class Order extends ApiResource {
   @Json(
       name = "shipping_taxable_amount_float"
   )
-  private Integer shippingTaxableAmountFloat;
+  private Float shippingTaxableAmountFloat;
 
   @Json(
       name = "formatted_shipping_taxable_amount"
@@ -376,7 +377,7 @@ public class Order extends ApiResource {
   @Json(
       name = "payment_method_taxable_amount_float"
   )
-  private Integer paymentMethodTaxableAmountFloat;
+  private Float paymentMethodTaxableAmountFloat;
 
   @Json(
       name = "formatted_payment_method_taxable_amount"
@@ -391,7 +392,7 @@ public class Order extends ApiResource {
   @Json(
       name = "discount_taxable_amount_float"
   )
-  private Integer discountTaxableAmountFloat;
+  private Float discountTaxableAmountFloat;
 
   @Json(
       name = "formatted_discount_taxable_amount"
@@ -406,7 +407,7 @@ public class Order extends ApiResource {
   @Json(
       name = "total_amount_with_taxes_float"
   )
-  private Integer totalAmountWithTaxesFloat;
+  private Float totalAmountWithTaxesFloat;
 
   @Json(
       name = "formatted_total_amount_with_taxes"
@@ -421,7 +422,7 @@ public class Order extends ApiResource {
   @Json(
       name = "fees_amount_float"
   )
-  private Integer feesAmountFloat;
+  private Float feesAmountFloat;
 
   @Json(
       name = "formatted_fees_amount"
@@ -743,11 +744,11 @@ public class Order extends ApiResource {
     this.taxIncluded = taxIncluded;
   }
 
-  public Integer getTaxRate() {
+  public Float getTaxRate() {
     return this.taxRate;
   }
 
-  public void setTaxRate(Integer taxRate) {
+  public void setTaxRate(Float taxRate) {
     this.taxRate = taxRate;
   }
 
@@ -775,11 +776,11 @@ public class Order extends ApiResource {
     this.subtotalAmountCents = subtotalAmountCents;
   }
 
-  public Integer getSubtotalAmountFloat() {
+  public Float getSubtotalAmountFloat() {
     return this.subtotalAmountFloat;
   }
 
-  public void setSubtotalAmountFloat(Integer subtotalAmountFloat) {
+  public void setSubtotalAmountFloat(Float subtotalAmountFloat) {
     this.subtotalAmountFloat = subtotalAmountFloat;
   }
 
@@ -799,11 +800,11 @@ public class Order extends ApiResource {
     this.shippingAmountCents = shippingAmountCents;
   }
 
-  public Integer getShippingAmountFloat() {
+  public Float getShippingAmountFloat() {
     return this.shippingAmountFloat;
   }
 
-  public void setShippingAmountFloat(Integer shippingAmountFloat) {
+  public void setShippingAmountFloat(Float shippingAmountFloat) {
     this.shippingAmountFloat = shippingAmountFloat;
   }
 
@@ -823,11 +824,11 @@ public class Order extends ApiResource {
     this.paymentMethodAmountCents = paymentMethodAmountCents;
   }
 
-  public Integer getPaymentMethodAmountFloat() {
+  public Float getPaymentMethodAmountFloat() {
     return this.paymentMethodAmountFloat;
   }
 
-  public void setPaymentMethodAmountFloat(Integer paymentMethodAmountFloat) {
+  public void setPaymentMethodAmountFloat(Float paymentMethodAmountFloat) {
     this.paymentMethodAmountFloat = paymentMethodAmountFloat;
   }
 
@@ -847,11 +848,11 @@ public class Order extends ApiResource {
     this.discountAmountCents = discountAmountCents;
   }
 
-  public Integer getDiscountAmountFloat() {
+  public Float getDiscountAmountFloat() {
     return this.discountAmountFloat;
   }
 
-  public void setDiscountAmountFloat(Integer discountAmountFloat) {
+  public void setDiscountAmountFloat(Float discountAmountFloat) {
     this.discountAmountFloat = discountAmountFloat;
   }
 
@@ -871,11 +872,11 @@ public class Order extends ApiResource {
     this.totalTaxAmountCents = totalTaxAmountCents;
   }
 
-  public Integer getTotalTaxAmountFloat() {
+  public Float getTotalTaxAmountFloat() {
     return this.totalTaxAmountFloat;
   }
 
-  public void setTotalTaxAmountFloat(Integer totalTaxAmountFloat) {
+  public void setTotalTaxAmountFloat(Float totalTaxAmountFloat) {
     this.totalTaxAmountFloat = totalTaxAmountFloat;
   }
 
@@ -895,11 +896,11 @@ public class Order extends ApiResource {
     this.subtotalTaxAmountCents = subtotalTaxAmountCents;
   }
 
-  public Integer getSubtotalTaxAmountFloat() {
+  public Float getSubtotalTaxAmountFloat() {
     return this.subtotalTaxAmountFloat;
   }
 
-  public void setSubtotalTaxAmountFloat(Integer subtotalTaxAmountFloat) {
+  public void setSubtotalTaxAmountFloat(Float subtotalTaxAmountFloat) {
     this.subtotalTaxAmountFloat = subtotalTaxAmountFloat;
   }
 
@@ -919,11 +920,11 @@ public class Order extends ApiResource {
     this.shippingTaxAmountCents = shippingTaxAmountCents;
   }
 
-  public Integer getShippingTaxAmountFloat() {
+  public Float getShippingTaxAmountFloat() {
     return this.shippingTaxAmountFloat;
   }
 
-  public void setShippingTaxAmountFloat(Integer shippingTaxAmountFloat) {
+  public void setShippingTaxAmountFloat(Float shippingTaxAmountFloat) {
     this.shippingTaxAmountFloat = shippingTaxAmountFloat;
   }
 
@@ -943,11 +944,11 @@ public class Order extends ApiResource {
     this.paymentMethodTaxAmountCents = paymentMethodTaxAmountCents;
   }
 
-  public Integer getPaymentMethodTaxAmountFloat() {
+  public Float getPaymentMethodTaxAmountFloat() {
     return this.paymentMethodTaxAmountFloat;
   }
 
-  public void setPaymentMethodTaxAmountFloat(Integer paymentMethodTaxAmountFloat) {
+  public void setPaymentMethodTaxAmountFloat(Float paymentMethodTaxAmountFloat) {
     this.paymentMethodTaxAmountFloat = paymentMethodTaxAmountFloat;
   }
 
@@ -967,11 +968,11 @@ public class Order extends ApiResource {
     this.discountTaxAmountCents = discountTaxAmountCents;
   }
 
-  public Integer getDiscountTaxAmountFloat() {
+  public Float getDiscountTaxAmountFloat() {
     return this.discountTaxAmountFloat;
   }
 
-  public void setDiscountTaxAmountFloat(Integer discountTaxAmountFloat) {
+  public void setDiscountTaxAmountFloat(Float discountTaxAmountFloat) {
     this.discountTaxAmountFloat = discountTaxAmountFloat;
   }
 
@@ -991,11 +992,11 @@ public class Order extends ApiResource {
     this.totalAmountCents = totalAmountCents;
   }
 
-  public Integer getTotalAmountFloat() {
+  public Float getTotalAmountFloat() {
     return this.totalAmountFloat;
   }
 
-  public void setTotalAmountFloat(Integer totalAmountFloat) {
+  public void setTotalAmountFloat(Float totalAmountFloat) {
     this.totalAmountFloat = totalAmountFloat;
   }
 
@@ -1015,11 +1016,11 @@ public class Order extends ApiResource {
     this.totalTaxableAmountCents = totalTaxableAmountCents;
   }
 
-  public Integer getTotalTaxableAmountFloat() {
+  public Float getTotalTaxableAmountFloat() {
     return this.totalTaxableAmountFloat;
   }
 
-  public void setTotalTaxableAmountFloat(Integer totalTaxableAmountFloat) {
+  public void setTotalTaxableAmountFloat(Float totalTaxableAmountFloat) {
     this.totalTaxableAmountFloat = totalTaxableAmountFloat;
   }
 
@@ -1039,11 +1040,11 @@ public class Order extends ApiResource {
     this.subtotalTaxableAmountCents = subtotalTaxableAmountCents;
   }
 
-  public Integer getSubtotalTaxableAmountFloat() {
+  public Float getSubtotalTaxableAmountFloat() {
     return this.subtotalTaxableAmountFloat;
   }
 
-  public void setSubtotalTaxableAmountFloat(Integer subtotalTaxableAmountFloat) {
+  public void setSubtotalTaxableAmountFloat(Float subtotalTaxableAmountFloat) {
     this.subtotalTaxableAmountFloat = subtotalTaxableAmountFloat;
   }
 
@@ -1063,11 +1064,11 @@ public class Order extends ApiResource {
     this.shippingTaxableAmountCents = shippingTaxableAmountCents;
   }
 
-  public Integer getShippingTaxableAmountFloat() {
+  public Float getShippingTaxableAmountFloat() {
     return this.shippingTaxableAmountFloat;
   }
 
-  public void setShippingTaxableAmountFloat(Integer shippingTaxableAmountFloat) {
+  public void setShippingTaxableAmountFloat(Float shippingTaxableAmountFloat) {
     this.shippingTaxableAmountFloat = shippingTaxableAmountFloat;
   }
 
@@ -1087,11 +1088,11 @@ public class Order extends ApiResource {
     this.paymentMethodTaxableAmountCents = paymentMethodTaxableAmountCents;
   }
 
-  public Integer getPaymentMethodTaxableAmountFloat() {
+  public Float getPaymentMethodTaxableAmountFloat() {
     return this.paymentMethodTaxableAmountFloat;
   }
 
-  public void setPaymentMethodTaxableAmountFloat(Integer paymentMethodTaxableAmountFloat) {
+  public void setPaymentMethodTaxableAmountFloat(Float paymentMethodTaxableAmountFloat) {
     this.paymentMethodTaxableAmountFloat = paymentMethodTaxableAmountFloat;
   }
 
@@ -1111,11 +1112,11 @@ public class Order extends ApiResource {
     this.discountTaxableAmountCents = discountTaxableAmountCents;
   }
 
-  public Integer getDiscountTaxableAmountFloat() {
+  public Float getDiscountTaxableAmountFloat() {
     return this.discountTaxableAmountFloat;
   }
 
-  public void setDiscountTaxableAmountFloat(Integer discountTaxableAmountFloat) {
+  public void setDiscountTaxableAmountFloat(Float discountTaxableAmountFloat) {
     this.discountTaxableAmountFloat = discountTaxableAmountFloat;
   }
 
@@ -1135,11 +1136,11 @@ public class Order extends ApiResource {
     this.totalAmountWithTaxesCents = totalAmountWithTaxesCents;
   }
 
-  public Integer getTotalAmountWithTaxesFloat() {
+  public Float getTotalAmountWithTaxesFloat() {
     return this.totalAmountWithTaxesFloat;
   }
 
-  public void setTotalAmountWithTaxesFloat(Integer totalAmountWithTaxesFloat) {
+  public void setTotalAmountWithTaxesFloat(Float totalAmountWithTaxesFloat) {
     this.totalAmountWithTaxesFloat = totalAmountWithTaxesFloat;
   }
 
@@ -1159,11 +1160,11 @@ public class Order extends ApiResource {
     this.feesAmountCents = feesAmountCents;
   }
 
-  public Integer getFeesAmountFloat() {
+  public Float getFeesAmountFloat() {
     return this.feesAmountFloat;
   }
 
-  public void setFeesAmountFloat(Integer feesAmountFloat) {
+  public void setFeesAmountFloat(Float feesAmountFloat) {
     this.feesAmountFloat = feesAmountFloat;
   }
 

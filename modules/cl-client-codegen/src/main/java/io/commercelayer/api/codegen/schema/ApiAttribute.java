@@ -68,8 +68,10 @@ public class ApiAttribute {
 
 	public static interface Formats {
 		String INT32 = "int32";
+		String INT64 = "int64";
 		String DATE_TIME = "date-time";
 		String FLOAT = "float";
+		String DOUBLE = "double";
 	}
 
 }

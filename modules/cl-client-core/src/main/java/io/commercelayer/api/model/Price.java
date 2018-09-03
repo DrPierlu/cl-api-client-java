@@ -3,6 +3,7 @@ package io.commercelayer.api.model;
 import com.squareup.moshi.Json;
 import io.commercelayer.api.model.adapter.CLLinksAdapter;
 import io.commercelayer.api.model.common.ApiResource;
+import java.lang.Float;
 import java.lang.Integer;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -39,7 +40,7 @@ public class Price extends ApiResource {
   @Json(
       name = "amount_float"
   )
-  private Integer amountFloat;
+  private Float amountFloat;
 
   @Json(
       name = "formatted_amount"
@@ -49,7 +50,7 @@ public class Price extends ApiResource {
   @Json(
       name = "compare_at_amount_float"
   )
-  private Integer compareAtAmountFloat;
+  private Float compareAtAmountFloat;
 
   @Json(
       name = "formatted_compare_at_amount"
@@ -95,11 +96,11 @@ public class Price extends ApiResource {
     this.currencyCode = currencyCode;
   }
 
-  public Integer getAmountFloat() {
+  public Float getAmountFloat() {
     return this.amountFloat;
   }
 
-  public void setAmountFloat(Integer amountFloat) {
+  public void setAmountFloat(Float amountFloat) {
     this.amountFloat = amountFloat;
   }
 
@@ -111,11 +112,11 @@ public class Price extends ApiResource {
     this.formattedAmount = formattedAmount;
   }
 
-  public Integer getCompareAtAmountFloat() {
+  public Float getCompareAtAmountFloat() {
     return this.compareAtAmountFloat;
   }
 
-  public void setCompareAtAmountFloat(Integer compareAtAmountFloat) {
+  public void setCompareAtAmountFloat(Float compareAtAmountFloat) {
     this.compareAtAmountFloat = compareAtAmountFloat;
   }
 

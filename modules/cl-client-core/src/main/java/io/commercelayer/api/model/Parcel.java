@@ -4,7 +4,7 @@ import com.squareup.moshi.Json;
 import io.commercelayer.api.model.adapter.CLLinksAdapter;
 import io.commercelayer.api.model.common.ApiResource;
 import java.lang.Boolean;
-import java.lang.Integer;
+import java.lang.Float;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
@@ -17,7 +17,7 @@ import moe.banana.jsonapi2.JsonApi;
 public class Parcel extends ApiResource {
   public static final long serialVersionUID = -1;
 
-  private Integer weight;
+  private Float weight;
 
   @Json(
       name = "unit_of_weight"
@@ -126,11 +126,11 @@ public class Parcel extends ApiResource {
 
   private HasOne<Shipment> shipment;
 
-  public Integer getWeight() {
+  public Float getWeight() {
     return this.weight;
   }
 
-  public void setWeight(Integer weight) {
+  public void setWeight(Float weight) {
     this.weight = weight;
   }
 

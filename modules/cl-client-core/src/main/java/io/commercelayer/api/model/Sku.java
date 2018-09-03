@@ -3,6 +3,7 @@ package io.commercelayer.api.model;
 import com.squareup.moshi.Json;
 import io.commercelayer.api.model.adapter.CLLinksAdapter;
 import io.commercelayer.api.model.common.ApiResource;
+import java.lang.Float;
 import java.lang.Integer;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -39,7 +40,7 @@ public class Sku extends ApiResource {
   )
   private Integer piecesPerPack;
 
-  private Integer weight;
+  private Float weight;
 
   @Json(
       name = "unit_of_weight"
@@ -116,11 +117,11 @@ public class Sku extends ApiResource {
     this.piecesPerPack = piecesPerPack;
   }
 
-  public Integer getWeight() {
+  public Float getWeight() {
     return this.weight;
   }
 
-  public void setWeight(Integer weight) {
+  public void setWeight(Float weight) {
     this.weight = weight;
   }
 

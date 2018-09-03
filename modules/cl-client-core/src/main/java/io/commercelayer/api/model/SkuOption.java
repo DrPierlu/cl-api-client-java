@@ -3,6 +3,7 @@ package io.commercelayer.api.model;
 import com.squareup.moshi.Json;
 import io.commercelayer.api.model.adapter.CLLinksAdapter;
 import io.commercelayer.api.model.common.ApiResource;
+import java.lang.Float;
 import java.lang.Integer;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -36,7 +37,7 @@ public class SkuOption extends ApiResource {
   @Json(
       name = "price_amount_float"
   )
-  private Integer priceAmountFloat;
+  private Float priceAmountFloat;
 
   @Json(
       name = "formatted_price_amount"
@@ -82,11 +83,11 @@ public class SkuOption extends ApiResource {
     this.skuCodeRegex = skuCodeRegex;
   }
 
-  public Integer getPriceAmountFloat() {
+  public Float getPriceAmountFloat() {
     return this.priceAmountFloat;
   }
 
-  public void setPriceAmountFloat(Integer priceAmountFloat) {
+  public void setPriceAmountFloat(Float priceAmountFloat) {
     this.priceAmountFloat = priceAmountFloat;
   }
 

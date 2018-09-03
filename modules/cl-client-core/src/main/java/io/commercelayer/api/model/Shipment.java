@@ -3,6 +3,7 @@ package io.commercelayer.api.model;
 import com.squareup.moshi.Json;
 import io.commercelayer.api.model.adapter.CLLinksAdapter;
 import io.commercelayer.api.model.common.ApiResource;
+import java.lang.Float;
 import java.lang.Integer;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -73,7 +74,7 @@ public class Shipment extends ApiResource {
   @Json(
       name = "cost_amount_float"
   )
-  private Integer costAmountFloat;
+  private Float costAmountFloat;
 
   @Json(
       name = "formatted_cost_amount"
@@ -200,11 +201,11 @@ public class Shipment extends ApiResource {
     this.costAmountCents = costAmountCents;
   }
 
-  public Integer getCostAmountFloat() {
+  public Float getCostAmountFloat() {
     return this.costAmountFloat;
   }
 
-  public void setCostAmountFloat(Integer costAmountFloat) {
+  public void setCostAmountFloat(Float costAmountFloat) {
     this.costAmountFloat = costAmountFloat;
   }
 

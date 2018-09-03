@@ -4,7 +4,7 @@ import com.squareup.moshi.Json;
 import io.commercelayer.api.model.adapter.CLLinksAdapter;
 import io.commercelayer.api.model.common.ApiResource;
 import java.lang.Boolean;
-import java.lang.Integer;
+import java.lang.Float;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
@@ -64,9 +64,9 @@ public class Address extends ApiResource {
 
   private String notes;
 
-  private Integer lat;
+  private Float lat;
 
-  private Integer lng;
+  private Float lng;
 
   @Json(
       name = "billing_info"
@@ -216,19 +216,19 @@ public class Address extends ApiResource {
     this.notes = notes;
   }
 
-  public Integer getLat() {
+  public Float getLat() {
     return this.lat;
   }
 
-  public void setLat(Integer lat) {
+  public void setLat(Float lat) {
     this.lat = lat;
   }
 
-  public Integer getLng() {
+  public Float getLng() {
     return this.lng;
   }
 
-  public void setLng(Integer lng) {
+  public void setLng(Float lng) {
     this.lng = lng;
   }
 

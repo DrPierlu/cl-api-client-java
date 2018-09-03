@@ -3,6 +3,7 @@ package io.commercelayer.api.model;
 import com.squareup.moshi.Json;
 import io.commercelayer.api.model.adapter.CLLinksAdapter;
 import io.commercelayer.api.model.common.ApiResource;
+import java.lang.Float;
 import java.lang.Integer;
 import java.lang.Object;
 import java.lang.String;
@@ -41,7 +42,7 @@ public class LineItemOption extends ApiResource {
   @Json(
       name = "unit_amount_float"
   )
-  private Integer unitAmountFloat;
+  private Float unitAmountFloat;
 
   @Json(
       name = "formatted_unit_amount"
@@ -56,7 +57,7 @@ public class LineItemOption extends ApiResource {
   @Json(
       name = "total_amount_float"
   )
-  private Integer totalAmountFloat;
+  private Float totalAmountFloat;
 
   @Json(
       name = "formatted_total_amount"
@@ -126,11 +127,11 @@ public class LineItemOption extends ApiResource {
     this.unitAmountCents = unitAmountCents;
   }
 
-  public Integer getUnitAmountFloat() {
+  public Float getUnitAmountFloat() {
     return this.unitAmountFloat;
   }
 
-  public void setUnitAmountFloat(Integer unitAmountFloat) {
+  public void setUnitAmountFloat(Float unitAmountFloat) {
     this.unitAmountFloat = unitAmountFloat;
   }
 
@@ -150,11 +151,11 @@ public class LineItemOption extends ApiResource {
     this.totalAmountCents = totalAmountCents;
   }
 
-  public Integer getTotalAmountFloat() {
+  public Float getTotalAmountFloat() {
     return this.totalAmountFloat;
   }
 
-  public void setTotalAmountFloat(Integer totalAmountFloat) {
+  public void setTotalAmountFloat(Float totalAmountFloat) {
     this.totalAmountFloat = totalAmountFloat;
   }
 

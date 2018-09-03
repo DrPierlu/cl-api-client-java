@@ -3,6 +3,7 @@ package io.commercelayer.api.model;
 import com.squareup.moshi.Json;
 import io.commercelayer.api.model.adapter.CLLinksAdapter;
 import io.commercelayer.api.model.common.ApiResource;
+import java.lang.Float;
 import java.lang.Integer;
 import java.lang.Object;
 import java.lang.String;
@@ -51,7 +52,7 @@ public class LineItem extends ApiResource {
   @Json(
       name = "unit_amount_float"
   )
-  private Integer unitAmountFloat;
+  private Float unitAmountFloat;
 
   @Json(
       name = "formatted_unit_amount"
@@ -66,7 +67,7 @@ public class LineItem extends ApiResource {
   @Json(
       name = "options_amount_float"
   )
-  private Integer optionsAmountFloat;
+  private Float optionsAmountFloat;
 
   @Json(
       name = "formatted_options_amount"
@@ -81,7 +82,7 @@ public class LineItem extends ApiResource {
   @Json(
       name = "total_amount_float"
   )
-  private Integer totalAmountFloat;
+  private Float totalAmountFloat;
 
   @Json(
       name = "formatted_total_amount"
@@ -91,7 +92,7 @@ public class LineItem extends ApiResource {
   @Json(
       name = "tax_rate"
   )
-  private Integer taxRate;
+  private Float taxRate;
 
   @Json(
       name = "tax_breakdown"
@@ -168,11 +169,11 @@ public class LineItem extends ApiResource {
     this.unitAmountCents = unitAmountCents;
   }
 
-  public Integer getUnitAmountFloat() {
+  public Float getUnitAmountFloat() {
     return this.unitAmountFloat;
   }
 
-  public void setUnitAmountFloat(Integer unitAmountFloat) {
+  public void setUnitAmountFloat(Float unitAmountFloat) {
     this.unitAmountFloat = unitAmountFloat;
   }
 
@@ -192,11 +193,11 @@ public class LineItem extends ApiResource {
     this.optionsAmountCents = optionsAmountCents;
   }
 
-  public Integer getOptionsAmountFloat() {
+  public Float getOptionsAmountFloat() {
     return this.optionsAmountFloat;
   }
 
-  public void setOptionsAmountFloat(Integer optionsAmountFloat) {
+  public void setOptionsAmountFloat(Float optionsAmountFloat) {
     this.optionsAmountFloat = optionsAmountFloat;
   }
 
@@ -216,11 +217,11 @@ public class LineItem extends ApiResource {
     this.totalAmountCents = totalAmountCents;
   }
 
-  public Integer getTotalAmountFloat() {
+  public Float getTotalAmountFloat() {
     return this.totalAmountFloat;
   }
 
-  public void setTotalAmountFloat(Integer totalAmountFloat) {
+  public void setTotalAmountFloat(Float totalAmountFloat) {
     this.totalAmountFloat = totalAmountFloat;
   }
 
@@ -232,11 +233,11 @@ public class LineItem extends ApiResource {
     this.formattedTotalAmount = formattedTotalAmount;
   }
 
-  public Integer getTaxRate() {
+  public Float getTaxRate() {
     return this.taxRate;
   }
 
-  public void setTaxRate(Integer taxRate) {
+  public void setTaxRate(Float taxRate) {
     this.taxRate = taxRate;
   }
 

@@ -60,6 +60,10 @@ public class SchemaParserUtils {
 							type = Integer.class;
 							break;
 						}
+						case ApiAttribute.Formats.INT64: {
+							type = Long.class;
+							break;
+						}
 						default:
 							type = Integer.class;
 					}
@@ -67,15 +71,19 @@ public class SchemaParserUtils {
 				break;
 			}
 			case ApiAttribute.Types.NUMBER: {
-				type = Integer.class;
+				type = Float.class;
 				if (p.getFormat() != null) {
 					switch (p.getFormat()) {
 						case ApiAttribute.Formats.FLOAT: {
 							type = Float.class;
 							break;
 						}
+						case ApiAttribute.Formats.DOUBLE: {
+							type = Double.class;
+							break;
+						}
 						default:
-							type = Integer.class;
+							type = Float.class;
 					}
 				}
 				break;
