@@ -49,5 +49,9 @@ public class ApiException extends Exception {
 		if (errors.size() == 1) return errorMessage(errors.get(0));
 		else return String.format("API Service retirned %s errors, access error list for details", errors.size());
 	}
+	
+	public boolean hasErrorMessage() {
+		return ((this.errors != null) && !this.errors.isEmpty());
+	}
 
 }
