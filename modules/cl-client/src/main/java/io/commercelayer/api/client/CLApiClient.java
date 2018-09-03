@@ -34,6 +34,7 @@ import moe.banana.jsonapi2.ResourceAdapterFactory;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
@@ -149,5 +150,13 @@ public class CLApiClient {
 			throw new ConnectionException(e.getMessage());
 		}
 	}
-
+	
+	public <T> void enqueue(Call<T> apiCall, CLApiCallback<T> apiCallback) {
+		apiCall.enqueue(apiCallback);
+	}
+	
+	public <T> void enqueue(Call<T> apiCall, Callback<T> callback) {
+		apiCall.enqueue(callback);
+	}
+	
 }
