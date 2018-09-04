@@ -28,6 +28,7 @@ import retrofit2.http.POST;
 public final class ServiceGeneratorUtils {
 	
 	public static final String SERVICE_BASE_PACKAGE;
+	public static final String SERVICE_CLIENT_BASE_PACKAGE;
 	
 	// Service Operation prefix remapping configuration
 	private static final Map<String, String> SERVICE_OP_PREFIX = new HashMap<>();
@@ -36,6 +37,8 @@ public final class ServiceGeneratorUtils {
 		
 		// SERVICE_BASE_PACKAGE
 		SERVICE_BASE_PACKAGE = CodegenConfig.getProperty(Module.Service, "base.package");
+		// SERVICE_CLIENT_BASE_PACKAGE
+		SERVICE_CLIENT_BASE_PACKAGE = CodegenConfig.getProperty(Module.Service, "client.base.package");
 		
 		// SERVICE_OP_PREFIX
 		SERVICE_OP_PREFIX.put("retrieve", 	CodegenConfig.getProperty(Module.Service, "operation.prefix.retrieve"));
@@ -105,9 +108,9 @@ public final class ServiceGeneratorUtils {
 		
 	}
 	
-	public static TypeName getOperationReturnType(String resourcePath, ApiOperation op) {
+	public static TypeName getOperationReturnTypeArgument(String resourcePath, ApiOperation operation) {
 		
-		if (OperationType.DELETE.equals(op.getType())) return ParameterizedTypeName.get(Call.class, Void.class);
+		if (OperationType.DELETE.equals(operation.getType())) return TypeName.get(Void.class);
 		
 		final Inflector inflector = CLInflector.getInstance();
 		
@@ -124,12 +127,19 @@ public final class ServiceGeneratorUtils {
 		String resSing = inflector.singularize(res);
 		
 		TypeName typeArgument = ClassName.get(ModelGeneratorUtils.MODEL_BASE_PACKAGE, resSing);
-		if (OperationType.GET.equals(op.getType()) && !res.equals(resSing) && !byId) typeArgument = ParameterizedTypeName.get(ClassName.get(List.class), typeArgument);
+		if (OperationType.GET.equals(operation.getType()) && !res.equals(resSing) && !byId) typeArgument = ParameterizedTypeName.get(ClassName.get(List.class), typeArgument);
 		
-		TypeName resourceType = ParameterizedTypeName.get(ClassName.get(Call.class), typeArgument);
+		return typeArgument;
 		
-		return resourceType;
-		
+	}
+	
+	public static TypeName getOperationReturnType(String resourcePath, ApiOperation operation) {
+		TypeName typeArgument = getOperationReturnTypeArgument(resourcePath, operation);
+		return ParameterizedTypeName.get(ClassName.get(Call.class), typeArgument);
+	}
+	
+	public static TypeName getOperationReturnType(TypeName typeArgument) {
+		return ParameterizedTypeName.get(ClassName.get(Call.class), typeArgument);
 	}
 
 }

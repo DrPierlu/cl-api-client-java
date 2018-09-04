@@ -12,7 +12,7 @@ import retrofit2.Call;
 
 public class RetrofitDocServiceGenerator extends RetrofitServiceGenerator implements ServiceGenerator {
 	
-	protected TypeName getOperationReturnType(String resource, ApiOperation operation) {
+	protected TypeName getOperationReturnType(String resourcePath, ApiOperation operation) {
 		if (OperationType.DELETE.equals(operation.getType())) return ParameterizedTypeName.get(Call.class, Void.class);
 		else return ParameterizedTypeName.get(Call.class, Document.class);
 	}

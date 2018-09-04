@@ -23,6 +23,12 @@
 			<artifactId>cl-client-core</artifactId>
 			<version>2.0.1-SNAPSHOT</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>io.commercelayer.api</groupId>
+			<artifactId>cl-client</artifactId>
+			<version>2.0.1-SNAPSHOT</version>
+		</dependency>
 
 		<dependency>
 			<groupId>com.reprezen.kaizen</groupId>

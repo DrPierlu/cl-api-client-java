@@ -15,7 +15,7 @@ public class CustomerTest extends AbstractModelTest {
 	
 	@BeforeClass
 	private void initServiceInterface() {
-		service = apiCaller.getRawClient(CustomerService.class);
+		service = apiCaller.getServiceCallFactory(CustomerService.class);
 	}
 	
 
@@ -27,7 +27,7 @@ public class CustomerTest extends AbstractModelTest {
 	
 	public Customer createCustomer(Customer c) throws ApiException, ConnectionException {
 		Call<Customer> call = service.createCustomer(c);
-		return apiCaller.execute(call);
+		return apiCaller.call(call);
 	}
 	
 	public static Customer getCustomerTestData_1() {

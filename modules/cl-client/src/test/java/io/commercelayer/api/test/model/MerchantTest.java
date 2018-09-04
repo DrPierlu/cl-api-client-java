@@ -15,7 +15,7 @@ public class MerchantTest extends AbstractModelTest {
 	
 	@BeforeClass
 	private void initServiceInterface() {
-		service = apiCaller.getRawClient(MerchantService.class);
+		service = apiCaller.getServiceCallFactory(MerchantService.class);
 	}
 	
 
@@ -27,7 +27,7 @@ public class MerchantTest extends AbstractModelTest {
 	
 	public Merchant createMerchant(Merchant m) throws ApiException, ConnectionException {
 		Call<Merchant> call = service.createMerchant(m);
-		return apiCaller.execute(call);
+		return apiCaller.call(call);
 	}
 	
 	public static Merchant getMerchantTestData_1() {

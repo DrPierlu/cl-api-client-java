@@ -22,7 +22,7 @@ public class AddressTest extends AbstractModelTest {
 	
 	@Before
 	public void initServiceInterface() {
-		service = apiCaller.getRawClient(AddressService.class);
+		service = apiCaller.getServiceCallFactory(AddressService.class);
 	}
 
 	
@@ -46,7 +46,7 @@ public class AddressTest extends AbstractModelTest {
 		
 		Call<Address> call = service.createAddress(a);
 		
-		return apiCaller.execute(call);
+		return apiCaller.call(call);
 
 	}
 	
@@ -70,7 +70,7 @@ public class AddressTest extends AbstractModelTest {
 		
 		Call<Address> call = service.retrieveAddress(id);
 		
-		return apiCaller.execute(call);
+		return apiCaller.call(call);
 		
 	}
 	
@@ -94,7 +94,7 @@ public class AddressTest extends AbstractModelTest {
 		
 		Call<Address> call = service.updateAddress(id, a);
 		
-		return apiCaller.execute(call);
+		return apiCaller.call(call);
 		
 	}
 	
@@ -120,7 +120,7 @@ public class AddressTest extends AbstractModelTest {
 		
 		Call<List<Address>> apiCall = service.listAddresses();
 		
-		return apiCaller.execute(apiCall);
+		return apiCaller.call(apiCall);
 
 	}
 	
@@ -128,7 +128,7 @@ public class AddressTest extends AbstractModelTest {
 		
 		Call<List<Address>> apiCall = service.listAddresses(filter);
 		
-		return apiCaller.execute(apiCall);
+		return apiCaller.call(apiCall);
 
 	}
 	

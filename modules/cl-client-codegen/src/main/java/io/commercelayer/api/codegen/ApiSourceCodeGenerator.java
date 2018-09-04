@@ -42,6 +42,10 @@ public class ApiSourceCodeGenerator {
 //			logger.info("---------- ---------- ---------- ----------");
 //			new SourceWriterExecutor(SourceWriterDef.JPoet).execute(apiServiceDoc);
 //			logger.info("---------- ---------- ---------- ----------");
+			ApiService apiServiceDoc = new ServiceGeneratorExecutor(ServiceGeneratorDef.Retrofit_Resource_Client).execute(apiSchema);
+			logger.info("---------- ---------- ---------- ----------");
+			new SourceWriterExecutor(SourceWriterDef.JPoet).execute(apiServiceDoc);
+			logger.info("---------- ---------- ---------- ----------");
 			
 			logger.info("Source Code Generation successfully terminated.");
 			

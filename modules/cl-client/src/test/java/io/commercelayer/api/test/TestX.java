@@ -4,6 +4,7 @@ import java.util.List;
 
 import io.commercelayer.api.client.AddressServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
+
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.client.exception.ConnectionException;
@@ -21,7 +22,7 @@ public class TestX implements ApiCallback<List<Address>> {
 //		printList(addresses);
 		
 		client.listAddresses(new TestX());
-		
+
 	}
 
 	@Override

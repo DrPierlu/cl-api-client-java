@@ -39,7 +39,7 @@ import retrofit2.http.QueryMap;
 
 public class RetrofitServiceGenerator implements ServiceGenerator {
 
-	private static final Logger logger = LoggerFactory.getLogger(RetrofitDocServiceGenerator.class);
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Override
 	public ApiService generate(ApiSchema apiSchema) throws ServiceException {
@@ -67,9 +67,9 @@ public class RetrofitServiceGenerator implements ServiceGenerator {
 
 	}
 
-	private TypeSpec createService(String resource, SortedSet<ApiPath> paths) throws ServiceException {
+	private TypeSpec createService(String mainRes, SortedSet<ApiPath> paths) throws ServiceException {
 		
-		final String resourceName = CLInflector.getInstance().singularize(StringUtils.capitalize(ModelUtils.toCamelCase(resource.substring(1))));
+		final String resourceName = CLInflector.getInstance().singularize(StringUtils.capitalize(ModelUtils.toCamelCase(mainRes.substring(1))));
 		final String serviceName = String.format("%sService", resourceName);
 		
 		TypeSpec.Builder service = TypeSpec.interfaceBuilder(serviceName)
@@ -83,55 +83,53 @@ public class RetrofitServiceGenerator implements ServiceGenerator {
 				final ApiOperation op = ope.getValue();
 				final String serOpName = ServiceGeneratorUtils.getServiceOperationName(ope.getKey(), path.getResource());
 				
-				MethodSpec.Builder serOpMethod = MethodSpec.methodBuilder(serOpName)
+				MethodSpec.Builder methodBuilder = MethodSpec.methodBuilder(serOpName)
 					.addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
 					.returns(getOperationReturnType(path.getResource(), op));
 				
 				// Path Parameters
 				for (ApiParameter p : op.getParameters()) {
-					serOpMethod.addParameter(
+					methodBuilder.addParameter(
 						ParameterSpec.builder(p.getType().getClass(), p.getName())
-							.addAnnotation(AnnotationSpec.builder(Path.class).addMember("value", "$S", p.getName())
+							.addAnnotation(AnnotationSpec.builder(Path.class).addMember("value", "$S", p.getName()).build())
 							.build()
-						).build()
 					);
 				}
 				
 				// Operation Annotation
 				String resPath = path.getResource();
 				if (CodegenConfig.isPropertyEnabled(Module.Service, "resource.path.relative")) resPath = resPath.replaceFirst("/", "");
-				serOpMethod.addAnnotation(
+				methodBuilder.addAnnotation(
 					AnnotationSpec.builder(ServiceGeneratorUtils.getOperationAnnotation(op))
 						.addMember("value", "$S", resPath)
 						.build()
 				);
 				
 				// Body Parameter
-				if (op.hasRequestBody())
-					serOpMethod.addParameter(
+				if (op.hasRequestBody()) {
+					methodBuilder.addParameter(
 						ParameterSpec.builder(ClassName.get(ModelGeneratorUtils.MODEL_BASE_PACKAGE, resourceName), StringUtils.uncapitalize(resourceName))
-							.addAnnotation(AnnotationSpec.builder(Body.class)
-							.build()
-						).build()
+							.addAnnotation(AnnotationSpec.builder(Body.class).build())
+						.build()
 					);
+				}
 				
 				// QueryMap Parameter for filters and sparse fieldset
 				if (OperationType.GET.equals(op.getType())) {
 					
 					// Add overloaded method without filter parameters
-					service.addMethod(serOpMethod.build());
+					service.addMethod(methodBuilder.build());
 					
 					// Add a new method with filter
-					serOpMethod.addParameter(
+					methodBuilder.addParameter(
 						ParameterSpec.builder(ParameterizedTypeName.get(Map.class, String.class, String.class), "queryStringParams")
-							.addAnnotation(AnnotationSpec.builder(QueryMap.class)
-							.build()
-						).build()
+							.addAnnotation(AnnotationSpec.builder(QueryMap.class).build())
+						.build()
 					);
 					
 				}
 				
-				service.addMethod(serOpMethod.build());
+				service.addMethod(methodBuilder.build());
 				
 				logger.info("    Created Operation Interface [{}]", serOpName);
 				
@@ -145,8 +143,8 @@ public class RetrofitServiceGenerator implements ServiceGenerator {
 	}
 	
 	
-	protected TypeName getOperationReturnType(String resource, ApiOperation operation) {
-		return ServiceGeneratorUtils.getOperationReturnType(resource, operation);
+	protected TypeName getOperationReturnType(String resourcePath, ApiOperation operation) {
+		return ServiceGeneratorUtils.getOperationReturnType(resourcePath, operation);
 	}
 	
 	protected String getServiceBasePackage() {

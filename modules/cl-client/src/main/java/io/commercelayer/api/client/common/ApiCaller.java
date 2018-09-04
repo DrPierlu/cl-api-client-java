@@ -87,7 +87,7 @@ public class ApiCaller {
 
 
 	@SafeVarargs
-	public final <T> T getRawClient(Class<T> service, Class<? extends Resource>... resources) {
+	public final <T> T getServiceCallFactory(Class<T> service, Class<? extends Resource>... resources) {
 
 		ResourceAdapterFactory.Builder rafBuilder = ResourceAdapterFactory.builder();
 		if ((resources != null) && (resources.length > 0)) rafBuilder.add(resources);
@@ -114,8 +114,8 @@ public class ApiCaller {
 	
 	
 
-	public final <T> T getRawClient(Class<T> service) {
-		return getRawClient(service, (Class<? extends Resource>[])null);
+	public final <T> T getServiceCallFactory(Class<T> service) {
+		return getServiceCallFactory(service, (Class<? extends Resource>[])null);
 	}
 	
 	
@@ -143,7 +143,7 @@ public class ApiCaller {
 
 	}
 	
-	public <T> T execute(Call<T> apiCall) throws ConnectionException, ApiException {
+	public <T> T call(Call<T> apiCall) throws ConnectionException, ApiException {
 		logger.info("CL Api Service Sync Call --> {}", apiCall.request().url());
 		try {
 			Response<T> response = apiCall.execute();
@@ -153,7 +153,7 @@ public class ApiCaller {
 		}
 	}
 	
-	public <T> void enqueue(Call<T> apiCall, ApiCallback<T> apiCallback) {
+	public <T> void call(Call<T> apiCall, ApiCallback<T> apiCallback) {
 		logger.info("CL Api Service Async Call --> {}", apiCall.request().url());
 		apiCall.enqueue(new ApiCallbackAdapter<T>(apiCallback));
 	}

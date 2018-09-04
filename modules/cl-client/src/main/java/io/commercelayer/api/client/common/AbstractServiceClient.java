@@ -21,12 +21,12 @@ public abstract class AbstractServiceClient {
 		this.apiCaller = new ApiCaller(apiOrg, apiToken);
 	}
 	
-	protected <T> T execute(Call<T> apiCall) throws ConnectionException, ApiException {
-		return apiCaller.execute(apiCall);
+	protected <T> T syncCall(Call<T> apiCall) throws ConnectionException, ApiException {
+		return apiCaller.call(apiCall);
 	}
 	
-	protected <T> void enqueue(Call<T> apiCall, ApiCallback<T> apiCallback) {
-		apiCaller.enqueue(apiCall, apiCallback);
+	protected <T> void asyncCall(Call<T> apiCall, ApiCallback<T> apiCallback) {
+		apiCaller.call(apiCall, apiCallback);
 	}
 	
 }
