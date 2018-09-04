@@ -1,4 +1,4 @@
-package io.commercelayer.api.client;
+package io.commercelayer.api.client.common;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;

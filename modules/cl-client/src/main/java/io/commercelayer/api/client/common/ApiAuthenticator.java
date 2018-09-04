@@ -1,4 +1,4 @@
-package io.commercelayer.api.client;
+package io.commercelayer.api.client.common;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -23,9 +23,9 @@ import io.commercelayer.api.model.common.error.AuthError;
 import io.commercelayer.api.util.JSONUtils;
 
 
-public class CLApiAuthenticator {
+public class ApiAuthenticator {
 	
-	private static final Logger logger = LoggerFactory.getLogger(CLApiAuthenticator.class);
+	private static final Logger logger = LoggerFactory.getLogger(ApiAuthenticator.class);
 	
 	private static final String PATH_AUTHORIZATION = "/oauth/authorize";
 	private static final String PATH_TOKEN = "/oauth/token";
@@ -35,7 +35,7 @@ public class CLApiAuthenticator {
 	private HttpClient httpClient;
 	private String apiBaseUrl;
 	
-	public CLApiAuthenticator(ApiOrganization org) {
+	public ApiAuthenticator(ApiOrganization org) {
 		this.apiOrg = org;
 		this.apiBaseUrl = ApiConfig.getApiBaseUrl(this.apiOrg);
 		this.httpClient = HttpClientFactory.getHttpClientInstance();
@@ -72,7 +72,8 @@ public class CLApiAuthenticator {
 			throw new AuthException(authError);
 		}
 		else
-			if (!ContentType.JSON.equals(httpResponse.getContentType())) throw new RuntimeException(String.format("Expected JSON Content Type [%s]", httpResponse.getContentType()));
+			if (!ContentType.JSON.equals(httpResponse.getContentType()))
+				throw new RuntimeException(String.format("Expected JSON Content Type [%s]", httpResponse.getContentType()));
 
 		ApiToken token = JSONUtils.fromJSON(httpResponse.getBody(), ApiToken.class);
 
@@ -87,7 +88,7 @@ public class CLApiAuthenticator {
 	
 	public static String getAuthorizationUrl(String baseUrl, AuthorizationCode auth, boolean encode) {
 		
-		String urlP = "%s%s?client_id=%s&redirect_uri=%s&scope=%s&response_type=code";
+		final String urlP = "%s%s?client_id=%s&redirect_uri=%s&scope=%s&response_type=code";
 		
 		String redirectUri = auth.getRedirectUri();
 		

@@ -1,7 +1,7 @@
 package io.commercelayer.api.test;
 
 import io.commercelayer.api.auth.ApiToken;
-import io.commercelayer.api.client.CLApiAuthenticator;
+import io.commercelayer.api.client.common.ApiAuthenticator;
 import io.commercelayer.api.client.exception.AuthException;
 
 
@@ -15,7 +15,7 @@ public class AuthenticationTest {
 	
 	public ApiToken authenticate() {
 		
-		CLApiAuthenticator client = new CLApiAuthenticator(TestData.getOrganization());
+		ApiAuthenticator client = new ApiAuthenticator(TestData.getOrganization());
 		
 		ApiToken token = null;
 		

@@ -1,6 +1,6 @@
 package io.commercelayer.api.test;
 
-import io.commercelayer.api.client.QueryFilter;
+import io.commercelayer.api.client.common.QueryFilter;
 
 public class QueryFilterTest {
 

@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import io.commercelayer.api.client.QueryFilter;
+import io.commercelayer.api.client.common.QueryFilter;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.ConnectionException;
 import io.commercelayer.api.model.Address;
@@ -22,7 +22,7 @@ public class AddressTest extends AbstractModelTest {
 	
 	@Before
 	public void initServiceInterface() {
-		service = apiClient.getRawClient(AddressService.class);
+		service = apiCaller.getRawClient(AddressService.class);
 	}
 
 	
@@ -46,7 +46,7 @@ public class AddressTest extends AbstractModelTest {
 		
 		Call<Address> call = service.createAddress(a);
 		
-		return apiClient.execute(call);
+		return apiCaller.execute(call);
 
 	}
 	
@@ -70,7 +70,7 @@ public class AddressTest extends AbstractModelTest {
 		
 		Call<Address> call = service.retrieveAddress(id);
 		
-		return apiClient.execute(call);
+		return apiCaller.execute(call);
 		
 	}
 	
@@ -94,7 +94,7 @@ public class AddressTest extends AbstractModelTest {
 		
 		Call<Address> call = service.updateAddress(id, a);
 		
-		return apiClient.execute(call);
+		return apiCaller.execute(call);
 		
 	}
 	
@@ -120,7 +120,7 @@ public class AddressTest extends AbstractModelTest {
 		
 		Call<List<Address>> apiCall = service.listAddresses();
 		
-		return apiClient.execute(apiCall);
+		return apiCaller.execute(apiCall);
 
 	}
 	
@@ -128,7 +128,7 @@ public class AddressTest extends AbstractModelTest {
 		
 		Call<List<Address>> apiCall = service.listAddresses(filter);
 		
-		return apiClient.execute(apiCall);
+		return apiCaller.execute(apiCall);
 
 	}
 	

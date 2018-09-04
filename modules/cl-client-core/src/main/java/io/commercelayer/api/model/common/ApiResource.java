@@ -4,13 +4,11 @@ import java.time.ZonedDateTime;
 import java.util.Map;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 
 import com.squareup.moshi.Json;
 
 import io.commercelayer.api.model.adapter.CLLinksAdapter;
 import io.commercelayer.api.model.adapter.CLMetaAdapter;
-import io.commercelayer.api.util.JSONUtils;
 import io.commercelayer.api.util.LogUtils;
 import moe.banana.jsonapi2.Resource;
 

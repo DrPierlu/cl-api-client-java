@@ -1,4 +1,4 @@
-package io.commercelayer.api.client;
+package io.commercelayer.api.client.common;
 
 import java.io.IOException;
 import java.time.ZonedDateTime;
@@ -34,14 +34,13 @@ import moe.banana.jsonapi2.ResourceAdapterFactory;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
 
-public class CLApiClient {
+public class ApiCaller {
 
-	private static final Logger logger = LoggerFactory.getLogger(CLApiClient.class);
+	private static final Logger logger = LoggerFactory.getLogger(ApiCaller.class);
 
 	private static final String PATH_API = ApiConfig.getProperty(Group.api, "service.path");
 
@@ -50,11 +49,11 @@ public class CLApiClient {
 	private final OkHttpClient httpClient;
 
 
-	public CLApiClient(ApiOrganization apiOrg, ApiToken apiToken) {
+	public ApiCaller(ApiOrganization apiOrg, ApiToken apiToken) {
 		this(ApiConfig.getApiBaseUrl(apiOrg).concat(PATH_API), apiToken);
 	}
 	
-	public CLApiClient(String apiBaseUrl, ApiToken apiToken) {
+	public ApiCaller(String apiBaseUrl, ApiToken apiToken) {
 		
 		this.apiBaseUrl = apiBaseUrl.concat(apiBaseUrl.endsWith("/")? "" : "/");
 		this.apiToken = apiToken;
@@ -78,7 +77,7 @@ public class CLApiClient {
 		
 		HttpLoggingInterceptor hli = new HttpLoggingInterceptor(new HttpLogger(logger));
 		hli.setLevel(ApiConfig.testModeEnabled()? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.BASIC);
-//		hli.setLevel(HttpLoggingInterceptor.Level.BASIC);
+		hli.setLevel(HttpLoggingInterceptor.Level.BASIC);
 		added = clientSetup.addInterceptor(hli);
 		logger.debug("Added Logging Inteceptor: {}", added);
 		
@@ -106,6 +105,8 @@ public class CLApiClient {
 			.client(this.httpClient)
 			.addConverterFactory(JsonApiConverterFactory.create(moshi))
 			.build();
+		
+		logger.debug("Created CL Api Raw Client");
 
 		return retrofit.create(service);
 
@@ -143,6 +144,7 @@ public class CLApiClient {
 	}
 	
 	public <T> T execute(Call<T> apiCall) throws ConnectionException, ApiException {
+		logger.info("CL Api Service Sync Call --> {}", apiCall.request().url());
 		try {
 			Response<T> response = apiCall.execute();
 			return readServiceResponse(response);
@@ -151,12 +153,9 @@ public class CLApiClient {
 		}
 	}
 	
-	public <T> void enqueue(Call<T> apiCall, CLApiCallback<T> apiCallback) {
-		apiCall.enqueue(apiCallback);
-	}
-	
-	public <T> void enqueue(Call<T> apiCall, Callback<T> callback) {
-		apiCall.enqueue(callback);
+	public <T> void enqueue(Call<T> apiCall, ApiCallback<T> apiCallback) {
+		logger.info("CL Api Service Async Call --> {}", apiCall.request().url());
+		apiCall.enqueue(new ApiCallbackAdapter<T>(apiCallback));
 	}
 	
 }
