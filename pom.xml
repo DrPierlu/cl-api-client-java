@@ -7,9 +7,12 @@
 	<groupId>io.commercelayer.api</groupId>
 	<artifactId>cl-api-client-java</artifactId>
 	<version>2.0</version>
+	
+	<packaging>pom</packaging>
+	
 	<name>Commerce Layer API Java Client</name>
 	<description>Commerce Layer API Java Client</description>
-	<packaging>pom</packaging>
+	
 	<url>https://github.com/DrPierlu/cl-api-client-java</url>
 
 	<developers>
