@@ -72,8 +72,7 @@ public class RetrofitServiceGenerator implements ServiceGenerator {
 		final String resourceName = CLInflector.getInstance().singularize(StringUtils.capitalize(ModelUtils.toCamelCase(mainRes.substring(1))));
 		final String serviceName = String.format("%sService", resourceName);
 		
-		TypeSpec.Builder service = TypeSpec.interfaceBuilder(serviceName)
-			.addModifiers(Modifier.PUBLIC);
+		TypeSpec.Builder service = TypeSpec.interfaceBuilder(serviceName).addModifiers(Modifier.PUBLIC);
 		
 		logger.info("Generating Service Interface [{}]", serviceName);
 		
