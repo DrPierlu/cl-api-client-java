@@ -254,5 +254,5 @@ public class OpenAPIParserV3 implements SchemaParser {
 		if ((body.getRelationships() == null) || body.getRelationships().isEmpty()) logger.info("      <empty>");
 		
 	}
-
+	
 }

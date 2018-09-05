@@ -232,7 +232,7 @@ public class MoshiJAModelGenerator implements ModelGenerator {
 	
 	
 	private void generateFields(TypeSpec.Builder classe, Map<String, ApiAttribute> attributes) {
-		for (ApiAttribute attr : attributes.values()) {			
+		for (ApiAttribute attr : attributes.values()) {
 			FieldSpec.Builder field = FieldSpec.builder(SchemaParserUtils.decodeAttributeType(attr), ModelUtils.toCamelCase(attr.getName()), Modifier.PRIVATE);
 			setJsonFieldAnnotation(attr.getName(), field);
 			addResourceField(classe, field.build());

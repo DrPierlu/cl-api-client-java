@@ -57,21 +57,30 @@ public class ApiAttribute {
 		this.required = required;
 	}
 
+	
+	/**
+	 * 
+	 * TYPE AND FORMAT DEFINITIONS
+	 *
+	 */
+	
 	public static interface Types {
 		String STRING 	= "string";
 		String INTEGER 	= "integer";
 		String NUMBER 	= "number";
-		String OBJECT 	= "object";
-		String ARRAY 	= "array";
 		String BOOLEAN 	= "boolean";
 	}
 
 	public static interface Formats {
-		String INT32 = "int32";
-		String INT64 = "int64";
-		String DATE_TIME = "date-time";
-		String FLOAT = "float";
-		String DOUBLE = "double";
+		String INT32 		= "int32";
+		String INT64 		= "int64";
+		String DATE_TIME 	= "date-time";
+		String DATE 		= "date";
+		String FLOAT 		= "float";
+		String DOUBLE 		= "double";
+		String BYTE 		= "byte";
+		String BINARY 		= "binary";
+		String PASSWORD 	= "password";
 	}
 
 }
