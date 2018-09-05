@@ -10,6 +10,20 @@
 	<name>Commerce Layer API Java Client</name>
 	<description>Commerce Layer API Java Client</description>
 	<packaging>pom</packaging>
+	<url>https://github.com/DrPierlu/cl-api-client-java</url>
+
+	<developers>
+		<developer>
+			<id>DrPierlu</id>
+			<name>Pierluigi Viti</name>
+			<email>pierluigiviti@gmail.com</email>
+			<roles>
+				<role>architect</role>
+				<role>developer</role>
+			</roles>
+			<timezone>Europe/Rome</timezone>
+		</developer>
+	</developers>
 
 	<modules>
 		<module>modules/cl-client-codegen</module>
@@ -51,22 +65,17 @@
 				<artifactId>commons-text</artifactId>
 				<version>1.1</version>
 			</dependency>
-			<!--
-			<dependency>
-				<groupId>org.jboss.dna</groupId>
-				<artifactId>dna-common</artifactId>
-				<version>0.7</version>
-			</dependency>
-			-->
+			<!-- <dependency> <groupId>org.jboss.dna</groupId> <artifactId>dna-common</artifactId> 
+				<version>0.7</version> </dependency> -->
 
 
 
 			<!-- CODEGEN -->
-<!-- 			<dependency> -->
-<!-- 				<groupId>com.github.jasminb</groupId> -->
-<!-- 				<artifactId>jsonapi-converter</artifactId> -->
-<!-- 				<version>0.8.1</version> -->
-<!-- 			</dependency> -->
+			<!-- <dependency> -->
+			<!-- <groupId>com.github.jasminb</groupId> -->
+			<!-- <artifactId>jsonapi-converter</artifactId> -->
+			<!-- <version>0.8.1</version> -->
+			<!-- </dependency> -->
 			<dependency>
 				<groupId>com.squareup</groupId>
 				<artifactId>javapoet</artifactId>
@@ -121,21 +130,21 @@
 				<artifactId>logback-classic</artifactId>
 				<version>${logback.version}</version>
 			</dependency>
-<!-- 			<dependency> -->
-<!-- 				<groupId>ch.qos.logback</groupId> -->
-<!-- 				<artifactId>logback-core</artifactId> -->
-<!-- 				<version>${logback.version}</version> -->
-<!-- 			</dependency> -->
+			<!-- <dependency> -->
+			<!-- <groupId>ch.qos.logback</groupId> -->
+			<!-- <artifactId>logback-core</artifactId> -->
+			<!-- <version>${logback.version}</version> -->
+			<!-- </dependency> -->
 			<dependency>
-			    <groupId>com.squareup.okhttp3</groupId>
-			    <artifactId>logging-interceptor</artifactId>
-			    <version>3.11.0</version>
+				<groupId>com.squareup.okhttp3</groupId>
+				<artifactId>logging-interceptor</artifactId>
+				<version>3.11.0</version>
 			</dependency>
-<!-- 			<dependency> -->
-<!-- 	          <groupId>com.github.devcsrj</groupId> -->
-<!-- 	          <artifactId>slf4j-okhttp3-logging-interceptor</artifactId> -->
-<!-- 	          <version>1.0.1</version> -->
-<!-- 	        </dependency> -->		
+			<!-- <dependency> -->
+			<!-- <groupId>com.github.devcsrj</groupId> -->
+			<!-- <artifactId>slf4j-okhttp3-logging-interceptor</artifactId> -->
+			<!-- <version>1.0.1</version> -->
+			<!-- </dependency> -->
 
 		</dependencies>
 	</dependencyManagement>
