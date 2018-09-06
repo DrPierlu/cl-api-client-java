@@ -2,8 +2,6 @@ package io.commercelayer.api.service;
 
 import io.commercelayer.api.model.Address;
 import io.commercelayer.api.model.Geocoder;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -25,11 +23,11 @@ public interface AddressService {
   @GET("addresses")
   Call<List<Address>> listAddresses(@QueryMap Map<String, String> queryStringParams);
 
-  @PATCH("addresses/{addressId}")
-  Call<Address> updateAddress(@Path("addressId") String addressId, @Body Address address);
-
   @DELETE("addresses/{addressId}")
   Call<Void> deleteAddress(@Path("addressId") String addressId);
+
+  @PATCH("addresses/{addressId}")
+  Call<Address> updateAddress(@Path("addressId") String addressId, @Body Address address);
 
   @GET("addresses/{addressId}")
   Call<Address> retrieveAddress(@Path("addressId") String addressId);

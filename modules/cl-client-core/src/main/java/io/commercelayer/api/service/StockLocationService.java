@@ -4,8 +4,6 @@ import io.commercelayer.api.model.Address;
 import io.commercelayer.api.model.StockItem;
 import io.commercelayer.api.model.StockLevel;
 import io.commercelayer.api.model.StockLocation;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -27,12 +25,12 @@ public interface StockLocationService {
   @GET("stock_locations")
   Call<List<StockLocation>> listStockLocations(@QueryMap Map<String, String> queryStringParams);
 
+  @DELETE("stock_locations/{stockLocationId}")
+  Call<Void> deleteStockLocation(@Path("stockLocationId") String stockLocationId);
+
   @PATCH("stock_locations/{stockLocationId}")
   Call<StockLocation> updateStockLocation(@Path("stockLocationId") String stockLocationId,
       @Body StockLocation stockLocation);
-
-  @DELETE("stock_locations/{stockLocationId}")
-  Call<Void> deleteStockLocation(@Path("stockLocationId") String stockLocationId);
 
   @GET("stock_locations/{stockLocationId}")
   Call<StockLocation> retrieveStockLocation(@Path("stockLocationId") String stockLocationId);

@@ -11,8 +11,6 @@ import io.commercelayer.api.model.ShippingMethod;
 import io.commercelayer.api.model.StockLocation;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.DeliveryLeadTimeService;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -30,6 +28,18 @@ public class DeliveryLeadTimeServiceClient extends AbstractServiceClient {
       AuthException {
     super(apiOrg, apiToken);
     this.service = apiCaller.getServiceCallFactory(DeliveryLeadTimeService.class, DeliveryLeadTime.class);
+  }
+
+  public DeliveryLeadTime createDeliveryLeadTime(DeliveryLeadTime deliveryLeadTime) throws
+      ApiException {
+    Call<DeliveryLeadTime> call = service.createDeliveryLeadTime(deliveryLeadTime);
+    return syncCall(call);
+  }
+
+  public void createDeliveryLeadTime(DeliveryLeadTime deliveryLeadTime,
+      ApiCallback<DeliveryLeadTime> callback) {
+    Call<DeliveryLeadTime> call = service.createDeliveryLeadTime(deliveryLeadTime);
+    asyncCall(call, callback);
   }
 
   public List<DeliveryLeadTime> listDeliveryLeadTimes(Map<String, String> queryStringParams) throws
@@ -51,18 +61,6 @@ public class DeliveryLeadTimeServiceClient extends AbstractServiceClient {
 
   public void listDeliveryLeadTimes(ApiCallback<List<DeliveryLeadTime>> callback) {
     Call<List<DeliveryLeadTime>> call = service.listDeliveryLeadTimes();
-    asyncCall(call, callback);
-  }
-
-  public DeliveryLeadTime createDeliveryLeadTime(DeliveryLeadTime deliveryLeadTime) throws
-      ApiException {
-    Call<DeliveryLeadTime> call = service.createDeliveryLeadTime(deliveryLeadTime);
-    return syncCall(call);
-  }
-
-  public void createDeliveryLeadTime(DeliveryLeadTime deliveryLeadTime,
-      ApiCallback<DeliveryLeadTime> callback) {
-    Call<DeliveryLeadTime> call = service.createDeliveryLeadTime(deliveryLeadTime);
     asyncCall(call, callback);
   }
 

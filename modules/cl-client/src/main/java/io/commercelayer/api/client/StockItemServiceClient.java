@@ -11,8 +11,6 @@ import io.commercelayer.api.model.StockItem;
 import io.commercelayer.api.model.StockLocation;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.StockItemService;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -28,6 +26,16 @@ public class StockItemServiceClient extends AbstractServiceClient {
   public StockItemServiceClient(ApiOrganization apiOrg, ApiToken apiToken) throws AuthException {
     super(apiOrg, apiToken);
     this.service = apiCaller.getServiceCallFactory(StockItemService.class, StockItem.class);
+  }
+
+  public StockItem createStockItem(StockItem stockItem) throws ApiException {
+    Call<StockItem> call = service.createStockItem(stockItem);
+    return syncCall(call);
+  }
+
+  public void createStockItem(StockItem stockItem, ApiCallback<StockItem> callback) {
+    Call<StockItem> call = service.createStockItem(stockItem);
+    asyncCall(call, callback);
   }
 
   public List<StockItem> listStockItems(Map<String, String> queryStringParams) throws ApiException {
@@ -48,16 +56,6 @@ public class StockItemServiceClient extends AbstractServiceClient {
 
   public void listStockItems(ApiCallback<List<StockItem>> callback) {
     Call<List<StockItem>> call = service.listStockItems();
-    asyncCall(call, callback);
-  }
-
-  public StockItem createStockItem(StockItem stockItem) throws ApiException {
-    Call<StockItem> call = service.createStockItem(stockItem);
-    return syncCall(call);
-  }
-
-  public void createStockItem(StockItem stockItem, ApiCallback<StockItem> callback) {
-    Call<StockItem> call = service.createStockItem(stockItem);
     asyncCall(call, callback);
   }
 

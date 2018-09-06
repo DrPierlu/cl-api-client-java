@@ -2,8 +2,6 @@ package io.commercelayer.api.service;
 
 import io.commercelayer.api.model.Customer;
 import io.commercelayer.api.model.CustomerPaymentSource;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -27,14 +25,14 @@ public interface CustomerPaymentSourceService {
   Call<List<CustomerPaymentSource>> listCustomerPaymentSources(
       @QueryMap Map<String, String> queryStringParams);
 
+  @DELETE("customer_payment_sources/{customerPaymentSourceId}")
+  Call<Void> deleteCustomerPaymentSource(
+      @Path("customerPaymentSourceId") String customerPaymentSourceId);
+
   @PATCH("customer_payment_sources/{customerPaymentSourceId}")
   Call<CustomerPaymentSource> updateCustomerPaymentSource(
       @Path("customerPaymentSourceId") String customerPaymentSourceId,
       @Body CustomerPaymentSource customerPaymentSource);
-
-  @DELETE("customer_payment_sources/{customerPaymentSourceId}")
-  Call<Void> deleteCustomerPaymentSource(
-      @Path("customerPaymentSourceId") String customerPaymentSourceId);
 
   @GET("customer_payment_sources/{customerPaymentSourceId}")
   Call<CustomerPaymentSource> retrieveCustomerPaymentSource(

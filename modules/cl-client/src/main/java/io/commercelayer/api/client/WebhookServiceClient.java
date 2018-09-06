@@ -9,8 +9,6 @@ import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.model.Webhook;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.WebhookService;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -26,6 +24,16 @@ public class WebhookServiceClient extends AbstractServiceClient {
   public WebhookServiceClient(ApiOrganization apiOrg, ApiToken apiToken) throws AuthException {
     super(apiOrg, apiToken);
     this.service = apiCaller.getServiceCallFactory(WebhookService.class, Webhook.class);
+  }
+
+  public Webhook createWebhook(Webhook webhook) throws ApiException {
+    Call<Webhook> call = service.createWebhook(webhook);
+    return syncCall(call);
+  }
+
+  public void createWebhook(Webhook webhook, ApiCallback<Webhook> callback) {
+    Call<Webhook> call = service.createWebhook(webhook);
+    asyncCall(call, callback);
   }
 
   public List<Webhook> listWebhooks(Map<String, String> queryStringParams) throws ApiException {
@@ -46,16 +54,6 @@ public class WebhookServiceClient extends AbstractServiceClient {
 
   public void listWebhooks(ApiCallback<List<Webhook>> callback) {
     Call<List<Webhook>> call = service.listWebhooks();
-    asyncCall(call, callback);
-  }
-
-  public Webhook createWebhook(Webhook webhook) throws ApiException {
-    Call<Webhook> call = service.createWebhook(webhook);
-    return syncCall(call);
-  }
-
-  public void createWebhook(Webhook webhook, ApiCallback<Webhook> callback) {
-    Call<Webhook> call = service.createWebhook(webhook);
     asyncCall(call, callback);
   }
 

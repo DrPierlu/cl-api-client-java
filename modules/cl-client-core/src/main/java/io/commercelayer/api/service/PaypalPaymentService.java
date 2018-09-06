@@ -2,8 +2,6 @@ package io.commercelayer.api.service;
 
 import io.commercelayer.api.model.Order;
 import io.commercelayer.api.model.PaypalPayment;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -25,12 +23,12 @@ public interface PaypalPaymentService {
   @GET("paypal_payments")
   Call<List<PaypalPayment>> listPaypalPayments(@QueryMap Map<String, String> queryStringParams);
 
+  @DELETE("paypal_payments/{paypalPaymentId}")
+  Call<Void> deletePaypalPayment(@Path("paypalPaymentId") String paypalPaymentId);
+
   @PATCH("paypal_payments/{paypalPaymentId}")
   Call<PaypalPayment> updatePaypalPayment(@Path("paypalPaymentId") String paypalPaymentId,
       @Body PaypalPayment paypalPayment);
-
-  @DELETE("paypal_payments/{paypalPaymentId}")
-  Call<Void> deletePaypalPayment(@Path("paypalPaymentId") String paypalPaymentId);
 
   @GET("paypal_payments/{paypalPaymentId}")
   Call<PaypalPayment> retrievePaypalPayment(@Path("paypalPaymentId") String paypalPaymentId);

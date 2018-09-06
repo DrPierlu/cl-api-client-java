@@ -10,8 +10,6 @@ import io.commercelayer.api.model.Customer;
 import io.commercelayer.api.model.CustomerPasswordReset;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.CustomerPasswordResetService;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -29,6 +27,18 @@ public class CustomerPasswordResetServiceClient extends AbstractServiceClient {
       AuthException {
     super(apiOrg, apiToken);
     this.service = apiCaller.getServiceCallFactory(CustomerPasswordResetService.class, CustomerPasswordReset.class);
+  }
+
+  public CustomerPasswordReset createCustomerPasswordReset(
+      CustomerPasswordReset customerPasswordReset) throws ApiException {
+    Call<CustomerPasswordReset> call = service.createCustomerPasswordReset(customerPasswordReset);
+    return syncCall(call);
+  }
+
+  public void createCustomerPasswordReset(CustomerPasswordReset customerPasswordReset,
+      ApiCallback<CustomerPasswordReset> callback) {
+    Call<CustomerPasswordReset> call = service.createCustomerPasswordReset(customerPasswordReset);
+    asyncCall(call, callback);
   }
 
   public List<CustomerPasswordReset> listCustomerPasswordResets(
@@ -50,18 +60,6 @@ public class CustomerPasswordResetServiceClient extends AbstractServiceClient {
 
   public void listCustomerPasswordResets(ApiCallback<List<CustomerPasswordReset>> callback) {
     Call<List<CustomerPasswordReset>> call = service.listCustomerPasswordResets();
-    asyncCall(call, callback);
-  }
-
-  public CustomerPasswordReset createCustomerPasswordReset(
-      CustomerPasswordReset customerPasswordReset) throws ApiException {
-    Call<CustomerPasswordReset> call = service.createCustomerPasswordReset(customerPasswordReset);
-    return syncCall(call);
-  }
-
-  public void createCustomerPasswordReset(CustomerPasswordReset customerPasswordReset,
-      ApiCallback<CustomerPasswordReset> callback) {
-    Call<CustomerPasswordReset> call = service.createCustomerPasswordReset(customerPasswordReset);
     asyncCall(call, callback);
   }
 

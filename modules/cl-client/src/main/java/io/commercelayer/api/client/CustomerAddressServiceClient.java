@@ -11,8 +11,6 @@ import io.commercelayer.api.model.Customer;
 import io.commercelayer.api.model.CustomerAddress;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.CustomerAddressService;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -30,6 +28,18 @@ public class CustomerAddressServiceClient extends AbstractServiceClient {
       AuthException {
     super(apiOrg, apiToken);
     this.service = apiCaller.getServiceCallFactory(CustomerAddressService.class, CustomerAddress.class);
+  }
+
+  public CustomerAddress createCustomerAddress(CustomerAddress customerAddress) throws
+      ApiException {
+    Call<CustomerAddress> call = service.createCustomerAddress(customerAddress);
+    return syncCall(call);
+  }
+
+  public void createCustomerAddress(CustomerAddress customerAddress,
+      ApiCallback<CustomerAddress> callback) {
+    Call<CustomerAddress> call = service.createCustomerAddress(customerAddress);
+    asyncCall(call, callback);
   }
 
   public List<CustomerAddress> listCustomerAddresses(Map<String, String> queryStringParams) throws
@@ -51,18 +61,6 @@ public class CustomerAddressServiceClient extends AbstractServiceClient {
 
   public void listCustomerAddresses(ApiCallback<List<CustomerAddress>> callback) {
     Call<List<CustomerAddress>> call = service.listCustomerAddresses();
-    asyncCall(call, callback);
-  }
-
-  public CustomerAddress createCustomerAddress(CustomerAddress customerAddress) throws
-      ApiException {
-    Call<CustomerAddress> call = service.createCustomerAddress(customerAddress);
-    return syncCall(call);
-  }
-
-  public void createCustomerAddress(CustomerAddress customerAddress,
-      ApiCallback<CustomerAddress> callback) {
-    Call<CustomerAddress> call = service.createCustomerAddress(customerAddress);
     asyncCall(call, callback);
   }
 

@@ -3,8 +3,6 @@ package io.commercelayer.api.service;
 import io.commercelayer.api.model.Price;
 import io.commercelayer.api.model.PriceList;
 import io.commercelayer.api.model.Sku;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -26,11 +24,11 @@ public interface PriceService {
   @GET("prices")
   Call<List<Price>> listPrices(@QueryMap Map<String, String> queryStringParams);
 
-  @PATCH("prices/{priceId}")
-  Call<Price> updatePrice(@Path("priceId") String priceId, @Body Price price);
-
   @DELETE("prices/{priceId}")
   Call<Void> deletePrice(@Path("priceId") String priceId);
+
+  @PATCH("prices/{priceId}")
+  Call<Price> updatePrice(@Path("priceId") String priceId, @Body Price price);
 
   @GET("prices/{priceId}")
   Call<Price> retrievePrice(@Path("priceId") String priceId);

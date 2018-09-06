@@ -10,8 +10,6 @@ import io.commercelayer.api.model.Price;
 import io.commercelayer.api.model.PriceList;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.PriceListService;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -27,6 +25,16 @@ public class PriceListServiceClient extends AbstractServiceClient {
   public PriceListServiceClient(ApiOrganization apiOrg, ApiToken apiToken) throws AuthException {
     super(apiOrg, apiToken);
     this.service = apiCaller.getServiceCallFactory(PriceListService.class, PriceList.class);
+  }
+
+  public PriceList createPriceList(PriceList priceList) throws ApiException {
+    Call<PriceList> call = service.createPriceList(priceList);
+    return syncCall(call);
+  }
+
+  public void createPriceList(PriceList priceList, ApiCallback<PriceList> callback) {
+    Call<PriceList> call = service.createPriceList(priceList);
+    asyncCall(call, callback);
   }
 
   public List<PriceList> listPriceLists(Map<String, String> queryStringParams) throws ApiException {
@@ -47,16 +55,6 @@ public class PriceListServiceClient extends AbstractServiceClient {
 
   public void listPriceLists(ApiCallback<List<PriceList>> callback) {
     Call<List<PriceList>> call = service.listPriceLists();
-    asyncCall(call, callback);
-  }
-
-  public PriceList createPriceList(PriceList priceList) throws ApiException {
-    Call<PriceList> call = service.createPriceList(priceList);
-    return syncCall(call);
-  }
-
-  public void createPriceList(PriceList priceList, ApiCallback<PriceList> callback) {
-    Call<PriceList> call = service.createPriceList(priceList);
     asyncCall(call, callback);
   }
 

@@ -12,8 +12,6 @@ import io.commercelayer.api.model.Merchant;
 import io.commercelayer.api.model.PriceList;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.MarketService;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -29,6 +27,16 @@ public class MarketServiceClient extends AbstractServiceClient {
   public MarketServiceClient(ApiOrganization apiOrg, ApiToken apiToken) throws AuthException {
     super(apiOrg, apiToken);
     this.service = apiCaller.getServiceCallFactory(MarketService.class, Market.class);
+  }
+
+  public Market createMarket(Market market) throws ApiException {
+    Call<Market> call = service.createMarket(market);
+    return syncCall(call);
+  }
+
+  public void createMarket(Market market, ApiCallback<Market> callback) {
+    Call<Market> call = service.createMarket(market);
+    asyncCall(call, callback);
   }
 
   public List<Market> listMarkets(Map<String, String> queryStringParams) throws ApiException {
@@ -49,16 +57,6 @@ public class MarketServiceClient extends AbstractServiceClient {
 
   public void listMarkets(ApiCallback<List<Market>> callback) {
     Call<List<Market>> call = service.listMarkets();
-    asyncCall(call, callback);
-  }
-
-  public Market createMarket(Market market) throws ApiException {
-    Call<Market> call = service.createMarket(market);
-    return syncCall(call);
-  }
-
-  public void createMarket(Market market, ApiCallback<Market> callback) {
-    Call<Market> call = service.createMarket(market);
     asyncCall(call, callback);
   }
 

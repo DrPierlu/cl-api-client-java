@@ -5,8 +5,6 @@ import io.commercelayer.api.model.CustomerAddress;
 import io.commercelayer.api.model.CustomerPaymentSource;
 import io.commercelayer.api.model.CustomerSubscription;
 import io.commercelayer.api.model.Order;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -28,11 +26,11 @@ public interface CustomerService {
   @GET("customers")
   Call<List<Customer>> listCustomers(@QueryMap Map<String, String> queryStringParams);
 
-  @PATCH("customers/{customerId}")
-  Call<Customer> updateCustomer(@Path("customerId") String customerId, @Body Customer customer);
-
   @DELETE("customers/{customerId}")
   Call<Void> deleteCustomer(@Path("customerId") String customerId);
+
+  @PATCH("customers/{customerId}")
+  Call<Customer> updateCustomer(@Path("customerId") String customerId, @Body Customer customer);
 
   @GET("customers/{customerId}")
   Call<Customer> retrieveCustomer(@Path("customerId") String customerId);

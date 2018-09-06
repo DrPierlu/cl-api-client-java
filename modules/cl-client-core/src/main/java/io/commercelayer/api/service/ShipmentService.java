@@ -8,8 +8,6 @@ import io.commercelayer.api.model.ShippingAddress;
 import io.commercelayer.api.model.ShippingCategory;
 import io.commercelayer.api.model.ShippingMethod;
 import io.commercelayer.api.model.StockLocation;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -31,11 +29,11 @@ public interface ShipmentService {
   @GET("shipments")
   Call<List<Shipment>> listShipments(@QueryMap Map<String, String> queryStringParams);
 
-  @PATCH("shipments/{shipmentId}")
-  Call<Shipment> updateShipment(@Path("shipmentId") String shipmentId, @Body Shipment shipment);
-
   @DELETE("shipments/{shipmentId}")
   Call<Void> deleteShipment(@Path("shipmentId") String shipmentId);
+
+  @PATCH("shipments/{shipmentId}")
+  Call<Shipment> updateShipment(@Path("shipmentId") String shipmentId, @Body Shipment shipment);
 
   @GET("shipments/{shipmentId}")
   Call<Shipment> retrieveShipment(@Path("shipmentId") String shipmentId);

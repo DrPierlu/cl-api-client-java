@@ -11,8 +11,6 @@ import io.commercelayer.api.model.PaymentGateway;
 import io.commercelayer.api.model.PaymentMethod;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.PaymentMethodService;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -29,6 +27,17 @@ public class PaymentMethodServiceClient extends AbstractServiceClient {
       AuthException {
     super(apiOrg, apiToken);
     this.service = apiCaller.getServiceCallFactory(PaymentMethodService.class, PaymentMethod.class);
+  }
+
+  public PaymentMethod createPaymentMethod(PaymentMethod paymentMethod) throws ApiException {
+    Call<PaymentMethod> call = service.createPaymentMethod(paymentMethod);
+    return syncCall(call);
+  }
+
+  public void createPaymentMethod(PaymentMethod paymentMethod,
+      ApiCallback<PaymentMethod> callback) {
+    Call<PaymentMethod> call = service.createPaymentMethod(paymentMethod);
+    asyncCall(call, callback);
   }
 
   public List<PaymentMethod> listPaymentMethods(Map<String, String> queryStringParams) throws
@@ -50,17 +59,6 @@ public class PaymentMethodServiceClient extends AbstractServiceClient {
 
   public void listPaymentMethods(ApiCallback<List<PaymentMethod>> callback) {
     Call<List<PaymentMethod>> call = service.listPaymentMethods();
-    asyncCall(call, callback);
-  }
-
-  public PaymentMethod createPaymentMethod(PaymentMethod paymentMethod) throws ApiException {
-    Call<PaymentMethod> call = service.createPaymentMethod(paymentMethod);
-    return syncCall(call);
-  }
-
-  public void createPaymentMethod(PaymentMethod paymentMethod,
-      ApiCallback<PaymentMethod> callback) {
-    Call<PaymentMethod> call = service.createPaymentMethod(paymentMethod);
     asyncCall(call, callback);
   }
 

@@ -10,8 +10,6 @@ import io.commercelayer.api.model.Order;
 import io.commercelayer.api.model.PaypalPayment;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.PaypalPaymentService;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -28,6 +26,17 @@ public class PaypalPaymentServiceClient extends AbstractServiceClient {
       AuthException {
     super(apiOrg, apiToken);
     this.service = apiCaller.getServiceCallFactory(PaypalPaymentService.class, PaypalPayment.class);
+  }
+
+  public PaypalPayment createPaypalPayment(PaypalPayment paypalPayment) throws ApiException {
+    Call<PaypalPayment> call = service.createPaypalPayment(paypalPayment);
+    return syncCall(call);
+  }
+
+  public void createPaypalPayment(PaypalPayment paypalPayment,
+      ApiCallback<PaypalPayment> callback) {
+    Call<PaypalPayment> call = service.createPaypalPayment(paypalPayment);
+    asyncCall(call, callback);
   }
 
   public List<PaypalPayment> listPaypalPayments(Map<String, String> queryStringParams) throws
@@ -49,17 +58,6 @@ public class PaypalPaymentServiceClient extends AbstractServiceClient {
 
   public void listPaypalPayments(ApiCallback<List<PaypalPayment>> callback) {
     Call<List<PaypalPayment>> call = service.listPaypalPayments();
-    asyncCall(call, callback);
-  }
-
-  public PaypalPayment createPaypalPayment(PaypalPayment paypalPayment) throws ApiException {
-    Call<PaypalPayment> call = service.createPaypalPayment(paypalPayment);
-    return syncCall(call);
-  }
-
-  public void createPaypalPayment(PaypalPayment paypalPayment,
-      ApiCallback<PaypalPayment> callback) {
-    Call<PaypalPayment> call = service.createPaypalPayment(paypalPayment);
     asyncCall(call, callback);
   }
 

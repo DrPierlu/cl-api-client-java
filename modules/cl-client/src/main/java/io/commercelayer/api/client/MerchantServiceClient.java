@@ -10,8 +10,6 @@ import io.commercelayer.api.model.Address;
 import io.commercelayer.api.model.Merchant;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.MerchantService;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -27,6 +25,16 @@ public class MerchantServiceClient extends AbstractServiceClient {
   public MerchantServiceClient(ApiOrganization apiOrg, ApiToken apiToken) throws AuthException {
     super(apiOrg, apiToken);
     this.service = apiCaller.getServiceCallFactory(MerchantService.class, Merchant.class);
+  }
+
+  public Merchant createMerchant(Merchant merchant) throws ApiException {
+    Call<Merchant> call = service.createMerchant(merchant);
+    return syncCall(call);
+  }
+
+  public void createMerchant(Merchant merchant, ApiCallback<Merchant> callback) {
+    Call<Merchant> call = service.createMerchant(merchant);
+    asyncCall(call, callback);
   }
 
   public List<Merchant> listMerchants(Map<String, String> queryStringParams) throws ApiException {
@@ -47,16 +55,6 @@ public class MerchantServiceClient extends AbstractServiceClient {
 
   public void listMerchants(ApiCallback<List<Merchant>> callback) {
     Call<List<Merchant>> call = service.listMerchants();
-    asyncCall(call, callback);
-  }
-
-  public Merchant createMerchant(Merchant merchant) throws ApiException {
-    Call<Merchant> call = service.createMerchant(merchant);
-    return syncCall(call);
-  }
-
-  public void createMerchant(Merchant merchant, ApiCallback<Merchant> callback) {
-    Call<Merchant> call = service.createMerchant(merchant);
     asyncCall(call, callback);
   }
 

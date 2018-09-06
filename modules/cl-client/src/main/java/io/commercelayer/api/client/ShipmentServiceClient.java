@@ -16,8 +16,6 @@ import io.commercelayer.api.model.ShippingMethod;
 import io.commercelayer.api.model.StockLocation;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.ShipmentService;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -33,6 +31,16 @@ public class ShipmentServiceClient extends AbstractServiceClient {
   public ShipmentServiceClient(ApiOrganization apiOrg, ApiToken apiToken) throws AuthException {
     super(apiOrg, apiToken);
     this.service = apiCaller.getServiceCallFactory(ShipmentService.class, Shipment.class);
+  }
+
+  public Shipment createShipment(Shipment shipment) throws ApiException {
+    Call<Shipment> call = service.createShipment(shipment);
+    return syncCall(call);
+  }
+
+  public void createShipment(Shipment shipment, ApiCallback<Shipment> callback) {
+    Call<Shipment> call = service.createShipment(shipment);
+    asyncCall(call, callback);
   }
 
   public List<Shipment> listShipments(Map<String, String> queryStringParams) throws ApiException {
@@ -53,16 +61,6 @@ public class ShipmentServiceClient extends AbstractServiceClient {
 
   public void listShipments(ApiCallback<List<Shipment>> callback) {
     Call<List<Shipment>> call = service.listShipments();
-    asyncCall(call, callback);
-  }
-
-  public Shipment createShipment(Shipment shipment) throws ApiException {
-    Call<Shipment> call = service.createShipment(shipment);
-    return syncCall(call);
-  }
-
-  public void createShipment(Shipment shipment, ApiCallback<Shipment> callback) {
-    Call<Shipment> call = service.createShipment(shipment);
     asyncCall(call, callback);
   }
 

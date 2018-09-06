@@ -5,8 +5,6 @@ import io.commercelayer.api.model.Market;
 import io.commercelayer.api.model.ShippingCategory;
 import io.commercelayer.api.model.ShippingMethod;
 import io.commercelayer.api.model.ShippingZone;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -28,12 +26,12 @@ public interface ShippingMethodService {
   @GET("shipping_methods")
   Call<List<ShippingMethod>> listShippingMethods(@QueryMap Map<String, String> queryStringParams);
 
+  @DELETE("shipping_methods/{shippingMethodId}")
+  Call<Void> deleteShippingMethod(@Path("shippingMethodId") String shippingMethodId);
+
   @PATCH("shipping_methods/{shippingMethodId}")
   Call<ShippingMethod> updateShippingMethod(@Path("shippingMethodId") String shippingMethodId,
       @Body ShippingMethod shippingMethod);
-
-  @DELETE("shipping_methods/{shippingMethodId}")
-  Call<Void> deleteShippingMethod(@Path("shippingMethodId") String shippingMethodId);
 
   @GET("shipping_methods/{shippingMethodId}")
   Call<ShippingMethod> retrieveShippingMethod(@Path("shippingMethodId") String shippingMethodId);

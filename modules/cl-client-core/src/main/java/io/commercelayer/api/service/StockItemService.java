@@ -3,8 +3,6 @@ package io.commercelayer.api.service;
 import io.commercelayer.api.model.Sku;
 import io.commercelayer.api.model.StockItem;
 import io.commercelayer.api.model.StockLocation;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -26,12 +24,12 @@ public interface StockItemService {
   @GET("stock_items")
   Call<List<StockItem>> listStockItems(@QueryMap Map<String, String> queryStringParams);
 
+  @DELETE("stock_items/{stockItemId}")
+  Call<Void> deleteStockItem(@Path("stockItemId") String stockItemId);
+
   @PATCH("stock_items/{stockItemId}")
   Call<StockItem> updateStockItem(@Path("stockItemId") String stockItemId,
       @Body StockItem stockItem);
-
-  @DELETE("stock_items/{stockItemId}")
-  Call<Void> deleteStockItem(@Path("stockItemId") String stockItemId);
 
   @GET("stock_items/{stockItemId}")
   Call<StockItem> retrieveStockItem(@Path("stockItemId") String stockItemId);

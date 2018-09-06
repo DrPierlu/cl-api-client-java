@@ -3,8 +3,6 @@ package io.commercelayer.api.service;
 import io.commercelayer.api.model.LineItem;
 import io.commercelayer.api.model.LineItemOption;
 import io.commercelayer.api.model.SkuOption;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -26,12 +24,12 @@ public interface LineItemOptionService {
   @GET("line_item_options")
   Call<List<LineItemOption>> listLineItemOptions(@QueryMap Map<String, String> queryStringParams);
 
+  @DELETE("line_item_options/{lineItemOptionId}")
+  Call<Void> deleteLineItemOption(@Path("lineItemOptionId") String lineItemOptionId);
+
   @PATCH("line_item_options/{lineItemOptionId}")
   Call<LineItemOption> updateLineItemOption(@Path("lineItemOptionId") String lineItemOptionId,
       @Body LineItemOption lineItemOption);
-
-  @DELETE("line_item_options/{lineItemOptionId}")
-  Call<Void> deleteLineItemOption(@Path("lineItemOptionId") String lineItemOptionId);
 
   @GET("line_item_options/{lineItemOptionId}")
   Call<LineItemOption> retrieveLineItemOption(@Path("lineItemOptionId") String lineItemOptionId);

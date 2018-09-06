@@ -3,8 +3,6 @@ package io.commercelayer.api.service;
 import io.commercelayer.api.model.DeliveryLeadTime;
 import io.commercelayer.api.model.ShippingMethod;
 import io.commercelayer.api.model.StockLocation;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -27,13 +25,13 @@ public interface DeliveryLeadTimeService {
   Call<List<DeliveryLeadTime>> listDeliveryLeadTimes(
       @QueryMap Map<String, String> queryStringParams);
 
+  @DELETE("delivery_lead_times/{deliveryLeadTimeId}")
+  Call<Void> deleteDeliveryLeadTime(@Path("deliveryLeadTimeId") String deliveryLeadTimeId);
+
   @PATCH("delivery_lead_times/{deliveryLeadTimeId}")
   Call<DeliveryLeadTime> updateDeliveryLeadTime(
       @Path("deliveryLeadTimeId") String deliveryLeadTimeId,
       @Body DeliveryLeadTime deliveryLeadTime);
-
-  @DELETE("delivery_lead_times/{deliveryLeadTimeId}")
-  Call<Void> deleteDeliveryLeadTime(@Path("deliveryLeadTimeId") String deliveryLeadTimeId);
 
   @GET("delivery_lead_times/{deliveryLeadTimeId}")
   Call<DeliveryLeadTime> retrieveDeliveryLeadTime(

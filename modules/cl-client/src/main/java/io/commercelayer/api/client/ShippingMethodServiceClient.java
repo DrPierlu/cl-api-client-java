@@ -13,8 +13,6 @@ import io.commercelayer.api.model.ShippingMethod;
 import io.commercelayer.api.model.ShippingZone;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.ShippingMethodService;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -31,6 +29,17 @@ public class ShippingMethodServiceClient extends AbstractServiceClient {
       AuthException {
     super(apiOrg, apiToken);
     this.service = apiCaller.getServiceCallFactory(ShippingMethodService.class, ShippingMethod.class);
+  }
+
+  public ShippingMethod createShippingMethod(ShippingMethod shippingMethod) throws ApiException {
+    Call<ShippingMethod> call = service.createShippingMethod(shippingMethod);
+    return syncCall(call);
+  }
+
+  public void createShippingMethod(ShippingMethod shippingMethod,
+      ApiCallback<ShippingMethod> callback) {
+    Call<ShippingMethod> call = service.createShippingMethod(shippingMethod);
+    asyncCall(call, callback);
   }
 
   public List<ShippingMethod> listShippingMethods(Map<String, String> queryStringParams) throws
@@ -52,17 +61,6 @@ public class ShippingMethodServiceClient extends AbstractServiceClient {
 
   public void listShippingMethods(ApiCallback<List<ShippingMethod>> callback) {
     Call<List<ShippingMethod>> call = service.listShippingMethods();
-    asyncCall(call, callback);
-  }
-
-  public ShippingMethod createShippingMethod(ShippingMethod shippingMethod) throws ApiException {
-    Call<ShippingMethod> call = service.createShippingMethod(shippingMethod);
-    return syncCall(call);
-  }
-
-  public void createShippingMethod(ShippingMethod shippingMethod,
-      ApiCallback<ShippingMethod> callback) {
-    Call<ShippingMethod> call = service.createShippingMethod(shippingMethod);
     asyncCall(call, callback);
   }
 

@@ -2,8 +2,6 @@ package io.commercelayer.api.service;
 
 import io.commercelayer.api.model.Market;
 import io.commercelayer.api.model.SkuOption;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -25,12 +23,12 @@ public interface SkuOptionService {
   @GET("sku_options")
   Call<List<SkuOption>> listSkuOptions(@QueryMap Map<String, String> queryStringParams);
 
+  @DELETE("sku_options/{skuOptionId}")
+  Call<Void> deleteSkuOption(@Path("skuOptionId") String skuOptionId);
+
   @PATCH("sku_options/{skuOptionId}")
   Call<SkuOption> updateSkuOption(@Path("skuOptionId") String skuOptionId,
       @Body SkuOption skuOption);
-
-  @DELETE("sku_options/{skuOptionId}")
-  Call<Void> deleteSkuOption(@Path("skuOptionId") String skuOptionId);
 
   @GET("sku_options/{skuOptionId}")
   Call<SkuOption> retrieveSkuOption(@Path("skuOptionId") String skuOptionId);

@@ -8,8 +8,6 @@ import io.commercelayer.api.model.Order;
 import io.commercelayer.api.model.PaymentMethod;
 import io.commercelayer.api.model.Shipment;
 import io.commercelayer.api.model.ShippingAddress;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -31,11 +29,11 @@ public interface OrderService {
   @GET("orders")
   Call<List<Order>> listOrders(@QueryMap Map<String, String> queryStringParams);
 
-  @PATCH("orders/{orderId}")
-  Call<Order> updateOrder(@Path("orderId") String orderId, @Body Order order);
-
   @DELETE("orders/{orderId}")
   Call<Void> deleteOrder(@Path("orderId") String orderId);
+
+  @PATCH("orders/{orderId}")
+  Call<Order> updateOrder(@Path("orderId") String orderId, @Body Order order);
 
   @GET("orders/{orderId}")
   Call<Order> retrieveOrder(@Path("orderId") String orderId);

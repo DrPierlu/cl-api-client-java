@@ -3,8 +3,6 @@ package io.commercelayer.api.service;
 import io.commercelayer.api.model.Market;
 import io.commercelayer.api.model.PaymentGateway;
 import io.commercelayer.api.model.PaymentMethod;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -26,12 +24,12 @@ public interface PaymentMethodService {
   @GET("payment_methods")
   Call<List<PaymentMethod>> listPaymentMethods(@QueryMap Map<String, String> queryStringParams);
 
+  @DELETE("payment_methods/{paymentMethodId}")
+  Call<Void> deletePaymentMethod(@Path("paymentMethodId") String paymentMethodId);
+
   @PATCH("payment_methods/{paymentMethodId}")
   Call<PaymentMethod> updatePaymentMethod(@Path("paymentMethodId") String paymentMethodId,
       @Body PaymentMethod paymentMethod);
-
-  @DELETE("payment_methods/{paymentMethodId}")
-  Call<Void> deletePaymentMethod(@Path("paymentMethodId") String paymentMethodId);
 
   @GET("payment_methods/{paymentMethodId}")
   Call<PaymentMethod> retrievePaymentMethod(@Path("paymentMethodId") String paymentMethodId);

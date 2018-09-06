@@ -2,8 +2,6 @@ package io.commercelayer.api.service;
 
 import io.commercelayer.api.model.Parcel;
 import io.commercelayer.api.model.Shipment;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -25,11 +23,11 @@ public interface ParcelService {
   @GET("parcels")
   Call<List<Parcel>> listParcels(@QueryMap Map<String, String> queryStringParams);
 
-  @PATCH("parcels/{parcelId}")
-  Call<Parcel> updateParcel(@Path("parcelId") String parcelId, @Body Parcel parcel);
-
   @DELETE("parcels/{parcelId}")
   Call<Void> deleteParcel(@Path("parcelId") String parcelId);
+
+  @PATCH("parcels/{parcelId}")
+  Call<Parcel> updateParcel(@Path("parcelId") String parcelId, @Body Parcel parcel);
 
   @GET("parcels/{parcelId}")
   Call<Parcel> retrieveParcel(@Path("parcelId") String parcelId);

@@ -12,8 +12,6 @@ import io.commercelayer.api.model.StockLevel;
 import io.commercelayer.api.model.StockLocation;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.StockLocationService;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -30,6 +28,17 @@ public class StockLocationServiceClient extends AbstractServiceClient {
       AuthException {
     super(apiOrg, apiToken);
     this.service = apiCaller.getServiceCallFactory(StockLocationService.class, StockLocation.class);
+  }
+
+  public StockLocation createStockLocation(StockLocation stockLocation) throws ApiException {
+    Call<StockLocation> call = service.createStockLocation(stockLocation);
+    return syncCall(call);
+  }
+
+  public void createStockLocation(StockLocation stockLocation,
+      ApiCallback<StockLocation> callback) {
+    Call<StockLocation> call = service.createStockLocation(stockLocation);
+    asyncCall(call, callback);
   }
 
   public List<StockLocation> listStockLocations(Map<String, String> queryStringParams) throws
@@ -51,17 +60,6 @@ public class StockLocationServiceClient extends AbstractServiceClient {
 
   public void listStockLocations(ApiCallback<List<StockLocation>> callback) {
     Call<List<StockLocation>> call = service.listStockLocations();
-    asyncCall(call, callback);
-  }
-
-  public StockLocation createStockLocation(StockLocation stockLocation) throws ApiException {
-    Call<StockLocation> call = service.createStockLocation(stockLocation);
-    return syncCall(call);
-  }
-
-  public void createStockLocation(StockLocation stockLocation,
-      ApiCallback<StockLocation> callback) {
-    Call<StockLocation> call = service.createStockLocation(stockLocation);
     asyncCall(call, callback);
   }
 

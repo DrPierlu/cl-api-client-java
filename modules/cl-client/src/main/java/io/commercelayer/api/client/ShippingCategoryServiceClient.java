@@ -10,8 +10,6 @@ import io.commercelayer.api.model.ShippingCategory;
 import io.commercelayer.api.model.Sku;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.ShippingCategoryService;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -29,6 +27,18 @@ public class ShippingCategoryServiceClient extends AbstractServiceClient {
       AuthException {
     super(apiOrg, apiToken);
     this.service = apiCaller.getServiceCallFactory(ShippingCategoryService.class, ShippingCategory.class);
+  }
+
+  public ShippingCategory createShippingCategory(ShippingCategory shippingCategory) throws
+      ApiException {
+    Call<ShippingCategory> call = service.createShippingCategory(shippingCategory);
+    return syncCall(call);
+  }
+
+  public void createShippingCategory(ShippingCategory shippingCategory,
+      ApiCallback<ShippingCategory> callback) {
+    Call<ShippingCategory> call = service.createShippingCategory(shippingCategory);
+    asyncCall(call, callback);
   }
 
   public List<ShippingCategory> listShippingCategories(Map<String, String> queryStringParams) throws
@@ -50,18 +60,6 @@ public class ShippingCategoryServiceClient extends AbstractServiceClient {
 
   public void listShippingCategories(ApiCallback<List<ShippingCategory>> callback) {
     Call<List<ShippingCategory>> call = service.listShippingCategories();
-    asyncCall(call, callback);
-  }
-
-  public ShippingCategory createShippingCategory(ShippingCategory shippingCategory) throws
-      ApiException {
-    Call<ShippingCategory> call = service.createShippingCategory(shippingCategory);
-    return syncCall(call);
-  }
-
-  public void createShippingCategory(ShippingCategory shippingCategory,
-      ApiCallback<ShippingCategory> callback) {
-    Call<ShippingCategory> call = service.createShippingCategory(shippingCategory);
     asyncCall(call, callback);
   }
 

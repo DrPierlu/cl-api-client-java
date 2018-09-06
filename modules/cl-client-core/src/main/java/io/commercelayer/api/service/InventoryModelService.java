@@ -2,8 +2,6 @@ package io.commercelayer.api.service;
 
 import io.commercelayer.api.model.InventoryModel;
 import io.commercelayer.api.model.StockLevel;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -25,12 +23,12 @@ public interface InventoryModelService {
   @GET("inventory_models")
   Call<List<InventoryModel>> listInventoryModels(@QueryMap Map<String, String> queryStringParams);
 
+  @DELETE("inventory_models/{inventoryModelId}")
+  Call<Void> deleteInventoryModel(@Path("inventoryModelId") String inventoryModelId);
+
   @PATCH("inventory_models/{inventoryModelId}")
   Call<InventoryModel> updateInventoryModel(@Path("inventoryModelId") String inventoryModelId,
       @Body InventoryModel inventoryModel);
-
-  @DELETE("inventory_models/{inventoryModelId}")
-  Call<Void> deleteInventoryModel(@Path("inventoryModelId") String inventoryModelId);
 
   @GET("inventory_models/{inventoryModelId}")
   Call<InventoryModel> retrieveInventoryModel(@Path("inventoryModelId") String inventoryModelId);

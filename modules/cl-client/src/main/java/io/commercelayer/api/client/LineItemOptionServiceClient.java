@@ -11,8 +11,6 @@ import io.commercelayer.api.model.LineItemOption;
 import io.commercelayer.api.model.SkuOption;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.LineItemOptionService;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -29,6 +27,17 @@ public class LineItemOptionServiceClient extends AbstractServiceClient {
       AuthException {
     super(apiOrg, apiToken);
     this.service = apiCaller.getServiceCallFactory(LineItemOptionService.class, LineItemOption.class);
+  }
+
+  public LineItemOption createLineItemOption(LineItemOption lineItemOption) throws ApiException {
+    Call<LineItemOption> call = service.createLineItemOption(lineItemOption);
+    return syncCall(call);
+  }
+
+  public void createLineItemOption(LineItemOption lineItemOption,
+      ApiCallback<LineItemOption> callback) {
+    Call<LineItemOption> call = service.createLineItemOption(lineItemOption);
+    asyncCall(call, callback);
   }
 
   public List<LineItemOption> listLineItemOptions(Map<String, String> queryStringParams) throws
@@ -50,17 +59,6 @@ public class LineItemOptionServiceClient extends AbstractServiceClient {
 
   public void listLineItemOptions(ApiCallback<List<LineItemOption>> callback) {
     Call<List<LineItemOption>> call = service.listLineItemOptions();
-    asyncCall(call, callback);
-  }
-
-  public LineItemOption createLineItemOption(LineItemOption lineItemOption) throws ApiException {
-    Call<LineItemOption> call = service.createLineItemOption(lineItemOption);
-    return syncCall(call);
-  }
-
-  public void createLineItemOption(LineItemOption lineItemOption,
-      ApiCallback<LineItemOption> callback) {
-    Call<LineItemOption> call = service.createLineItemOption(lineItemOption);
     asyncCall(call, callback);
   }
 

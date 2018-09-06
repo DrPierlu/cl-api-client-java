@@ -2,8 +2,6 @@ package io.commercelayer.api.model;
 
 import com.squareup.moshi.Json;
 import io.commercelayer.api.model.common.ApiResource;
-import java.lang.Object;
-import java.lang.String;
 import moe.banana.jsonapi2.JsonApi;
 
 @JsonApi(

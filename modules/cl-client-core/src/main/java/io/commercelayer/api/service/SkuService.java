@@ -6,8 +6,6 @@ import io.commercelayer.api.model.ShippingCategory;
 import io.commercelayer.api.model.Sku;
 import io.commercelayer.api.model.SkuOption;
 import io.commercelayer.api.model.StockItem;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -29,11 +27,11 @@ public interface SkuService {
   @GET("skus")
   Call<List<Sku>> listSkus(@QueryMap Map<String, String> queryStringParams);
 
-  @PATCH("skus/{skuId}")
-  Call<Sku> updateSku(@Path("skuId") String skuId, @Body Sku sku);
-
   @DELETE("skus/{skuId}")
   Call<Void> deleteSku(@Path("skuId") String skuId);
+
+  @PATCH("skus/{skuId}")
+  Call<Sku> updateSku(@Path("skuId") String skuId, @Body Sku sku);
 
   @GET("skus/{skuId}")
   Call<Sku> retrieveSku(@Path("skuId") String skuId);

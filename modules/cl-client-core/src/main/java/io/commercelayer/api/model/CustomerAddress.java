@@ -2,8 +2,6 @@ package io.commercelayer.api.model;
 
 import io.commercelayer.api.model.adapter.CLLinksAdapter;
 import io.commercelayer.api.model.common.ApiResource;
-import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Map;
 import moe.banana.jsonapi2.HasOne;
 import moe.banana.jsonapi2.JsonApi;

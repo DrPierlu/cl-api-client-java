@@ -2,8 +2,6 @@ package io.commercelayer.api.service;
 
 import io.commercelayer.api.model.Customer;
 import io.commercelayer.api.model.CustomerPasswordReset;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -27,14 +25,14 @@ public interface CustomerPasswordResetService {
   Call<List<CustomerPasswordReset>> listCustomerPasswordResets(
       @QueryMap Map<String, String> queryStringParams);
 
+  @DELETE("customer_password_resets/{customerPasswordResetId}")
+  Call<Void> deleteCustomerPasswordReset(
+      @Path("customerPasswordResetId") String customerPasswordResetId);
+
   @PATCH("customer_password_resets/{customerPasswordResetId}")
   Call<CustomerPasswordReset> updateCustomerPasswordReset(
       @Path("customerPasswordResetId") String customerPasswordResetId,
       @Body CustomerPasswordReset customerPasswordReset);
-
-  @DELETE("customer_password_resets/{customerPasswordResetId}")
-  Call<Void> deleteCustomerPasswordReset(
-      @Path("customerPasswordResetId") String customerPasswordResetId);
 
   @GET("customer_password_resets/{customerPasswordResetId}")
   Call<CustomerPasswordReset> retrieveCustomerPasswordReset(

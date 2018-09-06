@@ -2,8 +2,6 @@ package io.commercelayer.api.service;
 
 import io.commercelayer.api.model.Customer;
 import io.commercelayer.api.model.CustomerSubscription;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -27,14 +25,14 @@ public interface CustomerSubscriptionService {
   Call<List<CustomerSubscription>> listCustomerSubscriptions(
       @QueryMap Map<String, String> queryStringParams);
 
+  @DELETE("customer_subscriptions/{customerSubscriptionId}")
+  Call<Void> deleteCustomerSubscription(
+      @Path("customerSubscriptionId") String customerSubscriptionId);
+
   @PATCH("customer_subscriptions/{customerSubscriptionId}")
   Call<CustomerSubscription> updateCustomerSubscription(
       @Path("customerSubscriptionId") String customerSubscriptionId,
       @Body CustomerSubscription customerSubscription);
-
-  @DELETE("customer_subscriptions/{customerSubscriptionId}")
-  Call<Void> deleteCustomerSubscription(
-      @Path("customerSubscriptionId") String customerSubscriptionId);
 
   @GET("customer_subscriptions/{customerSubscriptionId}")
   Call<CustomerSubscription> retrieveCustomerSubscription(

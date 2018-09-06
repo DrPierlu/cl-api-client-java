@@ -2,8 +2,6 @@ package io.commercelayer.api.service;
 
 import io.commercelayer.api.model.ShippingCategory;
 import io.commercelayer.api.model.Sku;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -26,13 +24,13 @@ public interface ShippingCategoryService {
   Call<List<ShippingCategory>> listShippingCategories(
       @QueryMap Map<String, String> queryStringParams);
 
+  @DELETE("shipping_categories/{shippingCategoryId}")
+  Call<Void> deleteShippingCategory(@Path("shippingCategoryId") String shippingCategoryId);
+
   @PATCH("shipping_categories/{shippingCategoryId}")
   Call<ShippingCategory> updateShippingCategory(
       @Path("shippingCategoryId") String shippingCategoryId,
       @Body ShippingCategory shippingCategory);
-
-  @DELETE("shipping_categories/{shippingCategoryId}")
-  Call<Void> deleteShippingCategory(@Path("shippingCategoryId") String shippingCategoryId);
 
   @GET("shipping_categories/{shippingCategoryId}")
   Call<ShippingCategory> retrieveShippingCategory(

@@ -4,8 +4,6 @@ import io.commercelayer.api.model.InventoryModel;
 import io.commercelayer.api.model.Market;
 import io.commercelayer.api.model.Merchant;
 import io.commercelayer.api.model.PriceList;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -27,11 +25,11 @@ public interface MarketService {
   @GET("markets")
   Call<List<Market>> listMarkets(@QueryMap Map<String, String> queryStringParams);
 
-  @PATCH("markets/{marketId}")
-  Call<Market> updateMarket(@Path("marketId") String marketId, @Body Market market);
-
   @DELETE("markets/{marketId}")
   Call<Void> deleteMarket(@Path("marketId") String marketId);
+
+  @PATCH("markets/{marketId}")
+  Call<Market> updateMarket(@Path("marketId") String marketId, @Body Market market);
 
   @GET("markets/{marketId}")
   Call<Market> retrieveMarket(@Path("marketId") String marketId);

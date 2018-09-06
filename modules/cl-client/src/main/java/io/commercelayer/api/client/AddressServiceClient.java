@@ -10,8 +10,6 @@ import io.commercelayer.api.model.Address;
 import io.commercelayer.api.model.Geocoder;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.AddressService;
-import java.lang.String;
-import java.lang.Void;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -27,6 +25,16 @@ public class AddressServiceClient extends AbstractServiceClient {
   public AddressServiceClient(ApiOrganization apiOrg, ApiToken apiToken) throws AuthException {
     super(apiOrg, apiToken);
     this.service = apiCaller.getServiceCallFactory(AddressService.class, Address.class);
+  }
+
+  public Address createAddress(Address address) throws ApiException {
+    Call<Address> call = service.createAddress(address);
+    return syncCall(call);
+  }
+
+  public void createAddress(Address address, ApiCallback<Address> callback) {
+    Call<Address> call = service.createAddress(address);
+    asyncCall(call, callback);
   }
 
   public List<Address> listAddresses(Map<String, String> queryStringParams) throws ApiException {
@@ -47,16 +55,6 @@ public class AddressServiceClient extends AbstractServiceClient {
 
   public void listAddresses(ApiCallback<List<Address>> callback) {
     Call<List<Address>> call = service.listAddresses();
-    asyncCall(call, callback);
-  }
-
-  public Address createAddress(Address address) throws ApiException {
-    Call<Address> call = service.createAddress(address);
-    return syncCall(call);
-  }
-
-  public void createAddress(Address address, ApiCallback<Address> callback) {
-    Call<Address> call = service.createAddress(address);
     asyncCall(call, callback);
   }
 
