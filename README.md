@@ -4,11 +4,11 @@ TODO: Project description
 
 ## Installation
 
-TODO: Write installation instructions here
+TODO: Installation instructions here
 
 ## Usage
 
-TODO: Write usage instructions here
+TODO: Usage instructions here
 
 ## Development
 
