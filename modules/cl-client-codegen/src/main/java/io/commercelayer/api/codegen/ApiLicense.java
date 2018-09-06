@@ -51,12 +51,13 @@ public final class ApiLicense {
 		try {
 			
 			List<String> oldLines = Files.readAllLines(filePath, Charset.forName(CHARSET));
-			boolean hasCommentMarker = oldLines.get(0).startsWith("/**");
+			List<String> licenseLines = getTextLines();
+			boolean hasCommentMarker = licenseLines.get(0).trim().startsWith("/**");
 			
 			List<String> newLines = new ArrayList<>();
 			
 			if (!hasCommentMarker) newLines.add("/**");
-			for (String line : getTextLines()) {
+			for (String line : licenseLines) {
 				newLines.add(hasCommentMarker? line : " * ".concat(line));
 			}
 			if (!hasCommentMarker) newLines.add(" */");
