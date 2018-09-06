@@ -7,12 +7,12 @@
 	<groupId>io.commercelayer.api</groupId>
 	<artifactId>cl-api-client-java</artifactId>
 	<version>2.0</version>
-	
+
 	<packaging>pom</packaging>
-	
+
 	<name>Commerce Layer API Java Client</name>
 	<description>Commerce Layer API Java Client</description>
-	
+
 	<url>https://github.com/DrPierlu/cl-api-client-java</url>
 
 	<developers>
@@ -68,40 +68,24 @@
 				<artifactId>commons-text</artifactId>
 				<version>1.1</version>
 			</dependency>
-			<!-- <dependency> <groupId>org.jboss.dna</groupId> <artifactId>dna-common</artifactId> 
-				<version>0.7</version> </dependency> -->
-
-
+			
 
 			<!-- CODEGEN -->
-			<!-- <dependency> -->
-			<!-- <groupId>com.github.jasminb</groupId> -->
-			<!-- <artifactId>jsonapi-converter</artifactId> -->
-			<!-- <version>0.8.1</version> -->
-			<!-- </dependency> -->
 			<dependency>
 				<groupId>com.squareup</groupId>
 				<artifactId>javapoet</artifactId>
 				<version>1.11.1</version>
 			</dependency>
-
 			<dependency>
 				<groupId>com.squareup.retrofit2</groupId>
 				<artifactId>retrofit</artifactId>
 				<version>2.4.0</version>
 			</dependency>
-
 			<dependency>
 				<groupId>com.squareup.moshi</groupId>
 				<artifactId>moshi</artifactId>
 				<version>1.6.0</version>
 			</dependency>
-
-			<!-- <dependency> -->
-			<!-- <groupId>com.squareup.moshi</groupId> -->
-			<!-- <artifactId>moshi-adapters</artifactId> -->
-			<!-- <version>1.6.0</version> -->
-			<!-- </dependency> -->
 
 
 			<!-- GitHub imported libraries -->
@@ -133,21 +117,20 @@
 				<artifactId>logback-classic</artifactId>
 				<version>${logback.version}</version>
 			</dependency>
-			<!-- <dependency> -->
-			<!-- <groupId>ch.qos.logback</groupId> -->
-			<!-- <artifactId>logback-core</artifactId> -->
-			<!-- <version>${logback.version}</version> -->
-			<!-- </dependency> -->
 			<dependency>
 				<groupId>com.squareup.okhttp3</groupId>
 				<artifactId>logging-interceptor</artifactId>
 				<version>3.11.0</version>
 			</dependency>
-			<!-- <dependency> -->
-			<!-- <groupId>com.github.devcsrj</groupId> -->
-			<!-- <artifactId>slf4j-okhttp3-logging-interceptor</artifactId> -->
-			<!-- <version>1.0.1</version> -->
-			<!-- </dependency> -->
+
+
+			<!-- TEST -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.12</version>
+				<scope>test</scope>
+			</dependency>
 
 		</dependencies>
 	</dependencyManagement>

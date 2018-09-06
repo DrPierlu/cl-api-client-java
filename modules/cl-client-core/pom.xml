@@ -23,34 +23,20 @@
 			<groupId>com.squareup.moshi</groupId>
 			<artifactId>moshi</artifactId>
 		</dependency>
-
-<!-- 		<dependency> -->
-<!-- 			<groupId>com.squareup.moshi</groupId> -->
-<!-- 			<artifactId>moshi-adapters</artifactId> -->
-<!-- 		</dependency> -->
-
+		
 		<dependency>
 			<groupId>moe.banana</groupId>
 			<artifactId>moshi-jsonapi-core</artifactId>
 		</dependency>
+		
 		<dependency>
 			<groupId>moe.banana</groupId>
 			<artifactId>moshi-jsonapi-retrofit-converter</artifactId>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>com.squareup.retrofit2</groupId>
 			<artifactId>retrofit</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-text</artifactId>
 		</dependency>
 
 
@@ -60,17 +46,11 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<scope>provided</scope>
 		</dependency>
-
-<!-- 		<dependency> -->
-<!-- 			<groupId>ch.qos.logback</groupId> -->
-<!-- 			<artifactId>logback-core</artifactId> -->
-<!-- 		</dependency> -->
 
 	</dependencies>
 

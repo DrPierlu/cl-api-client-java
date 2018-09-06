@@ -182,7 +182,8 @@ public class AddressTest extends AbstractModelTest {
 		initServiceClient();
 		AddressTest test = new AddressTest();
 		test.initServiceInterface();
-		test.listAddressesTest();
+		List<Address> out = test.listAddresses();
+		System.out.println(out.get(0));
 	}
 	
 }

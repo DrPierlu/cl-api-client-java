@@ -39,7 +39,6 @@ import io.commercelayer.api.domain.OperationType;
 import io.commercelayer.api.model.adapter.CLLinksAdapter;
 import io.commercelayer.api.model.common.ApiResource;
 import io.commercelayer.api.util.CLInflector;
-import io.commercelayer.api.util.ModelUtils;
 import moe.banana.jsonapi2.HasMany;
 import moe.banana.jsonapi2.HasOne;
 import moe.banana.jsonapi2.JsonApi;
@@ -181,7 +180,7 @@ public class MoshiJAModelGenerator implements ModelGenerator {
 			boolean multiRel = Cardinality.HAS_MANY.equals(rel.getValue());
 			
 			// Relationship field
-			final String relFieldName = ModelUtils.toCamelCase(rel.getKey());
+			final String relFieldName = ModelGeneratorUtils.toCamelCase(rel.getKey());
 			final String relFieldNameCap = StringUtils.capitalize(relFieldName);
 			
 			final String relResName = CLInflector.getInstance().singularize(relFieldNameCap);
@@ -233,7 +232,7 @@ public class MoshiJAModelGenerator implements ModelGenerator {
 	
 	private void generateFields(TypeSpec.Builder classe, Map<String, ApiAttribute> attributes) {
 		for (ApiAttribute attr : attributes.values()) {
-			FieldSpec.Builder field = FieldSpec.builder(SchemaParserUtils.decodeAttributeType(attr), ModelUtils.toCamelCase(attr.getName()), Modifier.PRIVATE);
+			FieldSpec.Builder field = FieldSpec.builder(SchemaParserUtils.decodeAttributeType(attr), ModelGeneratorUtils.toCamelCase(attr.getName()), Modifier.PRIVATE);
 			setJsonFieldAnnotation(attr.getName(), field);
 			addResourceField(classe, field.build());
 		}

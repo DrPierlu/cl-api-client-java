@@ -2,7 +2,7 @@ package io.commercelayer.api.codegen.schema.parser;
 
 import java.lang.reflect.Type;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -102,7 +102,7 @@ public class SchemaParserUtils {
 			typeMap.put(ApiAttribute.Formats.BYTE, byte[].class);
 			typeMap.put(ApiAttribute.Formats.BINARY, byte[].class);
 			typeMap.put(ApiAttribute.Formats.DATE, LocalDate.class);
-			typeMap.put(ApiAttribute.Formats.DATE_TIME, LocalDateTime.class);
+			typeMap.put(ApiAttribute.Formats.DATE_TIME, ZonedDateTime.class);
 			
 			TYPE_MAP.put(ApiAttribute.Types.STRING, typeMap);
 			

@@ -1,15 +1,14 @@
 package io.commercelayer.api.model.common;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.time.ZonedDateTime;
 import java.util.Map;
-
-import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.squareup.moshi.Json;
 
 import io.commercelayer.api.model.adapter.CLLinksAdapter;
 import io.commercelayer.api.model.adapter.CLMetaAdapter;
-import io.commercelayer.api.util.LogUtils;
 import moe.banana.jsonapi2.Resource;
 
 public class ApiResource extends Resource {
@@ -66,7 +65,52 @@ public class ApiResource extends Resource {
 
 	@Override
 	public String toString() {
-		return ToStringBuilder.reflectionToString(this, LogUtils.TO_STRING_STYLE);
+		
+		Class<?> classe = getClass();
+		Field[] fields = classe.getDeclaredFields();
+		
+		StringBuilder builder = new StringBuilder();
+		
+		builder.append(classe.getSimpleName()).append("->[");
+		
+		builder.append("id=").append(getId());
+		
+		
+		if (fields != null)
+			for (Field field : fields) {
+				
+//				if ((field.getModifiers() & Modifier.STATIC) > 0) continue;
+				if (Modifier.isStatic(field.getModifiers())) continue;
+				
+				builder.append(", ");
+				builder.append(field.getName());
+				builder.append("=");
+				
+				Object value = null;
+				try {
+					field.setAccessible(true);
+					value = field.get(this);
+				} catch (IllegalArgumentException | IllegalAccessException e) {
+					value = null;
+				}
+//				builder.append(String.valueOf(value));
+				builder.append((value == null)? "<null>" : value.toString());
+				
+			}
+		
+		builder.append(", createdAt=");
+		builder.append(createdAt);
+		builder.append(", updatedAt=");
+		builder.append(updatedAt);
+		builder.append(", metadata=");
+		builder.append(metadata);
+		builder.append(", reference=");
+		builder.append(reference);
+		
+		builder.append("]");
+		
+		return builder.toString();
+		
 	}
 	
 	@SuppressWarnings("unchecked")

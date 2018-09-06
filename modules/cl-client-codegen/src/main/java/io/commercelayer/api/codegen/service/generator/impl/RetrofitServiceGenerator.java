@@ -32,7 +32,6 @@ import io.commercelayer.api.codegen.service.generator.ServiceGenerator;
 import io.commercelayer.api.codegen.service.generator.ServiceGeneratorUtils;
 import io.commercelayer.api.domain.OperationType;
 import io.commercelayer.api.util.CLInflector;
-import io.commercelayer.api.util.ModelUtils;
 import retrofit2.http.Body;
 import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
@@ -69,7 +68,7 @@ public class RetrofitServiceGenerator implements ServiceGenerator {
 
 	private TypeSpec createService(String mainRes, SortedSet<ApiPath> paths) throws ServiceException {
 		
-		final String resourceName = CLInflector.getInstance().singularize(StringUtils.capitalize(ModelUtils.toCamelCase(mainRes.substring(1))));
+		final String resourceName = CLInflector.getInstance().singularize(StringUtils.capitalize(ModelGeneratorUtils.toCamelCase(mainRes.substring(1))));
 		final String serviceName = String.format("%sService", resourceName);
 		
 		TypeSpec.Builder service = TypeSpec.interfaceBuilder(serviceName).addModifiers(Modifier.PUBLIC);

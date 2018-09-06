@@ -7,6 +7,7 @@ import java.util.List;
 import javax.lang.model.element.Modifier;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.text.WordUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -98,6 +99,20 @@ public final class ModelGeneratorUtils {
 			.build();
 		
 		return method;
+		
+	}
+	
+	public static String toCamelCase(String strWith_) {
+	
+		if (StringUtils.isBlank(strWith_)) return strWith_;
+		
+		String prefix = strWith_.startsWith("_")? "_" : "";
+		String cap = WordUtils.capitalize(strWith_, '_').replaceAll("_", "");
+		char c[] = cap.toCharArray();
+		c[0] = Character.toLowerCase(c[0]);
+		cap = new String(c);
+		
+		return prefix.concat(cap);
 		
 	}
 	

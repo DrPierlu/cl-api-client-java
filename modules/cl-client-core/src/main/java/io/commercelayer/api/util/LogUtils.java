@@ -3,21 +3,17 @@ package io.commercelayer.api.util;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import io.commercelayer.api.config.ApiConfig;
 
 /**
  * @author p.viti
  *
  */
 public final class LogUtils {
-
-	public static final ToStringStyle TO_STRING_STYLE = ApiConfig.testModeEnabled()? ToStringStyle.MULTI_LINE_STYLE : ToStringStyle.SHORT_PREFIX_STYLE;
 	
 	private static final LogUtils instance;
 
@@ -119,8 +115,50 @@ public final class LogUtils {
 		getLogger(classe).info(message);
 	}
 	
-	public static String toString(Object o) {
-		return ReflectionToStringBuilder.toString(o, TO_STRING_STYLE);
+	
+	public static String toString(Object obj) {
+		
+		if (obj == null) return null;
+		
+		Class<?> classe = obj.getClass();
+		Field[] fields = classe.getDeclaredFields();
+		
+		StringBuilder builder = new StringBuilder();
+		
+		builder.append(classe.getSimpleName()).append("->[");
+				
+		// TODO: Introdurre gestione campi superclassi
+//		List<Field> l = new LinkedList<>();
+//		l.addAll(Arrays.asList(fields));
+//		if (classe.getSuperclass())
+		
+		int idx = 0;
+		if (fields != null)
+			for (Field field : fields) {
+				
+//				if ((field.getModifiers() & Modifier.STATIC) > 0) continue;
+				if (Modifier.isStatic(field.getModifiers())) continue;
+				
+				if (++idx > 1) builder.append(", ");
+				builder.append(field.getName());
+				builder.append("=");
+				
+				Object value = null;
+				try {
+					field.setAccessible(true);
+					value = field.get(obj);
+				} catch (IllegalArgumentException | IllegalAccessException e) {
+					value = null;
+				}
+//				builder.append(String.valueOf(value));
+				builder.append((value == null)? "<null>" : value.toString());
+				
+			}
+		
+		builder.append("]");
+		
+		return builder.toString();
+		
 	}
 
 }

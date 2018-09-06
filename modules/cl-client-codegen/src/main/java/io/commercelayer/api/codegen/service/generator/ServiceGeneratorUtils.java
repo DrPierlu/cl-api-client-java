@@ -18,7 +18,6 @@ import io.commercelayer.api.codegen.schema.ApiOperation;
 import io.commercelayer.api.domain.OperationType;
 import io.commercelayer.api.util.CLInflector;
 import io.commercelayer.api.util.Inflector;
-import io.commercelayer.api.util.ModelUtils;
 import retrofit2.Call;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
@@ -88,7 +87,7 @@ public final class ServiceGeneratorUtils {
 			if (p.contains("{")) continue;
 			String p_ = p;
 			if (!OperationType.GET.equals(opType) || byId || (pIdx < pts.length)) p_ = CLInflector.getInstance().singularize(p_);
-			trName = trName.concat(StringUtils.capitalize(ModelUtils.toCamelCase(p_)));
+			trName = trName.concat(StringUtils.capitalize(ModelGeneratorUtils.toCamelCase(p_)));
 		}
 		
 		return trName;
