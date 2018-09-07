@@ -15,26 +15,18 @@ import java.util.Map;
 import retrofit2.Call;
 
 public class PriceListServiceClient extends AbstractServiceClient {
-  protected PriceListService service;
+  protected final PriceListService service;
+
+  {
+    this.service = initServiceCallFactory(PriceListService.class, PriceList.class);
+  }
 
   public PriceListServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
     super(apiOrg, apiAuth);
-    this.service = apiCaller.getServiceCallFactory(PriceListService.class, PriceList.class);
   }
 
   public PriceListServiceClient(ApiOrganization apiOrg, ApiToken apiToken) throws AuthException {
     super(apiOrg, apiToken);
-    this.service = apiCaller.getServiceCallFactory(PriceListService.class, PriceList.class);
-  }
-
-  public PriceList createPriceList(PriceList priceList) throws ApiException {
-    Call<PriceList> call = service.createPriceList(priceList);
-    return syncCall(call);
-  }
-
-  public void createPriceList(PriceList priceList, ApiCallback<PriceList> callback) {
-    Call<PriceList> call = service.createPriceList(priceList);
-    asyncCall(call, callback);
   }
 
   public List<PriceList> listPriceLists(Map<String, String> queryStringParams) throws ApiException {
@@ -55,6 +47,16 @@ public class PriceListServiceClient extends AbstractServiceClient {
 
   public void listPriceLists(ApiCallback<List<PriceList>> callback) {
     Call<List<PriceList>> call = service.listPriceLists();
+    asyncCall(call, callback);
+  }
+
+  public PriceList createPriceList(PriceList priceList) throws ApiException {
+    Call<PriceList> call = service.createPriceList(priceList);
+    return syncCall(call);
+  }
+
+  public void createPriceList(PriceList priceList, ApiCallback<PriceList> callback) {
+    Call<PriceList> call = service.createPriceList(priceList);
     asyncCall(call, callback);
   }
 

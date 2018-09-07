@@ -17,28 +17,19 @@ import java.util.Map;
 import retrofit2.Call;
 
 public class StockLocationServiceClient extends AbstractServiceClient {
-  protected StockLocationService service;
+  protected final StockLocationService service;
+
+  {
+    this.service = initServiceCallFactory(StockLocationService.class, StockLocation.class);
+  }
 
   public StockLocationServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
     super(apiOrg, apiAuth);
-    this.service = apiCaller.getServiceCallFactory(StockLocationService.class, StockLocation.class);
   }
 
   public StockLocationServiceClient(ApiOrganization apiOrg, ApiToken apiToken) throws
       AuthException {
     super(apiOrg, apiToken);
-    this.service = apiCaller.getServiceCallFactory(StockLocationService.class, StockLocation.class);
-  }
-
-  public StockLocation createStockLocation(StockLocation stockLocation) throws ApiException {
-    Call<StockLocation> call = service.createStockLocation(stockLocation);
-    return syncCall(call);
-  }
-
-  public void createStockLocation(StockLocation stockLocation,
-      ApiCallback<StockLocation> callback) {
-    Call<StockLocation> call = service.createStockLocation(stockLocation);
-    asyncCall(call, callback);
   }
 
   public List<StockLocation> listStockLocations(Map<String, String> queryStringParams) throws
@@ -60,6 +51,17 @@ public class StockLocationServiceClient extends AbstractServiceClient {
 
   public void listStockLocations(ApiCallback<List<StockLocation>> callback) {
     Call<List<StockLocation>> call = service.listStockLocations();
+    asyncCall(call, callback);
+  }
+
+  public StockLocation createStockLocation(StockLocation stockLocation) throws ApiException {
+    Call<StockLocation> call = service.createStockLocation(stockLocation);
+    return syncCall(call);
+  }
+
+  public void createStockLocation(StockLocation stockLocation,
+      ApiCallback<StockLocation> callback) {
+    Call<StockLocation> call = service.createStockLocation(stockLocation);
     asyncCall(call, callback);
   }
 

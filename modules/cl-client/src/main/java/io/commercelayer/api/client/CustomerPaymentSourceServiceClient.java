@@ -15,30 +15,20 @@ import java.util.Map;
 import retrofit2.Call;
 
 public class CustomerPaymentSourceServiceClient extends AbstractServiceClient {
-  protected CustomerPaymentSourceService service;
+  protected final CustomerPaymentSourceService service;
+
+  {
+    this.service = initServiceCallFactory(CustomerPaymentSourceService.class, CustomerPaymentSource.class);
+  }
 
   public CustomerPaymentSourceServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws
       AuthException {
     super(apiOrg, apiAuth);
-    this.service = apiCaller.getServiceCallFactory(CustomerPaymentSourceService.class, CustomerPaymentSource.class);
   }
 
   public CustomerPaymentSourceServiceClient(ApiOrganization apiOrg, ApiToken apiToken) throws
       AuthException {
     super(apiOrg, apiToken);
-    this.service = apiCaller.getServiceCallFactory(CustomerPaymentSourceService.class, CustomerPaymentSource.class);
-  }
-
-  public CustomerPaymentSource createCustomerPaymentSource(
-      CustomerPaymentSource customerPaymentSource) throws ApiException {
-    Call<CustomerPaymentSource> call = service.createCustomerPaymentSource(customerPaymentSource);
-    return syncCall(call);
-  }
-
-  public void createCustomerPaymentSource(CustomerPaymentSource customerPaymentSource,
-      ApiCallback<CustomerPaymentSource> callback) {
-    Call<CustomerPaymentSource> call = service.createCustomerPaymentSource(customerPaymentSource);
-    asyncCall(call, callback);
   }
 
   public List<CustomerPaymentSource> listCustomerPaymentSources(
@@ -60,6 +50,18 @@ public class CustomerPaymentSourceServiceClient extends AbstractServiceClient {
 
   public void listCustomerPaymentSources(ApiCallback<List<CustomerPaymentSource>> callback) {
     Call<List<CustomerPaymentSource>> call = service.listCustomerPaymentSources();
+    asyncCall(call, callback);
+  }
+
+  public CustomerPaymentSource createCustomerPaymentSource(
+      CustomerPaymentSource customerPaymentSource) throws ApiException {
+    Call<CustomerPaymentSource> call = service.createCustomerPaymentSource(customerPaymentSource);
+    return syncCall(call);
+  }
+
+  public void createCustomerPaymentSource(CustomerPaymentSource customerPaymentSource,
+      ApiCallback<CustomerPaymentSource> callback) {
+    Call<CustomerPaymentSource> call = service.createCustomerPaymentSource(customerPaymentSource);
     asyncCall(call, callback);
   }
 

@@ -15,26 +15,18 @@ import java.util.Map;
 import retrofit2.Call;
 
 public class CreditCardServiceClient extends AbstractServiceClient {
-  protected CreditCardService service;
+  protected final CreditCardService service;
+
+  {
+    this.service = initServiceCallFactory(CreditCardService.class, CreditCard.class);
+  }
 
   public CreditCardServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
     super(apiOrg, apiAuth);
-    this.service = apiCaller.getServiceCallFactory(CreditCardService.class, CreditCard.class);
   }
 
   public CreditCardServiceClient(ApiOrganization apiOrg, ApiToken apiToken) throws AuthException {
     super(apiOrg, apiToken);
-    this.service = apiCaller.getServiceCallFactory(CreditCardService.class, CreditCard.class);
-  }
-
-  public CreditCard createCreditCard(CreditCard creditCard) throws ApiException {
-    Call<CreditCard> call = service.createCreditCard(creditCard);
-    return syncCall(call);
-  }
-
-  public void createCreditCard(CreditCard creditCard, ApiCallback<CreditCard> callback) {
-    Call<CreditCard> call = service.createCreditCard(creditCard);
-    asyncCall(call, callback);
   }
 
   public List<CreditCard> listCreditCards(Map<String, String> queryStringParams) throws
@@ -56,6 +48,16 @@ public class CreditCardServiceClient extends AbstractServiceClient {
 
   public void listCreditCards(ApiCallback<List<CreditCard>> callback) {
     Call<List<CreditCard>> call = service.listCreditCards();
+    asyncCall(call, callback);
+  }
+
+  public CreditCard createCreditCard(CreditCard creditCard) throws ApiException {
+    Call<CreditCard> call = service.createCreditCard(creditCard);
+    return syncCall(call);
+  }
+
+  public void createCreditCard(CreditCard creditCard, ApiCallback<CreditCard> callback) {
+    Call<CreditCard> call = service.createCreditCard(creditCard);
     asyncCall(call, callback);
   }
 

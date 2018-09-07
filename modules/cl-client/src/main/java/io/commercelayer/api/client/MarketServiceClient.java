@@ -17,26 +17,18 @@ import java.util.Map;
 import retrofit2.Call;
 
 public class MarketServiceClient extends AbstractServiceClient {
-  protected MarketService service;
+  protected final MarketService service;
+
+  {
+    this.service = initServiceCallFactory(MarketService.class, Market.class);
+  }
 
   public MarketServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
     super(apiOrg, apiAuth);
-    this.service = apiCaller.getServiceCallFactory(MarketService.class, Market.class);
   }
 
   public MarketServiceClient(ApiOrganization apiOrg, ApiToken apiToken) throws AuthException {
     super(apiOrg, apiToken);
-    this.service = apiCaller.getServiceCallFactory(MarketService.class, Market.class);
-  }
-
-  public Market createMarket(Market market) throws ApiException {
-    Call<Market> call = service.createMarket(market);
-    return syncCall(call);
-  }
-
-  public void createMarket(Market market, ApiCallback<Market> callback) {
-    Call<Market> call = service.createMarket(market);
-    asyncCall(call, callback);
   }
 
   public List<Market> listMarkets(Map<String, String> queryStringParams) throws ApiException {
@@ -57,6 +49,16 @@ public class MarketServiceClient extends AbstractServiceClient {
 
   public void listMarkets(ApiCallback<List<Market>> callback) {
     Call<List<Market>> call = service.listMarkets();
+    asyncCall(call, callback);
+  }
+
+  public Market createMarket(Market market) throws ApiException {
+    Call<Market> call = service.createMarket(market);
+    return syncCall(call);
+  }
+
+  public void createMarket(Market market, ApiCallback<Market> callback) {
+    Call<Market> call = service.createMarket(market);
     asyncCall(call, callback);
   }
 

@@ -16,26 +16,18 @@ import java.util.Map;
 import retrofit2.Call;
 
 public class StockLevelServiceClient extends AbstractServiceClient {
-  protected StockLevelService service;
+  protected final StockLevelService service;
+
+  {
+    this.service = initServiceCallFactory(StockLevelService.class, StockLevel.class);
+  }
 
   public StockLevelServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
     super(apiOrg, apiAuth);
-    this.service = apiCaller.getServiceCallFactory(StockLevelService.class, StockLevel.class);
   }
 
   public StockLevelServiceClient(ApiOrganization apiOrg, ApiToken apiToken) throws AuthException {
     super(apiOrg, apiToken);
-    this.service = apiCaller.getServiceCallFactory(StockLevelService.class, StockLevel.class);
-  }
-
-  public StockLevel createStockLevel(StockLevel stockLevel) throws ApiException {
-    Call<StockLevel> call = service.createStockLevel(stockLevel);
-    return syncCall(call);
-  }
-
-  public void createStockLevel(StockLevel stockLevel, ApiCallback<StockLevel> callback) {
-    Call<StockLevel> call = service.createStockLevel(stockLevel);
-    asyncCall(call, callback);
   }
 
   public List<StockLevel> listStockLevels(Map<String, String> queryStringParams) throws
@@ -57,6 +49,16 @@ public class StockLevelServiceClient extends AbstractServiceClient {
 
   public void listStockLevels(ApiCallback<List<StockLevel>> callback) {
     Call<List<StockLevel>> call = service.listStockLevels();
+    asyncCall(call, callback);
+  }
+
+  public StockLevel createStockLevel(StockLevel stockLevel) throws ApiException {
+    Call<StockLevel> call = service.createStockLevel(stockLevel);
+    return syncCall(call);
+  }
+
+  public void createStockLevel(StockLevel stockLevel, ApiCallback<StockLevel> callback) {
+    Call<StockLevel> call = service.createStockLevel(stockLevel);
     asyncCall(call, callback);
   }
 

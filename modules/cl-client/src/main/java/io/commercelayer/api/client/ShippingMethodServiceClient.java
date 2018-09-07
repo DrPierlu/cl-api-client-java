@@ -18,28 +18,19 @@ import java.util.Map;
 import retrofit2.Call;
 
 public class ShippingMethodServiceClient extends AbstractServiceClient {
-  protected ShippingMethodService service;
+  protected final ShippingMethodService service;
+
+  {
+    this.service = initServiceCallFactory(ShippingMethodService.class, ShippingMethod.class);
+  }
 
   public ShippingMethodServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
     super(apiOrg, apiAuth);
-    this.service = apiCaller.getServiceCallFactory(ShippingMethodService.class, ShippingMethod.class);
   }
 
   public ShippingMethodServiceClient(ApiOrganization apiOrg, ApiToken apiToken) throws
       AuthException {
     super(apiOrg, apiToken);
-    this.service = apiCaller.getServiceCallFactory(ShippingMethodService.class, ShippingMethod.class);
-  }
-
-  public ShippingMethod createShippingMethod(ShippingMethod shippingMethod) throws ApiException {
-    Call<ShippingMethod> call = service.createShippingMethod(shippingMethod);
-    return syncCall(call);
-  }
-
-  public void createShippingMethod(ShippingMethod shippingMethod,
-      ApiCallback<ShippingMethod> callback) {
-    Call<ShippingMethod> call = service.createShippingMethod(shippingMethod);
-    asyncCall(call, callback);
   }
 
   public List<ShippingMethod> listShippingMethods(Map<String, String> queryStringParams) throws
@@ -61,6 +52,17 @@ public class ShippingMethodServiceClient extends AbstractServiceClient {
 
   public void listShippingMethods(ApiCallback<List<ShippingMethod>> callback) {
     Call<List<ShippingMethod>> call = service.listShippingMethods();
+    asyncCall(call, callback);
+  }
+
+  public ShippingMethod createShippingMethod(ShippingMethod shippingMethod) throws ApiException {
+    Call<ShippingMethod> call = service.createShippingMethod(shippingMethod);
+    return syncCall(call);
+  }
+
+  public void createShippingMethod(ShippingMethod shippingMethod,
+      ApiCallback<ShippingMethod> callback) {
+    Call<ShippingMethod> call = service.createShippingMethod(shippingMethod);
     asyncCall(call, callback);
   }
 

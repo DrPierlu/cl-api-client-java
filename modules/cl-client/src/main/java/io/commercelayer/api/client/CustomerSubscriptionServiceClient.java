@@ -15,30 +15,20 @@ import java.util.Map;
 import retrofit2.Call;
 
 public class CustomerSubscriptionServiceClient extends AbstractServiceClient {
-  protected CustomerSubscriptionService service;
+  protected final CustomerSubscriptionService service;
+
+  {
+    this.service = initServiceCallFactory(CustomerSubscriptionService.class, CustomerSubscription.class);
+  }
 
   public CustomerSubscriptionServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws
       AuthException {
     super(apiOrg, apiAuth);
-    this.service = apiCaller.getServiceCallFactory(CustomerSubscriptionService.class, CustomerSubscription.class);
   }
 
   public CustomerSubscriptionServiceClient(ApiOrganization apiOrg, ApiToken apiToken) throws
       AuthException {
     super(apiOrg, apiToken);
-    this.service = apiCaller.getServiceCallFactory(CustomerSubscriptionService.class, CustomerSubscription.class);
-  }
-
-  public CustomerSubscription createCustomerSubscription(CustomerSubscription customerSubscription)
-      throws ApiException {
-    Call<CustomerSubscription> call = service.createCustomerSubscription(customerSubscription);
-    return syncCall(call);
-  }
-
-  public void createCustomerSubscription(CustomerSubscription customerSubscription,
-      ApiCallback<CustomerSubscription> callback) {
-    Call<CustomerSubscription> call = service.createCustomerSubscription(customerSubscription);
-    asyncCall(call, callback);
   }
 
   public List<CustomerSubscription> listCustomerSubscriptions(Map<String, String> queryStringParams)
@@ -60,6 +50,18 @@ public class CustomerSubscriptionServiceClient extends AbstractServiceClient {
 
   public void listCustomerSubscriptions(ApiCallback<List<CustomerSubscription>> callback) {
     Call<List<CustomerSubscription>> call = service.listCustomerSubscriptions();
+    asyncCall(call, callback);
+  }
+
+  public CustomerSubscription createCustomerSubscription(CustomerSubscription customerSubscription)
+      throws ApiException {
+    Call<CustomerSubscription> call = service.createCustomerSubscription(customerSubscription);
+    return syncCall(call);
+  }
+
+  public void createCustomerSubscription(CustomerSubscription customerSubscription,
+      ApiCallback<CustomerSubscription> callback) {
+    Call<CustomerSubscription> call = service.createCustomerSubscription(customerSubscription);
     asyncCall(call, callback);
   }
 

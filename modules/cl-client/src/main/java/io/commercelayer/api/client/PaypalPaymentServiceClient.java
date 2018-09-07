@@ -15,28 +15,19 @@ import java.util.Map;
 import retrofit2.Call;
 
 public class PaypalPaymentServiceClient extends AbstractServiceClient {
-  protected PaypalPaymentService service;
+  protected final PaypalPaymentService service;
+
+  {
+    this.service = initServiceCallFactory(PaypalPaymentService.class, PaypalPayment.class);
+  }
 
   public PaypalPaymentServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
     super(apiOrg, apiAuth);
-    this.service = apiCaller.getServiceCallFactory(PaypalPaymentService.class, PaypalPayment.class);
   }
 
   public PaypalPaymentServiceClient(ApiOrganization apiOrg, ApiToken apiToken) throws
       AuthException {
     super(apiOrg, apiToken);
-    this.service = apiCaller.getServiceCallFactory(PaypalPaymentService.class, PaypalPayment.class);
-  }
-
-  public PaypalPayment createPaypalPayment(PaypalPayment paypalPayment) throws ApiException {
-    Call<PaypalPayment> call = service.createPaypalPayment(paypalPayment);
-    return syncCall(call);
-  }
-
-  public void createPaypalPayment(PaypalPayment paypalPayment,
-      ApiCallback<PaypalPayment> callback) {
-    Call<PaypalPayment> call = service.createPaypalPayment(paypalPayment);
-    asyncCall(call, callback);
   }
 
   public List<PaypalPayment> listPaypalPayments(Map<String, String> queryStringParams) throws
@@ -58,6 +49,17 @@ public class PaypalPaymentServiceClient extends AbstractServiceClient {
 
   public void listPaypalPayments(ApiCallback<List<PaypalPayment>> callback) {
     Call<List<PaypalPayment>> call = service.listPaypalPayments();
+    asyncCall(call, callback);
+  }
+
+  public PaypalPayment createPaypalPayment(PaypalPayment paypalPayment) throws ApiException {
+    Call<PaypalPayment> call = service.createPaypalPayment(paypalPayment);
+    return syncCall(call);
+  }
+
+  public void createPaypalPayment(PaypalPayment paypalPayment,
+      ApiCallback<PaypalPayment> callback) {
+    Call<PaypalPayment> call = service.createPaypalPayment(paypalPayment);
     asyncCall(call, callback);
   }
 

@@ -16,30 +16,20 @@ import java.util.Map;
 import retrofit2.Call;
 
 public class CustomerAddressServiceClient extends AbstractServiceClient {
-  protected CustomerAddressService service;
+  protected final CustomerAddressService service;
+
+  {
+    this.service = initServiceCallFactory(CustomerAddressService.class, CustomerAddress.class);
+  }
 
   public CustomerAddressServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws
       AuthException {
     super(apiOrg, apiAuth);
-    this.service = apiCaller.getServiceCallFactory(CustomerAddressService.class, CustomerAddress.class);
   }
 
   public CustomerAddressServiceClient(ApiOrganization apiOrg, ApiToken apiToken) throws
       AuthException {
     super(apiOrg, apiToken);
-    this.service = apiCaller.getServiceCallFactory(CustomerAddressService.class, CustomerAddress.class);
-  }
-
-  public CustomerAddress createCustomerAddress(CustomerAddress customerAddress) throws
-      ApiException {
-    Call<CustomerAddress> call = service.createCustomerAddress(customerAddress);
-    return syncCall(call);
-  }
-
-  public void createCustomerAddress(CustomerAddress customerAddress,
-      ApiCallback<CustomerAddress> callback) {
-    Call<CustomerAddress> call = service.createCustomerAddress(customerAddress);
-    asyncCall(call, callback);
   }
 
   public List<CustomerAddress> listCustomerAddresses(Map<String, String> queryStringParams) throws
@@ -61,6 +51,18 @@ public class CustomerAddressServiceClient extends AbstractServiceClient {
 
   public void listCustomerAddresses(ApiCallback<List<CustomerAddress>> callback) {
     Call<List<CustomerAddress>> call = service.listCustomerAddresses();
+    asyncCall(call, callback);
+  }
+
+  public CustomerAddress createCustomerAddress(CustomerAddress customerAddress) throws
+      ApiException {
+    Call<CustomerAddress> call = service.createCustomerAddress(customerAddress);
+    return syncCall(call);
+  }
+
+  public void createCustomerAddress(CustomerAddress customerAddress,
+      ApiCallback<CustomerAddress> callback) {
+    Call<CustomerAddress> call = service.createCustomerAddress(customerAddress);
     asyncCall(call, callback);
   }
 

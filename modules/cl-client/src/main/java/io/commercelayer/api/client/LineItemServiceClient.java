@@ -16,26 +16,18 @@ import java.util.Map;
 import retrofit2.Call;
 
 public class LineItemServiceClient extends AbstractServiceClient {
-  protected LineItemService service;
+  protected final LineItemService service;
+
+  {
+    this.service = initServiceCallFactory(LineItemService.class, LineItem.class);
+  }
 
   public LineItemServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
     super(apiOrg, apiAuth);
-    this.service = apiCaller.getServiceCallFactory(LineItemService.class, LineItem.class);
   }
 
   public LineItemServiceClient(ApiOrganization apiOrg, ApiToken apiToken) throws AuthException {
     super(apiOrg, apiToken);
-    this.service = apiCaller.getServiceCallFactory(LineItemService.class, LineItem.class);
-  }
-
-  public LineItem createLineItem(LineItem lineItem) throws ApiException {
-    Call<LineItem> call = service.createLineItem(lineItem);
-    return syncCall(call);
-  }
-
-  public void createLineItem(LineItem lineItem, ApiCallback<LineItem> callback) {
-    Call<LineItem> call = service.createLineItem(lineItem);
-    asyncCall(call, callback);
   }
 
   public List<LineItem> listLineItems(Map<String, String> queryStringParams) throws ApiException {
@@ -56,6 +48,16 @@ public class LineItemServiceClient extends AbstractServiceClient {
 
   public void listLineItems(ApiCallback<List<LineItem>> callback) {
     Call<List<LineItem>> call = service.listLineItems();
+    asyncCall(call, callback);
+  }
+
+  public LineItem createLineItem(LineItem lineItem) throws ApiException {
+    Call<LineItem> call = service.createLineItem(lineItem);
+    return syncCall(call);
+  }
+
+  public void createLineItem(LineItem lineItem, ApiCallback<LineItem> callback) {
+    Call<LineItem> call = service.createLineItem(lineItem);
     asyncCall(call, callback);
   }
 

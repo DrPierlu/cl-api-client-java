@@ -15,26 +15,18 @@ import java.util.Map;
 import retrofit2.Call;
 
 public class SkuOptionServiceClient extends AbstractServiceClient {
-  protected SkuOptionService service;
+  protected final SkuOptionService service;
+
+  {
+    this.service = initServiceCallFactory(SkuOptionService.class, SkuOption.class);
+  }
 
   public SkuOptionServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
     super(apiOrg, apiAuth);
-    this.service = apiCaller.getServiceCallFactory(SkuOptionService.class, SkuOption.class);
   }
 
   public SkuOptionServiceClient(ApiOrganization apiOrg, ApiToken apiToken) throws AuthException {
     super(apiOrg, apiToken);
-    this.service = apiCaller.getServiceCallFactory(SkuOptionService.class, SkuOption.class);
-  }
-
-  public SkuOption createSkuOption(SkuOption skuOption) throws ApiException {
-    Call<SkuOption> call = service.createSkuOption(skuOption);
-    return syncCall(call);
-  }
-
-  public void createSkuOption(SkuOption skuOption, ApiCallback<SkuOption> callback) {
-    Call<SkuOption> call = service.createSkuOption(skuOption);
-    asyncCall(call, callback);
   }
 
   public List<SkuOption> listSkuOptions(Map<String, String> queryStringParams) throws ApiException {
@@ -55,6 +47,16 @@ public class SkuOptionServiceClient extends AbstractServiceClient {
 
   public void listSkuOptions(ApiCallback<List<SkuOption>> callback) {
     Call<List<SkuOption>> call = service.listSkuOptions();
+    asyncCall(call, callback);
+  }
+
+  public SkuOption createSkuOption(SkuOption skuOption) throws ApiException {
+    Call<SkuOption> call = service.createSkuOption(skuOption);
+    return syncCall(call);
+  }
+
+  public void createSkuOption(SkuOption skuOption, ApiCallback<SkuOption> callback) {
+    Call<SkuOption> call = service.createSkuOption(skuOption);
     asyncCall(call, callback);
   }
 

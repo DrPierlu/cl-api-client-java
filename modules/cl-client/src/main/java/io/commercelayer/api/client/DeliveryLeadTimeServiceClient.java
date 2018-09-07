@@ -16,30 +16,20 @@ import java.util.Map;
 import retrofit2.Call;
 
 public class DeliveryLeadTimeServiceClient extends AbstractServiceClient {
-  protected DeliveryLeadTimeService service;
+  protected final DeliveryLeadTimeService service;
+
+  {
+    this.service = initServiceCallFactory(DeliveryLeadTimeService.class, DeliveryLeadTime.class);
+  }
 
   public DeliveryLeadTimeServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws
       AuthException {
     super(apiOrg, apiAuth);
-    this.service = apiCaller.getServiceCallFactory(DeliveryLeadTimeService.class, DeliveryLeadTime.class);
   }
 
   public DeliveryLeadTimeServiceClient(ApiOrganization apiOrg, ApiToken apiToken) throws
       AuthException {
     super(apiOrg, apiToken);
-    this.service = apiCaller.getServiceCallFactory(DeliveryLeadTimeService.class, DeliveryLeadTime.class);
-  }
-
-  public DeliveryLeadTime createDeliveryLeadTime(DeliveryLeadTime deliveryLeadTime) throws
-      ApiException {
-    Call<DeliveryLeadTime> call = service.createDeliveryLeadTime(deliveryLeadTime);
-    return syncCall(call);
-  }
-
-  public void createDeliveryLeadTime(DeliveryLeadTime deliveryLeadTime,
-      ApiCallback<DeliveryLeadTime> callback) {
-    Call<DeliveryLeadTime> call = service.createDeliveryLeadTime(deliveryLeadTime);
-    asyncCall(call, callback);
   }
 
   public List<DeliveryLeadTime> listDeliveryLeadTimes(Map<String, String> queryStringParams) throws
@@ -61,6 +51,18 @@ public class DeliveryLeadTimeServiceClient extends AbstractServiceClient {
 
   public void listDeliveryLeadTimes(ApiCallback<List<DeliveryLeadTime>> callback) {
     Call<List<DeliveryLeadTime>> call = service.listDeliveryLeadTimes();
+    asyncCall(call, callback);
+  }
+
+  public DeliveryLeadTime createDeliveryLeadTime(DeliveryLeadTime deliveryLeadTime) throws
+      ApiException {
+    Call<DeliveryLeadTime> call = service.createDeliveryLeadTime(deliveryLeadTime);
+    return syncCall(call);
+  }
+
+  public void createDeliveryLeadTime(DeliveryLeadTime deliveryLeadTime,
+      ApiCallback<DeliveryLeadTime> callback) {
+    Call<DeliveryLeadTime> call = service.createDeliveryLeadTime(deliveryLeadTime);
     asyncCall(call, callback);
   }
 

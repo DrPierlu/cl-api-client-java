@@ -15,26 +15,18 @@ import java.util.Map;
 import retrofit2.Call;
 
 public class ParcelServiceClient extends AbstractServiceClient {
-  protected ParcelService service;
+  protected final ParcelService service;
+
+  {
+    this.service = initServiceCallFactory(ParcelService.class, Parcel.class);
+  }
 
   public ParcelServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
     super(apiOrg, apiAuth);
-    this.service = apiCaller.getServiceCallFactory(ParcelService.class, Parcel.class);
   }
 
   public ParcelServiceClient(ApiOrganization apiOrg, ApiToken apiToken) throws AuthException {
     super(apiOrg, apiToken);
-    this.service = apiCaller.getServiceCallFactory(ParcelService.class, Parcel.class);
-  }
-
-  public Parcel createParcel(Parcel parcel) throws ApiException {
-    Call<Parcel> call = service.createParcel(parcel);
-    return syncCall(call);
-  }
-
-  public void createParcel(Parcel parcel, ApiCallback<Parcel> callback) {
-    Call<Parcel> call = service.createParcel(parcel);
-    asyncCall(call, callback);
   }
 
   public List<Parcel> listParcels(Map<String, String> queryStringParams) throws ApiException {
@@ -55,6 +47,16 @@ public class ParcelServiceClient extends AbstractServiceClient {
 
   public void listParcels(ApiCallback<List<Parcel>> callback) {
     Call<List<Parcel>> call = service.listParcels();
+    asyncCall(call, callback);
+  }
+
+  public Parcel createParcel(Parcel parcel) throws ApiException {
+    Call<Parcel> call = service.createParcel(parcel);
+    return syncCall(call);
+  }
+
+  public void createParcel(Parcel parcel, ApiCallback<Parcel> callback) {
+    Call<Parcel> call = service.createParcel(parcel);
     asyncCall(call, callback);
   }
 

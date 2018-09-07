@@ -18,26 +18,18 @@ import java.util.Map;
 import retrofit2.Call;
 
 public class CustomerServiceClient extends AbstractServiceClient {
-  protected CustomerService service;
+  protected final CustomerService service;
+
+  {
+    this.service = initServiceCallFactory(CustomerService.class, Customer.class);
+  }
 
   public CustomerServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
     super(apiOrg, apiAuth);
-    this.service = apiCaller.getServiceCallFactory(CustomerService.class, Customer.class);
   }
 
   public CustomerServiceClient(ApiOrganization apiOrg, ApiToken apiToken) throws AuthException {
     super(apiOrg, apiToken);
-    this.service = apiCaller.getServiceCallFactory(CustomerService.class, Customer.class);
-  }
-
-  public Customer createCustomer(Customer customer) throws ApiException {
-    Call<Customer> call = service.createCustomer(customer);
-    return syncCall(call);
-  }
-
-  public void createCustomer(Customer customer, ApiCallback<Customer> callback) {
-    Call<Customer> call = service.createCustomer(customer);
-    asyncCall(call, callback);
   }
 
   public List<Customer> listCustomers(Map<String, String> queryStringParams) throws ApiException {
@@ -58,6 +50,16 @@ public class CustomerServiceClient extends AbstractServiceClient {
 
   public void listCustomers(ApiCallback<List<Customer>> callback) {
     Call<List<Customer>> call = service.listCustomers();
+    asyncCall(call, callback);
+  }
+
+  public Customer createCustomer(Customer customer) throws ApiException {
+    Call<Customer> call = service.createCustomer(customer);
+    return syncCall(call);
+  }
+
+  public void createCustomer(Customer customer, ApiCallback<Customer> callback) {
+    Call<Customer> call = service.createCustomer(customer);
     asyncCall(call, callback);
   }
 

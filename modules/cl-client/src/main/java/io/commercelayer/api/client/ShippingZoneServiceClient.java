@@ -14,26 +14,18 @@ import java.util.Map;
 import retrofit2.Call;
 
 public class ShippingZoneServiceClient extends AbstractServiceClient {
-  protected ShippingZoneService service;
+  protected final ShippingZoneService service;
+
+  {
+    this.service = initServiceCallFactory(ShippingZoneService.class, ShippingZone.class);
+  }
 
   public ShippingZoneServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
     super(apiOrg, apiAuth);
-    this.service = apiCaller.getServiceCallFactory(ShippingZoneService.class, ShippingZone.class);
   }
 
   public ShippingZoneServiceClient(ApiOrganization apiOrg, ApiToken apiToken) throws AuthException {
     super(apiOrg, apiToken);
-    this.service = apiCaller.getServiceCallFactory(ShippingZoneService.class, ShippingZone.class);
-  }
-
-  public ShippingZone createShippingZone(ShippingZone shippingZone) throws ApiException {
-    Call<ShippingZone> call = service.createShippingZone(shippingZone);
-    return syncCall(call);
-  }
-
-  public void createShippingZone(ShippingZone shippingZone, ApiCallback<ShippingZone> callback) {
-    Call<ShippingZone> call = service.createShippingZone(shippingZone);
-    asyncCall(call, callback);
   }
 
   public List<ShippingZone> listShippingZones(Map<String, String> queryStringParams) throws
@@ -55,6 +47,16 @@ public class ShippingZoneServiceClient extends AbstractServiceClient {
 
   public void listShippingZones(ApiCallback<List<ShippingZone>> callback) {
     Call<List<ShippingZone>> call = service.listShippingZones();
+    asyncCall(call, callback);
+  }
+
+  public ShippingZone createShippingZone(ShippingZone shippingZone) throws ApiException {
+    Call<ShippingZone> call = service.createShippingZone(shippingZone);
+    return syncCall(call);
+  }
+
+  public void createShippingZone(ShippingZone shippingZone, ApiCallback<ShippingZone> callback) {
+    Call<ShippingZone> call = service.createShippingZone(shippingZone);
     asyncCall(call, callback);
   }
 

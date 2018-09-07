@@ -15,30 +15,20 @@ import java.util.Map;
 import retrofit2.Call;
 
 public class CustomerPasswordResetServiceClient extends AbstractServiceClient {
-  protected CustomerPasswordResetService service;
+  protected final CustomerPasswordResetService service;
+
+  {
+    this.service = initServiceCallFactory(CustomerPasswordResetService.class, CustomerPasswordReset.class);
+  }
 
   public CustomerPasswordResetServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws
       AuthException {
     super(apiOrg, apiAuth);
-    this.service = apiCaller.getServiceCallFactory(CustomerPasswordResetService.class, CustomerPasswordReset.class);
   }
 
   public CustomerPasswordResetServiceClient(ApiOrganization apiOrg, ApiToken apiToken) throws
       AuthException {
     super(apiOrg, apiToken);
-    this.service = apiCaller.getServiceCallFactory(CustomerPasswordResetService.class, CustomerPasswordReset.class);
-  }
-
-  public CustomerPasswordReset createCustomerPasswordReset(
-      CustomerPasswordReset customerPasswordReset) throws ApiException {
-    Call<CustomerPasswordReset> call = service.createCustomerPasswordReset(customerPasswordReset);
-    return syncCall(call);
-  }
-
-  public void createCustomerPasswordReset(CustomerPasswordReset customerPasswordReset,
-      ApiCallback<CustomerPasswordReset> callback) {
-    Call<CustomerPasswordReset> call = service.createCustomerPasswordReset(customerPasswordReset);
-    asyncCall(call, callback);
   }
 
   public List<CustomerPasswordReset> listCustomerPasswordResets(
@@ -60,6 +50,18 @@ public class CustomerPasswordResetServiceClient extends AbstractServiceClient {
 
   public void listCustomerPasswordResets(ApiCallback<List<CustomerPasswordReset>> callback) {
     Call<List<CustomerPasswordReset>> call = service.listCustomerPasswordResets();
+    asyncCall(call, callback);
+  }
+
+  public CustomerPasswordReset createCustomerPasswordReset(
+      CustomerPasswordReset customerPasswordReset) throws ApiException {
+    Call<CustomerPasswordReset> call = service.createCustomerPasswordReset(customerPasswordReset);
+    return syncCall(call);
+  }
+
+  public void createCustomerPasswordReset(CustomerPasswordReset customerPasswordReset,
+      ApiCallback<CustomerPasswordReset> callback) {
+    Call<CustomerPasswordReset> call = service.createCustomerPasswordReset(customerPasswordReset);
     asyncCall(call, callback);
   }
 

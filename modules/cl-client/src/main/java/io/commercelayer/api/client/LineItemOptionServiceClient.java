@@ -16,28 +16,19 @@ import java.util.Map;
 import retrofit2.Call;
 
 public class LineItemOptionServiceClient extends AbstractServiceClient {
-  protected LineItemOptionService service;
+  protected final LineItemOptionService service;
+
+  {
+    this.service = initServiceCallFactory(LineItemOptionService.class, LineItemOption.class);
+  }
 
   public LineItemOptionServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
     super(apiOrg, apiAuth);
-    this.service = apiCaller.getServiceCallFactory(LineItemOptionService.class, LineItemOption.class);
   }
 
   public LineItemOptionServiceClient(ApiOrganization apiOrg, ApiToken apiToken) throws
       AuthException {
     super(apiOrg, apiToken);
-    this.service = apiCaller.getServiceCallFactory(LineItemOptionService.class, LineItemOption.class);
-  }
-
-  public LineItemOption createLineItemOption(LineItemOption lineItemOption) throws ApiException {
-    Call<LineItemOption> call = service.createLineItemOption(lineItemOption);
-    return syncCall(call);
-  }
-
-  public void createLineItemOption(LineItemOption lineItemOption,
-      ApiCallback<LineItemOption> callback) {
-    Call<LineItemOption> call = service.createLineItemOption(lineItemOption);
-    asyncCall(call, callback);
   }
 
   public List<LineItemOption> listLineItemOptions(Map<String, String> queryStringParams) throws
@@ -59,6 +50,17 @@ public class LineItemOptionServiceClient extends AbstractServiceClient {
 
   public void listLineItemOptions(ApiCallback<List<LineItemOption>> callback) {
     Call<List<LineItemOption>> call = service.listLineItemOptions();
+    asyncCall(call, callback);
+  }
+
+  public LineItemOption createLineItemOption(LineItemOption lineItemOption) throws ApiException {
+    Call<LineItemOption> call = service.createLineItemOption(lineItemOption);
+    return syncCall(call);
+  }
+
+  public void createLineItemOption(LineItemOption lineItemOption,
+      ApiCallback<LineItemOption> callback) {
+    Call<LineItemOption> call = service.createLineItemOption(lineItemOption);
     asyncCall(call, callback);
   }
 

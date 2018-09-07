@@ -21,26 +21,18 @@ import java.util.Map;
 import retrofit2.Call;
 
 public class ShipmentServiceClient extends AbstractServiceClient {
-  protected ShipmentService service;
+  protected final ShipmentService service;
+
+  {
+    this.service = initServiceCallFactory(ShipmentService.class, Shipment.class);
+  }
 
   public ShipmentServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
     super(apiOrg, apiAuth);
-    this.service = apiCaller.getServiceCallFactory(ShipmentService.class, Shipment.class);
   }
 
   public ShipmentServiceClient(ApiOrganization apiOrg, ApiToken apiToken) throws AuthException {
     super(apiOrg, apiToken);
-    this.service = apiCaller.getServiceCallFactory(ShipmentService.class, Shipment.class);
-  }
-
-  public Shipment createShipment(Shipment shipment) throws ApiException {
-    Call<Shipment> call = service.createShipment(shipment);
-    return syncCall(call);
-  }
-
-  public void createShipment(Shipment shipment, ApiCallback<Shipment> callback) {
-    Call<Shipment> call = service.createShipment(shipment);
-    asyncCall(call, callback);
   }
 
   public List<Shipment> listShipments(Map<String, String> queryStringParams) throws ApiException {
@@ -61,6 +53,16 @@ public class ShipmentServiceClient extends AbstractServiceClient {
 
   public void listShipments(ApiCallback<List<Shipment>> callback) {
     Call<List<Shipment>> call = service.listShipments();
+    asyncCall(call, callback);
+  }
+
+  public Shipment createShipment(Shipment shipment) throws ApiException {
+    Call<Shipment> call = service.createShipment(shipment);
+    return syncCall(call);
+  }
+
+  public void createShipment(Shipment shipment, ApiCallback<Shipment> callback) {
+    Call<Shipment> call = service.createShipment(shipment);
     asyncCall(call, callback);
   }
 

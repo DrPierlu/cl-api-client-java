@@ -6,27 +6,38 @@ import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.client.exception.ConnectionException;
 import io.commercelayer.api.model.common.ApiOrganization;
+import moe.banana.jsonapi2.Resource;
 import retrofit2.Call;
 
 public abstract class AbstractServiceClient {
 
-	protected ApiCaller apiCaller;
+	private ApiCaller apiCaller;
+	
 	
 	public AbstractServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
-		ApiToken token = new ApiAuthenticator(apiOrg).authenticate(apiAuth);
-		this.apiCaller = new ApiCaller(apiOrg, token);
+		ApiToken apiToken = new ApiAuthenticator(apiOrg).authenticate(apiAuth);
+		initApiCaller(apiOrg, apiToken);
 	}
 	
 	public AbstractServiceClient(ApiOrganization apiOrg, ApiToken apiToken) {
+		initApiCaller(apiOrg, apiToken);
+	}
+	
+	private void initApiCaller(ApiOrganization apiOrg, ApiToken apiToken) {
 		this.apiCaller = new ApiCaller(apiOrg, apiToken);
 	}
 	
+	@SafeVarargs
+	protected final <T> T initServiceCallFactory(Class<T> service, Class<? extends Resource>... resources) {
+		return this.apiCaller.getServiceCallFactory(service, resources);
+	}
+	
 	protected <T> T syncCall(Call<T> apiCall) throws ConnectionException, ApiException {
-		return apiCaller.call(apiCall);
+		return this.apiCaller.call(apiCall);
 	}
 	
 	protected <T> void asyncCall(Call<T> apiCall, ApiCallback<T> apiCallback) {
-		apiCaller.call(apiCall, apiCallback);
+		this.apiCaller.call(apiCall, apiCallback);
 	}
 	
 }

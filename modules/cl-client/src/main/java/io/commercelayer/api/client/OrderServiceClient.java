@@ -21,26 +21,18 @@ import java.util.Map;
 import retrofit2.Call;
 
 public class OrderServiceClient extends AbstractServiceClient {
-  protected OrderService service;
+  protected final OrderService service;
+
+  {
+    this.service = initServiceCallFactory(OrderService.class, Order.class);
+  }
 
   public OrderServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
     super(apiOrg, apiAuth);
-    this.service = apiCaller.getServiceCallFactory(OrderService.class, Order.class);
   }
 
   public OrderServiceClient(ApiOrganization apiOrg, ApiToken apiToken) throws AuthException {
     super(apiOrg, apiToken);
-    this.service = apiCaller.getServiceCallFactory(OrderService.class, Order.class);
-  }
-
-  public Order createOrder(Order order) throws ApiException {
-    Call<Order> call = service.createOrder(order);
-    return syncCall(call);
-  }
-
-  public void createOrder(Order order, ApiCallback<Order> callback) {
-    Call<Order> call = service.createOrder(order);
-    asyncCall(call, callback);
   }
 
   public List<Order> listOrders(Map<String, String> queryStringParams) throws ApiException {
@@ -60,6 +52,16 @@ public class OrderServiceClient extends AbstractServiceClient {
 
   public void listOrders(ApiCallback<List<Order>> callback) {
     Call<List<Order>> call = service.listOrders();
+    asyncCall(call, callback);
+  }
+
+  public Order createOrder(Order order) throws ApiException {
+    Call<Order> call = service.createOrder(order);
+    return syncCall(call);
+  }
+
+  public void createOrder(Order order, ApiCallback<Order> callback) {
+    Call<Order> call = service.createOrder(order);
     asyncCall(call, callback);
   }
 

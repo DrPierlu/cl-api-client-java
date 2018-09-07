@@ -83,9 +83,9 @@ public class RetrofitServiceClientGenerator implements ServiceGenerator {
 		final ClassName serviceClassName = ClassName.get(ServiceGeneratorUtils.SERVICE_BASE_PACKAGE, String.format("%sService", resourceName));
 		final ClassName resourceClassName = ClassName.get(ModelGeneratorUtils.MODEL_BASE_PACKAGE, resourceName);
 		
-		FieldSpec.Builder field = FieldSpec.builder(serviceClassName, "service", Modifier.PROTECTED);
-		service.addField(field.build());
-		
+		// Service client field
+		createServiceField(service, serviceClassName, resourceClassName);
+		// Class constructors
 		createConstructors(service, serviceClassName, resourceClassName);
 		
 		
@@ -231,8 +231,17 @@ public class RetrofitServiceClientGenerator implements ServiceGenerator {
 	}
 	
 	
-	private void createConstructors(TypeSpec.Builder service, ClassName serviceClassName, ClassName resourceClassName) {
+	private void createServiceField(TypeSpec.Builder service, ClassName serviceClassName, ClassName resourceClassName) {
 		
+		FieldSpec.Builder field = FieldSpec.builder(serviceClassName, "service", Modifier.PROTECTED, Modifier.FINAL);
+		service.addField(field.build());
+		
+		CodeBlock initBlock = CodeBlock.builder().addStatement("this.service = initServiceCallFactory($T.class, $T.class)", serviceClassName, resourceClassName).build();
+		service.addInitializerBlock(initBlock);
+		
+	}
+	
+	private void createConstructors(TypeSpec.Builder service, ClassName serviceClassName, ClassName resourceClassName) {
 		
 		MethodSpec constAuth = MethodSpec.constructorBuilder()
 		    .addModifiers(Modifier.PUBLIC)
@@ -240,7 +249,7 @@ public class RetrofitServiceClientGenerator implements ServiceGenerator {
 		    .addParameter(ApiOrganization.class, "apiOrg")
 		    .addParameter(ApiAuth.class, "apiAuth")
 		    .addStatement("super(apiOrg, apiAuth)")
-		    .addStatement("this.service = apiCaller.getServiceCallFactory($T.class, $T.class)", serviceClassName, resourceClassName)
+//		    .addStatement("this.service = apiCaller.getServiceCallFactory($T.class, $T.class)", serviceClassName, resourceClassName)
 		    .build();
 		
 		service.addMethod(constAuth);
@@ -252,7 +261,7 @@ public class RetrofitServiceClientGenerator implements ServiceGenerator {
 		    .addParameter(ApiOrganization.class, "apiOrg")
 		    .addParameter(ApiToken.class, "apiToken")
 		    .addStatement("super(apiOrg, apiToken)")
-		    .addStatement("this.service = apiCaller.getServiceCallFactory($T.class, $T.class)", serviceClassName, resourceClassName)
+//		    .addStatement("this.service = apiCaller.getServiceCallFactory($T.class, $T.class)", serviceClassName, resourceClassName)
 		    .build();
 		
 		service.addMethod(constToken);

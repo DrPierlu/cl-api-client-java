@@ -113,7 +113,6 @@ public class ApiCaller {
 	}
 	
 	
-
 	public final <T> T getServiceCallFactory(Class<T> service) {
 		return getServiceCallFactory(service, (Class<? extends Resource>[])null);
 	}

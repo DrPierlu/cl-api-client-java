@@ -15,26 +15,18 @@ import java.util.Map;
 import retrofit2.Call;
 
 public class AddressServiceClient extends AbstractServiceClient {
-  protected AddressService service;
+  protected final AddressService service;
+
+  {
+    this.service = initServiceCallFactory(AddressService.class, Address.class);
+  }
 
   public AddressServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
     super(apiOrg, apiAuth);
-    this.service = apiCaller.getServiceCallFactory(AddressService.class, Address.class);
   }
 
   public AddressServiceClient(ApiOrganization apiOrg, ApiToken apiToken) throws AuthException {
     super(apiOrg, apiToken);
-    this.service = apiCaller.getServiceCallFactory(AddressService.class, Address.class);
-  }
-
-  public Address createAddress(Address address) throws ApiException {
-    Call<Address> call = service.createAddress(address);
-    return syncCall(call);
-  }
-
-  public void createAddress(Address address, ApiCallback<Address> callback) {
-    Call<Address> call = service.createAddress(address);
-    asyncCall(call, callback);
   }
 
   public List<Address> listAddresses(Map<String, String> queryStringParams) throws ApiException {
@@ -55,6 +47,16 @@ public class AddressServiceClient extends AbstractServiceClient {
 
   public void listAddresses(ApiCallback<List<Address>> callback) {
     Call<List<Address>> call = service.listAddresses();
+    asyncCall(call, callback);
+  }
+
+  public Address createAddress(Address address) throws ApiException {
+    Call<Address> call = service.createAddress(address);
+    return syncCall(call);
+  }
+
+  public void createAddress(Address address, ApiCallback<Address> callback) {
+    Call<Address> call = service.createAddress(address);
     asyncCall(call, callback);
   }
 

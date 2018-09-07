@@ -14,26 +14,18 @@ import java.util.Map;
 import retrofit2.Call;
 
 public class WebhookServiceClient extends AbstractServiceClient {
-  protected WebhookService service;
+  protected final WebhookService service;
+
+  {
+    this.service = initServiceCallFactory(WebhookService.class, Webhook.class);
+  }
 
   public WebhookServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
     super(apiOrg, apiAuth);
-    this.service = apiCaller.getServiceCallFactory(WebhookService.class, Webhook.class);
   }
 
   public WebhookServiceClient(ApiOrganization apiOrg, ApiToken apiToken) throws AuthException {
     super(apiOrg, apiToken);
-    this.service = apiCaller.getServiceCallFactory(WebhookService.class, Webhook.class);
-  }
-
-  public Webhook createWebhook(Webhook webhook) throws ApiException {
-    Call<Webhook> call = service.createWebhook(webhook);
-    return syncCall(call);
-  }
-
-  public void createWebhook(Webhook webhook, ApiCallback<Webhook> callback) {
-    Call<Webhook> call = service.createWebhook(webhook);
-    asyncCall(call, callback);
   }
 
   public List<Webhook> listWebhooks(Map<String, String> queryStringParams) throws ApiException {
@@ -54,6 +46,16 @@ public class WebhookServiceClient extends AbstractServiceClient {
 
   public void listWebhooks(ApiCallback<List<Webhook>> callback) {
     Call<List<Webhook>> call = service.listWebhooks();
+    asyncCall(call, callback);
+  }
+
+  public Webhook createWebhook(Webhook webhook) throws ApiException {
+    Call<Webhook> call = service.createWebhook(webhook);
+    return syncCall(call);
+  }
+
+  public void createWebhook(Webhook webhook, ApiCallback<Webhook> callback) {
+    Call<Webhook> call = service.createWebhook(webhook);
     asyncCall(call, callback);
   }
 

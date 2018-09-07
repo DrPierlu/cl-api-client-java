@@ -15,28 +15,19 @@ import java.util.Map;
 import retrofit2.Call;
 
 public class InventoryModelServiceClient extends AbstractServiceClient {
-  protected InventoryModelService service;
+  protected final InventoryModelService service;
+
+  {
+    this.service = initServiceCallFactory(InventoryModelService.class, InventoryModel.class);
+  }
 
   public InventoryModelServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
     super(apiOrg, apiAuth);
-    this.service = apiCaller.getServiceCallFactory(InventoryModelService.class, InventoryModel.class);
   }
 
   public InventoryModelServiceClient(ApiOrganization apiOrg, ApiToken apiToken) throws
       AuthException {
     super(apiOrg, apiToken);
-    this.service = apiCaller.getServiceCallFactory(InventoryModelService.class, InventoryModel.class);
-  }
-
-  public InventoryModel createInventoryModel(InventoryModel inventoryModel) throws ApiException {
-    Call<InventoryModel> call = service.createInventoryModel(inventoryModel);
-    return syncCall(call);
-  }
-
-  public void createInventoryModel(InventoryModel inventoryModel,
-      ApiCallback<InventoryModel> callback) {
-    Call<InventoryModel> call = service.createInventoryModel(inventoryModel);
-    asyncCall(call, callback);
   }
 
   public List<InventoryModel> listInventoryModels(Map<String, String> queryStringParams) throws
@@ -58,6 +49,17 @@ public class InventoryModelServiceClient extends AbstractServiceClient {
 
   public void listInventoryModels(ApiCallback<List<InventoryModel>> callback) {
     Call<List<InventoryModel>> call = service.listInventoryModels();
+    asyncCall(call, callback);
+  }
+
+  public InventoryModel createInventoryModel(InventoryModel inventoryModel) throws ApiException {
+    Call<InventoryModel> call = service.createInventoryModel(inventoryModel);
+    return syncCall(call);
+  }
+
+  public void createInventoryModel(InventoryModel inventoryModel,
+      ApiCallback<InventoryModel> callback) {
+    Call<InventoryModel> call = service.createInventoryModel(inventoryModel);
     asyncCall(call, callback);
   }
 

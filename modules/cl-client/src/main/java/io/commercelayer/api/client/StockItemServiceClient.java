@@ -16,26 +16,18 @@ import java.util.Map;
 import retrofit2.Call;
 
 public class StockItemServiceClient extends AbstractServiceClient {
-  protected StockItemService service;
+  protected final StockItemService service;
+
+  {
+    this.service = initServiceCallFactory(StockItemService.class, StockItem.class);
+  }
 
   public StockItemServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
     super(apiOrg, apiAuth);
-    this.service = apiCaller.getServiceCallFactory(StockItemService.class, StockItem.class);
   }
 
   public StockItemServiceClient(ApiOrganization apiOrg, ApiToken apiToken) throws AuthException {
     super(apiOrg, apiToken);
-    this.service = apiCaller.getServiceCallFactory(StockItemService.class, StockItem.class);
-  }
-
-  public StockItem createStockItem(StockItem stockItem) throws ApiException {
-    Call<StockItem> call = service.createStockItem(stockItem);
-    return syncCall(call);
-  }
-
-  public void createStockItem(StockItem stockItem, ApiCallback<StockItem> callback) {
-    Call<StockItem> call = service.createStockItem(stockItem);
-    asyncCall(call, callback);
   }
 
   public List<StockItem> listStockItems(Map<String, String> queryStringParams) throws ApiException {
@@ -56,6 +48,16 @@ public class StockItemServiceClient extends AbstractServiceClient {
 
   public void listStockItems(ApiCallback<List<StockItem>> callback) {
     Call<List<StockItem>> call = service.listStockItems();
+    asyncCall(call, callback);
+  }
+
+  public StockItem createStockItem(StockItem stockItem) throws ApiException {
+    Call<StockItem> call = service.createStockItem(stockItem);
+    return syncCall(call);
+  }
+
+  public void createStockItem(StockItem stockItem, ApiCallback<StockItem> callback) {
+    Call<StockItem> call = service.createStockItem(stockItem);
     asyncCall(call, callback);
   }
 
