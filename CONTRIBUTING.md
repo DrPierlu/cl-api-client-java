@@ -1,4 +1,4 @@
-# cl-api-java-client
+# CLAPI-Client
 
 ## Contributing
 
