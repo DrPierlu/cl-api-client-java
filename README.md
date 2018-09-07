@@ -1,4 +1,4 @@
-# cl-api-client-java
+# CLAPI-Client
 
 TODO: Project description
 
