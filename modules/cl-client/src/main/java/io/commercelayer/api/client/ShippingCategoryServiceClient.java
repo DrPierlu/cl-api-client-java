@@ -4,6 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
+import io.commercelayer.api.client.common.QueryFilter;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.model.ShippingCategory;
@@ -11,7 +12,6 @@ import io.commercelayer.api.model.Sku;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.ShippingCategoryService;
 import java.util.List;
-import java.util.Map;
 import retrofit2.Call;
 
 public class ShippingCategoryServiceClient extends AbstractServiceClient {
@@ -31,15 +31,15 @@ public class ShippingCategoryServiceClient extends AbstractServiceClient {
     super(apiOrg, apiToken);
   }
 
-  public List<ShippingCategory> listShippingCategories(Map<String, String> queryStringParams) throws
+  public List<ShippingCategory> listShippingCategories(QueryFilter queryFilter) throws
       ApiException {
-    Call<List<ShippingCategory>> call = service.listShippingCategories(queryStringParams);
+    Call<List<ShippingCategory>> call = service.listShippingCategories(queryFilter);
     return syncCall(call);
   }
 
-  public void listShippingCategories(Map<String, String> queryStringParams,
+  public void listShippingCategories(QueryFilter queryFilter,
       ApiCallback<List<ShippingCategory>> callback) {
-    Call<List<ShippingCategory>> call = service.listShippingCategories(queryStringParams);
+    Call<List<ShippingCategory>> call = service.listShippingCategories(queryFilter);
     asyncCall(call, callback);
   }
 
@@ -88,14 +88,14 @@ public class ShippingCategoryServiceClient extends AbstractServiceClient {
   }
 
   public ShippingCategory retrieveShippingCategory(String shippingCategoryId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<ShippingCategory> call = service.retrieveShippingCategory(shippingCategoryId, queryStringParams);
+      QueryFilter queryFilter) throws ApiException {
+    Call<ShippingCategory> call = service.retrieveShippingCategory(shippingCategoryId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveShippingCategory(String shippingCategoryId,
-      Map<String, String> queryStringParams, ApiCallback<ShippingCategory> callback) {
-    Call<ShippingCategory> call = service.retrieveShippingCategory(shippingCategoryId, queryStringParams);
+  public void retrieveShippingCategory(String shippingCategoryId, QueryFilter queryFilter,
+      ApiCallback<ShippingCategory> callback) {
+    Call<ShippingCategory> call = service.retrieveShippingCategory(shippingCategoryId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -110,15 +110,15 @@ public class ShippingCategoryServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public List<Sku> listShippingCategorySkus(String shippingCategoryId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<List<Sku>> call = service.listShippingCategorySkus(shippingCategoryId, queryStringParams);
+  public List<Sku> listShippingCategorySkus(String shippingCategoryId, QueryFilter queryFilter)
+      throws ApiException {
+    Call<List<Sku>> call = service.listShippingCategorySkus(shippingCategoryId, queryFilter);
     return syncCall(call);
   }
 
-  public void listShippingCategorySkus(String shippingCategoryId,
-      Map<String, String> queryStringParams, ApiCallback<List<Sku>> callback) {
-    Call<List<Sku>> call = service.listShippingCategorySkus(shippingCategoryId, queryStringParams);
+  public void listShippingCategorySkus(String shippingCategoryId, QueryFilter queryFilter,
+      ApiCallback<List<Sku>> callback) {
+    Call<List<Sku>> call = service.listShippingCategorySkus(shippingCategoryId, queryFilter);
     asyncCall(call, callback);
   }
 

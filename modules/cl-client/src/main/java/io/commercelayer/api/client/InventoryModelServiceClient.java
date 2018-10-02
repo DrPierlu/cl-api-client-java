@@ -4,6 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
+import io.commercelayer.api.client.common.QueryFilter;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.model.InventoryModel;
@@ -11,7 +12,6 @@ import io.commercelayer.api.model.StockLevel;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.InventoryModelService;
 import java.util.List;
-import java.util.Map;
 import retrofit2.Call;
 
 public class InventoryModelServiceClient extends AbstractServiceClient {
@@ -30,15 +30,14 @@ public class InventoryModelServiceClient extends AbstractServiceClient {
     super(apiOrg, apiToken);
   }
 
-  public List<InventoryModel> listInventoryModels(Map<String, String> queryStringParams) throws
-      ApiException {
-    Call<List<InventoryModel>> call = service.listInventoryModels(queryStringParams);
+  public List<InventoryModel> listInventoryModels(QueryFilter queryFilter) throws ApiException {
+    Call<List<InventoryModel>> call = service.listInventoryModels(queryFilter);
     return syncCall(call);
   }
 
-  public void listInventoryModels(Map<String, String> queryStringParams,
+  public void listInventoryModels(QueryFilter queryFilter,
       ApiCallback<List<InventoryModel>> callback) {
-    Call<List<InventoryModel>> call = service.listInventoryModels(queryStringParams);
+    Call<List<InventoryModel>> call = service.listInventoryModels(queryFilter);
     asyncCall(call, callback);
   }
 
@@ -85,15 +84,15 @@ public class InventoryModelServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public InventoryModel retrieveInventoryModel(String inventoryModelId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<InventoryModel> call = service.retrieveInventoryModel(inventoryModelId, queryStringParams);
+  public InventoryModel retrieveInventoryModel(String inventoryModelId, QueryFilter queryFilter)
+      throws ApiException {
+    Call<InventoryModel> call = service.retrieveInventoryModel(inventoryModelId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveInventoryModel(String inventoryModelId, Map<String, String> queryStringParams,
+  public void retrieveInventoryModel(String inventoryModelId, QueryFilter queryFilter,
       ApiCallback<InventoryModel> callback) {
-    Call<InventoryModel> call = service.retrieveInventoryModel(inventoryModelId, queryStringParams);
+    Call<InventoryModel> call = service.retrieveInventoryModel(inventoryModelId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -109,14 +108,14 @@ public class InventoryModelServiceClient extends AbstractServiceClient {
   }
 
   public List<StockLevel> listInventoryModelStockLevels(String inventoryModelId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<List<StockLevel>> call = service.listInventoryModelStockLevels(inventoryModelId, queryStringParams);
+      QueryFilter queryFilter) throws ApiException {
+    Call<List<StockLevel>> call = service.listInventoryModelStockLevels(inventoryModelId, queryFilter);
     return syncCall(call);
   }
 
-  public void listInventoryModelStockLevels(String inventoryModelId,
-      Map<String, String> queryStringParams, ApiCallback<List<StockLevel>> callback) {
-    Call<List<StockLevel>> call = service.listInventoryModelStockLevels(inventoryModelId, queryStringParams);
+  public void listInventoryModelStockLevels(String inventoryModelId, QueryFilter queryFilter,
+      ApiCallback<List<StockLevel>> callback) {
+    Call<List<StockLevel>> call = service.listInventoryModelStockLevels(inventoryModelId, queryFilter);
     asyncCall(call, callback);
   }
 

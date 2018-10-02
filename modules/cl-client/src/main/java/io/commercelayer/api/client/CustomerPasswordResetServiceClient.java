@@ -4,6 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
+import io.commercelayer.api.client.common.QueryFilter;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.model.Customer;
@@ -11,7 +12,6 @@ import io.commercelayer.api.model.CustomerPasswordReset;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.CustomerPasswordResetService;
 import java.util.List;
-import java.util.Map;
 import retrofit2.Call;
 
 public class CustomerPasswordResetServiceClient extends AbstractServiceClient {
@@ -31,15 +31,15 @@ public class CustomerPasswordResetServiceClient extends AbstractServiceClient {
     super(apiOrg, apiToken);
   }
 
-  public List<CustomerPasswordReset> listCustomerPasswordResets(
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<List<CustomerPasswordReset>> call = service.listCustomerPasswordResets(queryStringParams);
+  public List<CustomerPasswordReset> listCustomerPasswordResets(QueryFilter queryFilter) throws
+      ApiException {
+    Call<List<CustomerPasswordReset>> call = service.listCustomerPasswordResets(queryFilter);
     return syncCall(call);
   }
 
-  public void listCustomerPasswordResets(Map<String, String> queryStringParams,
+  public void listCustomerPasswordResets(QueryFilter queryFilter,
       ApiCallback<List<CustomerPasswordReset>> callback) {
-    Call<List<CustomerPasswordReset>> call = service.listCustomerPasswordResets(queryStringParams);
+    Call<List<CustomerPasswordReset>> call = service.listCustomerPasswordResets(queryFilter);
     asyncCall(call, callback);
   }
 
@@ -89,14 +89,14 @@ public class CustomerPasswordResetServiceClient extends AbstractServiceClient {
   }
 
   public CustomerPasswordReset retrieveCustomerPasswordReset(String customerPasswordResetId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<CustomerPasswordReset> call = service.retrieveCustomerPasswordReset(customerPasswordResetId, queryStringParams);
+      QueryFilter queryFilter) throws ApiException {
+    Call<CustomerPasswordReset> call = service.retrieveCustomerPasswordReset(customerPasswordResetId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveCustomerPasswordReset(String customerPasswordResetId,
-      Map<String, String> queryStringParams, ApiCallback<CustomerPasswordReset> callback) {
-    Call<CustomerPasswordReset> call = service.retrieveCustomerPasswordReset(customerPasswordResetId, queryStringParams);
+  public void retrieveCustomerPasswordReset(String customerPasswordResetId, QueryFilter queryFilter,
+      ApiCallback<CustomerPasswordReset> callback) {
+    Call<CustomerPasswordReset> call = service.retrieveCustomerPasswordReset(customerPasswordResetId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -113,14 +113,14 @@ public class CustomerPasswordResetServiceClient extends AbstractServiceClient {
   }
 
   public Customer retrieveCustomerPasswordResetCustomer(String customerPasswordResetId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<Customer> call = service.retrieveCustomerPasswordResetCustomer(customerPasswordResetId, queryStringParams);
+      QueryFilter queryFilter) throws ApiException {
+    Call<Customer> call = service.retrieveCustomerPasswordResetCustomer(customerPasswordResetId, queryFilter);
     return syncCall(call);
   }
 
   public void retrieveCustomerPasswordResetCustomer(String customerPasswordResetId,
-      Map<String, String> queryStringParams, ApiCallback<Customer> callback) {
-    Call<Customer> call = service.retrieveCustomerPasswordResetCustomer(customerPasswordResetId, queryStringParams);
+      QueryFilter queryFilter, ApiCallback<Customer> callback) {
+    Call<Customer> call = service.retrieveCustomerPasswordResetCustomer(customerPasswordResetId, queryFilter);
     asyncCall(call, callback);
   }
 

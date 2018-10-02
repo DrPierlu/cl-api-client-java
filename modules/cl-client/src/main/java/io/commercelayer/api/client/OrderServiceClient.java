@@ -4,6 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
+import io.commercelayer.api.client.common.QueryFilter;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.model.Address;
@@ -16,7 +17,6 @@ import io.commercelayer.api.model.Shipment;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.OrderService;
 import java.util.List;
-import java.util.Map;
 import retrofit2.Call;
 
 public class OrderServiceClient extends AbstractServiceClient {
@@ -34,13 +34,13 @@ public class OrderServiceClient extends AbstractServiceClient {
     super(apiOrg, apiToken);
   }
 
-  public List<Order> listOrders(Map<String, String> queryStringParams) throws ApiException {
-    Call<List<Order>> call = service.listOrders(queryStringParams);
+  public List<Order> listOrders(QueryFilter queryFilter) throws ApiException {
+    Call<List<Order>> call = service.listOrders(queryFilter);
     return syncCall(call);
   }
 
-  public void listOrders(Map<String, String> queryStringParams, ApiCallback<List<Order>> callback) {
-    Call<List<Order>> call = service.listOrders(queryStringParams);
+  public void listOrders(QueryFilter queryFilter, ApiCallback<List<Order>> callback) {
+    Call<List<Order>> call = service.listOrders(queryFilter);
     asyncCall(call, callback);
   }
 
@@ -84,15 +84,13 @@ public class OrderServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public Order retrieveOrder(String orderId, Map<String, String> queryStringParams) throws
-      ApiException {
-    Call<Order> call = service.retrieveOrder(orderId, queryStringParams);
+  public Order retrieveOrder(String orderId, QueryFilter queryFilter) throws ApiException {
+    Call<Order> call = service.retrieveOrder(orderId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveOrder(String orderId, Map<String, String> queryStringParams,
-      ApiCallback<Order> callback) {
-    Call<Order> call = service.retrieveOrder(orderId, queryStringParams);
+  public void retrieveOrder(String orderId, QueryFilter queryFilter, ApiCallback<Order> callback) {
+    Call<Order> call = service.retrieveOrder(orderId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -106,15 +104,15 @@ public class OrderServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public List<Address> retrieveOrderBillingAddress(String orderId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<List<Address>> call = service.retrieveOrderBillingAddress(orderId, queryStringParams);
+  public List<Address> retrieveOrderBillingAddress(String orderId, QueryFilter queryFilter) throws
+      ApiException {
+    Call<List<Address>> call = service.retrieveOrderBillingAddress(orderId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveOrderBillingAddress(String orderId, Map<String, String> queryStringParams,
+  public void retrieveOrderBillingAddress(String orderId, QueryFilter queryFilter,
       ApiCallback<List<Address>> callback) {
-    Call<List<Address>> call = service.retrieveOrderBillingAddress(orderId, queryStringParams);
+    Call<List<Address>> call = service.retrieveOrderBillingAddress(orderId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -128,15 +126,15 @@ public class OrderServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public Customer retrieveOrderCustomer(String orderId, Map<String, String> queryStringParams)
-      throws ApiException {
-    Call<Customer> call = service.retrieveOrderCustomer(orderId, queryStringParams);
+  public Customer retrieveOrderCustomer(String orderId, QueryFilter queryFilter) throws
+      ApiException {
+    Call<Customer> call = service.retrieveOrderCustomer(orderId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveOrderCustomer(String orderId, Map<String, String> queryStringParams,
+  public void retrieveOrderCustomer(String orderId, QueryFilter queryFilter,
       ApiCallback<Customer> callback) {
-    Call<Customer> call = service.retrieveOrderCustomer(orderId, queryStringParams);
+    Call<Customer> call = service.retrieveOrderCustomer(orderId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -150,15 +148,15 @@ public class OrderServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public List<LineItem> listOrderLineItems(String orderId, Map<String, String> queryStringParams)
-      throws ApiException {
-    Call<List<LineItem>> call = service.listOrderLineItems(orderId, queryStringParams);
+  public List<LineItem> listOrderLineItems(String orderId, QueryFilter queryFilter) throws
+      ApiException {
+    Call<List<LineItem>> call = service.listOrderLineItems(orderId, queryFilter);
     return syncCall(call);
   }
 
-  public void listOrderLineItems(String orderId, Map<String, String> queryStringParams,
+  public void listOrderLineItems(String orderId, QueryFilter queryFilter,
       ApiCallback<List<LineItem>> callback) {
-    Call<List<LineItem>> call = service.listOrderLineItems(orderId, queryStringParams);
+    Call<List<LineItem>> call = service.listOrderLineItems(orderId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -172,15 +170,14 @@ public class OrderServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public Market retrieveOrderMarket(String orderId, Map<String, String> queryStringParams) throws
-      ApiException {
-    Call<Market> call = service.retrieveOrderMarket(orderId, queryStringParams);
+  public Market retrieveOrderMarket(String orderId, QueryFilter queryFilter) throws ApiException {
+    Call<Market> call = service.retrieveOrderMarket(orderId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveOrderMarket(String orderId, Map<String, String> queryStringParams,
+  public void retrieveOrderMarket(String orderId, QueryFilter queryFilter,
       ApiCallback<Market> callback) {
-    Call<Market> call = service.retrieveOrderMarket(orderId, queryStringParams);
+    Call<Market> call = service.retrieveOrderMarket(orderId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -194,15 +191,15 @@ public class OrderServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public PaymentMethod retrieveOrderPaymentMethod(String orderId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<PaymentMethod> call = service.retrieveOrderPaymentMethod(orderId, queryStringParams);
+  public PaymentMethod retrieveOrderPaymentMethod(String orderId, QueryFilter queryFilter) throws
+      ApiException {
+    Call<PaymentMethod> call = service.retrieveOrderPaymentMethod(orderId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveOrderPaymentMethod(String orderId, Map<String, String> queryStringParams,
+  public void retrieveOrderPaymentMethod(String orderId, QueryFilter queryFilter,
       ApiCallback<PaymentMethod> callback) {
-    Call<PaymentMethod> call = service.retrieveOrderPaymentMethod(orderId, queryStringParams);
+    Call<PaymentMethod> call = service.retrieveOrderPaymentMethod(orderId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -216,15 +213,15 @@ public class OrderServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public List<Shipment> listOrderShipments(String orderId, Map<String, String> queryStringParams)
-      throws ApiException {
-    Call<List<Shipment>> call = service.listOrderShipments(orderId, queryStringParams);
+  public List<Shipment> listOrderShipments(String orderId, QueryFilter queryFilter) throws
+      ApiException {
+    Call<List<Shipment>> call = service.listOrderShipments(orderId, queryFilter);
     return syncCall(call);
   }
 
-  public void listOrderShipments(String orderId, Map<String, String> queryStringParams,
+  public void listOrderShipments(String orderId, QueryFilter queryFilter,
       ApiCallback<List<Shipment>> callback) {
-    Call<List<Shipment>> call = service.listOrderShipments(orderId, queryStringParams);
+    Call<List<Shipment>> call = service.listOrderShipments(orderId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -238,15 +235,15 @@ public class OrderServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public List<Address> retrieveOrderShippingAddress(String orderId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<List<Address>> call = service.retrieveOrderShippingAddress(orderId, queryStringParams);
+  public List<Address> retrieveOrderShippingAddress(String orderId, QueryFilter queryFilter) throws
+      ApiException {
+    Call<List<Address>> call = service.retrieveOrderShippingAddress(orderId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveOrderShippingAddress(String orderId, Map<String, String> queryStringParams,
+  public void retrieveOrderShippingAddress(String orderId, QueryFilter queryFilter,
       ApiCallback<List<Address>> callback) {
-    Call<List<Address>> call = service.retrieveOrderShippingAddress(orderId, queryStringParams);
+    Call<List<Address>> call = service.retrieveOrderShippingAddress(orderId, queryFilter);
     asyncCall(call, callback);
   }
 

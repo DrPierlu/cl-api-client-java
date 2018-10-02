@@ -4,13 +4,13 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
+import io.commercelayer.api.client.common.QueryFilter;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.model.Webhook;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.WebhookService;
 import java.util.List;
-import java.util.Map;
 import retrofit2.Call;
 
 public class WebhookServiceClient extends AbstractServiceClient {
@@ -28,14 +28,13 @@ public class WebhookServiceClient extends AbstractServiceClient {
     super(apiOrg, apiToken);
   }
 
-  public List<Webhook> listWebhooks(Map<String, String> queryStringParams) throws ApiException {
-    Call<List<Webhook>> call = service.listWebhooks(queryStringParams);
+  public List<Webhook> listWebhooks(QueryFilter queryFilter) throws ApiException {
+    Call<List<Webhook>> call = service.listWebhooks(queryFilter);
     return syncCall(call);
   }
 
-  public void listWebhooks(Map<String, String> queryStringParams,
-      ApiCallback<List<Webhook>> callback) {
-    Call<List<Webhook>> call = service.listWebhooks(queryStringParams);
+  public void listWebhooks(QueryFilter queryFilter, ApiCallback<List<Webhook>> callback) {
+    Call<List<Webhook>> call = service.listWebhooks(queryFilter);
     asyncCall(call, callback);
   }
 
@@ -79,15 +78,14 @@ public class WebhookServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public Webhook retrieveWebhook(String webhookId, Map<String, String> queryStringParams) throws
-      ApiException {
-    Call<Webhook> call = service.retrieveWebhook(webhookId, queryStringParams);
+  public Webhook retrieveWebhook(String webhookId, QueryFilter queryFilter) throws ApiException {
+    Call<Webhook> call = service.retrieveWebhook(webhookId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveWebhook(String webhookId, Map<String, String> queryStringParams,
+  public void retrieveWebhook(String webhookId, QueryFilter queryFilter,
       ApiCallback<Webhook> callback) {
-    Call<Webhook> call = service.retrieveWebhook(webhookId, queryStringParams);
+    Call<Webhook> call = service.retrieveWebhook(webhookId, queryFilter);
     asyncCall(call, callback);
   }
 

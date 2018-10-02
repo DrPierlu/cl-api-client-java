@@ -4,6 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
+import io.commercelayer.api.client.common.QueryFilter;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.model.Sku;
@@ -12,7 +13,6 @@ import io.commercelayer.api.model.StockLocation;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.StockItemService;
 import java.util.List;
-import java.util.Map;
 import retrofit2.Call;
 
 public class StockItemServiceClient extends AbstractServiceClient {
@@ -30,14 +30,13 @@ public class StockItemServiceClient extends AbstractServiceClient {
     super(apiOrg, apiToken);
   }
 
-  public List<StockItem> listStockItems(Map<String, String> queryStringParams) throws ApiException {
-    Call<List<StockItem>> call = service.listStockItems(queryStringParams);
+  public List<StockItem> listStockItems(QueryFilter queryFilter) throws ApiException {
+    Call<List<StockItem>> call = service.listStockItems(queryFilter);
     return syncCall(call);
   }
 
-  public void listStockItems(Map<String, String> queryStringParams,
-      ApiCallback<List<StockItem>> callback) {
-    Call<List<StockItem>> call = service.listStockItems(queryStringParams);
+  public void listStockItems(QueryFilter queryFilter, ApiCallback<List<StockItem>> callback) {
+    Call<List<StockItem>> call = service.listStockItems(queryFilter);
     asyncCall(call, callback);
   }
 
@@ -82,15 +81,15 @@ public class StockItemServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public StockItem retrieveStockItem(String stockItemId, Map<String, String> queryStringParams)
-      throws ApiException {
-    Call<StockItem> call = service.retrieveStockItem(stockItemId, queryStringParams);
+  public StockItem retrieveStockItem(String stockItemId, QueryFilter queryFilter) throws
+      ApiException {
+    Call<StockItem> call = service.retrieveStockItem(stockItemId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveStockItem(String stockItemId, Map<String, String> queryStringParams,
+  public void retrieveStockItem(String stockItemId, QueryFilter queryFilter,
       ApiCallback<StockItem> callback) {
-    Call<StockItem> call = service.retrieveStockItem(stockItemId, queryStringParams);
+    Call<StockItem> call = service.retrieveStockItem(stockItemId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -104,15 +103,14 @@ public class StockItemServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public Sku retrieveStockItemSku(String stockItemId, Map<String, String> queryStringParams) throws
-      ApiException {
-    Call<Sku> call = service.retrieveStockItemSku(stockItemId, queryStringParams);
+  public Sku retrieveStockItemSku(String stockItemId, QueryFilter queryFilter) throws ApiException {
+    Call<Sku> call = service.retrieveStockItemSku(stockItemId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveStockItemSku(String stockItemId, Map<String, String> queryStringParams,
+  public void retrieveStockItemSku(String stockItemId, QueryFilter queryFilter,
       ApiCallback<Sku> callback) {
-    Call<Sku> call = service.retrieveStockItemSku(stockItemId, queryStringParams);
+    Call<Sku> call = service.retrieveStockItemSku(stockItemId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -126,15 +124,15 @@ public class StockItemServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public StockLocation retrieveStockItemStockLocation(String stockItemId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<StockLocation> call = service.retrieveStockItemStockLocation(stockItemId, queryStringParams);
+  public StockLocation retrieveStockItemStockLocation(String stockItemId, QueryFilter queryFilter)
+      throws ApiException {
+    Call<StockLocation> call = service.retrieveStockItemStockLocation(stockItemId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveStockItemStockLocation(String stockItemId,
-      Map<String, String> queryStringParams, ApiCallback<StockLocation> callback) {
-    Call<StockLocation> call = service.retrieveStockItemStockLocation(stockItemId, queryStringParams);
+  public void retrieveStockItemStockLocation(String stockItemId, QueryFilter queryFilter,
+      ApiCallback<StockLocation> callback) {
+    Call<StockLocation> call = service.retrieveStockItemStockLocation(stockItemId, queryFilter);
     asyncCall(call, callback);
   }
 

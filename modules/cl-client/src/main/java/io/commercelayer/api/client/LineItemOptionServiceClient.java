@@ -4,6 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
+import io.commercelayer.api.client.common.QueryFilter;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.model.LineItem;
@@ -12,7 +13,6 @@ import io.commercelayer.api.model.SkuOption;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.LineItemOptionService;
 import java.util.List;
-import java.util.Map;
 import retrofit2.Call;
 
 public class LineItemOptionServiceClient extends AbstractServiceClient {
@@ -31,15 +31,14 @@ public class LineItemOptionServiceClient extends AbstractServiceClient {
     super(apiOrg, apiToken);
   }
 
-  public List<LineItemOption> listLineItemOptions(Map<String, String> queryStringParams) throws
-      ApiException {
-    Call<List<LineItemOption>> call = service.listLineItemOptions(queryStringParams);
+  public List<LineItemOption> listLineItemOptions(QueryFilter queryFilter) throws ApiException {
+    Call<List<LineItemOption>> call = service.listLineItemOptions(queryFilter);
     return syncCall(call);
   }
 
-  public void listLineItemOptions(Map<String, String> queryStringParams,
+  public void listLineItemOptions(QueryFilter queryFilter,
       ApiCallback<List<LineItemOption>> callback) {
-    Call<List<LineItemOption>> call = service.listLineItemOptions(queryStringParams);
+    Call<List<LineItemOption>> call = service.listLineItemOptions(queryFilter);
     asyncCall(call, callback);
   }
 
@@ -86,15 +85,15 @@ public class LineItemOptionServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public LineItemOption retrieveLineItemOption(String lineItemOptionId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<LineItemOption> call = service.retrieveLineItemOption(lineItemOptionId, queryStringParams);
+  public LineItemOption retrieveLineItemOption(String lineItemOptionId, QueryFilter queryFilter)
+      throws ApiException {
+    Call<LineItemOption> call = service.retrieveLineItemOption(lineItemOptionId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveLineItemOption(String lineItemOptionId, Map<String, String> queryStringParams,
+  public void retrieveLineItemOption(String lineItemOptionId, QueryFilter queryFilter,
       ApiCallback<LineItemOption> callback) {
-    Call<LineItemOption> call = service.retrieveLineItemOption(lineItemOptionId, queryStringParams);
+    Call<LineItemOption> call = service.retrieveLineItemOption(lineItemOptionId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -109,15 +108,15 @@ public class LineItemOptionServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public LineItem retrieveLineItemOptionLineItem(String lineItemOptionId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<LineItem> call = service.retrieveLineItemOptionLineItem(lineItemOptionId, queryStringParams);
+  public LineItem retrieveLineItemOptionLineItem(String lineItemOptionId, QueryFilter queryFilter)
+      throws ApiException {
+    Call<LineItem> call = service.retrieveLineItemOptionLineItem(lineItemOptionId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveLineItemOptionLineItem(String lineItemOptionId,
-      Map<String, String> queryStringParams, ApiCallback<LineItem> callback) {
-    Call<LineItem> call = service.retrieveLineItemOptionLineItem(lineItemOptionId, queryStringParams);
+  public void retrieveLineItemOptionLineItem(String lineItemOptionId, QueryFilter queryFilter,
+      ApiCallback<LineItem> callback) {
+    Call<LineItem> call = service.retrieveLineItemOptionLineItem(lineItemOptionId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -132,15 +131,15 @@ public class LineItemOptionServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public SkuOption retrieveLineItemOptionSkuOption(String lineItemOptionId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<SkuOption> call = service.retrieveLineItemOptionSkuOption(lineItemOptionId, queryStringParams);
+  public SkuOption retrieveLineItemOptionSkuOption(String lineItemOptionId, QueryFilter queryFilter)
+      throws ApiException {
+    Call<SkuOption> call = service.retrieveLineItemOptionSkuOption(lineItemOptionId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveLineItemOptionSkuOption(String lineItemOptionId,
-      Map<String, String> queryStringParams, ApiCallback<SkuOption> callback) {
-    Call<SkuOption> call = service.retrieveLineItemOptionSkuOption(lineItemOptionId, queryStringParams);
+  public void retrieveLineItemOptionSkuOption(String lineItemOptionId, QueryFilter queryFilter,
+      ApiCallback<SkuOption> callback) {
+    Call<SkuOption> call = service.retrieveLineItemOptionSkuOption(lineItemOptionId, queryFilter);
     asyncCall(call, callback);
   }
 

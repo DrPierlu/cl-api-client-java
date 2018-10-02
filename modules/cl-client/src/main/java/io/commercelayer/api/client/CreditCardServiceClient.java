@@ -4,6 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
+import io.commercelayer.api.client.common.QueryFilter;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.model.CreditCard;
@@ -11,7 +12,6 @@ import io.commercelayer.api.model.Order;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.CreditCardService;
 import java.util.List;
-import java.util.Map;
 import retrofit2.Call;
 
 public class CreditCardServiceClient extends AbstractServiceClient {
@@ -29,15 +29,13 @@ public class CreditCardServiceClient extends AbstractServiceClient {
     super(apiOrg, apiToken);
   }
 
-  public List<CreditCard> listCreditCards(Map<String, String> queryStringParams) throws
-      ApiException {
-    Call<List<CreditCard>> call = service.listCreditCards(queryStringParams);
+  public List<CreditCard> listCreditCards(QueryFilter queryFilter) throws ApiException {
+    Call<List<CreditCard>> call = service.listCreditCards(queryFilter);
     return syncCall(call);
   }
 
-  public void listCreditCards(Map<String, String> queryStringParams,
-      ApiCallback<List<CreditCard>> callback) {
-    Call<List<CreditCard>> call = service.listCreditCards(queryStringParams);
+  public void listCreditCards(QueryFilter queryFilter, ApiCallback<List<CreditCard>> callback) {
+    Call<List<CreditCard>> call = service.listCreditCards(queryFilter);
     asyncCall(call, callback);
   }
 
@@ -83,15 +81,15 @@ public class CreditCardServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public CreditCard retrieveCreditCard(String creditCardId, Map<String, String> queryStringParams)
-      throws ApiException {
-    Call<CreditCard> call = service.retrieveCreditCard(creditCardId, queryStringParams);
+  public CreditCard retrieveCreditCard(String creditCardId, QueryFilter queryFilter) throws
+      ApiException {
+    Call<CreditCard> call = service.retrieveCreditCard(creditCardId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveCreditCard(String creditCardId, Map<String, String> queryStringParams,
+  public void retrieveCreditCard(String creditCardId, QueryFilter queryFilter,
       ApiCallback<CreditCard> callback) {
-    Call<CreditCard> call = service.retrieveCreditCard(creditCardId, queryStringParams);
+    Call<CreditCard> call = service.retrieveCreditCard(creditCardId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -105,15 +103,15 @@ public class CreditCardServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public Order retrieveCreditCardOrder(String creditCardId, Map<String, String> queryStringParams)
-      throws ApiException {
-    Call<Order> call = service.retrieveCreditCardOrder(creditCardId, queryStringParams);
+  public Order retrieveCreditCardOrder(String creditCardId, QueryFilter queryFilter) throws
+      ApiException {
+    Call<Order> call = service.retrieveCreditCardOrder(creditCardId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveCreditCardOrder(String creditCardId, Map<String, String> queryStringParams,
+  public void retrieveCreditCardOrder(String creditCardId, QueryFilter queryFilter,
       ApiCallback<Order> callback) {
-    Call<Order> call = service.retrieveCreditCardOrder(creditCardId, queryStringParams);
+    Call<Order> call = service.retrieveCreditCardOrder(creditCardId, queryFilter);
     asyncCall(call, callback);
   }
 

@@ -4,6 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
+import io.commercelayer.api.client.common.QueryFilter;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.model.Price;
@@ -11,7 +12,6 @@ import io.commercelayer.api.model.PriceList;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.PriceListService;
 import java.util.List;
-import java.util.Map;
 import retrofit2.Call;
 
 public class PriceListServiceClient extends AbstractServiceClient {
@@ -29,14 +29,13 @@ public class PriceListServiceClient extends AbstractServiceClient {
     super(apiOrg, apiToken);
   }
 
-  public List<PriceList> listPriceLists(Map<String, String> queryStringParams) throws ApiException {
-    Call<List<PriceList>> call = service.listPriceLists(queryStringParams);
+  public List<PriceList> listPriceLists(QueryFilter queryFilter) throws ApiException {
+    Call<List<PriceList>> call = service.listPriceLists(queryFilter);
     return syncCall(call);
   }
 
-  public void listPriceLists(Map<String, String> queryStringParams,
-      ApiCallback<List<PriceList>> callback) {
-    Call<List<PriceList>> call = service.listPriceLists(queryStringParams);
+  public void listPriceLists(QueryFilter queryFilter, ApiCallback<List<PriceList>> callback) {
+    Call<List<PriceList>> call = service.listPriceLists(queryFilter);
     asyncCall(call, callback);
   }
 
@@ -81,15 +80,15 @@ public class PriceListServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public PriceList retrievePriceList(String priceListId, Map<String, String> queryStringParams)
-      throws ApiException {
-    Call<PriceList> call = service.retrievePriceList(priceListId, queryStringParams);
+  public PriceList retrievePriceList(String priceListId, QueryFilter queryFilter) throws
+      ApiException {
+    Call<PriceList> call = service.retrievePriceList(priceListId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrievePriceList(String priceListId, Map<String, String> queryStringParams,
+  public void retrievePriceList(String priceListId, QueryFilter queryFilter,
       ApiCallback<PriceList> callback) {
-    Call<PriceList> call = service.retrievePriceList(priceListId, queryStringParams);
+    Call<PriceList> call = service.retrievePriceList(priceListId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -103,15 +102,15 @@ public class PriceListServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public List<Price> listPriceListPrices(String priceListId, Map<String, String> queryStringParams)
-      throws ApiException {
-    Call<List<Price>> call = service.listPriceListPrices(priceListId, queryStringParams);
+  public List<Price> listPriceListPrices(String priceListId, QueryFilter queryFilter) throws
+      ApiException {
+    Call<List<Price>> call = service.listPriceListPrices(priceListId, queryFilter);
     return syncCall(call);
   }
 
-  public void listPriceListPrices(String priceListId, Map<String, String> queryStringParams,
+  public void listPriceListPrices(String priceListId, QueryFilter queryFilter,
       ApiCallback<List<Price>> callback) {
-    Call<List<Price>> call = service.listPriceListPrices(priceListId, queryStringParams);
+    Call<List<Price>> call = service.listPriceListPrices(priceListId, queryFilter);
     asyncCall(call, callback);
   }
 

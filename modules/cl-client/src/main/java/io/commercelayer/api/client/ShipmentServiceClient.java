@@ -4,6 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
+import io.commercelayer.api.client.common.QueryFilter;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.model.Address;
@@ -16,7 +17,6 @@ import io.commercelayer.api.model.StockLocation;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.ShipmentService;
 import java.util.List;
-import java.util.Map;
 import retrofit2.Call;
 
 public class ShipmentServiceClient extends AbstractServiceClient {
@@ -34,14 +34,13 @@ public class ShipmentServiceClient extends AbstractServiceClient {
     super(apiOrg, apiToken);
   }
 
-  public List<Shipment> listShipments(Map<String, String> queryStringParams) throws ApiException {
-    Call<List<Shipment>> call = service.listShipments(queryStringParams);
+  public List<Shipment> listShipments(QueryFilter queryFilter) throws ApiException {
+    Call<List<Shipment>> call = service.listShipments(queryFilter);
     return syncCall(call);
   }
 
-  public void listShipments(Map<String, String> queryStringParams,
-      ApiCallback<List<Shipment>> callback) {
-    Call<List<Shipment>> call = service.listShipments(queryStringParams);
+  public void listShipments(QueryFilter queryFilter, ApiCallback<List<Shipment>> callback) {
+    Call<List<Shipment>> call = service.listShipments(queryFilter);
     asyncCall(call, callback);
   }
 
@@ -85,15 +84,14 @@ public class ShipmentServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public Shipment retrieveShipment(String shipmentId, Map<String, String> queryStringParams) throws
-      ApiException {
-    Call<Shipment> call = service.retrieveShipment(shipmentId, queryStringParams);
+  public Shipment retrieveShipment(String shipmentId, QueryFilter queryFilter) throws ApiException {
+    Call<Shipment> call = service.retrieveShipment(shipmentId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveShipment(String shipmentId, Map<String, String> queryStringParams,
+  public void retrieveShipment(String shipmentId, QueryFilter queryFilter,
       ApiCallback<Shipment> callback) {
-    Call<Shipment> call = service.retrieveShipment(shipmentId, queryStringParams);
+    Call<Shipment> call = service.retrieveShipment(shipmentId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -108,14 +106,14 @@ public class ShipmentServiceClient extends AbstractServiceClient {
   }
 
   public List<ShippingMethod> listShipmentAvailableShippingMethods(String shipmentId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<List<ShippingMethod>> call = service.listShipmentAvailableShippingMethods(shipmentId, queryStringParams);
+      QueryFilter queryFilter) throws ApiException {
+    Call<List<ShippingMethod>> call = service.listShipmentAvailableShippingMethods(shipmentId, queryFilter);
     return syncCall(call);
   }
 
-  public void listShipmentAvailableShippingMethods(String shipmentId,
-      Map<String, String> queryStringParams, ApiCallback<List<ShippingMethod>> callback) {
-    Call<List<ShippingMethod>> call = service.listShipmentAvailableShippingMethods(shipmentId, queryStringParams);
+  public void listShipmentAvailableShippingMethods(String shipmentId, QueryFilter queryFilter,
+      ApiCallback<List<ShippingMethod>> callback) {
+    Call<List<ShippingMethod>> call = service.listShipmentAvailableShippingMethods(shipmentId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -131,15 +129,15 @@ public class ShipmentServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public List<Parcel> listShipmentParcels(String shipmentId, Map<String, String> queryStringParams)
-      throws ApiException {
-    Call<List<Parcel>> call = service.listShipmentParcels(shipmentId, queryStringParams);
+  public List<Parcel> listShipmentParcels(String shipmentId, QueryFilter queryFilter) throws
+      ApiException {
+    Call<List<Parcel>> call = service.listShipmentParcels(shipmentId, queryFilter);
     return syncCall(call);
   }
 
-  public void listShipmentParcels(String shipmentId, Map<String, String> queryStringParams,
+  public void listShipmentParcels(String shipmentId, QueryFilter queryFilter,
       ApiCallback<List<Parcel>> callback) {
-    Call<List<Parcel>> call = service.listShipmentParcels(shipmentId, queryStringParams);
+    Call<List<Parcel>> call = service.listShipmentParcels(shipmentId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -153,15 +151,15 @@ public class ShipmentServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public List<LineItem> listShipmentShipmentLineItems(String shipmentId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<List<LineItem>> call = service.listShipmentShipmentLineItems(shipmentId, queryStringParams);
+  public List<LineItem> listShipmentShipmentLineItems(String shipmentId, QueryFilter queryFilter)
+      throws ApiException {
+    Call<List<LineItem>> call = service.listShipmentShipmentLineItems(shipmentId, queryFilter);
     return syncCall(call);
   }
 
-  public void listShipmentShipmentLineItems(String shipmentId,
-      Map<String, String> queryStringParams, ApiCallback<List<LineItem>> callback) {
-    Call<List<LineItem>> call = service.listShipmentShipmentLineItems(shipmentId, queryStringParams);
+  public void listShipmentShipmentLineItems(String shipmentId, QueryFilter queryFilter,
+      ApiCallback<List<LineItem>> callback) {
+    Call<List<LineItem>> call = service.listShipmentShipmentLineItems(shipmentId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -176,15 +174,15 @@ public class ShipmentServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public List<Address> retrieveShipmentShippingAddress(String shipmentId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<List<Address>> call = service.retrieveShipmentShippingAddress(shipmentId, queryStringParams);
+  public List<Address> retrieveShipmentShippingAddress(String shipmentId, QueryFilter queryFilter)
+      throws ApiException {
+    Call<List<Address>> call = service.retrieveShipmentShippingAddress(shipmentId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveShipmentShippingAddress(String shipmentId,
-      Map<String, String> queryStringParams, ApiCallback<List<Address>> callback) {
-    Call<List<Address>> call = service.retrieveShipmentShippingAddress(shipmentId, queryStringParams);
+  public void retrieveShipmentShippingAddress(String shipmentId, QueryFilter queryFilter,
+      ApiCallback<List<Address>> callback) {
+    Call<List<Address>> call = service.retrieveShipmentShippingAddress(shipmentId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -200,14 +198,14 @@ public class ShipmentServiceClient extends AbstractServiceClient {
   }
 
   public ShippingCategory retrieveShipmentShippingCategory(String shipmentId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<ShippingCategory> call = service.retrieveShipmentShippingCategory(shipmentId, queryStringParams);
+      QueryFilter queryFilter) throws ApiException {
+    Call<ShippingCategory> call = service.retrieveShipmentShippingCategory(shipmentId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveShipmentShippingCategory(String shipmentId,
-      Map<String, String> queryStringParams, ApiCallback<ShippingCategory> callback) {
-    Call<ShippingCategory> call = service.retrieveShipmentShippingCategory(shipmentId, queryStringParams);
+  public void retrieveShipmentShippingCategory(String shipmentId, QueryFilter queryFilter,
+      ApiCallback<ShippingCategory> callback) {
+    Call<ShippingCategory> call = service.retrieveShipmentShippingCategory(shipmentId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -222,15 +220,15 @@ public class ShipmentServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public ShippingMethod retrieveShipmentShippingMethod(String shipmentId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<ShippingMethod> call = service.retrieveShipmentShippingMethod(shipmentId, queryStringParams);
+  public ShippingMethod retrieveShipmentShippingMethod(String shipmentId, QueryFilter queryFilter)
+      throws ApiException {
+    Call<ShippingMethod> call = service.retrieveShipmentShippingMethod(shipmentId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveShipmentShippingMethod(String shipmentId,
-      Map<String, String> queryStringParams, ApiCallback<ShippingMethod> callback) {
-    Call<ShippingMethod> call = service.retrieveShipmentShippingMethod(shipmentId, queryStringParams);
+  public void retrieveShipmentShippingMethod(String shipmentId, QueryFilter queryFilter,
+      ApiCallback<ShippingMethod> callback) {
+    Call<ShippingMethod> call = service.retrieveShipmentShippingMethod(shipmentId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -245,15 +243,15 @@ public class ShipmentServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public StockLocation retrieveShipmentStockLocation(String shipmentId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<StockLocation> call = service.retrieveShipmentStockLocation(shipmentId, queryStringParams);
+  public StockLocation retrieveShipmentStockLocation(String shipmentId, QueryFilter queryFilter)
+      throws ApiException {
+    Call<StockLocation> call = service.retrieveShipmentStockLocation(shipmentId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveShipmentStockLocation(String shipmentId,
-      Map<String, String> queryStringParams, ApiCallback<StockLocation> callback) {
-    Call<StockLocation> call = service.retrieveShipmentStockLocation(shipmentId, queryStringParams);
+  public void retrieveShipmentStockLocation(String shipmentId, QueryFilter queryFilter,
+      ApiCallback<StockLocation> callback) {
+    Call<StockLocation> call = service.retrieveShipmentStockLocation(shipmentId, queryFilter);
     asyncCall(call, callback);
   }
 

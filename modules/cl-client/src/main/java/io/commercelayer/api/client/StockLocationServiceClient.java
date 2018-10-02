@@ -4,6 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
+import io.commercelayer.api.client.common.QueryFilter;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.model.Address;
@@ -13,7 +14,6 @@ import io.commercelayer.api.model.StockLocation;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.StockLocationService;
 import java.util.List;
-import java.util.Map;
 import retrofit2.Call;
 
 public class StockLocationServiceClient extends AbstractServiceClient {
@@ -32,15 +32,14 @@ public class StockLocationServiceClient extends AbstractServiceClient {
     super(apiOrg, apiToken);
   }
 
-  public List<StockLocation> listStockLocations(Map<String, String> queryStringParams) throws
-      ApiException {
-    Call<List<StockLocation>> call = service.listStockLocations(queryStringParams);
+  public List<StockLocation> listStockLocations(QueryFilter queryFilter) throws ApiException {
+    Call<List<StockLocation>> call = service.listStockLocations(queryFilter);
     return syncCall(call);
   }
 
-  public void listStockLocations(Map<String, String> queryStringParams,
+  public void listStockLocations(QueryFilter queryFilter,
       ApiCallback<List<StockLocation>> callback) {
-    Call<List<StockLocation>> call = service.listStockLocations(queryStringParams);
+    Call<List<StockLocation>> call = service.listStockLocations(queryFilter);
     asyncCall(call, callback);
   }
 
@@ -87,15 +86,15 @@ public class StockLocationServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public StockLocation retrieveStockLocation(String stockLocationId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<StockLocation> call = service.retrieveStockLocation(stockLocationId, queryStringParams);
+  public StockLocation retrieveStockLocation(String stockLocationId, QueryFilter queryFilter) throws
+      ApiException {
+    Call<StockLocation> call = service.retrieveStockLocation(stockLocationId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveStockLocation(String stockLocationId, Map<String, String> queryStringParams,
+  public void retrieveStockLocation(String stockLocationId, QueryFilter queryFilter,
       ApiCallback<StockLocation> callback) {
-    Call<StockLocation> call = service.retrieveStockLocation(stockLocationId, queryStringParams);
+    Call<StockLocation> call = service.retrieveStockLocation(stockLocationId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -109,15 +108,15 @@ public class StockLocationServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public Address retrieveStockLocationAddress(String stockLocationId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<Address> call = service.retrieveStockLocationAddress(stockLocationId, queryStringParams);
+  public Address retrieveStockLocationAddress(String stockLocationId, QueryFilter queryFilter)
+      throws ApiException {
+    Call<Address> call = service.retrieveStockLocationAddress(stockLocationId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveStockLocationAddress(String stockLocationId,
-      Map<String, String> queryStringParams, ApiCallback<Address> callback) {
-    Call<Address> call = service.retrieveStockLocationAddress(stockLocationId, queryStringParams);
+  public void retrieveStockLocationAddress(String stockLocationId, QueryFilter queryFilter,
+      ApiCallback<Address> callback) {
+    Call<Address> call = service.retrieveStockLocationAddress(stockLocationId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -132,14 +131,14 @@ public class StockLocationServiceClient extends AbstractServiceClient {
   }
 
   public List<StockItem> listStockLocationStockItems(String stockLocationId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<List<StockItem>> call = service.listStockLocationStockItems(stockLocationId, queryStringParams);
+      QueryFilter queryFilter) throws ApiException {
+    Call<List<StockItem>> call = service.listStockLocationStockItems(stockLocationId, queryFilter);
     return syncCall(call);
   }
 
-  public void listStockLocationStockItems(String stockLocationId,
-      Map<String, String> queryStringParams, ApiCallback<List<StockItem>> callback) {
-    Call<List<StockItem>> call = service.listStockLocationStockItems(stockLocationId, queryStringParams);
+  public void listStockLocationStockItems(String stockLocationId, QueryFilter queryFilter,
+      ApiCallback<List<StockItem>> callback) {
+    Call<List<StockItem>> call = service.listStockLocationStockItems(stockLocationId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -155,14 +154,14 @@ public class StockLocationServiceClient extends AbstractServiceClient {
   }
 
   public List<StockLevel> listStockLocationStockLevels(String stockLocationId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<List<StockLevel>> call = service.listStockLocationStockLevels(stockLocationId, queryStringParams);
+      QueryFilter queryFilter) throws ApiException {
+    Call<List<StockLevel>> call = service.listStockLocationStockLevels(stockLocationId, queryFilter);
     return syncCall(call);
   }
 
-  public void listStockLocationStockLevels(String stockLocationId,
-      Map<String, String> queryStringParams, ApiCallback<List<StockLevel>> callback) {
-    Call<List<StockLevel>> call = service.listStockLocationStockLevels(stockLocationId, queryStringParams);
+  public void listStockLocationStockLevels(String stockLocationId, QueryFilter queryFilter,
+      ApiCallback<List<StockLevel>> callback) {
+    Call<List<StockLevel>> call = service.listStockLocationStockLevels(stockLocationId, queryFilter);
     asyncCall(call, callback);
   }
 

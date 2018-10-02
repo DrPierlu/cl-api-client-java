@@ -4,6 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
+import io.commercelayer.api.client.common.QueryFilter;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.model.Address;
@@ -11,7 +12,6 @@ import io.commercelayer.api.model.Geocoder;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.AddressService;
 import java.util.List;
-import java.util.Map;
 import retrofit2.Call;
 
 public class AddressServiceClient extends AbstractServiceClient {
@@ -29,14 +29,13 @@ public class AddressServiceClient extends AbstractServiceClient {
     super(apiOrg, apiToken);
   }
 
-  public List<Address> listAddresses(Map<String, String> queryStringParams) throws ApiException {
-    Call<List<Address>> call = service.listAddresses(queryStringParams);
+  public List<Address> listAddresses(QueryFilter queryFilter) throws ApiException {
+    Call<List<Address>> call = service.listAddresses(queryFilter);
     return syncCall(call);
   }
 
-  public void listAddresses(Map<String, String> queryStringParams,
-      ApiCallback<List<Address>> callback) {
-    Call<List<Address>> call = service.listAddresses(queryStringParams);
+  public void listAddresses(QueryFilter queryFilter, ApiCallback<List<Address>> callback) {
+    Call<List<Address>> call = service.listAddresses(queryFilter);
     asyncCall(call, callback);
   }
 
@@ -80,15 +79,14 @@ public class AddressServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public Address retrieveAddress(String addressId, Map<String, String> queryStringParams) throws
-      ApiException {
-    Call<Address> call = service.retrieveAddress(addressId, queryStringParams);
+  public Address retrieveAddress(String addressId, QueryFilter queryFilter) throws ApiException {
+    Call<Address> call = service.retrieveAddress(addressId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveAddress(String addressId, Map<String, String> queryStringParams,
+  public void retrieveAddress(String addressId, QueryFilter queryFilter,
       ApiCallback<Address> callback) {
-    Call<Address> call = service.retrieveAddress(addressId, queryStringParams);
+    Call<Address> call = service.retrieveAddress(addressId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -102,15 +100,15 @@ public class AddressServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public Geocoder retrieveAddressGeocoder(String addressId, Map<String, String> queryStringParams)
-      throws ApiException {
-    Call<Geocoder> call = service.retrieveAddressGeocoder(addressId, queryStringParams);
+  public Geocoder retrieveAddressGeocoder(String addressId, QueryFilter queryFilter) throws
+      ApiException {
+    Call<Geocoder> call = service.retrieveAddressGeocoder(addressId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveAddressGeocoder(String addressId, Map<String, String> queryStringParams,
+  public void retrieveAddressGeocoder(String addressId, QueryFilter queryFilter,
       ApiCallback<Geocoder> callback) {
-    Call<Geocoder> call = service.retrieveAddressGeocoder(addressId, queryStringParams);
+    Call<Geocoder> call = service.retrieveAddressGeocoder(addressId, queryFilter);
     asyncCall(call, callback);
   }
 

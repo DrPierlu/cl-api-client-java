@@ -4,6 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
+import io.commercelayer.api.client.common.QueryFilter;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.model.Address;
@@ -12,7 +13,6 @@ import io.commercelayer.api.model.CustomerAddress;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.CustomerAddressService;
 import java.util.List;
-import java.util.Map;
 import retrofit2.Call;
 
 public class CustomerAddressServiceClient extends AbstractServiceClient {
@@ -32,15 +32,14 @@ public class CustomerAddressServiceClient extends AbstractServiceClient {
     super(apiOrg, apiToken);
   }
 
-  public List<CustomerAddress> listCustomerAddresses(Map<String, String> queryStringParams) throws
-      ApiException {
-    Call<List<CustomerAddress>> call = service.listCustomerAddresses(queryStringParams);
+  public List<CustomerAddress> listCustomerAddresses(QueryFilter queryFilter) throws ApiException {
+    Call<List<CustomerAddress>> call = service.listCustomerAddresses(queryFilter);
     return syncCall(call);
   }
 
-  public void listCustomerAddresses(Map<String, String> queryStringParams,
+  public void listCustomerAddresses(QueryFilter queryFilter,
       ApiCallback<List<CustomerAddress>> callback) {
-    Call<List<CustomerAddress>> call = service.listCustomerAddresses(queryStringParams);
+    Call<List<CustomerAddress>> call = service.listCustomerAddresses(queryFilter);
     asyncCall(call, callback);
   }
 
@@ -88,15 +87,15 @@ public class CustomerAddressServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public CustomerAddress retrieveCustomerAddress(String customerAddressId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<CustomerAddress> call = service.retrieveCustomerAddress(customerAddressId, queryStringParams);
+  public CustomerAddress retrieveCustomerAddress(String customerAddressId, QueryFilter queryFilter)
+      throws ApiException {
+    Call<CustomerAddress> call = service.retrieveCustomerAddress(customerAddressId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveCustomerAddress(String customerAddressId,
-      Map<String, String> queryStringParams, ApiCallback<CustomerAddress> callback) {
-    Call<CustomerAddress> call = service.retrieveCustomerAddress(customerAddressId, queryStringParams);
+  public void retrieveCustomerAddress(String customerAddressId, QueryFilter queryFilter,
+      ApiCallback<CustomerAddress> callback) {
+    Call<CustomerAddress> call = service.retrieveCustomerAddress(customerAddressId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -111,15 +110,15 @@ public class CustomerAddressServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public Address retrieveCustomerAddressAddress(String customerAddressId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<Address> call = service.retrieveCustomerAddressAddress(customerAddressId, queryStringParams);
+  public Address retrieveCustomerAddressAddress(String customerAddressId, QueryFilter queryFilter)
+      throws ApiException {
+    Call<Address> call = service.retrieveCustomerAddressAddress(customerAddressId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveCustomerAddressAddress(String customerAddressId,
-      Map<String, String> queryStringParams, ApiCallback<Address> callback) {
-    Call<Address> call = service.retrieveCustomerAddressAddress(customerAddressId, queryStringParams);
+  public void retrieveCustomerAddressAddress(String customerAddressId, QueryFilter queryFilter,
+      ApiCallback<Address> callback) {
+    Call<Address> call = service.retrieveCustomerAddressAddress(customerAddressId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -134,15 +133,15 @@ public class CustomerAddressServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public Customer retrieveCustomerAddressCustomer(String customerAddressId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<Customer> call = service.retrieveCustomerAddressCustomer(customerAddressId, queryStringParams);
+  public Customer retrieveCustomerAddressCustomer(String customerAddressId, QueryFilter queryFilter)
+      throws ApiException {
+    Call<Customer> call = service.retrieveCustomerAddressCustomer(customerAddressId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveCustomerAddressCustomer(String customerAddressId,
-      Map<String, String> queryStringParams, ApiCallback<Customer> callback) {
-    Call<Customer> call = service.retrieveCustomerAddressCustomer(customerAddressId, queryStringParams);
+  public void retrieveCustomerAddressCustomer(String customerAddressId, QueryFilter queryFilter,
+      ApiCallback<Customer> callback) {
+    Call<Customer> call = service.retrieveCustomerAddressCustomer(customerAddressId, queryFilter);
     asyncCall(call, callback);
   }
 

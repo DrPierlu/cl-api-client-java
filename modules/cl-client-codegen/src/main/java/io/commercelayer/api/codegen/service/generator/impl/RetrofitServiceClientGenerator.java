@@ -25,6 +25,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
+import io.commercelayer.api.client.common.QueryFilter;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.codegen.model.generator.ModelGeneratorUtils;
@@ -165,11 +166,9 @@ public class RetrofitServiceClientGenerator implements ServiceGenerator {
 		}
 		
 		if (OperationType.GET.equals(op.getType()) && qsParams) {
-			final String qsParamName = "queryStringParams";
-			methodBuilder.addParameter(
-				ParameterSpec.builder(ParameterizedTypeName.get(Map.class, String.class, String.class), qsParamName).build()
-			);
-			methodParams.add(qsParamName);
+			ParameterSpec queryFilterParam = buildQueryFilterParameter();
+			methodBuilder.addParameter(queryFilterParam);
+			methodParams.add(queryFilterParam.name);
 		}
 		
 		CodeBlock methodBody = CodeBlock.builder()
@@ -210,11 +209,9 @@ public class RetrofitServiceClientGenerator implements ServiceGenerator {
 		
 		// QueryString Param Map
 		if (OperationType.GET.equals(op.getType()) && qsParams) {
-			final String qsParamName = "queryStringParams";
-			methodBuilder.addParameter(
-				ParameterSpec.builder(ParameterizedTypeName.get(Map.class, String.class, String.class), qsParamName).build()
-			);
-			methodParams.add(qsParamName);
+			ParameterSpec queryFilterParam = buildQueryFilterParameter();
+			methodBuilder.addParameter(queryFilterParam);
+			methodParams.add(queryFilterParam.name);
 		}
 		
 		// Callback Param
@@ -228,6 +225,11 @@ public class RetrofitServiceClientGenerator implements ServiceGenerator {
 		
 		return methodBuilder.build();
 		
+	}
+	
+	
+	private ParameterSpec buildQueryFilterParameter() {
+		return ParameterSpec.builder(QueryFilter.class, "queryFilter").build();
 	}
 	
 	

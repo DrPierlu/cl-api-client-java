@@ -4,6 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
+import io.commercelayer.api.client.common.QueryFilter;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.model.Order;
@@ -11,7 +12,6 @@ import io.commercelayer.api.model.PaypalPayment;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.PaypalPaymentService;
 import java.util.List;
-import java.util.Map;
 import retrofit2.Call;
 
 public class PaypalPaymentServiceClient extends AbstractServiceClient {
@@ -30,15 +30,14 @@ public class PaypalPaymentServiceClient extends AbstractServiceClient {
     super(apiOrg, apiToken);
   }
 
-  public List<PaypalPayment> listPaypalPayments(Map<String, String> queryStringParams) throws
-      ApiException {
-    Call<List<PaypalPayment>> call = service.listPaypalPayments(queryStringParams);
+  public List<PaypalPayment> listPaypalPayments(QueryFilter queryFilter) throws ApiException {
+    Call<List<PaypalPayment>> call = service.listPaypalPayments(queryFilter);
     return syncCall(call);
   }
 
-  public void listPaypalPayments(Map<String, String> queryStringParams,
+  public void listPaypalPayments(QueryFilter queryFilter,
       ApiCallback<List<PaypalPayment>> callback) {
-    Call<List<PaypalPayment>> call = service.listPaypalPayments(queryStringParams);
+    Call<List<PaypalPayment>> call = service.listPaypalPayments(queryFilter);
     asyncCall(call, callback);
   }
 
@@ -85,15 +84,15 @@ public class PaypalPaymentServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public PaypalPayment retrievePaypalPayment(String paypalPaymentId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<PaypalPayment> call = service.retrievePaypalPayment(paypalPaymentId, queryStringParams);
+  public PaypalPayment retrievePaypalPayment(String paypalPaymentId, QueryFilter queryFilter) throws
+      ApiException {
+    Call<PaypalPayment> call = service.retrievePaypalPayment(paypalPaymentId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrievePaypalPayment(String paypalPaymentId, Map<String, String> queryStringParams,
+  public void retrievePaypalPayment(String paypalPaymentId, QueryFilter queryFilter,
       ApiCallback<PaypalPayment> callback) {
-    Call<PaypalPayment> call = service.retrievePaypalPayment(paypalPaymentId, queryStringParams);
+    Call<PaypalPayment> call = service.retrievePaypalPayment(paypalPaymentId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -107,15 +106,15 @@ public class PaypalPaymentServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public Order retrievePaypalPaymentOrder(String paypalPaymentId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<Order> call = service.retrievePaypalPaymentOrder(paypalPaymentId, queryStringParams);
+  public Order retrievePaypalPaymentOrder(String paypalPaymentId, QueryFilter queryFilter) throws
+      ApiException {
+    Call<Order> call = service.retrievePaypalPaymentOrder(paypalPaymentId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrievePaypalPaymentOrder(String paypalPaymentId,
-      Map<String, String> queryStringParams, ApiCallback<Order> callback) {
-    Call<Order> call = service.retrievePaypalPaymentOrder(paypalPaymentId, queryStringParams);
+  public void retrievePaypalPaymentOrder(String paypalPaymentId, QueryFilter queryFilter,
+      ApiCallback<Order> callback) {
+    Call<Order> call = service.retrievePaypalPaymentOrder(paypalPaymentId, queryFilter);
     asyncCall(call, callback);
   }
 

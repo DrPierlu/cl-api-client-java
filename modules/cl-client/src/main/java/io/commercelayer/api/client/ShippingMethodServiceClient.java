@@ -4,6 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
+import io.commercelayer.api.client.common.QueryFilter;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.model.DeliveryLeadTime;
@@ -14,7 +15,6 @@ import io.commercelayer.api.model.ShippingZone;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.ShippingMethodService;
 import java.util.List;
-import java.util.Map;
 import retrofit2.Call;
 
 public class ShippingMethodServiceClient extends AbstractServiceClient {
@@ -33,15 +33,14 @@ public class ShippingMethodServiceClient extends AbstractServiceClient {
     super(apiOrg, apiToken);
   }
 
-  public List<ShippingMethod> listShippingMethods(Map<String, String> queryStringParams) throws
-      ApiException {
-    Call<List<ShippingMethod>> call = service.listShippingMethods(queryStringParams);
+  public List<ShippingMethod> listShippingMethods(QueryFilter queryFilter) throws ApiException {
+    Call<List<ShippingMethod>> call = service.listShippingMethods(queryFilter);
     return syncCall(call);
   }
 
-  public void listShippingMethods(Map<String, String> queryStringParams,
+  public void listShippingMethods(QueryFilter queryFilter,
       ApiCallback<List<ShippingMethod>> callback) {
-    Call<List<ShippingMethod>> call = service.listShippingMethods(queryStringParams);
+    Call<List<ShippingMethod>> call = service.listShippingMethods(queryFilter);
     asyncCall(call, callback);
   }
 
@@ -88,15 +87,15 @@ public class ShippingMethodServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public ShippingMethod retrieveShippingMethod(String shippingMethodId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<ShippingMethod> call = service.retrieveShippingMethod(shippingMethodId, queryStringParams);
+  public ShippingMethod retrieveShippingMethod(String shippingMethodId, QueryFilter queryFilter)
+      throws ApiException {
+    Call<ShippingMethod> call = service.retrieveShippingMethod(shippingMethodId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveShippingMethod(String shippingMethodId, Map<String, String> queryStringParams,
+  public void retrieveShippingMethod(String shippingMethodId, QueryFilter queryFilter,
       ApiCallback<ShippingMethod> callback) {
-    Call<ShippingMethod> call = service.retrieveShippingMethod(shippingMethodId, queryStringParams);
+    Call<ShippingMethod> call = service.retrieveShippingMethod(shippingMethodId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -112,14 +111,14 @@ public class ShippingMethodServiceClient extends AbstractServiceClient {
   }
 
   public List<DeliveryLeadTime> retrieveShippingMethodDeliveryLeadTimeForShipment(
-      String shippingMethodId, Map<String, String> queryStringParams) throws ApiException {
-    Call<List<DeliveryLeadTime>> call = service.retrieveShippingMethodDeliveryLeadTimeForShipment(shippingMethodId, queryStringParams);
+      String shippingMethodId, QueryFilter queryFilter) throws ApiException {
+    Call<List<DeliveryLeadTime>> call = service.retrieveShippingMethodDeliveryLeadTimeForShipment(shippingMethodId, queryFilter);
     return syncCall(call);
   }
 
   public void retrieveShippingMethodDeliveryLeadTimeForShipment(String shippingMethodId,
-      Map<String, String> queryStringParams, ApiCallback<List<DeliveryLeadTime>> callback) {
-    Call<List<DeliveryLeadTime>> call = service.retrieveShippingMethodDeliveryLeadTimeForShipment(shippingMethodId, queryStringParams);
+      QueryFilter queryFilter, ApiCallback<List<DeliveryLeadTime>> callback) {
+    Call<List<DeliveryLeadTime>> call = service.retrieveShippingMethodDeliveryLeadTimeForShipment(shippingMethodId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -135,15 +134,15 @@ public class ShippingMethodServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public Market retrieveShippingMethodMarket(String shippingMethodId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<Market> call = service.retrieveShippingMethodMarket(shippingMethodId, queryStringParams);
+  public Market retrieveShippingMethodMarket(String shippingMethodId, QueryFilter queryFilter)
+      throws ApiException {
+    Call<Market> call = service.retrieveShippingMethodMarket(shippingMethodId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveShippingMethodMarket(String shippingMethodId,
-      Map<String, String> queryStringParams, ApiCallback<Market> callback) {
-    Call<Market> call = service.retrieveShippingMethodMarket(shippingMethodId, queryStringParams);
+  public void retrieveShippingMethodMarket(String shippingMethodId, QueryFilter queryFilter,
+      ApiCallback<Market> callback) {
+    Call<Market> call = service.retrieveShippingMethodMarket(shippingMethodId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -158,14 +157,14 @@ public class ShippingMethodServiceClient extends AbstractServiceClient {
   }
 
   public ShippingCategory retrieveShippingMethodShippingCategory(String shippingMethodId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<ShippingCategory> call = service.retrieveShippingMethodShippingCategory(shippingMethodId, queryStringParams);
+      QueryFilter queryFilter) throws ApiException {
+    Call<ShippingCategory> call = service.retrieveShippingMethodShippingCategory(shippingMethodId, queryFilter);
     return syncCall(call);
   }
 
   public void retrieveShippingMethodShippingCategory(String shippingMethodId,
-      Map<String, String> queryStringParams, ApiCallback<ShippingCategory> callback) {
-    Call<ShippingCategory> call = service.retrieveShippingMethodShippingCategory(shippingMethodId, queryStringParams);
+      QueryFilter queryFilter, ApiCallback<ShippingCategory> callback) {
+    Call<ShippingCategory> call = service.retrieveShippingMethodShippingCategory(shippingMethodId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -182,14 +181,14 @@ public class ShippingMethodServiceClient extends AbstractServiceClient {
   }
 
   public ShippingZone retrieveShippingMethodShippingZone(String shippingMethodId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<ShippingZone> call = service.retrieveShippingMethodShippingZone(shippingMethodId, queryStringParams);
+      QueryFilter queryFilter) throws ApiException {
+    Call<ShippingZone> call = service.retrieveShippingMethodShippingZone(shippingMethodId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveShippingMethodShippingZone(String shippingMethodId,
-      Map<String, String> queryStringParams, ApiCallback<ShippingZone> callback) {
-    Call<ShippingZone> call = service.retrieveShippingMethodShippingZone(shippingMethodId, queryStringParams);
+  public void retrieveShippingMethodShippingZone(String shippingMethodId, QueryFilter queryFilter,
+      ApiCallback<ShippingZone> callback) {
+    Call<ShippingZone> call = service.retrieveShippingMethodShippingZone(shippingMethodId, queryFilter);
     asyncCall(call, callback);
   }
 

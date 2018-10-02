@@ -40,4 +40,8 @@ public abstract class AbstractServiceClient {
 		this.apiCaller.call(apiCall, apiCallback);
 	}
 	
+	public QueryFilter.Builder queryFilterBuilder() {
+		return QueryFilter.builder();
+	}
+	
 }

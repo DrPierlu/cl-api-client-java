@@ -4,6 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
+import io.commercelayer.api.client.common.QueryFilter;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.model.Market;
@@ -11,7 +12,6 @@ import io.commercelayer.api.model.SkuOption;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.SkuOptionService;
 import java.util.List;
-import java.util.Map;
 import retrofit2.Call;
 
 public class SkuOptionServiceClient extends AbstractServiceClient {
@@ -29,14 +29,13 @@ public class SkuOptionServiceClient extends AbstractServiceClient {
     super(apiOrg, apiToken);
   }
 
-  public List<SkuOption> listSkuOptions(Map<String, String> queryStringParams) throws ApiException {
-    Call<List<SkuOption>> call = service.listSkuOptions(queryStringParams);
+  public List<SkuOption> listSkuOptions(QueryFilter queryFilter) throws ApiException {
+    Call<List<SkuOption>> call = service.listSkuOptions(queryFilter);
     return syncCall(call);
   }
 
-  public void listSkuOptions(Map<String, String> queryStringParams,
-      ApiCallback<List<SkuOption>> callback) {
-    Call<List<SkuOption>> call = service.listSkuOptions(queryStringParams);
+  public void listSkuOptions(QueryFilter queryFilter, ApiCallback<List<SkuOption>> callback) {
+    Call<List<SkuOption>> call = service.listSkuOptions(queryFilter);
     asyncCall(call, callback);
   }
 
@@ -81,15 +80,15 @@ public class SkuOptionServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public SkuOption retrieveSkuOption(String skuOptionId, Map<String, String> queryStringParams)
-      throws ApiException {
-    Call<SkuOption> call = service.retrieveSkuOption(skuOptionId, queryStringParams);
+  public SkuOption retrieveSkuOption(String skuOptionId, QueryFilter queryFilter) throws
+      ApiException {
+    Call<SkuOption> call = service.retrieveSkuOption(skuOptionId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveSkuOption(String skuOptionId, Map<String, String> queryStringParams,
+  public void retrieveSkuOption(String skuOptionId, QueryFilter queryFilter,
       ApiCallback<SkuOption> callback) {
-    Call<SkuOption> call = service.retrieveSkuOption(skuOptionId, queryStringParams);
+    Call<SkuOption> call = service.retrieveSkuOption(skuOptionId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -103,15 +102,15 @@ public class SkuOptionServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public Market retrieveSkuOptionMarket(String skuOptionId, Map<String, String> queryStringParams)
-      throws ApiException {
-    Call<Market> call = service.retrieveSkuOptionMarket(skuOptionId, queryStringParams);
+  public Market retrieveSkuOptionMarket(String skuOptionId, QueryFilter queryFilter) throws
+      ApiException {
+    Call<Market> call = service.retrieveSkuOptionMarket(skuOptionId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveSkuOptionMarket(String skuOptionId, Map<String, String> queryStringParams,
+  public void retrieveSkuOptionMarket(String skuOptionId, QueryFilter queryFilter,
       ApiCallback<Market> callback) {
-    Call<Market> call = service.retrieveSkuOptionMarket(skuOptionId, queryStringParams);
+    Call<Market> call = service.retrieveSkuOptionMarket(skuOptionId, queryFilter);
     asyncCall(call, callback);
   }
 

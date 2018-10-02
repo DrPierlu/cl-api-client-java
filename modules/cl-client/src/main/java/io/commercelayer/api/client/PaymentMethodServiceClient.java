@@ -4,6 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
+import io.commercelayer.api.client.common.QueryFilter;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.model.Market;
@@ -12,7 +13,6 @@ import io.commercelayer.api.model.PaymentMethod;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.PaymentMethodService;
 import java.util.List;
-import java.util.Map;
 import retrofit2.Call;
 
 public class PaymentMethodServiceClient extends AbstractServiceClient {
@@ -31,15 +31,14 @@ public class PaymentMethodServiceClient extends AbstractServiceClient {
     super(apiOrg, apiToken);
   }
 
-  public List<PaymentMethod> listPaymentMethods(Map<String, String> queryStringParams) throws
-      ApiException {
-    Call<List<PaymentMethod>> call = service.listPaymentMethods(queryStringParams);
+  public List<PaymentMethod> listPaymentMethods(QueryFilter queryFilter) throws ApiException {
+    Call<List<PaymentMethod>> call = service.listPaymentMethods(queryFilter);
     return syncCall(call);
   }
 
-  public void listPaymentMethods(Map<String, String> queryStringParams,
+  public void listPaymentMethods(QueryFilter queryFilter,
       ApiCallback<List<PaymentMethod>> callback) {
-    Call<List<PaymentMethod>> call = service.listPaymentMethods(queryStringParams);
+    Call<List<PaymentMethod>> call = service.listPaymentMethods(queryFilter);
     asyncCall(call, callback);
   }
 
@@ -86,15 +85,15 @@ public class PaymentMethodServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public PaymentMethod retrievePaymentMethod(String paymentMethodId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<PaymentMethod> call = service.retrievePaymentMethod(paymentMethodId, queryStringParams);
+  public PaymentMethod retrievePaymentMethod(String paymentMethodId, QueryFilter queryFilter) throws
+      ApiException {
+    Call<PaymentMethod> call = service.retrievePaymentMethod(paymentMethodId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrievePaymentMethod(String paymentMethodId, Map<String, String> queryStringParams,
+  public void retrievePaymentMethod(String paymentMethodId, QueryFilter queryFilter,
       ApiCallback<PaymentMethod> callback) {
-    Call<PaymentMethod> call = service.retrievePaymentMethod(paymentMethodId, queryStringParams);
+    Call<PaymentMethod> call = service.retrievePaymentMethod(paymentMethodId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -108,15 +107,15 @@ public class PaymentMethodServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public Market retrievePaymentMethodMarket(String paymentMethodId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<Market> call = service.retrievePaymentMethodMarket(paymentMethodId, queryStringParams);
+  public Market retrievePaymentMethodMarket(String paymentMethodId, QueryFilter queryFilter) throws
+      ApiException {
+    Call<Market> call = service.retrievePaymentMethodMarket(paymentMethodId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrievePaymentMethodMarket(String paymentMethodId,
-      Map<String, String> queryStringParams, ApiCallback<Market> callback) {
-    Call<Market> call = service.retrievePaymentMethodMarket(paymentMethodId, queryStringParams);
+  public void retrievePaymentMethodMarket(String paymentMethodId, QueryFilter queryFilter,
+      ApiCallback<Market> callback) {
+    Call<Market> call = service.retrievePaymentMethodMarket(paymentMethodId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -131,14 +130,14 @@ public class PaymentMethodServiceClient extends AbstractServiceClient {
   }
 
   public PaymentGateway retrievePaymentMethodPaymentGateway(String paymentMethodId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<PaymentGateway> call = service.retrievePaymentMethodPaymentGateway(paymentMethodId, queryStringParams);
+      QueryFilter queryFilter) throws ApiException {
+    Call<PaymentGateway> call = service.retrievePaymentMethodPaymentGateway(paymentMethodId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrievePaymentMethodPaymentGateway(String paymentMethodId,
-      Map<String, String> queryStringParams, ApiCallback<PaymentGateway> callback) {
-    Call<PaymentGateway> call = service.retrievePaymentMethodPaymentGateway(paymentMethodId, queryStringParams);
+  public void retrievePaymentMethodPaymentGateway(String paymentMethodId, QueryFilter queryFilter,
+      ApiCallback<PaymentGateway> callback) {
+    Call<PaymentGateway> call = service.retrievePaymentMethodPaymentGateway(paymentMethodId, queryFilter);
     asyncCall(call, callback);
   }
 

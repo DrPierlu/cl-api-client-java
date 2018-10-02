@@ -4,6 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
+import io.commercelayer.api.client.common.QueryFilter;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.model.InventoryModel;
@@ -12,7 +13,6 @@ import io.commercelayer.api.model.StockLocation;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.StockLevelService;
 import java.util.List;
-import java.util.Map;
 import retrofit2.Call;
 
 public class StockLevelServiceClient extends AbstractServiceClient {
@@ -30,15 +30,13 @@ public class StockLevelServiceClient extends AbstractServiceClient {
     super(apiOrg, apiToken);
   }
 
-  public List<StockLevel> listStockLevels(Map<String, String> queryStringParams) throws
-      ApiException {
-    Call<List<StockLevel>> call = service.listStockLevels(queryStringParams);
+  public List<StockLevel> listStockLevels(QueryFilter queryFilter) throws ApiException {
+    Call<List<StockLevel>> call = service.listStockLevels(queryFilter);
     return syncCall(call);
   }
 
-  public void listStockLevels(Map<String, String> queryStringParams,
-      ApiCallback<List<StockLevel>> callback) {
-    Call<List<StockLevel>> call = service.listStockLevels(queryStringParams);
+  public void listStockLevels(QueryFilter queryFilter, ApiCallback<List<StockLevel>> callback) {
+    Call<List<StockLevel>> call = service.listStockLevels(queryFilter);
     asyncCall(call, callback);
   }
 
@@ -84,15 +82,15 @@ public class StockLevelServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public StockLevel retrieveStockLevel(String stockLevelId, Map<String, String> queryStringParams)
-      throws ApiException {
-    Call<StockLevel> call = service.retrieveStockLevel(stockLevelId, queryStringParams);
+  public StockLevel retrieveStockLevel(String stockLevelId, QueryFilter queryFilter) throws
+      ApiException {
+    Call<StockLevel> call = service.retrieveStockLevel(stockLevelId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveStockLevel(String stockLevelId, Map<String, String> queryStringParams,
+  public void retrieveStockLevel(String stockLevelId, QueryFilter queryFilter,
       ApiCallback<StockLevel> callback) {
-    Call<StockLevel> call = service.retrieveStockLevel(stockLevelId, queryStringParams);
+    Call<StockLevel> call = service.retrieveStockLevel(stockLevelId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -107,14 +105,14 @@ public class StockLevelServiceClient extends AbstractServiceClient {
   }
 
   public InventoryModel retrieveStockLevelInventoryModel(String stockLevelId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<InventoryModel> call = service.retrieveStockLevelInventoryModel(stockLevelId, queryStringParams);
+      QueryFilter queryFilter) throws ApiException {
+    Call<InventoryModel> call = service.retrieveStockLevelInventoryModel(stockLevelId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveStockLevelInventoryModel(String stockLevelId,
-      Map<String, String> queryStringParams, ApiCallback<InventoryModel> callback) {
-    Call<InventoryModel> call = service.retrieveStockLevelInventoryModel(stockLevelId, queryStringParams);
+  public void retrieveStockLevelInventoryModel(String stockLevelId, QueryFilter queryFilter,
+      ApiCallback<InventoryModel> callback) {
+    Call<InventoryModel> call = service.retrieveStockLevelInventoryModel(stockLevelId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -129,15 +127,15 @@ public class StockLevelServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public StockLocation retrieveStockLevelStockLocation(String stockLevelId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<StockLocation> call = service.retrieveStockLevelStockLocation(stockLevelId, queryStringParams);
+  public StockLocation retrieveStockLevelStockLocation(String stockLevelId, QueryFilter queryFilter)
+      throws ApiException {
+    Call<StockLocation> call = service.retrieveStockLevelStockLocation(stockLevelId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveStockLevelStockLocation(String stockLevelId,
-      Map<String, String> queryStringParams, ApiCallback<StockLocation> callback) {
-    Call<StockLocation> call = service.retrieveStockLevelStockLocation(stockLevelId, queryStringParams);
+  public void retrieveStockLevelStockLocation(String stockLevelId, QueryFilter queryFilter,
+      ApiCallback<StockLocation> callback) {
+    Call<StockLocation> call = service.retrieveStockLevelStockLocation(stockLevelId, queryFilter);
     asyncCall(call, callback);
   }
 

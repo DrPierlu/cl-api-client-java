@@ -4,6 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
+import io.commercelayer.api.client.common.QueryFilter;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.model.Address;
@@ -11,7 +12,6 @@ import io.commercelayer.api.model.Merchant;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.MerchantService;
 import java.util.List;
-import java.util.Map;
 import retrofit2.Call;
 
 public class MerchantServiceClient extends AbstractServiceClient {
@@ -29,14 +29,13 @@ public class MerchantServiceClient extends AbstractServiceClient {
     super(apiOrg, apiToken);
   }
 
-  public List<Merchant> listMerchants(Map<String, String> queryStringParams) throws ApiException {
-    Call<List<Merchant>> call = service.listMerchants(queryStringParams);
+  public List<Merchant> listMerchants(QueryFilter queryFilter) throws ApiException {
+    Call<List<Merchant>> call = service.listMerchants(queryFilter);
     return syncCall(call);
   }
 
-  public void listMerchants(Map<String, String> queryStringParams,
-      ApiCallback<List<Merchant>> callback) {
-    Call<List<Merchant>> call = service.listMerchants(queryStringParams);
+  public void listMerchants(QueryFilter queryFilter, ApiCallback<List<Merchant>> callback) {
+    Call<List<Merchant>> call = service.listMerchants(queryFilter);
     asyncCall(call, callback);
   }
 
@@ -80,15 +79,14 @@ public class MerchantServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public Merchant retrieveMerchant(String merchantId, Map<String, String> queryStringParams) throws
-      ApiException {
-    Call<Merchant> call = service.retrieveMerchant(merchantId, queryStringParams);
+  public Merchant retrieveMerchant(String merchantId, QueryFilter queryFilter) throws ApiException {
+    Call<Merchant> call = service.retrieveMerchant(merchantId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveMerchant(String merchantId, Map<String, String> queryStringParams,
+  public void retrieveMerchant(String merchantId, QueryFilter queryFilter,
       ApiCallback<Merchant> callback) {
-    Call<Merchant> call = service.retrieveMerchant(merchantId, queryStringParams);
+    Call<Merchant> call = service.retrieveMerchant(merchantId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -102,15 +100,15 @@ public class MerchantServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public Address retrieveMerchantAddress(String merchantId, Map<String, String> queryStringParams)
-      throws ApiException {
-    Call<Address> call = service.retrieveMerchantAddress(merchantId, queryStringParams);
+  public Address retrieveMerchantAddress(String merchantId, QueryFilter queryFilter) throws
+      ApiException {
+    Call<Address> call = service.retrieveMerchantAddress(merchantId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveMerchantAddress(String merchantId, Map<String, String> queryStringParams,
+  public void retrieveMerchantAddress(String merchantId, QueryFilter queryFilter,
       ApiCallback<Address> callback) {
-    Call<Address> call = service.retrieveMerchantAddress(merchantId, queryStringParams);
+    Call<Address> call = service.retrieveMerchantAddress(merchantId, queryFilter);
     asyncCall(call, callback);
   }
 

@@ -4,6 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
+import io.commercelayer.api.client.common.QueryFilter;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.model.InventoryModel;
@@ -13,7 +14,6 @@ import io.commercelayer.api.model.PriceList;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.MarketService;
 import java.util.List;
-import java.util.Map;
 import retrofit2.Call;
 
 public class MarketServiceClient extends AbstractServiceClient {
@@ -31,14 +31,13 @@ public class MarketServiceClient extends AbstractServiceClient {
     super(apiOrg, apiToken);
   }
 
-  public List<Market> listMarkets(Map<String, String> queryStringParams) throws ApiException {
-    Call<List<Market>> call = service.listMarkets(queryStringParams);
+  public List<Market> listMarkets(QueryFilter queryFilter) throws ApiException {
+    Call<List<Market>> call = service.listMarkets(queryFilter);
     return syncCall(call);
   }
 
-  public void listMarkets(Map<String, String> queryStringParams,
-      ApiCallback<List<Market>> callback) {
-    Call<List<Market>> call = service.listMarkets(queryStringParams);
+  public void listMarkets(QueryFilter queryFilter, ApiCallback<List<Market>> callback) {
+    Call<List<Market>> call = service.listMarkets(queryFilter);
     asyncCall(call, callback);
   }
 
@@ -82,15 +81,14 @@ public class MarketServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public Market retrieveMarket(String marketId, Map<String, String> queryStringParams) throws
-      ApiException {
-    Call<Market> call = service.retrieveMarket(marketId, queryStringParams);
+  public Market retrieveMarket(String marketId, QueryFilter queryFilter) throws ApiException {
+    Call<Market> call = service.retrieveMarket(marketId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveMarket(String marketId, Map<String, String> queryStringParams,
+  public void retrieveMarket(String marketId, QueryFilter queryFilter,
       ApiCallback<Market> callback) {
-    Call<Market> call = service.retrieveMarket(marketId, queryStringParams);
+    Call<Market> call = service.retrieveMarket(marketId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -104,15 +102,15 @@ public class MarketServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public InventoryModel retrieveMarketInventoryModel(String marketId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<InventoryModel> call = service.retrieveMarketInventoryModel(marketId, queryStringParams);
+  public InventoryModel retrieveMarketInventoryModel(String marketId, QueryFilter queryFilter)
+      throws ApiException {
+    Call<InventoryModel> call = service.retrieveMarketInventoryModel(marketId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveMarketInventoryModel(String marketId, Map<String, String> queryStringParams,
+  public void retrieveMarketInventoryModel(String marketId, QueryFilter queryFilter,
       ApiCallback<InventoryModel> callback) {
-    Call<InventoryModel> call = service.retrieveMarketInventoryModel(marketId, queryStringParams);
+    Call<InventoryModel> call = service.retrieveMarketInventoryModel(marketId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -126,15 +124,15 @@ public class MarketServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public Merchant retrieveMarketMerchant(String marketId, Map<String, String> queryStringParams)
-      throws ApiException {
-    Call<Merchant> call = service.retrieveMarketMerchant(marketId, queryStringParams);
+  public Merchant retrieveMarketMerchant(String marketId, QueryFilter queryFilter) throws
+      ApiException {
+    Call<Merchant> call = service.retrieveMarketMerchant(marketId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveMarketMerchant(String marketId, Map<String, String> queryStringParams,
+  public void retrieveMarketMerchant(String marketId, QueryFilter queryFilter,
       ApiCallback<Merchant> callback) {
-    Call<Merchant> call = service.retrieveMarketMerchant(marketId, queryStringParams);
+    Call<Merchant> call = service.retrieveMarketMerchant(marketId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -148,15 +146,15 @@ public class MarketServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public PriceList retrieveMarketPriceList(String marketId, Map<String, String> queryStringParams)
-      throws ApiException {
-    Call<PriceList> call = service.retrieveMarketPriceList(marketId, queryStringParams);
+  public PriceList retrieveMarketPriceList(String marketId, QueryFilter queryFilter) throws
+      ApiException {
+    Call<PriceList> call = service.retrieveMarketPriceList(marketId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveMarketPriceList(String marketId, Map<String, String> queryStringParams,
+  public void retrieveMarketPriceList(String marketId, QueryFilter queryFilter,
       ApiCallback<PriceList> callback) {
-    Call<PriceList> call = service.retrieveMarketPriceList(marketId, queryStringParams);
+    Call<PriceList> call = service.retrieveMarketPriceList(marketId, queryFilter);
     asyncCall(call, callback);
   }
 

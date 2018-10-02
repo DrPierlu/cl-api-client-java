@@ -4,6 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
+import io.commercelayer.api.client.common.QueryFilter;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.model.DeliveryLeadTime;
@@ -15,7 +16,6 @@ import io.commercelayer.api.model.StockItem;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.SkuService;
 import java.util.List;
-import java.util.Map;
 import retrofit2.Call;
 
 public class SkuServiceClient extends AbstractServiceClient {
@@ -33,13 +33,13 @@ public class SkuServiceClient extends AbstractServiceClient {
     super(apiOrg, apiToken);
   }
 
-  public List<Sku> listSkus(Map<String, String> queryStringParams) throws ApiException {
-    Call<List<Sku>> call = service.listSkus(queryStringParams);
+  public List<Sku> listSkus(QueryFilter queryFilter) throws ApiException {
+    Call<List<Sku>> call = service.listSkus(queryFilter);
     return syncCall(call);
   }
 
-  public void listSkus(Map<String, String> queryStringParams, ApiCallback<List<Sku>> callback) {
-    Call<List<Sku>> call = service.listSkus(queryStringParams);
+  public void listSkus(QueryFilter queryFilter, ApiCallback<List<Sku>> callback) {
+    Call<List<Sku>> call = service.listSkus(queryFilter);
     asyncCall(call, callback);
   }
 
@@ -83,14 +83,13 @@ public class SkuServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public Sku retrieveSku(String skuId, Map<String, String> queryStringParams) throws ApiException {
-    Call<Sku> call = service.retrieveSku(skuId, queryStringParams);
+  public Sku retrieveSku(String skuId, QueryFilter queryFilter) throws ApiException {
+    Call<Sku> call = service.retrieveSku(skuId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveSku(String skuId, Map<String, String> queryStringParams,
-      ApiCallback<Sku> callback) {
-    Call<Sku> call = service.retrieveSku(skuId, queryStringParams);
+  public void retrieveSku(String skuId, QueryFilter queryFilter, ApiCallback<Sku> callback) {
+    Call<Sku> call = service.retrieveSku(skuId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -104,15 +103,15 @@ public class SkuServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public List<DeliveryLeadTime> listSkuDeliveryLeadTimes(String skuId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<List<DeliveryLeadTime>> call = service.listSkuDeliveryLeadTimes(skuId, queryStringParams);
+  public List<DeliveryLeadTime> listSkuDeliveryLeadTimes(String skuId, QueryFilter queryFilter)
+      throws ApiException {
+    Call<List<DeliveryLeadTime>> call = service.listSkuDeliveryLeadTimes(skuId, queryFilter);
     return syncCall(call);
   }
 
-  public void listSkuDeliveryLeadTimes(String skuId, Map<String, String> queryStringParams,
+  public void listSkuDeliveryLeadTimes(String skuId, QueryFilter queryFilter,
       ApiCallback<List<DeliveryLeadTime>> callback) {
-    Call<List<DeliveryLeadTime>> call = service.listSkuDeliveryLeadTimes(skuId, queryStringParams);
+    Call<List<DeliveryLeadTime>> call = service.listSkuDeliveryLeadTimes(skuId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -126,15 +125,14 @@ public class SkuServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public List<Price> listSkuPrices(String skuId, Map<String, String> queryStringParams) throws
-      ApiException {
-    Call<List<Price>> call = service.listSkuPrices(skuId, queryStringParams);
+  public List<Price> listSkuPrices(String skuId, QueryFilter queryFilter) throws ApiException {
+    Call<List<Price>> call = service.listSkuPrices(skuId, queryFilter);
     return syncCall(call);
   }
 
-  public void listSkuPrices(String skuId, Map<String, String> queryStringParams,
+  public void listSkuPrices(String skuId, QueryFilter queryFilter,
       ApiCallback<List<Price>> callback) {
-    Call<List<Price>> call = service.listSkuPrices(skuId, queryStringParams);
+    Call<List<Price>> call = service.listSkuPrices(skuId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -148,15 +146,15 @@ public class SkuServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public ShippingCategory retrieveSkuShippingCategory(String skuId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<ShippingCategory> call = service.retrieveSkuShippingCategory(skuId, queryStringParams);
+  public ShippingCategory retrieveSkuShippingCategory(String skuId, QueryFilter queryFilter) throws
+      ApiException {
+    Call<ShippingCategory> call = service.retrieveSkuShippingCategory(skuId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveSkuShippingCategory(String skuId, Map<String, String> queryStringParams,
+  public void retrieveSkuShippingCategory(String skuId, QueryFilter queryFilter,
       ApiCallback<ShippingCategory> callback) {
-    Call<ShippingCategory> call = service.retrieveSkuShippingCategory(skuId, queryStringParams);
+    Call<ShippingCategory> call = service.retrieveSkuShippingCategory(skuId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -170,15 +168,15 @@ public class SkuServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public List<SkuOption> listSkuSkuOptions(String skuId, Map<String, String> queryStringParams)
-      throws ApiException {
-    Call<List<SkuOption>> call = service.listSkuSkuOptions(skuId, queryStringParams);
+  public List<SkuOption> listSkuSkuOptions(String skuId, QueryFilter queryFilter) throws
+      ApiException {
+    Call<List<SkuOption>> call = service.listSkuSkuOptions(skuId, queryFilter);
     return syncCall(call);
   }
 
-  public void listSkuSkuOptions(String skuId, Map<String, String> queryStringParams,
+  public void listSkuSkuOptions(String skuId, QueryFilter queryFilter,
       ApiCallback<List<SkuOption>> callback) {
-    Call<List<SkuOption>> call = service.listSkuSkuOptions(skuId, queryStringParams);
+    Call<List<SkuOption>> call = service.listSkuSkuOptions(skuId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -192,15 +190,15 @@ public class SkuServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public List<StockItem> listSkuStockItems(String skuId, Map<String, String> queryStringParams)
-      throws ApiException {
-    Call<List<StockItem>> call = service.listSkuStockItems(skuId, queryStringParams);
+  public List<StockItem> listSkuStockItems(String skuId, QueryFilter queryFilter) throws
+      ApiException {
+    Call<List<StockItem>> call = service.listSkuStockItems(skuId, queryFilter);
     return syncCall(call);
   }
 
-  public void listSkuStockItems(String skuId, Map<String, String> queryStringParams,
+  public void listSkuStockItems(String skuId, QueryFilter queryFilter,
       ApiCallback<List<StockItem>> callback) {
-    Call<List<StockItem>> call = service.listSkuStockItems(skuId, queryStringParams);
+    Call<List<StockItem>> call = service.listSkuStockItems(skuId, queryFilter);
     asyncCall(call, callback);
   }
 

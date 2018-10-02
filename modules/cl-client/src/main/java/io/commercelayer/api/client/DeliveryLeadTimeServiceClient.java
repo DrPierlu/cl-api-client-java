@@ -4,6 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
+import io.commercelayer.api.client.common.QueryFilter;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.model.DeliveryLeadTime;
@@ -12,7 +13,6 @@ import io.commercelayer.api.model.StockLocation;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.DeliveryLeadTimeService;
 import java.util.List;
-import java.util.Map;
 import retrofit2.Call;
 
 public class DeliveryLeadTimeServiceClient extends AbstractServiceClient {
@@ -32,15 +32,14 @@ public class DeliveryLeadTimeServiceClient extends AbstractServiceClient {
     super(apiOrg, apiToken);
   }
 
-  public List<DeliveryLeadTime> listDeliveryLeadTimes(Map<String, String> queryStringParams) throws
-      ApiException {
-    Call<List<DeliveryLeadTime>> call = service.listDeliveryLeadTimes(queryStringParams);
+  public List<DeliveryLeadTime> listDeliveryLeadTimes(QueryFilter queryFilter) throws ApiException {
+    Call<List<DeliveryLeadTime>> call = service.listDeliveryLeadTimes(queryFilter);
     return syncCall(call);
   }
 
-  public void listDeliveryLeadTimes(Map<String, String> queryStringParams,
+  public void listDeliveryLeadTimes(QueryFilter queryFilter,
       ApiCallback<List<DeliveryLeadTime>> callback) {
-    Call<List<DeliveryLeadTime>> call = service.listDeliveryLeadTimes(queryStringParams);
+    Call<List<DeliveryLeadTime>> call = service.listDeliveryLeadTimes(queryFilter);
     asyncCall(call, callback);
   }
 
@@ -89,14 +88,14 @@ public class DeliveryLeadTimeServiceClient extends AbstractServiceClient {
   }
 
   public DeliveryLeadTime retrieveDeliveryLeadTime(String deliveryLeadTimeId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<DeliveryLeadTime> call = service.retrieveDeliveryLeadTime(deliveryLeadTimeId, queryStringParams);
+      QueryFilter queryFilter) throws ApiException {
+    Call<DeliveryLeadTime> call = service.retrieveDeliveryLeadTime(deliveryLeadTimeId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveDeliveryLeadTime(String deliveryLeadTimeId,
-      Map<String, String> queryStringParams, ApiCallback<DeliveryLeadTime> callback) {
-    Call<DeliveryLeadTime> call = service.retrieveDeliveryLeadTime(deliveryLeadTimeId, queryStringParams);
+  public void retrieveDeliveryLeadTime(String deliveryLeadTimeId, QueryFilter queryFilter,
+      ApiCallback<DeliveryLeadTime> callback) {
+    Call<DeliveryLeadTime> call = service.retrieveDeliveryLeadTime(deliveryLeadTimeId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -112,14 +111,14 @@ public class DeliveryLeadTimeServiceClient extends AbstractServiceClient {
   }
 
   public ShippingMethod retrieveDeliveryLeadTimeShippingMethod(String deliveryLeadTimeId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<ShippingMethod> call = service.retrieveDeliveryLeadTimeShippingMethod(deliveryLeadTimeId, queryStringParams);
+      QueryFilter queryFilter) throws ApiException {
+    Call<ShippingMethod> call = service.retrieveDeliveryLeadTimeShippingMethod(deliveryLeadTimeId, queryFilter);
     return syncCall(call);
   }
 
   public void retrieveDeliveryLeadTimeShippingMethod(String deliveryLeadTimeId,
-      Map<String, String> queryStringParams, ApiCallback<ShippingMethod> callback) {
-    Call<ShippingMethod> call = service.retrieveDeliveryLeadTimeShippingMethod(deliveryLeadTimeId, queryStringParams);
+      QueryFilter queryFilter, ApiCallback<ShippingMethod> callback) {
+    Call<ShippingMethod> call = service.retrieveDeliveryLeadTimeShippingMethod(deliveryLeadTimeId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -136,14 +135,14 @@ public class DeliveryLeadTimeServiceClient extends AbstractServiceClient {
   }
 
   public StockLocation retrieveDeliveryLeadTimeStockLocation(String deliveryLeadTimeId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<StockLocation> call = service.retrieveDeliveryLeadTimeStockLocation(deliveryLeadTimeId, queryStringParams);
+      QueryFilter queryFilter) throws ApiException {
+    Call<StockLocation> call = service.retrieveDeliveryLeadTimeStockLocation(deliveryLeadTimeId, queryFilter);
     return syncCall(call);
   }
 
   public void retrieveDeliveryLeadTimeStockLocation(String deliveryLeadTimeId,
-      Map<String, String> queryStringParams, ApiCallback<StockLocation> callback) {
-    Call<StockLocation> call = service.retrieveDeliveryLeadTimeStockLocation(deliveryLeadTimeId, queryStringParams);
+      QueryFilter queryFilter, ApiCallback<StockLocation> callback) {
+    Call<StockLocation> call = service.retrieveDeliveryLeadTimeStockLocation(deliveryLeadTimeId, queryFilter);
     asyncCall(call, callback);
   }
 

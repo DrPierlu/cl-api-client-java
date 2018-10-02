@@ -4,6 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
+import io.commercelayer.api.client.common.QueryFilter;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.model.Customer;
@@ -11,7 +12,6 @@ import io.commercelayer.api.model.CustomerSubscription;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.CustomerSubscriptionService;
 import java.util.List;
-import java.util.Map;
 import retrofit2.Call;
 
 public class CustomerSubscriptionServiceClient extends AbstractServiceClient {
@@ -31,15 +31,15 @@ public class CustomerSubscriptionServiceClient extends AbstractServiceClient {
     super(apiOrg, apiToken);
   }
 
-  public List<CustomerSubscription> listCustomerSubscriptions(Map<String, String> queryStringParams)
-      throws ApiException {
-    Call<List<CustomerSubscription>> call = service.listCustomerSubscriptions(queryStringParams);
+  public List<CustomerSubscription> listCustomerSubscriptions(QueryFilter queryFilter) throws
+      ApiException {
+    Call<List<CustomerSubscription>> call = service.listCustomerSubscriptions(queryFilter);
     return syncCall(call);
   }
 
-  public void listCustomerSubscriptions(Map<String, String> queryStringParams,
+  public void listCustomerSubscriptions(QueryFilter queryFilter,
       ApiCallback<List<CustomerSubscription>> callback) {
-    Call<List<CustomerSubscription>> call = service.listCustomerSubscriptions(queryStringParams);
+    Call<List<CustomerSubscription>> call = service.listCustomerSubscriptions(queryFilter);
     asyncCall(call, callback);
   }
 
@@ -89,14 +89,14 @@ public class CustomerSubscriptionServiceClient extends AbstractServiceClient {
   }
 
   public CustomerSubscription retrieveCustomerSubscription(String customerSubscriptionId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<CustomerSubscription> call = service.retrieveCustomerSubscription(customerSubscriptionId, queryStringParams);
+      QueryFilter queryFilter) throws ApiException {
+    Call<CustomerSubscription> call = service.retrieveCustomerSubscription(customerSubscriptionId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveCustomerSubscription(String customerSubscriptionId,
-      Map<String, String> queryStringParams, ApiCallback<CustomerSubscription> callback) {
-    Call<CustomerSubscription> call = service.retrieveCustomerSubscription(customerSubscriptionId, queryStringParams);
+  public void retrieveCustomerSubscription(String customerSubscriptionId, QueryFilter queryFilter,
+      ApiCallback<CustomerSubscription> callback) {
+    Call<CustomerSubscription> call = service.retrieveCustomerSubscription(customerSubscriptionId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -113,14 +113,14 @@ public class CustomerSubscriptionServiceClient extends AbstractServiceClient {
   }
 
   public Customer retrieveCustomerSubscriptionCustomer(String customerSubscriptionId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<Customer> call = service.retrieveCustomerSubscriptionCustomer(customerSubscriptionId, queryStringParams);
+      QueryFilter queryFilter) throws ApiException {
+    Call<Customer> call = service.retrieveCustomerSubscriptionCustomer(customerSubscriptionId, queryFilter);
     return syncCall(call);
   }
 
   public void retrieveCustomerSubscriptionCustomer(String customerSubscriptionId,
-      Map<String, String> queryStringParams, ApiCallback<Customer> callback) {
-    Call<Customer> call = service.retrieveCustomerSubscriptionCustomer(customerSubscriptionId, queryStringParams);
+      QueryFilter queryFilter, ApiCallback<Customer> callback) {
+    Call<Customer> call = service.retrieveCustomerSubscriptionCustomer(customerSubscriptionId, queryFilter);
     asyncCall(call, callback);
   }
 

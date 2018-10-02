@@ -4,6 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
+import io.commercelayer.api.client.common.QueryFilter;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.model.Customer;
@@ -11,7 +12,6 @@ import io.commercelayer.api.model.CustomerPaymentSource;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.CustomerPaymentSourceService;
 import java.util.List;
-import java.util.Map;
 import retrofit2.Call;
 
 public class CustomerPaymentSourceServiceClient extends AbstractServiceClient {
@@ -31,15 +31,15 @@ public class CustomerPaymentSourceServiceClient extends AbstractServiceClient {
     super(apiOrg, apiToken);
   }
 
-  public List<CustomerPaymentSource> listCustomerPaymentSources(
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<List<CustomerPaymentSource>> call = service.listCustomerPaymentSources(queryStringParams);
+  public List<CustomerPaymentSource> listCustomerPaymentSources(QueryFilter queryFilter) throws
+      ApiException {
+    Call<List<CustomerPaymentSource>> call = service.listCustomerPaymentSources(queryFilter);
     return syncCall(call);
   }
 
-  public void listCustomerPaymentSources(Map<String, String> queryStringParams,
+  public void listCustomerPaymentSources(QueryFilter queryFilter,
       ApiCallback<List<CustomerPaymentSource>> callback) {
-    Call<List<CustomerPaymentSource>> call = service.listCustomerPaymentSources(queryStringParams);
+    Call<List<CustomerPaymentSource>> call = service.listCustomerPaymentSources(queryFilter);
     asyncCall(call, callback);
   }
 
@@ -89,14 +89,14 @@ public class CustomerPaymentSourceServiceClient extends AbstractServiceClient {
   }
 
   public CustomerPaymentSource retrieveCustomerPaymentSource(String customerPaymentSourceId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<CustomerPaymentSource> call = service.retrieveCustomerPaymentSource(customerPaymentSourceId, queryStringParams);
+      QueryFilter queryFilter) throws ApiException {
+    Call<CustomerPaymentSource> call = service.retrieveCustomerPaymentSource(customerPaymentSourceId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveCustomerPaymentSource(String customerPaymentSourceId,
-      Map<String, String> queryStringParams, ApiCallback<CustomerPaymentSource> callback) {
-    Call<CustomerPaymentSource> call = service.retrieveCustomerPaymentSource(customerPaymentSourceId, queryStringParams);
+  public void retrieveCustomerPaymentSource(String customerPaymentSourceId, QueryFilter queryFilter,
+      ApiCallback<CustomerPaymentSource> callback) {
+    Call<CustomerPaymentSource> call = service.retrieveCustomerPaymentSource(customerPaymentSourceId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -113,14 +113,14 @@ public class CustomerPaymentSourceServiceClient extends AbstractServiceClient {
   }
 
   public Customer retrieveCustomerPaymentSourceCustomer(String customerPaymentSourceId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<Customer> call = service.retrieveCustomerPaymentSourceCustomer(customerPaymentSourceId, queryStringParams);
+      QueryFilter queryFilter) throws ApiException {
+    Call<Customer> call = service.retrieveCustomerPaymentSourceCustomer(customerPaymentSourceId, queryFilter);
     return syncCall(call);
   }
 
   public void retrieveCustomerPaymentSourceCustomer(String customerPaymentSourceId,
-      Map<String, String> queryStringParams, ApiCallback<Customer> callback) {
-    Call<Customer> call = service.retrieveCustomerPaymentSourceCustomer(customerPaymentSourceId, queryStringParams);
+      QueryFilter queryFilter, ApiCallback<Customer> callback) {
+    Call<Customer> call = service.retrieveCustomerPaymentSourceCustomer(customerPaymentSourceId, queryFilter);
     asyncCall(call, callback);
   }
 

@@ -4,6 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
+import io.commercelayer.api.client.common.QueryFilter;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.model.Parcel;
@@ -11,7 +12,6 @@ import io.commercelayer.api.model.Shipment;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.ParcelService;
 import java.util.List;
-import java.util.Map;
 import retrofit2.Call;
 
 public class ParcelServiceClient extends AbstractServiceClient {
@@ -29,14 +29,13 @@ public class ParcelServiceClient extends AbstractServiceClient {
     super(apiOrg, apiToken);
   }
 
-  public List<Parcel> listParcels(Map<String, String> queryStringParams) throws ApiException {
-    Call<List<Parcel>> call = service.listParcels(queryStringParams);
+  public List<Parcel> listParcels(QueryFilter queryFilter) throws ApiException {
+    Call<List<Parcel>> call = service.listParcels(queryFilter);
     return syncCall(call);
   }
 
-  public void listParcels(Map<String, String> queryStringParams,
-      ApiCallback<List<Parcel>> callback) {
-    Call<List<Parcel>> call = service.listParcels(queryStringParams);
+  public void listParcels(QueryFilter queryFilter, ApiCallback<List<Parcel>> callback) {
+    Call<List<Parcel>> call = service.listParcels(queryFilter);
     asyncCall(call, callback);
   }
 
@@ -80,15 +79,14 @@ public class ParcelServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public Parcel retrieveParcel(String parcelId, Map<String, String> queryStringParams) throws
-      ApiException {
-    Call<Parcel> call = service.retrieveParcel(parcelId, queryStringParams);
+  public Parcel retrieveParcel(String parcelId, QueryFilter queryFilter) throws ApiException {
+    Call<Parcel> call = service.retrieveParcel(parcelId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveParcel(String parcelId, Map<String, String> queryStringParams,
+  public void retrieveParcel(String parcelId, QueryFilter queryFilter,
       ApiCallback<Parcel> callback) {
-    Call<Parcel> call = service.retrieveParcel(parcelId, queryStringParams);
+    Call<Parcel> call = service.retrieveParcel(parcelId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -102,15 +100,15 @@ public class ParcelServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public Shipment retrieveParcelShipment(String parcelId, Map<String, String> queryStringParams)
-      throws ApiException {
-    Call<Shipment> call = service.retrieveParcelShipment(parcelId, queryStringParams);
+  public Shipment retrieveParcelShipment(String parcelId, QueryFilter queryFilter) throws
+      ApiException {
+    Call<Shipment> call = service.retrieveParcelShipment(parcelId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveParcelShipment(String parcelId, Map<String, String> queryStringParams,
+  public void retrieveParcelShipment(String parcelId, QueryFilter queryFilter,
       ApiCallback<Shipment> callback) {
-    Call<Shipment> call = service.retrieveParcelShipment(parcelId, queryStringParams);
+    Call<Shipment> call = service.retrieveParcelShipment(parcelId, queryFilter);
     asyncCall(call, callback);
   }
 

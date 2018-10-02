@@ -4,6 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
+import io.commercelayer.api.client.common.QueryFilter;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.model.Price;
@@ -12,7 +13,6 @@ import io.commercelayer.api.model.Sku;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.PriceService;
 import java.util.List;
-import java.util.Map;
 import retrofit2.Call;
 
 public class PriceServiceClient extends AbstractServiceClient {
@@ -30,13 +30,13 @@ public class PriceServiceClient extends AbstractServiceClient {
     super(apiOrg, apiToken);
   }
 
-  public List<Price> listPrices(Map<String, String> queryStringParams) throws ApiException {
-    Call<List<Price>> call = service.listPrices(queryStringParams);
+  public List<Price> listPrices(QueryFilter queryFilter) throws ApiException {
+    Call<List<Price>> call = service.listPrices(queryFilter);
     return syncCall(call);
   }
 
-  public void listPrices(Map<String, String> queryStringParams, ApiCallback<List<Price>> callback) {
-    Call<List<Price>> call = service.listPrices(queryStringParams);
+  public void listPrices(QueryFilter queryFilter, ApiCallback<List<Price>> callback) {
+    Call<List<Price>> call = service.listPrices(queryFilter);
     asyncCall(call, callback);
   }
 
@@ -80,15 +80,13 @@ public class PriceServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public Price retrievePrice(String priceId, Map<String, String> queryStringParams) throws
-      ApiException {
-    Call<Price> call = service.retrievePrice(priceId, queryStringParams);
+  public Price retrievePrice(String priceId, QueryFilter queryFilter) throws ApiException {
+    Call<Price> call = service.retrievePrice(priceId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrievePrice(String priceId, Map<String, String> queryStringParams,
-      ApiCallback<Price> callback) {
-    Call<Price> call = service.retrievePrice(priceId, queryStringParams);
+  public void retrievePrice(String priceId, QueryFilter queryFilter, ApiCallback<Price> callback) {
+    Call<Price> call = service.retrievePrice(priceId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -102,15 +100,15 @@ public class PriceServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public PriceList retrievePricePriceList(String priceId, Map<String, String> queryStringParams)
-      throws ApiException {
-    Call<PriceList> call = service.retrievePricePriceList(priceId, queryStringParams);
+  public PriceList retrievePricePriceList(String priceId, QueryFilter queryFilter) throws
+      ApiException {
+    Call<PriceList> call = service.retrievePricePriceList(priceId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrievePricePriceList(String priceId, Map<String, String> queryStringParams,
+  public void retrievePricePriceList(String priceId, QueryFilter queryFilter,
       ApiCallback<PriceList> callback) {
-    Call<PriceList> call = service.retrievePricePriceList(priceId, queryStringParams);
+    Call<PriceList> call = service.retrievePricePriceList(priceId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -124,15 +122,13 @@ public class PriceServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public Sku retrievePriceSku(String priceId, Map<String, String> queryStringParams) throws
-      ApiException {
-    Call<Sku> call = service.retrievePriceSku(priceId, queryStringParams);
+  public Sku retrievePriceSku(String priceId, QueryFilter queryFilter) throws ApiException {
+    Call<Sku> call = service.retrievePriceSku(priceId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrievePriceSku(String priceId, Map<String, String> queryStringParams,
-      ApiCallback<Sku> callback) {
-    Call<Sku> call = service.retrievePriceSku(priceId, queryStringParams);
+  public void retrievePriceSku(String priceId, QueryFilter queryFilter, ApiCallback<Sku> callback) {
+    Call<Sku> call = service.retrievePriceSku(priceId, queryFilter);
     asyncCall(call, callback);
   }
 

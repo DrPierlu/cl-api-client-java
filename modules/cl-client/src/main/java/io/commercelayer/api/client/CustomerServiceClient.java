@@ -4,6 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
+import io.commercelayer.api.client.common.QueryFilter;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.model.Customer;
@@ -14,7 +15,6 @@ import io.commercelayer.api.model.Order;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.CustomerService;
 import java.util.List;
-import java.util.Map;
 import retrofit2.Call;
 
 public class CustomerServiceClient extends AbstractServiceClient {
@@ -32,14 +32,13 @@ public class CustomerServiceClient extends AbstractServiceClient {
     super(apiOrg, apiToken);
   }
 
-  public List<Customer> listCustomers(Map<String, String> queryStringParams) throws ApiException {
-    Call<List<Customer>> call = service.listCustomers(queryStringParams);
+  public List<Customer> listCustomers(QueryFilter queryFilter) throws ApiException {
+    Call<List<Customer>> call = service.listCustomers(queryFilter);
     return syncCall(call);
   }
 
-  public void listCustomers(Map<String, String> queryStringParams,
-      ApiCallback<List<Customer>> callback) {
-    Call<List<Customer>> call = service.listCustomers(queryStringParams);
+  public void listCustomers(QueryFilter queryFilter, ApiCallback<List<Customer>> callback) {
+    Call<List<Customer>> call = service.listCustomers(queryFilter);
     asyncCall(call, callback);
   }
 
@@ -83,15 +82,14 @@ public class CustomerServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public Customer retrieveCustomer(String customerId, Map<String, String> queryStringParams) throws
-      ApiException {
-    Call<Customer> call = service.retrieveCustomer(customerId, queryStringParams);
+  public Customer retrieveCustomer(String customerId, QueryFilter queryFilter) throws ApiException {
+    Call<Customer> call = service.retrieveCustomer(customerId, queryFilter);
     return syncCall(call);
   }
 
-  public void retrieveCustomer(String customerId, Map<String, String> queryStringParams,
+  public void retrieveCustomer(String customerId, QueryFilter queryFilter,
       ApiCallback<Customer> callback) {
-    Call<Customer> call = service.retrieveCustomer(customerId, queryStringParams);
+    Call<Customer> call = service.retrieveCustomer(customerId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -106,14 +104,14 @@ public class CustomerServiceClient extends AbstractServiceClient {
   }
 
   public List<CustomerAddress> listCustomerCustomerAddresses(String customerId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<List<CustomerAddress>> call = service.listCustomerCustomerAddresses(customerId, queryStringParams);
+      QueryFilter queryFilter) throws ApiException {
+    Call<List<CustomerAddress>> call = service.listCustomerCustomerAddresses(customerId, queryFilter);
     return syncCall(call);
   }
 
-  public void listCustomerCustomerAddresses(String customerId,
-      Map<String, String> queryStringParams, ApiCallback<List<CustomerAddress>> callback) {
-    Call<List<CustomerAddress>> call = service.listCustomerCustomerAddresses(customerId, queryStringParams);
+  public void listCustomerCustomerAddresses(String customerId, QueryFilter queryFilter,
+      ApiCallback<List<CustomerAddress>> callback) {
+    Call<List<CustomerAddress>> call = service.listCustomerCustomerAddresses(customerId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -130,14 +128,14 @@ public class CustomerServiceClient extends AbstractServiceClient {
   }
 
   public List<CustomerPaymentSource> listCustomerCustomerPaymentSources(String customerId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<List<CustomerPaymentSource>> call = service.listCustomerCustomerPaymentSources(customerId, queryStringParams);
+      QueryFilter queryFilter) throws ApiException {
+    Call<List<CustomerPaymentSource>> call = service.listCustomerCustomerPaymentSources(customerId, queryFilter);
     return syncCall(call);
   }
 
-  public void listCustomerCustomerPaymentSources(String customerId,
-      Map<String, String> queryStringParams, ApiCallback<List<CustomerPaymentSource>> callback) {
-    Call<List<CustomerPaymentSource>> call = service.listCustomerCustomerPaymentSources(customerId, queryStringParams);
+  public void listCustomerCustomerPaymentSources(String customerId, QueryFilter queryFilter,
+      ApiCallback<List<CustomerPaymentSource>> callback) {
+    Call<List<CustomerPaymentSource>> call = service.listCustomerCustomerPaymentSources(customerId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -154,14 +152,14 @@ public class CustomerServiceClient extends AbstractServiceClient {
   }
 
   public List<CustomerSubscription> listCustomerCustomerSubscriptions(String customerId,
-      Map<String, String> queryStringParams) throws ApiException {
-    Call<List<CustomerSubscription>> call = service.listCustomerCustomerSubscriptions(customerId, queryStringParams);
+      QueryFilter queryFilter) throws ApiException {
+    Call<List<CustomerSubscription>> call = service.listCustomerCustomerSubscriptions(customerId, queryFilter);
     return syncCall(call);
   }
 
-  public void listCustomerCustomerSubscriptions(String customerId,
-      Map<String, String> queryStringParams, ApiCallback<List<CustomerSubscription>> callback) {
-    Call<List<CustomerSubscription>> call = service.listCustomerCustomerSubscriptions(customerId, queryStringParams);
+  public void listCustomerCustomerSubscriptions(String customerId, QueryFilter queryFilter,
+      ApiCallback<List<CustomerSubscription>> callback) {
+    Call<List<CustomerSubscription>> call = service.listCustomerCustomerSubscriptions(customerId, queryFilter);
     asyncCall(call, callback);
   }
 
@@ -177,15 +175,15 @@ public class CustomerServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public List<Order> listCustomerOrders(String customerId, Map<String, String> queryStringParams)
-      throws ApiException {
-    Call<List<Order>> call = service.listCustomerOrders(customerId, queryStringParams);
+  public List<Order> listCustomerOrders(String customerId, QueryFilter queryFilter) throws
+      ApiException {
+    Call<List<Order>> call = service.listCustomerOrders(customerId, queryFilter);
     return syncCall(call);
   }
 
-  public void listCustomerOrders(String customerId, Map<String, String> queryStringParams,
+  public void listCustomerOrders(String customerId, QueryFilter queryFilter,
       ApiCallback<List<Order>> callback) {
-    Call<List<Order>> call = service.listCustomerOrders(customerId, queryStringParams);
+    Call<List<Order>> call = service.listCustomerOrders(customerId, queryFilter);
     asyncCall(call, callback);
   }
 
