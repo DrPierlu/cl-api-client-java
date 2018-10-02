@@ -15,15 +15,15 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface CustomerAddressService {
-  @POST("customer_addresses")
-  Call<CustomerAddress> createCustomerAddress(@Body CustomerAddress customerAddress);
-
   @GET("customer_addresses")
   Call<List<CustomerAddress>> listCustomerAddresses();
 
   @GET("customer_addresses")
   Call<List<CustomerAddress>> listCustomerAddresses(
       @QueryMap Map<String, String> queryStringParams);
+
+  @POST("customer_addresses")
+  Call<CustomerAddress> createCustomerAddress(@Body CustomerAddress customerAddress);
 
   @DELETE("customer_addresses/{customerAddressId}")
   Call<Void> deleteCustomerAddress(@Path("customerAddressId") String customerAddressId);

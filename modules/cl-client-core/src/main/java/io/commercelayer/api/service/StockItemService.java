@@ -15,14 +15,14 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface StockItemService {
-  @POST("stock_items")
-  Call<StockItem> createStockItem(@Body StockItem stockItem);
-
   @GET("stock_items")
   Call<List<StockItem>> listStockItems();
 
   @GET("stock_items")
   Call<List<StockItem>> listStockItems(@QueryMap Map<String, String> queryStringParams);
+
+  @POST("stock_items")
+  Call<StockItem> createStockItem(@Body StockItem stockItem);
 
   @DELETE("stock_items/{stockItemId}")
   Call<Void> deleteStockItem(@Path("stockItemId") String stockItemId);

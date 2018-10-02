@@ -14,16 +14,16 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface CustomerPasswordResetService {
-  @POST("customer_password_resets")
-  Call<CustomerPasswordReset> createCustomerPasswordReset(
-      @Body CustomerPasswordReset customerPasswordReset);
-
   @GET("customer_password_resets")
   Call<List<CustomerPasswordReset>> listCustomerPasswordResets();
 
   @GET("customer_password_resets")
   Call<List<CustomerPasswordReset>> listCustomerPasswordResets(
       @QueryMap Map<String, String> queryStringParams);
+
+  @POST("customer_password_resets")
+  Call<CustomerPasswordReset> createCustomerPasswordReset(
+      @Body CustomerPasswordReset customerPasswordReset);
 
   @DELETE("customer_password_resets/{customerPasswordResetId}")
   Call<Void> deleteCustomerPasswordReset(

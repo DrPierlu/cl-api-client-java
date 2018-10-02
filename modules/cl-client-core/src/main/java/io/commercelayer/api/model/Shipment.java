@@ -310,7 +310,7 @@ public class Shipment extends ApiResource {
   }
 
   public void setShipmentLineItemResourceList(List<LineItem> shipmentLineItems) {
-    setShipmentLineItems(new HasMany<LineItem>(shipmentLineItems.toArray(new ShipmentLineItem[0])));
+    setShipmentLineItems(new HasMany<LineItem>(shipmentLineItems.toArray(new LineItem[0])));
   }
 
   @SuppressWarnings("unchecked")
@@ -332,7 +332,7 @@ public class Shipment extends ApiResource {
 
   public void setAvailableShippingMethodResourceList(
       List<ShippingMethod> availableShippingMethods) {
-    setAvailableShippingMethods(new HasMany<ShippingMethod>(availableShippingMethods.toArray(new AvailableShippingMethod[0])));
+    setAvailableShippingMethods(new HasMany<ShippingMethod>(availableShippingMethods.toArray(new ShippingMethod[0])));
   }
 
   @SuppressWarnings("unchecked")

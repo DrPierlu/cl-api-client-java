@@ -6,7 +6,7 @@ import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.AuthException;
-import io.commercelayer.api.model.DeliveryLeadTimeForShipment;
+import io.commercelayer.api.model.DeliveryLeadTime;
 import io.commercelayer.api.model.Market;
 import io.commercelayer.api.model.ShippingCategory;
 import io.commercelayer.api.model.ShippingMethod;
@@ -111,27 +111,27 @@ public class ShippingMethodServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public DeliveryLeadTimeForShipment retrieveShippingMethodDeliveryLeadTimeForShipment(
+  public List<DeliveryLeadTime> retrieveShippingMethodDeliveryLeadTimeForShipment(
       String shippingMethodId, Map<String, String> queryStringParams) throws ApiException {
-    Call<DeliveryLeadTimeForShipment> call = service.retrieveShippingMethodDeliveryLeadTimeForShipment(shippingMethodId, queryStringParams);
+    Call<List<DeliveryLeadTime>> call = service.retrieveShippingMethodDeliveryLeadTimeForShipment(shippingMethodId, queryStringParams);
     return syncCall(call);
   }
 
   public void retrieveShippingMethodDeliveryLeadTimeForShipment(String shippingMethodId,
-      Map<String, String> queryStringParams, ApiCallback<DeliveryLeadTimeForShipment> callback) {
-    Call<DeliveryLeadTimeForShipment> call = service.retrieveShippingMethodDeliveryLeadTimeForShipment(shippingMethodId, queryStringParams);
+      Map<String, String> queryStringParams, ApiCallback<List<DeliveryLeadTime>> callback) {
+    Call<List<DeliveryLeadTime>> call = service.retrieveShippingMethodDeliveryLeadTimeForShipment(shippingMethodId, queryStringParams);
     asyncCall(call, callback);
   }
 
-  public DeliveryLeadTimeForShipment retrieveShippingMethodDeliveryLeadTimeForShipment(
+  public List<DeliveryLeadTime> retrieveShippingMethodDeliveryLeadTimeForShipment(
       String shippingMethodId) throws ApiException {
-    Call<DeliveryLeadTimeForShipment> call = service.retrieveShippingMethodDeliveryLeadTimeForShipment(shippingMethodId);
+    Call<List<DeliveryLeadTime>> call = service.retrieveShippingMethodDeliveryLeadTimeForShipment(shippingMethodId);
     return syncCall(call);
   }
 
   public void retrieveShippingMethodDeliveryLeadTimeForShipment(String shippingMethodId,
-      ApiCallback<DeliveryLeadTimeForShipment> callback) {
-    Call<DeliveryLeadTimeForShipment> call = service.retrieveShippingMethodDeliveryLeadTimeForShipment(shippingMethodId);
+      ApiCallback<List<DeliveryLeadTime>> callback) {
+    Call<List<DeliveryLeadTime>> call = service.retrieveShippingMethodDeliveryLeadTimeForShipment(shippingMethodId);
     asyncCall(call, callback);
   }
 

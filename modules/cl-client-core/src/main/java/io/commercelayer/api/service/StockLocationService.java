@@ -16,14 +16,14 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface StockLocationService {
-  @POST("stock_locations")
-  Call<StockLocation> createStockLocation(@Body StockLocation stockLocation);
-
   @GET("stock_locations")
   Call<List<StockLocation>> listStockLocations();
 
   @GET("stock_locations")
   Call<List<StockLocation>> listStockLocations(@QueryMap Map<String, String> queryStringParams);
+
+  @POST("stock_locations")
+  Call<StockLocation> createStockLocation(@Body StockLocation stockLocation);
 
   @DELETE("stock_locations/{stockLocationId}")
   Call<Void> deleteStockLocation(@Path("stockLocationId") String stockLocationId);

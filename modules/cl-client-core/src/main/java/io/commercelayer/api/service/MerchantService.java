@@ -14,14 +14,14 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface MerchantService {
-  @POST("merchants")
-  Call<Merchant> createMerchant(@Body Merchant merchant);
-
   @GET("merchants")
   Call<List<Merchant>> listMerchants();
 
   @GET("merchants")
   Call<List<Merchant>> listMerchants(@QueryMap Map<String, String> queryStringParams);
+
+  @POST("merchants")
+  Call<Merchant> createMerchant(@Body Merchant merchant);
 
   @DELETE("merchants/{merchantId}")
   Call<Void> deleteMerchant(@Path("merchantId") String merchantId);

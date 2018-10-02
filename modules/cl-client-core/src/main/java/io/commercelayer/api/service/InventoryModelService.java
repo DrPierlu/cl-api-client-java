@@ -14,14 +14,14 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface InventoryModelService {
-  @POST("inventory_models")
-  Call<InventoryModel> createInventoryModel(@Body InventoryModel inventoryModel);
-
   @GET("inventory_models")
   Call<List<InventoryModel>> listInventoryModels();
 
   @GET("inventory_models")
   Call<List<InventoryModel>> listInventoryModels(@QueryMap Map<String, String> queryStringParams);
+
+  @POST("inventory_models")
+  Call<InventoryModel> createInventoryModel(@Body InventoryModel inventoryModel);
 
   @DELETE("inventory_models/{inventoryModelId}")
   Call<Void> deleteInventoryModel(@Path("inventoryModelId") String inventoryModelId);

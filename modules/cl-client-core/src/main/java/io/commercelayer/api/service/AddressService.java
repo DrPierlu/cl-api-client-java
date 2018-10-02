@@ -14,14 +14,14 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface AddressService {
-  @POST("addresses")
-  Call<Address> createAddress(@Body Address address);
-
   @GET("addresses")
   Call<List<Address>> listAddresses();
 
   @GET("addresses")
   Call<List<Address>> listAddresses(@QueryMap Map<String, String> queryStringParams);
+
+  @POST("addresses")
+  Call<Address> createAddress(@Body Address address);
 
   @DELETE("addresses/{addressId}")
   Call<Void> deleteAddress(@Path("addressId") String addressId);

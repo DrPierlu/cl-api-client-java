@@ -6,14 +6,13 @@ import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.AuthException;
-import io.commercelayer.api.model.BillingAddress;
+import io.commercelayer.api.model.Address;
 import io.commercelayer.api.model.Customer;
 import io.commercelayer.api.model.LineItem;
 import io.commercelayer.api.model.Market;
 import io.commercelayer.api.model.Order;
 import io.commercelayer.api.model.PaymentMethod;
 import io.commercelayer.api.model.Shipment;
-import io.commercelayer.api.model.ShippingAddress;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.service.OrderService;
 import java.util.List;
@@ -107,25 +106,25 @@ public class OrderServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public BillingAddress retrieveOrderBillingAddress(String orderId,
+  public List<Address> retrieveOrderBillingAddress(String orderId,
       Map<String, String> queryStringParams) throws ApiException {
-    Call<BillingAddress> call = service.retrieveOrderBillingAddress(orderId, queryStringParams);
+    Call<List<Address>> call = service.retrieveOrderBillingAddress(orderId, queryStringParams);
     return syncCall(call);
   }
 
   public void retrieveOrderBillingAddress(String orderId, Map<String, String> queryStringParams,
-      ApiCallback<BillingAddress> callback) {
-    Call<BillingAddress> call = service.retrieveOrderBillingAddress(orderId, queryStringParams);
+      ApiCallback<List<Address>> callback) {
+    Call<List<Address>> call = service.retrieveOrderBillingAddress(orderId, queryStringParams);
     asyncCall(call, callback);
   }
 
-  public BillingAddress retrieveOrderBillingAddress(String orderId) throws ApiException {
-    Call<BillingAddress> call = service.retrieveOrderBillingAddress(orderId);
+  public List<Address> retrieveOrderBillingAddress(String orderId) throws ApiException {
+    Call<List<Address>> call = service.retrieveOrderBillingAddress(orderId);
     return syncCall(call);
   }
 
-  public void retrieveOrderBillingAddress(String orderId, ApiCallback<BillingAddress> callback) {
-    Call<BillingAddress> call = service.retrieveOrderBillingAddress(orderId);
+  public void retrieveOrderBillingAddress(String orderId, ApiCallback<List<Address>> callback) {
+    Call<List<Address>> call = service.retrieveOrderBillingAddress(orderId);
     asyncCall(call, callback);
   }
 
@@ -239,25 +238,25 @@ public class OrderServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public ShippingAddress retrieveOrderShippingAddress(String orderId,
+  public List<Address> retrieveOrderShippingAddress(String orderId,
       Map<String, String> queryStringParams) throws ApiException {
-    Call<ShippingAddress> call = service.retrieveOrderShippingAddress(orderId, queryStringParams);
+    Call<List<Address>> call = service.retrieveOrderShippingAddress(orderId, queryStringParams);
     return syncCall(call);
   }
 
   public void retrieveOrderShippingAddress(String orderId, Map<String, String> queryStringParams,
-      ApiCallback<ShippingAddress> callback) {
-    Call<ShippingAddress> call = service.retrieveOrderShippingAddress(orderId, queryStringParams);
+      ApiCallback<List<Address>> callback) {
+    Call<List<Address>> call = service.retrieveOrderShippingAddress(orderId, queryStringParams);
     asyncCall(call, callback);
   }
 
-  public ShippingAddress retrieveOrderShippingAddress(String orderId) throws ApiException {
-    Call<ShippingAddress> call = service.retrieveOrderShippingAddress(orderId);
+  public List<Address> retrieveOrderShippingAddress(String orderId) throws ApiException {
+    Call<List<Address>> call = service.retrieveOrderShippingAddress(orderId);
     return syncCall(call);
   }
 
-  public void retrieveOrderShippingAddress(String orderId, ApiCallback<ShippingAddress> callback) {
-    Call<ShippingAddress> call = service.retrieveOrderShippingAddress(orderId);
+  public void retrieveOrderShippingAddress(String orderId, ApiCallback<List<Address>> callback) {
+    Call<List<Address>> call = service.retrieveOrderShippingAddress(orderId);
     asyncCall(call, callback);
   }
 }

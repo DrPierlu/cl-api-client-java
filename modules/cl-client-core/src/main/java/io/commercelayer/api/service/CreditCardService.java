@@ -14,14 +14,14 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface CreditCardService {
-  @POST("credit_cards")
-  Call<CreditCard> createCreditCard(@Body CreditCard creditCard);
-
   @GET("credit_cards")
   Call<List<CreditCard>> listCreditCards();
 
   @GET("credit_cards")
   Call<List<CreditCard>> listCreditCards(@QueryMap Map<String, String> queryStringParams);
+
+  @POST("credit_cards")
+  Call<CreditCard> createCreditCard(@Body CreditCard creditCard);
 
   @DELETE("credit_cards/{creditCardId}")
   Call<Void> deleteCreditCard(@Path("creditCardId") String creditCardId);

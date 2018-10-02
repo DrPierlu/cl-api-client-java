@@ -15,15 +15,15 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface DeliveryLeadTimeService {
-  @POST("delivery_lead_times")
-  Call<DeliveryLeadTime> createDeliveryLeadTime(@Body DeliveryLeadTime deliveryLeadTime);
-
   @GET("delivery_lead_times")
   Call<List<DeliveryLeadTime>> listDeliveryLeadTimes();
 
   @GET("delivery_lead_times")
   Call<List<DeliveryLeadTime>> listDeliveryLeadTimes(
       @QueryMap Map<String, String> queryStringParams);
+
+  @POST("delivery_lead_times")
+  Call<DeliveryLeadTime> createDeliveryLeadTime(@Body DeliveryLeadTime deliveryLeadTime);
 
   @DELETE("delivery_lead_times/{deliveryLeadTimeId}")
   Call<Void> deleteDeliveryLeadTime(@Path("deliveryLeadTimeId") String deliveryLeadTimeId);

@@ -208,7 +208,7 @@ public class MoshiJAModelGenerator implements ModelGenerator {
 			MethodSpec relResSetMethod = MethodSpec.methodBuilder(relResSetMethodName)
 				.addModifiers(Modifier.PUBLIC)
 				.addParameter(relResTypeName, relFieldName)
-				.addStatement("set$L(new $T<$L>($L$L))", relFieldNameCap, relClassName, relResNameRemapped, relFieldName, multiRel? String.format(".toArray(new %s[0])", relResName) : "")
+				.addStatement("set$L(new $T<$L>($L$L))", relFieldNameCap, relClassName, relResNameRemapped, relFieldName, multiRel? String.format(".toArray(new %s[0])", relResNameRemapped) : "")
 				.build();
 			classe.addMethod(relResSetMethod);
 			

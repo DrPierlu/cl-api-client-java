@@ -15,14 +15,14 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface PriceService {
-  @POST("prices")
-  Call<Price> createPrice(@Body Price price);
-
   @GET("prices")
   Call<List<Price>> listPrices();
 
   @GET("prices")
   Call<List<Price>> listPrices(@QueryMap Map<String, String> queryStringParams);
+
+  @POST("prices")
+  Call<Price> createPrice(@Body Price price);
 
   @DELETE("prices/{priceId}")
   Call<Void> deletePrice(@Path("priceId") String priceId);

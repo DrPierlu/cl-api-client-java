@@ -14,14 +14,14 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface SkuOptionService {
-  @POST("sku_options")
-  Call<SkuOption> createSkuOption(@Body SkuOption skuOption);
-
   @GET("sku_options")
   Call<List<SkuOption>> listSkuOptions();
 
   @GET("sku_options")
   Call<List<SkuOption>> listSkuOptions(@QueryMap Map<String, String> queryStringParams);
+
+  @POST("sku_options")
+  Call<SkuOption> createSkuOption(@Body SkuOption skuOption);
 
   @DELETE("sku_options/{skuOptionId}")
   Call<Void> deleteSkuOption(@Path("skuOptionId") String skuOptionId);

@@ -123,10 +123,11 @@ public final class ServiceGeneratorUtils {
 		
 		res = res.substring(res.lastIndexOf('/')+1);
 		res = inflector.upperCamelCase(res);
-		String resSing = inflector.singularize(res);
+		final String resSing = inflector.singularize(res);
+		final String resSingRemapped = CodegenConfig.mapModelResource(resSing);
 		
-		TypeName typeArgument = ClassName.get(ModelGeneratorUtils.MODEL_BASE_PACKAGE, resSing);
-		if (OperationType.GET.equals(operation.getType()) && !res.equals(resSing) && !byId) typeArgument = ParameterizedTypeName.get(ClassName.get(List.class), typeArgument);
+		TypeName typeArgument = ClassName.get(ModelGeneratorUtils.MODEL_BASE_PACKAGE, resSingRemapped);
+		if (OperationType.GET.equals(operation.getType()) && !res.equals(resSingRemapped) && !byId) typeArgument = ParameterizedTypeName.get(ClassName.get(List.class), typeArgument);
 		
 		return typeArgument;
 		

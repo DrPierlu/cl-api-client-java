@@ -1,13 +1,12 @@
 package io.commercelayer.api.service;
 
-import io.commercelayer.api.model.BillingAddress;
+import io.commercelayer.api.model.Address;
 import io.commercelayer.api.model.Customer;
 import io.commercelayer.api.model.LineItem;
 import io.commercelayer.api.model.Market;
 import io.commercelayer.api.model.Order;
 import io.commercelayer.api.model.PaymentMethod;
 import io.commercelayer.api.model.Shipment;
-import io.commercelayer.api.model.ShippingAddress;
 import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
@@ -20,14 +19,14 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface OrderService {
-  @POST("orders")
-  Call<Order> createOrder(@Body Order order);
-
   @GET("orders")
   Call<List<Order>> listOrders();
 
   @GET("orders")
   Call<List<Order>> listOrders(@QueryMap Map<String, String> queryStringParams);
+
+  @POST("orders")
+  Call<Order> createOrder(@Body Order order);
 
   @DELETE("orders/{orderId}")
   Call<Void> deleteOrder(@Path("orderId") String orderId);
@@ -43,10 +42,10 @@ public interface OrderService {
       @QueryMap Map<String, String> queryStringParams);
 
   @GET("orders/{orderId}/billing_address")
-  Call<BillingAddress> retrieveOrderBillingAddress(@Path("orderId") String orderId);
+  Call<List<Address>> retrieveOrderBillingAddress(@Path("orderId") String orderId);
 
   @GET("orders/{orderId}/billing_address")
-  Call<BillingAddress> retrieveOrderBillingAddress(@Path("orderId") String orderId,
+  Call<List<Address>> retrieveOrderBillingAddress(@Path("orderId") String orderId,
       @QueryMap Map<String, String> queryStringParams);
 
   @GET("orders/{orderId}/customer")
@@ -85,9 +84,9 @@ public interface OrderService {
       @QueryMap Map<String, String> queryStringParams);
 
   @GET("orders/{orderId}/shipping_address")
-  Call<ShippingAddress> retrieveOrderShippingAddress(@Path("orderId") String orderId);
+  Call<List<Address>> retrieveOrderShippingAddress(@Path("orderId") String orderId);
 
   @GET("orders/{orderId}/shipping_address")
-  Call<ShippingAddress> retrieveOrderShippingAddress(@Path("orderId") String orderId,
+  Call<List<Address>> retrieveOrderShippingAddress(@Path("orderId") String orderId,
       @QueryMap Map<String, String> queryStringParams);
 }

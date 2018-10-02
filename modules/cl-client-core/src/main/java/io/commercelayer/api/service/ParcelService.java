@@ -14,14 +14,14 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface ParcelService {
-  @POST("parcels")
-  Call<Parcel> createParcel(@Body Parcel parcel);
-
   @GET("parcels")
   Call<List<Parcel>> listParcels();
 
   @GET("parcels")
   Call<List<Parcel>> listParcels(@QueryMap Map<String, String> queryStringParams);
+
+  @POST("parcels")
+  Call<Parcel> createParcel(@Body Parcel parcel);
 
   @DELETE("parcels/{parcelId}")
   Call<Void> deleteParcel(@Path("parcelId") String parcelId);

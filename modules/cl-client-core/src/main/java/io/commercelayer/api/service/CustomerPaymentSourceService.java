@@ -14,16 +14,16 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface CustomerPaymentSourceService {
-  @POST("customer_payment_sources")
-  Call<CustomerPaymentSource> createCustomerPaymentSource(
-      @Body CustomerPaymentSource customerPaymentSource);
-
   @GET("customer_payment_sources")
   Call<List<CustomerPaymentSource>> listCustomerPaymentSources();
 
   @GET("customer_payment_sources")
   Call<List<CustomerPaymentSource>> listCustomerPaymentSources(
       @QueryMap Map<String, String> queryStringParams);
+
+  @POST("customer_payment_sources")
+  Call<CustomerPaymentSource> createCustomerPaymentSource(
+      @Body CustomerPaymentSource customerPaymentSource);
 
   @DELETE("customer_payment_sources/{customerPaymentSourceId}")
   Call<Void> deleteCustomerPaymentSource(

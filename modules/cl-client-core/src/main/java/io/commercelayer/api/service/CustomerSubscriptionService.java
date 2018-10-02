@@ -14,16 +14,16 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface CustomerSubscriptionService {
-  @POST("customer_subscriptions")
-  Call<CustomerSubscription> createCustomerSubscription(
-      @Body CustomerSubscription customerSubscription);
-
   @GET("customer_subscriptions")
   Call<List<CustomerSubscription>> listCustomerSubscriptions();
 
   @GET("customer_subscriptions")
   Call<List<CustomerSubscription>> listCustomerSubscriptions(
       @QueryMap Map<String, String> queryStringParams);
+
+  @POST("customer_subscriptions")
+  Call<CustomerSubscription> createCustomerSubscription(
+      @Body CustomerSubscription customerSubscription);
 
   @DELETE("customer_subscriptions/{customerSubscriptionId}")
   Call<Void> deleteCustomerSubscription(

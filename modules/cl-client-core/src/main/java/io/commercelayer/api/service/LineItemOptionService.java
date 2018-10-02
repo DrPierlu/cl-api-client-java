@@ -15,14 +15,14 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface LineItemOptionService {
-  @POST("line_item_options")
-  Call<LineItemOption> createLineItemOption(@Body LineItemOption lineItemOption);
-
   @GET("line_item_options")
   Call<List<LineItemOption>> listLineItemOptions();
 
   @GET("line_item_options")
   Call<List<LineItemOption>> listLineItemOptions(@QueryMap Map<String, String> queryStringParams);
+
+  @POST("line_item_options")
+  Call<LineItemOption> createLineItemOption(@Body LineItemOption lineItemOption);
 
   @DELETE("line_item_options/{lineItemOptionId}")
   Call<Void> deleteLineItemOption(@Path("lineItemOptionId") String lineItemOptionId);

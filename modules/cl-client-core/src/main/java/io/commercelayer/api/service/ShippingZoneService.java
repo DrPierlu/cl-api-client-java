@@ -13,14 +13,14 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface ShippingZoneService {
-  @POST("shipping_zones")
-  Call<ShippingZone> createShippingZone(@Body ShippingZone shippingZone);
-
   @GET("shipping_zones")
   Call<List<ShippingZone>> listShippingZones();
 
   @GET("shipping_zones")
   Call<List<ShippingZone>> listShippingZones(@QueryMap Map<String, String> queryStringParams);
+
+  @POST("shipping_zones")
+  Call<ShippingZone> createShippingZone(@Body ShippingZone shippingZone);
 
   @DELETE("shipping_zones/{shippingZoneId}")
   Call<Void> deleteShippingZone(@Path("shippingZoneId") String shippingZoneId);

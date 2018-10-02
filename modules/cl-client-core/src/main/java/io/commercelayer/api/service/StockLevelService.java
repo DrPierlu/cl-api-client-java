@@ -15,14 +15,14 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface StockLevelService {
-  @POST("stock_levels")
-  Call<StockLevel> createStockLevel(@Body StockLevel stockLevel);
-
   @GET("stock_levels")
   Call<List<StockLevel>> listStockLevels();
 
   @GET("stock_levels")
   Call<List<StockLevel>> listStockLevels(@QueryMap Map<String, String> queryStringParams);
+
+  @POST("stock_levels")
+  Call<StockLevel> createStockLevel(@Body StockLevel stockLevel);
 
   @DELETE("stock_levels/{stockLevelId}")
   Call<Void> deleteStockLevel(@Path("stockLevelId") String stockLevelId);

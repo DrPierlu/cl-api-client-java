@@ -14,15 +14,15 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface ShippingCategoryService {
-  @POST("shipping_categories")
-  Call<ShippingCategory> createShippingCategory(@Body ShippingCategory shippingCategory);
-
   @GET("shipping_categories")
   Call<List<ShippingCategory>> listShippingCategories();
 
   @GET("shipping_categories")
   Call<List<ShippingCategory>> listShippingCategories(
       @QueryMap Map<String, String> queryStringParams);
+
+  @POST("shipping_categories")
+  Call<ShippingCategory> createShippingCategory(@Body ShippingCategory shippingCategory);
 
   @DELETE("shipping_categories/{shippingCategoryId}")
   Call<Void> deleteShippingCategory(@Path("shippingCategoryId") String shippingCategoryId);

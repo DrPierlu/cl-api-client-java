@@ -18,14 +18,14 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface SkuService {
-  @POST("skus")
-  Call<Sku> createSku(@Body Sku sku);
-
   @GET("skus")
   Call<List<Sku>> listSkus();
 
   @GET("skus")
   Call<List<Sku>> listSkus(@QueryMap Map<String, String> queryStringParams);
+
+  @POST("skus")
+  Call<Sku> createSku(@Body Sku sku);
 
   @DELETE("skus/{skuId}")
   Call<Void> deleteSku(@Path("skuId") String skuId);

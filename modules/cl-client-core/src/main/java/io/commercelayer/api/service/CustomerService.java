@@ -17,14 +17,14 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface CustomerService {
-  @POST("customers")
-  Call<Customer> createCustomer(@Body Customer customer);
-
   @GET("customers")
   Call<List<Customer>> listCustomers();
 
   @GET("customers")
   Call<List<Customer>> listCustomers(@QueryMap Map<String, String> queryStringParams);
+
+  @POST("customers")
+  Call<Customer> createCustomer(@Body Customer customer);
 
   @DELETE("customers/{customerId}")
   Call<Void> deleteCustomer(@Path("customerId") String customerId);

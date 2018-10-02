@@ -14,14 +14,14 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface PaypalPaymentService {
-  @POST("paypal_payments")
-  Call<PaypalPayment> createPaypalPayment(@Body PaypalPayment paypalPayment);
-
   @GET("paypal_payments")
   Call<List<PaypalPayment>> listPaypalPayments();
 
   @GET("paypal_payments")
   Call<List<PaypalPayment>> listPaypalPayments(@QueryMap Map<String, String> queryStringParams);
+
+  @POST("paypal_payments")
+  Call<PaypalPayment> createPaypalPayment(@Body PaypalPayment paypalPayment);
 
   @DELETE("paypal_payments/{paypalPaymentId}")
   Call<Void> deletePaypalPayment(@Path("paypalPaymentId") String paypalPaymentId);

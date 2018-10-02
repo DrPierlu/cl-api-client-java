@@ -16,14 +16,14 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface MarketService {
-  @POST("markets")
-  Call<Market> createMarket(@Body Market market);
-
   @GET("markets")
   Call<List<Market>> listMarkets();
 
   @GET("markets")
   Call<List<Market>> listMarkets(@QueryMap Map<String, String> queryStringParams);
+
+  @POST("markets")
+  Call<Market> createMarket(@Body Market market);
 
   @DELETE("markets/{marketId}")
   Call<Void> deleteMarket(@Path("marketId") String marketId);

@@ -15,14 +15,14 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface PaymentMethodService {
-  @POST("payment_methods")
-  Call<PaymentMethod> createPaymentMethod(@Body PaymentMethod paymentMethod);
-
   @GET("payment_methods")
   Call<List<PaymentMethod>> listPaymentMethods();
 
   @GET("payment_methods")
   Call<List<PaymentMethod>> listPaymentMethods(@QueryMap Map<String, String> queryStringParams);
+
+  @POST("payment_methods")
+  Call<PaymentMethod> createPaymentMethod(@Body PaymentMethod paymentMethod);
 
   @DELETE("payment_methods/{paymentMethodId}")
   Call<Void> deletePaymentMethod(@Path("paymentMethodId") String paymentMethodId);

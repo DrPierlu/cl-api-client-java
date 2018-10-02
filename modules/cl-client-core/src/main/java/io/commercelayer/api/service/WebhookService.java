@@ -13,14 +13,14 @@ import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface WebhookService {
-  @POST("webhooks")
-  Call<Webhook> createWebhook(@Body Webhook webhook);
-
   @GET("webhooks")
   Call<List<Webhook>> listWebhooks();
 
   @GET("webhooks")
   Call<List<Webhook>> listWebhooks(@QueryMap Map<String, String> queryStringParams);
+
+  @POST("webhooks")
+  Call<Webhook> createWebhook(@Body Webhook webhook);
 
   @DELETE("webhooks/{webhookId}")
   Call<Void> deleteWebhook(@Path("webhookId") String webhookId);
