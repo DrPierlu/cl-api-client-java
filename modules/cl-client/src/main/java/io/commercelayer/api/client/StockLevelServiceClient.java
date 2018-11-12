@@ -15,11 +15,9 @@ import io.commercelayer.api.service.StockLevelService;
 import java.util.List;
 import retrofit2.Call;
 
-public class StockLevelServiceClient extends AbstractServiceClient {
-  protected final StockLevelService service;
-
+public class StockLevelServiceClient extends AbstractServiceClient<StockLevelService> {
   {
-    this.service = initServiceCallFactory(StockLevelService.class, StockLevel.class);
+    initServiceCallFactory(StockLevelService.class, StockLevel.class);
   }
 
   public StockLevelServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
@@ -60,16 +58,6 @@ public class StockLevelServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public void deleteStockLevel(String stockLevelId) throws ApiException {
-    Call<Void> call = service.deleteStockLevel(stockLevelId);
-    syncCall(call);
-  }
-
-  public void deleteStockLevel(String stockLevelId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteStockLevel(stockLevelId);
-    asyncCall(call, callback);
-  }
-
   public StockLevel updateStockLevel(String stockLevelId, StockLevel stockLevel) throws
       ApiException {
     Call<StockLevel> call = service.updateStockLevel(stockLevelId, stockLevel);
@@ -79,6 +67,16 @@ public class StockLevelServiceClient extends AbstractServiceClient {
   public void updateStockLevel(String stockLevelId, StockLevel stockLevel,
       ApiCallback<StockLevel> callback) {
     Call<StockLevel> call = service.updateStockLevel(stockLevelId, stockLevel);
+    asyncCall(call, callback);
+  }
+
+  public void deleteStockLevel(String stockLevelId) throws ApiException {
+    Call<Void> call = service.deleteStockLevel(stockLevelId);
+    syncCall(call);
+  }
+
+  public void deleteStockLevel(String stockLevelId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteStockLevel(stockLevelId);
     asyncCall(call, callback);
   }
 

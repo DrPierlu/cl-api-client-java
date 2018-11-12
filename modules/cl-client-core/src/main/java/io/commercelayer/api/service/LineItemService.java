@@ -24,11 +24,11 @@ public interface LineItemService {
   @POST("line_items")
   Call<LineItem> createLineItem(@Body LineItem lineItem);
 
-  @DELETE("line_items/{lineItemId}")
-  Call<Void> deleteLineItem(@Path("lineItemId") String lineItemId);
-
   @PATCH("line_items/{lineItemId}")
   Call<LineItem> updateLineItem(@Path("lineItemId") String lineItemId, @Body LineItem lineItem);
+
+  @DELETE("line_items/{lineItemId}")
+  Call<Void> deleteLineItem(@Path("lineItemId") String lineItemId);
 
   @GET("line_items/{lineItemId}")
   Call<LineItem> retrieveLineItem(@Path("lineItemId") String lineItemId);

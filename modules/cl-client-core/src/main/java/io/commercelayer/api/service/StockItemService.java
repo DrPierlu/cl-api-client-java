@@ -24,12 +24,12 @@ public interface StockItemService {
   @POST("stock_items")
   Call<StockItem> createStockItem(@Body StockItem stockItem);
 
-  @DELETE("stock_items/{stockItemId}")
-  Call<Void> deleteStockItem(@Path("stockItemId") String stockItemId);
-
   @PATCH("stock_items/{stockItemId}")
   Call<StockItem> updateStockItem(@Path("stockItemId") String stockItemId,
       @Body StockItem stockItem);
+
+  @DELETE("stock_items/{stockItemId}")
+  Call<Void> deleteStockItem(@Path("stockItemId") String stockItemId);
 
   @GET("stock_items/{stockItemId}")
   Call<StockItem> retrieveStockItem(@Path("stockItemId") String stockItemId);

@@ -17,11 +17,9 @@ import io.commercelayer.api.service.CustomerService;
 import java.util.List;
 import retrofit2.Call;
 
-public class CustomerServiceClient extends AbstractServiceClient {
-  protected final CustomerService service;
-
+public class CustomerServiceClient extends AbstractServiceClient<CustomerService> {
   {
-    this.service = initServiceCallFactory(CustomerService.class, Customer.class);
+    initServiceCallFactory(CustomerService.class, Customer.class);
   }
 
   public CustomerServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
@@ -62,16 +60,6 @@ public class CustomerServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public void deleteCustomer(String customerId) throws ApiException {
-    Call<Void> call = service.deleteCustomer(customerId);
-    syncCall(call);
-  }
-
-  public void deleteCustomer(String customerId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteCustomer(customerId);
-    asyncCall(call, callback);
-  }
-
   public Customer updateCustomer(String customerId, Customer customer) throws ApiException {
     Call<Customer> call = service.updateCustomer(customerId, customer);
     return syncCall(call);
@@ -79,6 +67,16 @@ public class CustomerServiceClient extends AbstractServiceClient {
 
   public void updateCustomer(String customerId, Customer customer, ApiCallback<Customer> callback) {
     Call<Customer> call = service.updateCustomer(customerId, customer);
+    asyncCall(call, callback);
+  }
+
+  public void deleteCustomer(String customerId) throws ApiException {
+    Call<Void> call = service.deleteCustomer(customerId);
+    syncCall(call);
+  }
+
+  public void deleteCustomer(String customerId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteCustomer(customerId);
     asyncCall(call, callback);
   }
 

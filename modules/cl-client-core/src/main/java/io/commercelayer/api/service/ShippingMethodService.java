@@ -26,12 +26,12 @@ public interface ShippingMethodService {
   @POST("shipping_methods")
   Call<ShippingMethod> createShippingMethod(@Body ShippingMethod shippingMethod);
 
-  @DELETE("shipping_methods/{shippingMethodId}")
-  Call<Void> deleteShippingMethod(@Path("shippingMethodId") String shippingMethodId);
-
   @PATCH("shipping_methods/{shippingMethodId}")
   Call<ShippingMethod> updateShippingMethod(@Path("shippingMethodId") String shippingMethodId,
       @Body ShippingMethod shippingMethod);
+
+  @DELETE("shipping_methods/{shippingMethodId}")
+  Call<Void> deleteShippingMethod(@Path("shippingMethodId") String shippingMethodId);
 
   @GET("shipping_methods/{shippingMethodId}")
   Call<ShippingMethod> retrieveShippingMethod(@Path("shippingMethodId") String shippingMethodId);

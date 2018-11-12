@@ -14,11 +14,9 @@ import io.commercelayer.api.service.CreditCardService;
 import java.util.List;
 import retrofit2.Call;
 
-public class CreditCardServiceClient extends AbstractServiceClient {
-  protected final CreditCardService service;
-
+public class CreditCardServiceClient extends AbstractServiceClient<CreditCardService> {
   {
-    this.service = initServiceCallFactory(CreditCardService.class, CreditCard.class);
+    initServiceCallFactory(CreditCardService.class, CreditCard.class);
   }
 
   public CreditCardServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
@@ -59,16 +57,6 @@ public class CreditCardServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public void deleteCreditCard(String creditCardId) throws ApiException {
-    Call<Void> call = service.deleteCreditCard(creditCardId);
-    syncCall(call);
-  }
-
-  public void deleteCreditCard(String creditCardId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteCreditCard(creditCardId);
-    asyncCall(call, callback);
-  }
-
   public CreditCard updateCreditCard(String creditCardId, CreditCard creditCard) throws
       ApiException {
     Call<CreditCard> call = service.updateCreditCard(creditCardId, creditCard);
@@ -78,6 +66,16 @@ public class CreditCardServiceClient extends AbstractServiceClient {
   public void updateCreditCard(String creditCardId, CreditCard creditCard,
       ApiCallback<CreditCard> callback) {
     Call<CreditCard> call = service.updateCreditCard(creditCardId, creditCard);
+    asyncCall(call, callback);
+  }
+
+  public void deleteCreditCard(String creditCardId) throws ApiException {
+    Call<Void> call = service.deleteCreditCard(creditCardId);
+    syncCall(call);
+  }
+
+  public void deleteCreditCard(String creditCardId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteCreditCard(creditCardId);
     asyncCall(call, callback);
   }
 

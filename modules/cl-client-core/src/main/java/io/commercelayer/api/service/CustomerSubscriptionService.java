@@ -25,14 +25,14 @@ public interface CustomerSubscriptionService {
   Call<CustomerSubscription> createCustomerSubscription(
       @Body CustomerSubscription customerSubscription);
 
-  @DELETE("customer_subscriptions/{customerSubscriptionId}")
-  Call<Void> deleteCustomerSubscription(
-      @Path("customerSubscriptionId") String customerSubscriptionId);
-
   @PATCH("customer_subscriptions/{customerSubscriptionId}")
   Call<CustomerSubscription> updateCustomerSubscription(
       @Path("customerSubscriptionId") String customerSubscriptionId,
       @Body CustomerSubscription customerSubscription);
+
+  @DELETE("customer_subscriptions/{customerSubscriptionId}")
+  Call<Void> deleteCustomerSubscription(
+      @Path("customerSubscriptionId") String customerSubscriptionId);
 
   @GET("customer_subscriptions/{customerSubscriptionId}")
   Call<CustomerSubscription> retrieveCustomerSubscription(

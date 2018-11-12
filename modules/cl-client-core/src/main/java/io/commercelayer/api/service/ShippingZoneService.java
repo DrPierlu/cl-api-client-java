@@ -22,12 +22,12 @@ public interface ShippingZoneService {
   @POST("shipping_zones")
   Call<ShippingZone> createShippingZone(@Body ShippingZone shippingZone);
 
-  @DELETE("shipping_zones/{shippingZoneId}")
-  Call<Void> deleteShippingZone(@Path("shippingZoneId") String shippingZoneId);
-
   @PATCH("shipping_zones/{shippingZoneId}")
   Call<ShippingZone> updateShippingZone(@Path("shippingZoneId") String shippingZoneId,
       @Body ShippingZone shippingZone);
+
+  @DELETE("shipping_zones/{shippingZoneId}")
+  Call<Void> deleteShippingZone(@Path("shippingZoneId") String shippingZoneId);
 
   @GET("shipping_zones/{shippingZoneId}")
   Call<ShippingZone> retrieveShippingZone(@Path("shippingZoneId") String shippingZoneId);

@@ -9,9 +9,10 @@ import io.commercelayer.api.model.common.ApiOrganization;
 import moe.banana.jsonapi2.Resource;
 import retrofit2.Call;
 
-public abstract class AbstractServiceClient {
+public abstract class AbstractServiceClient<SERVICE> {
 
 	private ApiCaller apiCaller;
+	protected SERVICE service;
 	
 	
 	public AbstractServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
@@ -28,15 +29,15 @@ public abstract class AbstractServiceClient {
 	}
 	
 	@SafeVarargs
-	protected final <T> T initServiceCallFactory(Class<T> service, Class<? extends Resource>... resources) {
-		return this.apiCaller.getServiceCallFactory(service, resources);
+	protected final void initServiceCallFactory(Class<SERVICE> service, Class<? extends Resource>... resources) {
+		this.service = this.apiCaller.getServiceCallFactory(service, resources);
 	}
 	
-	protected <T> T syncCall(Call<T> apiCall) throws ConnectionException, ApiException {
+	protected <MODEL> MODEL syncCall(Call<MODEL> apiCall) throws ConnectionException, ApiException {
 		return this.apiCaller.call(apiCall);
 	}
 	
-	protected <T> void asyncCall(Call<T> apiCall, ApiCallback<T> apiCallback) {
+	protected <MODEL> void asyncCall(Call<MODEL> apiCall, ApiCallback<MODEL> apiCallback) {
 		this.apiCaller.call(apiCall, apiCallback);
 	}
 	

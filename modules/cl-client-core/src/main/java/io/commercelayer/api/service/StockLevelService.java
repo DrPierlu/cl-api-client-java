@@ -24,12 +24,12 @@ public interface StockLevelService {
   @POST("stock_levels")
   Call<StockLevel> createStockLevel(@Body StockLevel stockLevel);
 
-  @DELETE("stock_levels/{stockLevelId}")
-  Call<Void> deleteStockLevel(@Path("stockLevelId") String stockLevelId);
-
   @PATCH("stock_levels/{stockLevelId}")
   Call<StockLevel> updateStockLevel(@Path("stockLevelId") String stockLevelId,
       @Body StockLevel stockLevel);
+
+  @DELETE("stock_levels/{stockLevelId}")
+  Call<Void> deleteStockLevel(@Path("stockLevelId") String stockLevelId);
 
   @GET("stock_levels/{stockLevelId}")
   Call<StockLevel> retrieveStockLevel(@Path("stockLevelId") String stockLevelId);

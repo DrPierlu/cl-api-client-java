@@ -14,11 +14,9 @@ import io.commercelayer.api.service.CustomerPasswordResetService;
 import java.util.List;
 import retrofit2.Call;
 
-public class CustomerPasswordResetServiceClient extends AbstractServiceClient {
-  protected final CustomerPasswordResetService service;
-
+public class CustomerPasswordResetServiceClient extends AbstractServiceClient<CustomerPasswordResetService> {
   {
-    this.service = initServiceCallFactory(CustomerPasswordResetService.class, CustomerPasswordReset.class);
+    initServiceCallFactory(CustomerPasswordResetService.class, CustomerPasswordReset.class);
   }
 
   public CustomerPasswordResetServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws
@@ -65,17 +63,6 @@ public class CustomerPasswordResetServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public void deleteCustomerPasswordReset(String customerPasswordResetId) throws ApiException {
-    Call<Void> call = service.deleteCustomerPasswordReset(customerPasswordResetId);
-    syncCall(call);
-  }
-
-  public void deleteCustomerPasswordReset(String customerPasswordResetId,
-      ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteCustomerPasswordReset(customerPasswordResetId);
-    asyncCall(call, callback);
-  }
-
   public CustomerPasswordReset updateCustomerPasswordReset(String customerPasswordResetId,
       CustomerPasswordReset customerPasswordReset) throws ApiException {
     Call<CustomerPasswordReset> call = service.updateCustomerPasswordReset(customerPasswordResetId, customerPasswordReset);
@@ -85,6 +72,17 @@ public class CustomerPasswordResetServiceClient extends AbstractServiceClient {
   public void updateCustomerPasswordReset(String customerPasswordResetId,
       CustomerPasswordReset customerPasswordReset, ApiCallback<CustomerPasswordReset> callback) {
     Call<CustomerPasswordReset> call = service.updateCustomerPasswordReset(customerPasswordResetId, customerPasswordReset);
+    asyncCall(call, callback);
+  }
+
+  public void deleteCustomerPasswordReset(String customerPasswordResetId) throws ApiException {
+    Call<Void> call = service.deleteCustomerPasswordReset(customerPasswordResetId);
+    syncCall(call);
+  }
+
+  public void deleteCustomerPasswordReset(String customerPasswordResetId,
+      ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteCustomerPasswordReset(customerPasswordResetId);
     asyncCall(call, callback);
   }
 

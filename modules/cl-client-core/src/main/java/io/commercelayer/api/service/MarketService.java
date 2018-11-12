@@ -25,11 +25,11 @@ public interface MarketService {
   @POST("markets")
   Call<Market> createMarket(@Body Market market);
 
-  @DELETE("markets/{marketId}")
-  Call<Void> deleteMarket(@Path("marketId") String marketId);
-
   @PATCH("markets/{marketId}")
   Call<Market> updateMarket(@Path("marketId") String marketId, @Body Market market);
+
+  @DELETE("markets/{marketId}")
+  Call<Void> deleteMarket(@Path("marketId") String marketId);
 
   @GET("markets/{marketId}")
   Call<Market> retrieveMarket(@Path("marketId") String marketId);

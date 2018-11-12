@@ -17,11 +17,9 @@ import io.commercelayer.api.service.ShippingMethodService;
 import java.util.List;
 import retrofit2.Call;
 
-public class ShippingMethodServiceClient extends AbstractServiceClient {
-  protected final ShippingMethodService service;
-
+public class ShippingMethodServiceClient extends AbstractServiceClient<ShippingMethodService> {
   {
-    this.service = initServiceCallFactory(ShippingMethodService.class, ShippingMethod.class);
+    initServiceCallFactory(ShippingMethodService.class, ShippingMethod.class);
   }
 
   public ShippingMethodServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
@@ -65,16 +63,6 @@ public class ShippingMethodServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public void deleteShippingMethod(String shippingMethodId) throws ApiException {
-    Call<Void> call = service.deleteShippingMethod(shippingMethodId);
-    syncCall(call);
-  }
-
-  public void deleteShippingMethod(String shippingMethodId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteShippingMethod(shippingMethodId);
-    asyncCall(call, callback);
-  }
-
   public ShippingMethod updateShippingMethod(String shippingMethodId, ShippingMethod shippingMethod)
       throws ApiException {
     Call<ShippingMethod> call = service.updateShippingMethod(shippingMethodId, shippingMethod);
@@ -84,6 +72,16 @@ public class ShippingMethodServiceClient extends AbstractServiceClient {
   public void updateShippingMethod(String shippingMethodId, ShippingMethod shippingMethod,
       ApiCallback<ShippingMethod> callback) {
     Call<ShippingMethod> call = service.updateShippingMethod(shippingMethodId, shippingMethod);
+    asyncCall(call, callback);
+  }
+
+  public void deleteShippingMethod(String shippingMethodId) throws ApiException {
+    Call<Void> call = service.deleteShippingMethod(shippingMethodId);
+    syncCall(call);
+  }
+
+  public void deleteShippingMethod(String shippingMethodId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteShippingMethod(shippingMethodId);
     asyncCall(call, callback);
   }
 

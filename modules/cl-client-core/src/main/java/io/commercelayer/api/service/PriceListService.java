@@ -23,12 +23,12 @@ public interface PriceListService {
   @POST("price_lists")
   Call<PriceList> createPriceList(@Body PriceList priceList);
 
-  @DELETE("price_lists/{priceListId}")
-  Call<Void> deletePriceList(@Path("priceListId") String priceListId);
-
   @PATCH("price_lists/{priceListId}")
   Call<PriceList> updatePriceList(@Path("priceListId") String priceListId,
       @Body PriceList priceList);
+
+  @DELETE("price_lists/{priceListId}")
+  Call<Void> deletePriceList(@Path("priceListId") String priceListId);
 
   @GET("price_lists/{priceListId}")
   Call<PriceList> retrievePriceList(@Path("priceListId") String priceListId);

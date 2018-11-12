@@ -26,11 +26,11 @@ public interface CustomerService {
   @POST("customers")
   Call<Customer> createCustomer(@Body Customer customer);
 
-  @DELETE("customers/{customerId}")
-  Call<Void> deleteCustomer(@Path("customerId") String customerId);
-
   @PATCH("customers/{customerId}")
   Call<Customer> updateCustomer(@Path("customerId") String customerId, @Body Customer customer);
+
+  @DELETE("customers/{customerId}")
+  Call<Void> deleteCustomer(@Path("customerId") String customerId);
 
   @GET("customers/{customerId}")
   Call<Customer> retrieveCustomer(@Path("customerId") String customerId);

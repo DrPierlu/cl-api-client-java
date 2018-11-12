@@ -24,12 +24,12 @@ public interface PaymentMethodService {
   @POST("payment_methods")
   Call<PaymentMethod> createPaymentMethod(@Body PaymentMethod paymentMethod);
 
-  @DELETE("payment_methods/{paymentMethodId}")
-  Call<Void> deletePaymentMethod(@Path("paymentMethodId") String paymentMethodId);
-
   @PATCH("payment_methods/{paymentMethodId}")
   Call<PaymentMethod> updatePaymentMethod(@Path("paymentMethodId") String paymentMethodId,
       @Body PaymentMethod paymentMethod);
+
+  @DELETE("payment_methods/{paymentMethodId}")
+  Call<Void> deletePaymentMethod(@Path("paymentMethodId") String paymentMethodId);
 
   @GET("payment_methods/{paymentMethodId}")
   Call<PaymentMethod> retrievePaymentMethod(@Path("paymentMethodId") String paymentMethodId);

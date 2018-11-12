@@ -15,11 +15,9 @@ import io.commercelayer.api.service.StockItemService;
 import java.util.List;
 import retrofit2.Call;
 
-public class StockItemServiceClient extends AbstractServiceClient {
-  protected final StockItemService service;
-
+public class StockItemServiceClient extends AbstractServiceClient<StockItemService> {
   {
-    this.service = initServiceCallFactory(StockItemService.class, StockItem.class);
+    initServiceCallFactory(StockItemService.class, StockItem.class);
   }
 
   public StockItemServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
@@ -60,16 +58,6 @@ public class StockItemServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public void deleteStockItem(String stockItemId) throws ApiException {
-    Call<Void> call = service.deleteStockItem(stockItemId);
-    syncCall(call);
-  }
-
-  public void deleteStockItem(String stockItemId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteStockItem(stockItemId);
-    asyncCall(call, callback);
-  }
-
   public StockItem updateStockItem(String stockItemId, StockItem stockItem) throws ApiException {
     Call<StockItem> call = service.updateStockItem(stockItemId, stockItem);
     return syncCall(call);
@@ -78,6 +66,16 @@ public class StockItemServiceClient extends AbstractServiceClient {
   public void updateStockItem(String stockItemId, StockItem stockItem,
       ApiCallback<StockItem> callback) {
     Call<StockItem> call = service.updateStockItem(stockItemId, stockItem);
+    asyncCall(call, callback);
+  }
+
+  public void deleteStockItem(String stockItemId) throws ApiException {
+    Call<Void> call = service.deleteStockItem(stockItemId);
+    syncCall(call);
+  }
+
+  public void deleteStockItem(String stockItemId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteStockItem(stockItemId);
     asyncCall(call, callback);
   }
 

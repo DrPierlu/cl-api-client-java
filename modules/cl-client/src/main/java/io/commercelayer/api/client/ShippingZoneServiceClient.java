@@ -13,11 +13,9 @@ import io.commercelayer.api.service.ShippingZoneService;
 import java.util.List;
 import retrofit2.Call;
 
-public class ShippingZoneServiceClient extends AbstractServiceClient {
-  protected final ShippingZoneService service;
-
+public class ShippingZoneServiceClient extends AbstractServiceClient<ShippingZoneService> {
   {
-    this.service = initServiceCallFactory(ShippingZoneService.class, ShippingZone.class);
+    initServiceCallFactory(ShippingZoneService.class, ShippingZone.class);
   }
 
   public ShippingZoneServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
@@ -58,16 +56,6 @@ public class ShippingZoneServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public void deleteShippingZone(String shippingZoneId) throws ApiException {
-    Call<Void> call = service.deleteShippingZone(shippingZoneId);
-    syncCall(call);
-  }
-
-  public void deleteShippingZone(String shippingZoneId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteShippingZone(shippingZoneId);
-    asyncCall(call, callback);
-  }
-
   public ShippingZone updateShippingZone(String shippingZoneId, ShippingZone shippingZone) throws
       ApiException {
     Call<ShippingZone> call = service.updateShippingZone(shippingZoneId, shippingZone);
@@ -77,6 +65,16 @@ public class ShippingZoneServiceClient extends AbstractServiceClient {
   public void updateShippingZone(String shippingZoneId, ShippingZone shippingZone,
       ApiCallback<ShippingZone> callback) {
     Call<ShippingZone> call = service.updateShippingZone(shippingZoneId, shippingZone);
+    asyncCall(call, callback);
+  }
+
+  public void deleteShippingZone(String shippingZoneId) throws ApiException {
+    Call<Void> call = service.deleteShippingZone(shippingZoneId);
+    syncCall(call);
+  }
+
+  public void deleteShippingZone(String shippingZoneId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteShippingZone(shippingZoneId);
     asyncCall(call, callback);
   }
 

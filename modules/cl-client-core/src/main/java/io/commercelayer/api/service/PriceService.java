@@ -24,11 +24,11 @@ public interface PriceService {
   @POST("prices")
   Call<Price> createPrice(@Body Price price);
 
-  @DELETE("prices/{priceId}")
-  Call<Void> deletePrice(@Path("priceId") String priceId);
-
   @PATCH("prices/{priceId}")
   Call<Price> updatePrice(@Path("priceId") String priceId, @Body Price price);
+
+  @DELETE("prices/{priceId}")
+  Call<Void> deletePrice(@Path("priceId") String priceId);
 
   @GET("prices/{priceId}")
   Call<Price> retrievePrice(@Path("priceId") String priceId);

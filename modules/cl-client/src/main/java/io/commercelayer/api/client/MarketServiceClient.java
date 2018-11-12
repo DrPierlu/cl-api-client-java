@@ -16,11 +16,9 @@ import io.commercelayer.api.service.MarketService;
 import java.util.List;
 import retrofit2.Call;
 
-public class MarketServiceClient extends AbstractServiceClient {
-  protected final MarketService service;
-
+public class MarketServiceClient extends AbstractServiceClient<MarketService> {
   {
-    this.service = initServiceCallFactory(MarketService.class, Market.class);
+    initServiceCallFactory(MarketService.class, Market.class);
   }
 
   public MarketServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
@@ -61,16 +59,6 @@ public class MarketServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public void deleteMarket(String marketId) throws ApiException {
-    Call<Void> call = service.deleteMarket(marketId);
-    syncCall(call);
-  }
-
-  public void deleteMarket(String marketId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteMarket(marketId);
-    asyncCall(call, callback);
-  }
-
   public Market updateMarket(String marketId, Market market) throws ApiException {
     Call<Market> call = service.updateMarket(marketId, market);
     return syncCall(call);
@@ -78,6 +66,16 @@ public class MarketServiceClient extends AbstractServiceClient {
 
   public void updateMarket(String marketId, Market market, ApiCallback<Market> callback) {
     Call<Market> call = service.updateMarket(marketId, market);
+    asyncCall(call, callback);
+  }
+
+  public void deleteMarket(String marketId) throws ApiException {
+    Call<Void> call = service.deleteMarket(marketId);
+    syncCall(call);
+  }
+
+  public void deleteMarket(String marketId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteMarket(marketId);
     asyncCall(call, callback);
   }
 

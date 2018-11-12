@@ -19,11 +19,9 @@ import io.commercelayer.api.service.ShipmentService;
 import java.util.List;
 import retrofit2.Call;
 
-public class ShipmentServiceClient extends AbstractServiceClient {
-  protected final ShipmentService service;
-
+public class ShipmentServiceClient extends AbstractServiceClient<ShipmentService> {
   {
-    this.service = initServiceCallFactory(ShipmentService.class, Shipment.class);
+    initServiceCallFactory(ShipmentService.class, Shipment.class);
   }
 
   public ShipmentServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
@@ -64,16 +62,6 @@ public class ShipmentServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public void deleteShipment(String shipmentId) throws ApiException {
-    Call<Void> call = service.deleteShipment(shipmentId);
-    syncCall(call);
-  }
-
-  public void deleteShipment(String shipmentId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteShipment(shipmentId);
-    asyncCall(call, callback);
-  }
-
   public Shipment updateShipment(String shipmentId, Shipment shipment) throws ApiException {
     Call<Shipment> call = service.updateShipment(shipmentId, shipment);
     return syncCall(call);
@@ -81,6 +69,16 @@ public class ShipmentServiceClient extends AbstractServiceClient {
 
   public void updateShipment(String shipmentId, Shipment shipment, ApiCallback<Shipment> callback) {
     Call<Shipment> call = service.updateShipment(shipmentId, shipment);
+    asyncCall(call, callback);
+  }
+
+  public void deleteShipment(String shipmentId) throws ApiException {
+    Call<Void> call = service.deleteShipment(shipmentId);
+    syncCall(call);
+  }
+
+  public void deleteShipment(String shipmentId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteShipment(shipmentId);
     asyncCall(call, callback);
   }
 

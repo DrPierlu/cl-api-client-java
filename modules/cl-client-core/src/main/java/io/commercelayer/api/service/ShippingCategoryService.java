@@ -24,13 +24,13 @@ public interface ShippingCategoryService {
   @POST("shipping_categories")
   Call<ShippingCategory> createShippingCategory(@Body ShippingCategory shippingCategory);
 
-  @DELETE("shipping_categories/{shippingCategoryId}")
-  Call<Void> deleteShippingCategory(@Path("shippingCategoryId") String shippingCategoryId);
-
   @PATCH("shipping_categories/{shippingCategoryId}")
   Call<ShippingCategory> updateShippingCategory(
       @Path("shippingCategoryId") String shippingCategoryId,
       @Body ShippingCategory shippingCategory);
+
+  @DELETE("shipping_categories/{shippingCategoryId}")
+  Call<Void> deleteShippingCategory(@Path("shippingCategoryId") String shippingCategoryId);
 
   @GET("shipping_categories/{shippingCategoryId}")
   Call<ShippingCategory> retrieveShippingCategory(

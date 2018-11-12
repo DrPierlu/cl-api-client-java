@@ -25,13 +25,13 @@ public interface DeliveryLeadTimeService {
   @POST("delivery_lead_times")
   Call<DeliveryLeadTime> createDeliveryLeadTime(@Body DeliveryLeadTime deliveryLeadTime);
 
-  @DELETE("delivery_lead_times/{deliveryLeadTimeId}")
-  Call<Void> deleteDeliveryLeadTime(@Path("deliveryLeadTimeId") String deliveryLeadTimeId);
-
   @PATCH("delivery_lead_times/{deliveryLeadTimeId}")
   Call<DeliveryLeadTime> updateDeliveryLeadTime(
       @Path("deliveryLeadTimeId") String deliveryLeadTimeId,
       @Body DeliveryLeadTime deliveryLeadTime);
+
+  @DELETE("delivery_lead_times/{deliveryLeadTimeId}")
+  Call<Void> deleteDeliveryLeadTime(@Path("deliveryLeadTimeId") String deliveryLeadTimeId);
 
   @GET("delivery_lead_times/{deliveryLeadTimeId}")
   Call<DeliveryLeadTime> retrieveDeliveryLeadTime(

@@ -14,7 +14,6 @@ import org.slf4j.LoggerFactory;
 
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.CodeBlock;
-import com.squareup.javapoet.FieldSpec;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.ParameterSpec;
 import com.squareup.javapoet.ParameterizedTypeName;
@@ -77,15 +76,16 @@ public class RetrofitServiceClientGenerator implements ServiceGenerator {
 		final String resourceName = CLInflector.getInstance().singularize(StringUtils.capitalize(ModelGeneratorUtils.toCamelCase(mainRes.substring(1))));
 		final String serviceName = String.format("%sServiceClient", resourceName);
 		
-		TypeSpec.Builder service = TypeSpec.classBuilder(serviceName)
-			.addModifiers(Modifier.PUBLIC)
-			.superclass(AbstractServiceClient.class);
-		
 		final ClassName serviceClassName = ClassName.get(ServiceGeneratorUtils.SERVICE_BASE_PACKAGE, String.format("%sService", resourceName));
 		final ClassName resourceClassName = ClassName.get(ModelGeneratorUtils.MODEL_BASE_PACKAGE, resourceName);
 		
+		TypeSpec.Builder service = TypeSpec.classBuilder(serviceName)
+			.addModifiers(Modifier.PUBLIC)
+			.superclass(ParameterizedTypeName.get(ClassName.get(AbstractServiceClient.class), serviceClassName));		
+		
+		
 		// Service client field
-		createServiceField(service, serviceClassName, resourceClassName);
+		createInitBlock(service, serviceClassName, resourceClassName);
 		// Class constructors
 		createConstructors(service, serviceClassName, resourceClassName);
 		
@@ -233,14 +233,9 @@ public class RetrofitServiceClientGenerator implements ServiceGenerator {
 	}
 	
 	
-	private void createServiceField(TypeSpec.Builder service, ClassName serviceClassName, ClassName resourceClassName) {
-		
-		FieldSpec.Builder field = FieldSpec.builder(serviceClassName, "service", Modifier.PROTECTED, Modifier.FINAL);
-		service.addField(field.build());
-		
-		CodeBlock initBlock = CodeBlock.builder().addStatement("this.service = initServiceCallFactory($T.class, $T.class)", serviceClassName, resourceClassName).build();
+	private void createInitBlock(TypeSpec.Builder service, ClassName serviceClassName, ClassName resourceClassName) {
+		CodeBlock initBlock = CodeBlock.builder().addStatement("initServiceCallFactory($T.class, $T.class)", serviceClassName, resourceClassName).build();
 		service.addInitializerBlock(initBlock);
-		
 	}
 	
 	private void createConstructors(TypeSpec.Builder service, ClassName serviceClassName, ClassName resourceClassName) {

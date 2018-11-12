@@ -14,11 +14,9 @@ import io.commercelayer.api.service.InventoryModelService;
 import java.util.List;
 import retrofit2.Call;
 
-public class InventoryModelServiceClient extends AbstractServiceClient {
-  protected final InventoryModelService service;
-
+public class InventoryModelServiceClient extends AbstractServiceClient<InventoryModelService> {
   {
-    this.service = initServiceCallFactory(InventoryModelService.class, InventoryModel.class);
+    initServiceCallFactory(InventoryModelService.class, InventoryModel.class);
   }
 
   public InventoryModelServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
@@ -62,16 +60,6 @@ public class InventoryModelServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public void deleteInventoryModel(String inventoryModelId) throws ApiException {
-    Call<Void> call = service.deleteInventoryModel(inventoryModelId);
-    syncCall(call);
-  }
-
-  public void deleteInventoryModel(String inventoryModelId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteInventoryModel(inventoryModelId);
-    asyncCall(call, callback);
-  }
-
   public InventoryModel updateInventoryModel(String inventoryModelId, InventoryModel inventoryModel)
       throws ApiException {
     Call<InventoryModel> call = service.updateInventoryModel(inventoryModelId, inventoryModel);
@@ -81,6 +69,16 @@ public class InventoryModelServiceClient extends AbstractServiceClient {
   public void updateInventoryModel(String inventoryModelId, InventoryModel inventoryModel,
       ApiCallback<InventoryModel> callback) {
     Call<InventoryModel> call = service.updateInventoryModel(inventoryModelId, inventoryModel);
+    asyncCall(call, callback);
+  }
+
+  public void deleteInventoryModel(String inventoryModelId) throws ApiException {
+    Call<Void> call = service.deleteInventoryModel(inventoryModelId);
+    syncCall(call);
+  }
+
+  public void deleteInventoryModel(String inventoryModelId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteInventoryModel(inventoryModelId);
     asyncCall(call, callback);
   }
 

@@ -15,11 +15,9 @@ import io.commercelayer.api.service.PriceService;
 import java.util.List;
 import retrofit2.Call;
 
-public class PriceServiceClient extends AbstractServiceClient {
-  protected final PriceService service;
-
+public class PriceServiceClient extends AbstractServiceClient<PriceService> {
   {
-    this.service = initServiceCallFactory(PriceService.class, Price.class);
+    initServiceCallFactory(PriceService.class, Price.class);
   }
 
   public PriceServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
@@ -60,16 +58,6 @@ public class PriceServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public void deletePrice(String priceId) throws ApiException {
-    Call<Void> call = service.deletePrice(priceId);
-    syncCall(call);
-  }
-
-  public void deletePrice(String priceId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deletePrice(priceId);
-    asyncCall(call, callback);
-  }
-
   public Price updatePrice(String priceId, Price price) throws ApiException {
     Call<Price> call = service.updatePrice(priceId, price);
     return syncCall(call);
@@ -77,6 +65,16 @@ public class PriceServiceClient extends AbstractServiceClient {
 
   public void updatePrice(String priceId, Price price, ApiCallback<Price> callback) {
     Call<Price> call = service.updatePrice(priceId, price);
+    asyncCall(call, callback);
+  }
+
+  public void deletePrice(String priceId) throws ApiException {
+    Call<Void> call = service.deletePrice(priceId);
+    syncCall(call);
+  }
+
+  public void deletePrice(String priceId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deletePrice(priceId);
     asyncCall(call, callback);
   }
 

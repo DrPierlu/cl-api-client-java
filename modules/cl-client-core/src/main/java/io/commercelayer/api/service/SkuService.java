@@ -27,11 +27,11 @@ public interface SkuService {
   @POST("skus")
   Call<Sku> createSku(@Body Sku sku);
 
-  @DELETE("skus/{skuId}")
-  Call<Void> deleteSku(@Path("skuId") String skuId);
-
   @PATCH("skus/{skuId}")
   Call<Sku> updateSku(@Path("skuId") String skuId, @Body Sku sku);
+
+  @DELETE("skus/{skuId}")
+  Call<Void> deleteSku(@Path("skuId") String skuId);
 
   @GET("skus/{skuId}")
   Call<Sku> retrieveSku(@Path("skuId") String skuId);

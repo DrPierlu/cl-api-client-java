@@ -23,11 +23,11 @@ public interface ParcelService {
   @POST("parcels")
   Call<Parcel> createParcel(@Body Parcel parcel);
 
-  @DELETE("parcels/{parcelId}")
-  Call<Void> deleteParcel(@Path("parcelId") String parcelId);
-
   @PATCH("parcels/{parcelId}")
   Call<Parcel> updateParcel(@Path("parcelId") String parcelId, @Body Parcel parcel);
+
+  @DELETE("parcels/{parcelId}")
+  Call<Void> deleteParcel(@Path("parcelId") String parcelId);
 
   @GET("parcels/{parcelId}")
   Call<Parcel> retrieveParcel(@Path("parcelId") String parcelId);

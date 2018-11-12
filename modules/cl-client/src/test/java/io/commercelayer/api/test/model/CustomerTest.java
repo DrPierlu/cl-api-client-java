@@ -1,6 +1,5 @@
 package io.commercelayer.api.test.model;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import io.commercelayer.api.client.exception.ApiException;
@@ -9,13 +8,11 @@ import io.commercelayer.api.model.Customer;
 import io.commercelayer.api.service.CustomerService;
 import retrofit2.Call;
 
-public class CustomerTest extends AbstractModelTest {
+public class CustomerTest extends AbstractModelTest<CustomerService> {
 	
-	private CustomerService service;
-	
-	@BeforeClass
-	private void initServiceInterface() {
-		service = apiCaller.getServiceCallFactory(CustomerService.class);
+	@Override
+	protected void initServiceInterface() {
+		super.initServiceInterface(CustomerService.class);
 	}
 	
 

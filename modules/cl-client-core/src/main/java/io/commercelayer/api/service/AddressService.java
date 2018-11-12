@@ -23,11 +23,11 @@ public interface AddressService {
   @POST("addresses")
   Call<Address> createAddress(@Body Address address);
 
-  @DELETE("addresses/{addressId}")
-  Call<Void> deleteAddress(@Path("addressId") String addressId);
-
   @PATCH("addresses/{addressId}")
   Call<Address> updateAddress(@Path("addressId") String addressId, @Body Address address);
+
+  @DELETE("addresses/{addressId}")
+  Call<Void> deleteAddress(@Path("addressId") String addressId);
 
   @GET("addresses/{addressId}")
   Call<Address> retrieveAddress(@Path("addressId") String addressId);

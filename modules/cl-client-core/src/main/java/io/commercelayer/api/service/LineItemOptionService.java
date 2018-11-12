@@ -24,12 +24,12 @@ public interface LineItemOptionService {
   @POST("line_item_options")
   Call<LineItemOption> createLineItemOption(@Body LineItemOption lineItemOption);
 
-  @DELETE("line_item_options/{lineItemOptionId}")
-  Call<Void> deleteLineItemOption(@Path("lineItemOptionId") String lineItemOptionId);
-
   @PATCH("line_item_options/{lineItemOptionId}")
   Call<LineItemOption> updateLineItemOption(@Path("lineItemOptionId") String lineItemOptionId,
       @Body LineItemOption lineItemOption);
+
+  @DELETE("line_item_options/{lineItemOptionId}")
+  Call<Void> deleteLineItemOption(@Path("lineItemOptionId") String lineItemOptionId);
 
   @GET("line_item_options/{lineItemOptionId}")
   Call<LineItemOption> retrieveLineItemOption(@Path("lineItemOptionId") String lineItemOptionId);

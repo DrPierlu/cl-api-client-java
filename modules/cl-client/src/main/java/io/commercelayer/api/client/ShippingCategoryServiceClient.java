@@ -14,11 +14,9 @@ import io.commercelayer.api.service.ShippingCategoryService;
 import java.util.List;
 import retrofit2.Call;
 
-public class ShippingCategoryServiceClient extends AbstractServiceClient {
-  protected final ShippingCategoryService service;
-
+public class ShippingCategoryServiceClient extends AbstractServiceClient<ShippingCategoryService> {
   {
-    this.service = initServiceCallFactory(ShippingCategoryService.class, ShippingCategory.class);
+    initServiceCallFactory(ShippingCategoryService.class, ShippingCategory.class);
   }
 
   public ShippingCategoryServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws
@@ -65,16 +63,6 @@ public class ShippingCategoryServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public void deleteShippingCategory(String shippingCategoryId) throws ApiException {
-    Call<Void> call = service.deleteShippingCategory(shippingCategoryId);
-    syncCall(call);
-  }
-
-  public void deleteShippingCategory(String shippingCategoryId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteShippingCategory(shippingCategoryId);
-    asyncCall(call, callback);
-  }
-
   public ShippingCategory updateShippingCategory(String shippingCategoryId,
       ShippingCategory shippingCategory) throws ApiException {
     Call<ShippingCategory> call = service.updateShippingCategory(shippingCategoryId, shippingCategory);
@@ -84,6 +72,16 @@ public class ShippingCategoryServiceClient extends AbstractServiceClient {
   public void updateShippingCategory(String shippingCategoryId, ShippingCategory shippingCategory,
       ApiCallback<ShippingCategory> callback) {
     Call<ShippingCategory> call = service.updateShippingCategory(shippingCategoryId, shippingCategory);
+    asyncCall(call, callback);
+  }
+
+  public void deleteShippingCategory(String shippingCategoryId) throws ApiException {
+    Call<Void> call = service.deleteShippingCategory(shippingCategoryId);
+    syncCall(call);
+  }
+
+  public void deleteShippingCategory(String shippingCategoryId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteShippingCategory(shippingCategoryId);
     asyncCall(call, callback);
   }
 

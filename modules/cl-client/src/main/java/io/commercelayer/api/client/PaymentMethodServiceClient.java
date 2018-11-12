@@ -15,11 +15,9 @@ import io.commercelayer.api.service.PaymentMethodService;
 import java.util.List;
 import retrofit2.Call;
 
-public class PaymentMethodServiceClient extends AbstractServiceClient {
-  protected final PaymentMethodService service;
-
+public class PaymentMethodServiceClient extends AbstractServiceClient<PaymentMethodService> {
   {
-    this.service = initServiceCallFactory(PaymentMethodService.class, PaymentMethod.class);
+    initServiceCallFactory(PaymentMethodService.class, PaymentMethod.class);
   }
 
   public PaymentMethodServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
@@ -63,16 +61,6 @@ public class PaymentMethodServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public void deletePaymentMethod(String paymentMethodId) throws ApiException {
-    Call<Void> call = service.deletePaymentMethod(paymentMethodId);
-    syncCall(call);
-  }
-
-  public void deletePaymentMethod(String paymentMethodId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deletePaymentMethod(paymentMethodId);
-    asyncCall(call, callback);
-  }
-
   public PaymentMethod updatePaymentMethod(String paymentMethodId, PaymentMethod paymentMethod)
       throws ApiException {
     Call<PaymentMethod> call = service.updatePaymentMethod(paymentMethodId, paymentMethod);
@@ -82,6 +70,16 @@ public class PaymentMethodServiceClient extends AbstractServiceClient {
   public void updatePaymentMethod(String paymentMethodId, PaymentMethod paymentMethod,
       ApiCallback<PaymentMethod> callback) {
     Call<PaymentMethod> call = service.updatePaymentMethod(paymentMethodId, paymentMethod);
+    asyncCall(call, callback);
+  }
+
+  public void deletePaymentMethod(String paymentMethodId) throws ApiException {
+    Call<Void> call = service.deletePaymentMethod(paymentMethodId);
+    syncCall(call);
+  }
+
+  public void deletePaymentMethod(String paymentMethodId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deletePaymentMethod(paymentMethodId);
     asyncCall(call, callback);
   }
 

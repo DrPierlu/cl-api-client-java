@@ -22,11 +22,11 @@ public interface WebhookService {
   @POST("webhooks")
   Call<Webhook> createWebhook(@Body Webhook webhook);
 
-  @DELETE("webhooks/{webhookId}")
-  Call<Void> deleteWebhook(@Path("webhookId") String webhookId);
-
   @PATCH("webhooks/{webhookId}")
   Call<Webhook> updateWebhook(@Path("webhookId") String webhookId, @Body Webhook webhook);
+
+  @DELETE("webhooks/{webhookId}")
+  Call<Void> deleteWebhook(@Path("webhookId") String webhookId);
 
   @GET("webhooks/{webhookId}")
   Call<Webhook> retrieveWebhook(@Path("webhookId") String webhookId);

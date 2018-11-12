@@ -15,11 +15,9 @@ import io.commercelayer.api.service.CustomerAddressService;
 import java.util.List;
 import retrofit2.Call;
 
-public class CustomerAddressServiceClient extends AbstractServiceClient {
-  protected final CustomerAddressService service;
-
+public class CustomerAddressServiceClient extends AbstractServiceClient<CustomerAddressService> {
   {
-    this.service = initServiceCallFactory(CustomerAddressService.class, CustomerAddress.class);
+    initServiceCallFactory(CustomerAddressService.class, CustomerAddress.class);
   }
 
   public CustomerAddressServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws
@@ -65,16 +63,6 @@ public class CustomerAddressServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public void deleteCustomerAddress(String customerAddressId) throws ApiException {
-    Call<Void> call = service.deleteCustomerAddress(customerAddressId);
-    syncCall(call);
-  }
-
-  public void deleteCustomerAddress(String customerAddressId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteCustomerAddress(customerAddressId);
-    asyncCall(call, callback);
-  }
-
   public CustomerAddress updateCustomerAddress(String customerAddressId,
       CustomerAddress customerAddress) throws ApiException {
     Call<CustomerAddress> call = service.updateCustomerAddress(customerAddressId, customerAddress);
@@ -84,6 +72,16 @@ public class CustomerAddressServiceClient extends AbstractServiceClient {
   public void updateCustomerAddress(String customerAddressId, CustomerAddress customerAddress,
       ApiCallback<CustomerAddress> callback) {
     Call<CustomerAddress> call = service.updateCustomerAddress(customerAddressId, customerAddress);
+    asyncCall(call, callback);
+  }
+
+  public void deleteCustomerAddress(String customerAddressId) throws ApiException {
+    Call<Void> call = service.deleteCustomerAddress(customerAddressId);
+    syncCall(call);
+  }
+
+  public void deleteCustomerAddress(String customerAddressId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteCustomerAddress(customerAddressId);
     asyncCall(call, callback);
   }
 

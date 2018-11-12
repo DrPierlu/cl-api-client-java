@@ -23,12 +23,12 @@ public interface PaypalPaymentService {
   @POST("paypal_payments")
   Call<PaypalPayment> createPaypalPayment(@Body PaypalPayment paypalPayment);
 
-  @DELETE("paypal_payments/{paypalPaymentId}")
-  Call<Void> deletePaypalPayment(@Path("paypalPaymentId") String paypalPaymentId);
-
   @PATCH("paypal_payments/{paypalPaymentId}")
   Call<PaypalPayment> updatePaypalPayment(@Path("paypalPaymentId") String paypalPaymentId,
       @Body PaypalPayment paypalPayment);
+
+  @DELETE("paypal_payments/{paypalPaymentId}")
+  Call<Void> deletePaypalPayment(@Path("paypalPaymentId") String paypalPaymentId);
 
   @GET("paypal_payments/{paypalPaymentId}")
   Call<PaypalPayment> retrievePaypalPayment(@Path("paypalPaymentId") String paypalPaymentId);

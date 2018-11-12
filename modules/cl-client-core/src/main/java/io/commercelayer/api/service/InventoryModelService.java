@@ -23,12 +23,12 @@ public interface InventoryModelService {
   @POST("inventory_models")
   Call<InventoryModel> createInventoryModel(@Body InventoryModel inventoryModel);
 
-  @DELETE("inventory_models/{inventoryModelId}")
-  Call<Void> deleteInventoryModel(@Path("inventoryModelId") String inventoryModelId);
-
   @PATCH("inventory_models/{inventoryModelId}")
   Call<InventoryModel> updateInventoryModel(@Path("inventoryModelId") String inventoryModelId,
       @Body InventoryModel inventoryModel);
+
+  @DELETE("inventory_models/{inventoryModelId}")
+  Call<Void> deleteInventoryModel(@Path("inventoryModelId") String inventoryModelId);
 
   @GET("inventory_models/{inventoryModelId}")
   Call<InventoryModel> retrieveInventoryModel(@Path("inventoryModelId") String inventoryModelId);

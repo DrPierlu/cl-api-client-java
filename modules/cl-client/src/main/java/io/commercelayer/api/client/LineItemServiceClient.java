@@ -15,11 +15,9 @@ import io.commercelayer.api.service.LineItemService;
 import java.util.List;
 import retrofit2.Call;
 
-public class LineItemServiceClient extends AbstractServiceClient {
-  protected final LineItemService service;
-
+public class LineItemServiceClient extends AbstractServiceClient<LineItemService> {
   {
-    this.service = initServiceCallFactory(LineItemService.class, LineItem.class);
+    initServiceCallFactory(LineItemService.class, LineItem.class);
   }
 
   public LineItemServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
@@ -60,16 +58,6 @@ public class LineItemServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public void deleteLineItem(String lineItemId) throws ApiException {
-    Call<Void> call = service.deleteLineItem(lineItemId);
-    syncCall(call);
-  }
-
-  public void deleteLineItem(String lineItemId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteLineItem(lineItemId);
-    asyncCall(call, callback);
-  }
-
   public LineItem updateLineItem(String lineItemId, LineItem lineItem) throws ApiException {
     Call<LineItem> call = service.updateLineItem(lineItemId, lineItem);
     return syncCall(call);
@@ -77,6 +65,16 @@ public class LineItemServiceClient extends AbstractServiceClient {
 
   public void updateLineItem(String lineItemId, LineItem lineItem, ApiCallback<LineItem> callback) {
     Call<LineItem> call = service.updateLineItem(lineItemId, lineItem);
+    asyncCall(call, callback);
+  }
+
+  public void deleteLineItem(String lineItemId) throws ApiException {
+    Call<Void> call = service.deleteLineItem(lineItemId);
+    syncCall(call);
+  }
+
+  public void deleteLineItem(String lineItemId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteLineItem(lineItemId);
     asyncCall(call, callback);
   }
 

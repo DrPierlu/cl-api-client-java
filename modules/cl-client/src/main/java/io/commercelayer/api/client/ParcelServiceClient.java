@@ -14,11 +14,9 @@ import io.commercelayer.api.service.ParcelService;
 import java.util.List;
 import retrofit2.Call;
 
-public class ParcelServiceClient extends AbstractServiceClient {
-  protected final ParcelService service;
-
+public class ParcelServiceClient extends AbstractServiceClient<ParcelService> {
   {
-    this.service = initServiceCallFactory(ParcelService.class, Parcel.class);
+    initServiceCallFactory(ParcelService.class, Parcel.class);
   }
 
   public ParcelServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
@@ -59,16 +57,6 @@ public class ParcelServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public void deleteParcel(String parcelId) throws ApiException {
-    Call<Void> call = service.deleteParcel(parcelId);
-    syncCall(call);
-  }
-
-  public void deleteParcel(String parcelId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteParcel(parcelId);
-    asyncCall(call, callback);
-  }
-
   public Parcel updateParcel(String parcelId, Parcel parcel) throws ApiException {
     Call<Parcel> call = service.updateParcel(parcelId, parcel);
     return syncCall(call);
@@ -76,6 +64,16 @@ public class ParcelServiceClient extends AbstractServiceClient {
 
   public void updateParcel(String parcelId, Parcel parcel, ApiCallback<Parcel> callback) {
     Call<Parcel> call = service.updateParcel(parcelId, parcel);
+    asyncCall(call, callback);
+  }
+
+  public void deleteParcel(String parcelId) throws ApiException {
+    Call<Void> call = service.deleteParcel(parcelId);
+    syncCall(call);
+  }
+
+  public void deleteParcel(String parcelId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteParcel(parcelId);
     asyncCall(call, callback);
   }
 

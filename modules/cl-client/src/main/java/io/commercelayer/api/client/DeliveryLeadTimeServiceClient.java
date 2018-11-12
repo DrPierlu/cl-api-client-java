@@ -15,11 +15,9 @@ import io.commercelayer.api.service.DeliveryLeadTimeService;
 import java.util.List;
 import retrofit2.Call;
 
-public class DeliveryLeadTimeServiceClient extends AbstractServiceClient {
-  protected final DeliveryLeadTimeService service;
-
+public class DeliveryLeadTimeServiceClient extends AbstractServiceClient<DeliveryLeadTimeService> {
   {
-    this.service = initServiceCallFactory(DeliveryLeadTimeService.class, DeliveryLeadTime.class);
+    initServiceCallFactory(DeliveryLeadTimeService.class, DeliveryLeadTime.class);
   }
 
   public DeliveryLeadTimeServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws
@@ -65,16 +63,6 @@ public class DeliveryLeadTimeServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public void deleteDeliveryLeadTime(String deliveryLeadTimeId) throws ApiException {
-    Call<Void> call = service.deleteDeliveryLeadTime(deliveryLeadTimeId);
-    syncCall(call);
-  }
-
-  public void deleteDeliveryLeadTime(String deliveryLeadTimeId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteDeliveryLeadTime(deliveryLeadTimeId);
-    asyncCall(call, callback);
-  }
-
   public DeliveryLeadTime updateDeliveryLeadTime(String deliveryLeadTimeId,
       DeliveryLeadTime deliveryLeadTime) throws ApiException {
     Call<DeliveryLeadTime> call = service.updateDeliveryLeadTime(deliveryLeadTimeId, deliveryLeadTime);
@@ -84,6 +72,16 @@ public class DeliveryLeadTimeServiceClient extends AbstractServiceClient {
   public void updateDeliveryLeadTime(String deliveryLeadTimeId, DeliveryLeadTime deliveryLeadTime,
       ApiCallback<DeliveryLeadTime> callback) {
     Call<DeliveryLeadTime> call = service.updateDeliveryLeadTime(deliveryLeadTimeId, deliveryLeadTime);
+    asyncCall(call, callback);
+  }
+
+  public void deleteDeliveryLeadTime(String deliveryLeadTimeId) throws ApiException {
+    Call<Void> call = service.deleteDeliveryLeadTime(deliveryLeadTimeId);
+    syncCall(call);
+  }
+
+  public void deleteDeliveryLeadTime(String deliveryLeadTimeId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteDeliveryLeadTime(deliveryLeadTimeId);
     asyncCall(call, callback);
   }
 

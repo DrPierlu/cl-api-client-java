@@ -25,12 +25,12 @@ public interface CustomerAddressService {
   @POST("customer_addresses")
   Call<CustomerAddress> createCustomerAddress(@Body CustomerAddress customerAddress);
 
-  @DELETE("customer_addresses/{customerAddressId}")
-  Call<Void> deleteCustomerAddress(@Path("customerAddressId") String customerAddressId);
-
   @PATCH("customer_addresses/{customerAddressId}")
   Call<CustomerAddress> updateCustomerAddress(@Path("customerAddressId") String customerAddressId,
       @Body CustomerAddress customerAddress);
+
+  @DELETE("customer_addresses/{customerAddressId}")
+  Call<Void> deleteCustomerAddress(@Path("customerAddressId") String customerAddressId);
 
   @GET("customer_addresses/{customerAddressId}")
   Call<CustomerAddress> retrieveCustomerAddress(

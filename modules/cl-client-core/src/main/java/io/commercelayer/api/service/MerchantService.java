@@ -23,11 +23,11 @@ public interface MerchantService {
   @POST("merchants")
   Call<Merchant> createMerchant(@Body Merchant merchant);
 
-  @DELETE("merchants/{merchantId}")
-  Call<Void> deleteMerchant(@Path("merchantId") String merchantId);
-
   @PATCH("merchants/{merchantId}")
   Call<Merchant> updateMerchant(@Path("merchantId") String merchantId, @Body Merchant merchant);
+
+  @DELETE("merchants/{merchantId}")
+  Call<Void> deleteMerchant(@Path("merchantId") String merchantId);
 
   @GET("merchants/{merchantId}")
   Call<Merchant> retrieveMerchant(@Path("merchantId") String merchantId);

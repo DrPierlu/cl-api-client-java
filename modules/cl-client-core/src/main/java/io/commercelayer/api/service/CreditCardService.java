@@ -23,12 +23,12 @@ public interface CreditCardService {
   @POST("credit_cards")
   Call<CreditCard> createCreditCard(@Body CreditCard creditCard);
 
-  @DELETE("credit_cards/{creditCardId}")
-  Call<Void> deleteCreditCard(@Path("creditCardId") String creditCardId);
-
   @PATCH("credit_cards/{creditCardId}")
   Call<CreditCard> updateCreditCard(@Path("creditCardId") String creditCardId,
       @Body CreditCard creditCard);
+
+  @DELETE("credit_cards/{creditCardId}")
+  Call<Void> deleteCreditCard(@Path("creditCardId") String creditCardId);
 
   @GET("credit_cards/{creditCardId}")
   Call<CreditCard> retrieveCreditCard(@Path("creditCardId") String creditCardId);

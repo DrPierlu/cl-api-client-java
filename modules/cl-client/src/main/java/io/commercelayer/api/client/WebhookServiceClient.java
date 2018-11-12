@@ -13,11 +13,9 @@ import io.commercelayer.api.service.WebhookService;
 import java.util.List;
 import retrofit2.Call;
 
-public class WebhookServiceClient extends AbstractServiceClient {
-  protected final WebhookService service;
-
+public class WebhookServiceClient extends AbstractServiceClient<WebhookService> {
   {
-    this.service = initServiceCallFactory(WebhookService.class, Webhook.class);
+    initServiceCallFactory(WebhookService.class, Webhook.class);
   }
 
   public WebhookServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
@@ -58,16 +56,6 @@ public class WebhookServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public void deleteWebhook(String webhookId) throws ApiException {
-    Call<Void> call = service.deleteWebhook(webhookId);
-    syncCall(call);
-  }
-
-  public void deleteWebhook(String webhookId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteWebhook(webhookId);
-    asyncCall(call, callback);
-  }
-
   public Webhook updateWebhook(String webhookId, Webhook webhook) throws ApiException {
     Call<Webhook> call = service.updateWebhook(webhookId, webhook);
     return syncCall(call);
@@ -75,6 +63,16 @@ public class WebhookServiceClient extends AbstractServiceClient {
 
   public void updateWebhook(String webhookId, Webhook webhook, ApiCallback<Webhook> callback) {
     Call<Webhook> call = service.updateWebhook(webhookId, webhook);
+    asyncCall(call, callback);
+  }
+
+  public void deleteWebhook(String webhookId) throws ApiException {
+    Call<Void> call = service.deleteWebhook(webhookId);
+    syncCall(call);
+  }
+
+  public void deleteWebhook(String webhookId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteWebhook(webhookId);
     asyncCall(call, callback);
   }
 

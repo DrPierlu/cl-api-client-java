@@ -14,7 +14,7 @@ public class MerchantTest extends AbstractModelTest {
 	private MerchantService service;
 	
 	@BeforeClass
-	private void initServiceInterface() {
+	protected void initServiceInterface() {
 		service = apiCaller.getServiceCallFactory(MerchantService.class);
 	}
 	

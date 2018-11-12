@@ -15,11 +15,9 @@ import io.commercelayer.api.service.LineItemOptionService;
 import java.util.List;
 import retrofit2.Call;
 
-public class LineItemOptionServiceClient extends AbstractServiceClient {
-  protected final LineItemOptionService service;
-
+public class LineItemOptionServiceClient extends AbstractServiceClient<LineItemOptionService> {
   {
-    this.service = initServiceCallFactory(LineItemOptionService.class, LineItemOption.class);
+    initServiceCallFactory(LineItemOptionService.class, LineItemOption.class);
   }
 
   public LineItemOptionServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
@@ -63,16 +61,6 @@ public class LineItemOptionServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public void deleteLineItemOption(String lineItemOptionId) throws ApiException {
-    Call<Void> call = service.deleteLineItemOption(lineItemOptionId);
-    syncCall(call);
-  }
-
-  public void deleteLineItemOption(String lineItemOptionId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteLineItemOption(lineItemOptionId);
-    asyncCall(call, callback);
-  }
-
   public LineItemOption updateLineItemOption(String lineItemOptionId, LineItemOption lineItemOption)
       throws ApiException {
     Call<LineItemOption> call = service.updateLineItemOption(lineItemOptionId, lineItemOption);
@@ -82,6 +70,16 @@ public class LineItemOptionServiceClient extends AbstractServiceClient {
   public void updateLineItemOption(String lineItemOptionId, LineItemOption lineItemOption,
       ApiCallback<LineItemOption> callback) {
     Call<LineItemOption> call = service.updateLineItemOption(lineItemOptionId, lineItemOption);
+    asyncCall(call, callback);
+  }
+
+  public void deleteLineItemOption(String lineItemOptionId) throws ApiException {
+    Call<Void> call = service.deleteLineItemOption(lineItemOptionId);
+    syncCall(call);
+  }
+
+  public void deleteLineItemOption(String lineItemOptionId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteLineItemOption(lineItemOptionId);
     asyncCall(call, callback);
   }
 

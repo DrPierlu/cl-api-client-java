@@ -25,14 +25,14 @@ public interface CustomerPasswordResetService {
   Call<CustomerPasswordReset> createCustomerPasswordReset(
       @Body CustomerPasswordReset customerPasswordReset);
 
-  @DELETE("customer_password_resets/{customerPasswordResetId}")
-  Call<Void> deleteCustomerPasswordReset(
-      @Path("customerPasswordResetId") String customerPasswordResetId);
-
   @PATCH("customer_password_resets/{customerPasswordResetId}")
   Call<CustomerPasswordReset> updateCustomerPasswordReset(
       @Path("customerPasswordResetId") String customerPasswordResetId,
       @Body CustomerPasswordReset customerPasswordReset);
+
+  @DELETE("customer_password_resets/{customerPasswordResetId}")
+  Call<Void> deleteCustomerPasswordReset(
+      @Path("customerPasswordResetId") String customerPasswordResetId);
 
   @GET("customer_password_resets/{customerPasswordResetId}")
   Call<CustomerPasswordReset> retrieveCustomerPasswordReset(

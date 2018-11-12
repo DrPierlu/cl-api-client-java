@@ -14,11 +14,9 @@ import io.commercelayer.api.service.CustomerSubscriptionService;
 import java.util.List;
 import retrofit2.Call;
 
-public class CustomerSubscriptionServiceClient extends AbstractServiceClient {
-  protected final CustomerSubscriptionService service;
-
+public class CustomerSubscriptionServiceClient extends AbstractServiceClient<CustomerSubscriptionService> {
   {
-    this.service = initServiceCallFactory(CustomerSubscriptionService.class, CustomerSubscription.class);
+    initServiceCallFactory(CustomerSubscriptionService.class, CustomerSubscription.class);
   }
 
   public CustomerSubscriptionServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws
@@ -65,17 +63,6 @@ public class CustomerSubscriptionServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public void deleteCustomerSubscription(String customerSubscriptionId) throws ApiException {
-    Call<Void> call = service.deleteCustomerSubscription(customerSubscriptionId);
-    syncCall(call);
-  }
-
-  public void deleteCustomerSubscription(String customerSubscriptionId,
-      ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteCustomerSubscription(customerSubscriptionId);
-    asyncCall(call, callback);
-  }
-
   public CustomerSubscription updateCustomerSubscription(String customerSubscriptionId,
       CustomerSubscription customerSubscription) throws ApiException {
     Call<CustomerSubscription> call = service.updateCustomerSubscription(customerSubscriptionId, customerSubscription);
@@ -85,6 +72,17 @@ public class CustomerSubscriptionServiceClient extends AbstractServiceClient {
   public void updateCustomerSubscription(String customerSubscriptionId,
       CustomerSubscription customerSubscription, ApiCallback<CustomerSubscription> callback) {
     Call<CustomerSubscription> call = service.updateCustomerSubscription(customerSubscriptionId, customerSubscription);
+    asyncCall(call, callback);
+  }
+
+  public void deleteCustomerSubscription(String customerSubscriptionId) throws ApiException {
+    Call<Void> call = service.deleteCustomerSubscription(customerSubscriptionId);
+    syncCall(call);
+  }
+
+  public void deleteCustomerSubscription(String customerSubscriptionId,
+      ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteCustomerSubscription(customerSubscriptionId);
     asyncCall(call, callback);
   }
 

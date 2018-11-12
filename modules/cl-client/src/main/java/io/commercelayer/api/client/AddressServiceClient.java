@@ -14,11 +14,9 @@ import io.commercelayer.api.service.AddressService;
 import java.util.List;
 import retrofit2.Call;
 
-public class AddressServiceClient extends AbstractServiceClient {
-  protected final AddressService service;
-
+public class AddressServiceClient extends AbstractServiceClient<AddressService> {
   {
-    this.service = initServiceCallFactory(AddressService.class, Address.class);
+    initServiceCallFactory(AddressService.class, Address.class);
   }
 
   public AddressServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
@@ -59,16 +57,6 @@ public class AddressServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public void deleteAddress(String addressId) throws ApiException {
-    Call<Void> call = service.deleteAddress(addressId);
-    syncCall(call);
-  }
-
-  public void deleteAddress(String addressId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteAddress(addressId);
-    asyncCall(call, callback);
-  }
-
   public Address updateAddress(String addressId, Address address) throws ApiException {
     Call<Address> call = service.updateAddress(addressId, address);
     return syncCall(call);
@@ -76,6 +64,16 @@ public class AddressServiceClient extends AbstractServiceClient {
 
   public void updateAddress(String addressId, Address address, ApiCallback<Address> callback) {
     Call<Address> call = service.updateAddress(addressId, address);
+    asyncCall(call, callback);
+  }
+
+  public void deleteAddress(String addressId) throws ApiException {
+    Call<Void> call = service.deleteAddress(addressId);
+    syncCall(call);
+  }
+
+  public void deleteAddress(String addressId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteAddress(addressId);
     asyncCall(call, callback);
   }
 

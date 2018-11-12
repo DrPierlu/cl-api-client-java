@@ -14,11 +14,9 @@ import io.commercelayer.api.service.SkuOptionService;
 import java.util.List;
 import retrofit2.Call;
 
-public class SkuOptionServiceClient extends AbstractServiceClient {
-  protected final SkuOptionService service;
-
+public class SkuOptionServiceClient extends AbstractServiceClient<SkuOptionService> {
   {
-    this.service = initServiceCallFactory(SkuOptionService.class, SkuOption.class);
+    initServiceCallFactory(SkuOptionService.class, SkuOption.class);
   }
 
   public SkuOptionServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
@@ -59,16 +57,6 @@ public class SkuOptionServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public void deleteSkuOption(String skuOptionId) throws ApiException {
-    Call<Void> call = service.deleteSkuOption(skuOptionId);
-    syncCall(call);
-  }
-
-  public void deleteSkuOption(String skuOptionId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteSkuOption(skuOptionId);
-    asyncCall(call, callback);
-  }
-
   public SkuOption updateSkuOption(String skuOptionId, SkuOption skuOption) throws ApiException {
     Call<SkuOption> call = service.updateSkuOption(skuOptionId, skuOption);
     return syncCall(call);
@@ -77,6 +65,16 @@ public class SkuOptionServiceClient extends AbstractServiceClient {
   public void updateSkuOption(String skuOptionId, SkuOption skuOption,
       ApiCallback<SkuOption> callback) {
     Call<SkuOption> call = service.updateSkuOption(skuOptionId, skuOption);
+    asyncCall(call, callback);
+  }
+
+  public void deleteSkuOption(String skuOptionId) throws ApiException {
+    Call<Void> call = service.deleteSkuOption(skuOptionId);
+    syncCall(call);
+  }
+
+  public void deleteSkuOption(String skuOptionId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteSkuOption(skuOptionId);
     asyncCall(call, callback);
   }
 

@@ -25,12 +25,12 @@ public interface StockLocationService {
   @POST("stock_locations")
   Call<StockLocation> createStockLocation(@Body StockLocation stockLocation);
 
-  @DELETE("stock_locations/{stockLocationId}")
-  Call<Void> deleteStockLocation(@Path("stockLocationId") String stockLocationId);
-
   @PATCH("stock_locations/{stockLocationId}")
   Call<StockLocation> updateStockLocation(@Path("stockLocationId") String stockLocationId,
       @Body StockLocation stockLocation);
+
+  @DELETE("stock_locations/{stockLocationId}")
+  Call<Void> deleteStockLocation(@Path("stockLocationId") String stockLocationId);
 
   @GET("stock_locations/{stockLocationId}")
   Call<StockLocation> retrieveStockLocation(@Path("stockLocationId") String stockLocationId);

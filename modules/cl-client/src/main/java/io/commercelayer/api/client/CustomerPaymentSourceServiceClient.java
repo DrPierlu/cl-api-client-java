@@ -14,11 +14,9 @@ import io.commercelayer.api.service.CustomerPaymentSourceService;
 import java.util.List;
 import retrofit2.Call;
 
-public class CustomerPaymentSourceServiceClient extends AbstractServiceClient {
-  protected final CustomerPaymentSourceService service;
-
+public class CustomerPaymentSourceServiceClient extends AbstractServiceClient<CustomerPaymentSourceService> {
   {
-    this.service = initServiceCallFactory(CustomerPaymentSourceService.class, CustomerPaymentSource.class);
+    initServiceCallFactory(CustomerPaymentSourceService.class, CustomerPaymentSource.class);
   }
 
   public CustomerPaymentSourceServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws
@@ -65,17 +63,6 @@ public class CustomerPaymentSourceServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public void deleteCustomerPaymentSource(String customerPaymentSourceId) throws ApiException {
-    Call<Void> call = service.deleteCustomerPaymentSource(customerPaymentSourceId);
-    syncCall(call);
-  }
-
-  public void deleteCustomerPaymentSource(String customerPaymentSourceId,
-      ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteCustomerPaymentSource(customerPaymentSourceId);
-    asyncCall(call, callback);
-  }
-
   public CustomerPaymentSource updateCustomerPaymentSource(String customerPaymentSourceId,
       CustomerPaymentSource customerPaymentSource) throws ApiException {
     Call<CustomerPaymentSource> call = service.updateCustomerPaymentSource(customerPaymentSourceId, customerPaymentSource);
@@ -85,6 +72,17 @@ public class CustomerPaymentSourceServiceClient extends AbstractServiceClient {
   public void updateCustomerPaymentSource(String customerPaymentSourceId,
       CustomerPaymentSource customerPaymentSource, ApiCallback<CustomerPaymentSource> callback) {
     Call<CustomerPaymentSource> call = service.updateCustomerPaymentSource(customerPaymentSourceId, customerPaymentSource);
+    asyncCall(call, callback);
+  }
+
+  public void deleteCustomerPaymentSource(String customerPaymentSourceId) throws ApiException {
+    Call<Void> call = service.deleteCustomerPaymentSource(customerPaymentSourceId);
+    syncCall(call);
+  }
+
+  public void deleteCustomerPaymentSource(String customerPaymentSourceId,
+      ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteCustomerPaymentSource(customerPaymentSourceId);
     asyncCall(call, callback);
   }
 

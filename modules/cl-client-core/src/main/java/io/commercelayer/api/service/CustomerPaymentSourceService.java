@@ -25,14 +25,14 @@ public interface CustomerPaymentSourceService {
   Call<CustomerPaymentSource> createCustomerPaymentSource(
       @Body CustomerPaymentSource customerPaymentSource);
 
-  @DELETE("customer_payment_sources/{customerPaymentSourceId}")
-  Call<Void> deleteCustomerPaymentSource(
-      @Path("customerPaymentSourceId") String customerPaymentSourceId);
-
   @PATCH("customer_payment_sources/{customerPaymentSourceId}")
   Call<CustomerPaymentSource> updateCustomerPaymentSource(
       @Path("customerPaymentSourceId") String customerPaymentSourceId,
       @Body CustomerPaymentSource customerPaymentSource);
+
+  @DELETE("customer_payment_sources/{customerPaymentSourceId}")
+  Call<Void> deleteCustomerPaymentSource(
+      @Path("customerPaymentSourceId") String customerPaymentSourceId);
 
   @GET("customer_payment_sources/{customerPaymentSourceId}")
   Call<CustomerPaymentSource> retrieveCustomerPaymentSource(

@@ -5,7 +5,6 @@ import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import io.commercelayer.api.client.common.QueryFilter;
@@ -16,13 +15,13 @@ import io.commercelayer.api.model.Geocoder;
 import io.commercelayer.api.service.AddressService;
 import retrofit2.Call;
 
-public class AddressTest extends AbstractModelTest {
+public class AddressTest extends AbstractModelTest<AddressService> {
 	
 	private AddressService service;
 	
-	@Before
+	@Override
 	public void initServiceInterface() {
-		service = apiCaller.getServiceCallFactory(AddressService.class);
+		super.initServiceInterface(AddressService.class);
 	}
 
 	

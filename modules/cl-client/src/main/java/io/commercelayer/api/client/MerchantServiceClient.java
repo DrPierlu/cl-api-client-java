@@ -14,11 +14,9 @@ import io.commercelayer.api.service.MerchantService;
 import java.util.List;
 import retrofit2.Call;
 
-public class MerchantServiceClient extends AbstractServiceClient {
-  protected final MerchantService service;
-
+public class MerchantServiceClient extends AbstractServiceClient<MerchantService> {
   {
-    this.service = initServiceCallFactory(MerchantService.class, Merchant.class);
+    initServiceCallFactory(MerchantService.class, Merchant.class);
   }
 
   public MerchantServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
@@ -59,16 +57,6 @@ public class MerchantServiceClient extends AbstractServiceClient {
     asyncCall(call, callback);
   }
 
-  public void deleteMerchant(String merchantId) throws ApiException {
-    Call<Void> call = service.deleteMerchant(merchantId);
-    syncCall(call);
-  }
-
-  public void deleteMerchant(String merchantId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteMerchant(merchantId);
-    asyncCall(call, callback);
-  }
-
   public Merchant updateMerchant(String merchantId, Merchant merchant) throws ApiException {
     Call<Merchant> call = service.updateMerchant(merchantId, merchant);
     return syncCall(call);
@@ -76,6 +64,16 @@ public class MerchantServiceClient extends AbstractServiceClient {
 
   public void updateMerchant(String merchantId, Merchant merchant, ApiCallback<Merchant> callback) {
     Call<Merchant> call = service.updateMerchant(merchantId, merchant);
+    asyncCall(call, callback);
+  }
+
+  public void deleteMerchant(String merchantId) throws ApiException {
+    Call<Void> call = service.deleteMerchant(merchantId);
+    syncCall(call);
+  }
+
+  public void deleteMerchant(String merchantId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteMerchant(merchantId);
     asyncCall(call, callback);
   }
 

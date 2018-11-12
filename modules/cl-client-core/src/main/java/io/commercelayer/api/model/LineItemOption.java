@@ -17,11 +17,6 @@ public class LineItemOption extends ApiResource {
 
   private Integer quantity;
 
-  @Json(
-      name = "delay_hours"
-  )
-  private Integer delayHours;
-
   private Object options;
 
   @Json(
@@ -60,6 +55,11 @@ public class LineItemOption extends ApiResource {
   private String formattedTotalAmount;
 
   @Json(
+      name = "delay_hours"
+  )
+  private Integer delayHours;
+
+  @Json(
       name = "delay_days"
   )
   private Integer delayDays;
@@ -88,14 +88,6 @@ public class LineItemOption extends ApiResource {
 
   public void setQuantity(Integer quantity) {
     this.quantity = quantity;
-  }
-
-  public Integer getDelayHours() {
-    return this.delayHours;
-  }
-
-  public void setDelayHours(Integer delayHours) {
-    this.delayHours = delayHours;
   }
 
   public Object getOptions() {
@@ -160,6 +152,14 @@ public class LineItemOption extends ApiResource {
 
   public void setFormattedTotalAmount(String formattedTotalAmount) {
     this.formattedTotalAmount = formattedTotalAmount;
+  }
+
+  public Integer getDelayHours() {
+    return this.delayHours;
+  }
+
+  public void setDelayHours(Integer delayHours) {
+    this.delayHours = delayHours;
   }
 
   public Integer getDelayDays() {

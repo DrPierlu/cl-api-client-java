@@ -43,6 +43,8 @@ public class Sku extends ApiResource {
   )
   private String unitOfWeight;
 
+  private Object inventory;
+
   @Json(
       name = "shipping_category"
   )
@@ -127,6 +129,14 @@ public class Sku extends ApiResource {
 
   public void setUnitOfWeight(String unitOfWeight) {
     this.unitOfWeight = unitOfWeight;
+  }
+
+  public Object getInventory() {
+    return this.inventory;
+  }
+
+  public void setInventory(Object inventory) {
+    this.inventory = inventory;
   }
 
   public HasOne<ShippingCategory> getShippingCategory() {

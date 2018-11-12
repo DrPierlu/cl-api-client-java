@@ -28,11 +28,11 @@ public interface OrderService {
   @POST("orders")
   Call<Order> createOrder(@Body Order order);
 
-  @DELETE("orders/{orderId}")
-  Call<Void> deleteOrder(@Path("orderId") String orderId);
-
   @PATCH("orders/{orderId}")
   Call<Order> updateOrder(@Path("orderId") String orderId, @Body Order order);
+
+  @DELETE("orders/{orderId}")
+  Call<Void> deleteOrder(@Path("orderId") String orderId);
 
   @GET("orders/{orderId}")
   Call<Order> retrieveOrder(@Path("orderId") String orderId);
