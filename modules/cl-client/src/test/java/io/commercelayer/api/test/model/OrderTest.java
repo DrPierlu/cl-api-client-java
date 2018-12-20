@@ -1,13 +1,9 @@
 package io.commercelayer.api.test.model;
 
-import io.commercelayer.api.service.OrderService;
+import io.commercelayer.api.client.OrderServiceClient;
 
-public class OrderTest extends AbstractModelTest<OrderService> {
+public class OrderTest extends AbstractModelTest<OrderServiceClient> {
 
-	@Override
-	protected void initServiceInterface() {
-		// TODO Auto-generated method stub
-		
-	}
+	private OrderServiceClient serviceClient = initServiceClient(OrderServiceClient.class);
 
 }

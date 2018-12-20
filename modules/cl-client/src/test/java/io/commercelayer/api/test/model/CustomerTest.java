@@ -2,18 +2,14 @@ package io.commercelayer.api.test.model;
 
 import org.junit.Test;
 
+import io.commercelayer.api.client.CustomerServiceClient;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.ConnectionException;
 import io.commercelayer.api.model.Customer;
-import io.commercelayer.api.service.CustomerService;
-import retrofit2.Call;
 
-public class CustomerTest extends AbstractModelTest<CustomerService> {
+public class CustomerTest extends AbstractModelTest<Customer> {
 	
-	@Override
-	protected void initServiceInterface() {
-		super.initServiceInterface(CustomerService.class);
-	}
+	private CustomerServiceClient serviceClient = initServiceClient(CustomerServiceClient.class);
 	
 
 	@Test
@@ -23,8 +19,8 @@ public class CustomerTest extends AbstractModelTest<CustomerService> {
 	}
 	
 	public Customer createCustomer(Customer c) throws ApiException, ConnectionException {
-		Call<Customer> call = service.createCustomer(c);
-		return apiCaller.call(call);
+		Customer customer = serviceClient.createCustomer(c);
+		return customer;
 	}
 	
 	public static Customer getCustomerTestData_1() {
@@ -35,14 +31,6 @@ public class CustomerTest extends AbstractModelTest<CustomerService> {
 		
 		return c;
 		
-	}
-	
-	
-	public static void main(String[] args) throws ConnectionException, ApiException {
-		initServiceClient();
-		CustomerTest test = new CustomerTest();
-		test.initServiceInterface();
-		test.createCustomerTest();
 	}
 
 }

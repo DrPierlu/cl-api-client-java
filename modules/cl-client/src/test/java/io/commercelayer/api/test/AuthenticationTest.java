@@ -1,5 +1,9 @@
 package io.commercelayer.api.test;
 
+import static org.junit.Assert.assertNotNull;
+
+import org.junit.Test;
+
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.ApiAuthenticator;
 import io.commercelayer.api.client.exception.AuthException;
@@ -8,22 +12,31 @@ import io.commercelayer.api.client.exception.AuthException;
 public class AuthenticationTest {
 
 	public static void main(String[] args) {
-		ApiToken token = new AuthenticationTest().authenticate();
-		System.out.println(token);	
+		new AuthenticationTest().authenticateTest();
 	}
 	
+	@Test
+	public void authenticateTest() {
+		
+		ApiToken token;
+		try {
+			token = authenticate();
+			System.out.println(token);
+		} catch (AuthException e) {
+			e.printStackTrace();
+			token = null;
+		}
+		
+		assertNotNull(token);
+		assertNotNull(token.getAccessToken());
+		
+	}
 	
-	public ApiToken authenticate() {
+	public ApiToken authenticate() throws AuthException {
 		
 		ApiAuthenticator client = new ApiAuthenticator(TestData.getOrganization());
 		
-		ApiToken token = null;
-		
-		try {
-			token = client.authenticate(TestData.getClientCredentials());
-		} catch (AuthException e) {
-			e.printStackTrace();
-		}
+		ApiToken token = client.authenticate(TestData.getClientCredentials());
 		
 		return token;
 		

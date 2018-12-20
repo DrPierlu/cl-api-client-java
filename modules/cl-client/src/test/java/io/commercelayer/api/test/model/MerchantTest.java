@@ -1,23 +1,15 @@
 package io.commercelayer.api.test.model;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
+import io.commercelayer.api.client.MerchantServiceClient;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.ConnectionException;
 import io.commercelayer.api.model.Merchant;
-import io.commercelayer.api.service.MerchantService;
-import retrofit2.Call;
 
-public class MerchantTest extends AbstractModelTest {
+public class MerchantTest extends AbstractModelTest<Merchant> {
 	
-	private MerchantService service;
-	
-	@BeforeClass
-	protected void initServiceInterface() {
-		service = apiCaller.getServiceCallFactory(MerchantService.class);
-	}
-	
+	private MerchantServiceClient serviceClient = initServiceClient(MerchantServiceClient.class);
 
 	@Test
 	public void createMerchantTest() throws ConnectionException, ApiException {
@@ -26,8 +18,8 @@ public class MerchantTest extends AbstractModelTest {
 	}
 	
 	public Merchant createMerchant(Merchant m) throws ApiException, ConnectionException {
-		Call<Merchant> call = service.createMerchant(m);
-		return apiCaller.call(call);
+		Merchant merchant = serviceClient.createMerchant(m);
+		return merchant;
 	}
 	
 	public static Merchant getMerchantTestData_1() {
@@ -38,14 +30,6 @@ public class MerchantTest extends AbstractModelTest {
 		
 		return m;
 		
-	}
-	
-	
-	public static void main(String[] args) throws ConnectionException, ApiException {
-		initServiceClient();
-		MerchantTest test = new MerchantTest();
-		test.initServiceInterface();
-		test.createMerchantTest();
 	}
 
 }

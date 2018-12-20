@@ -7,23 +7,16 @@ import java.util.List;
 
 import org.junit.Test;
 
+import io.commercelayer.api.client.AddressServiceClient;
 import io.commercelayer.api.client.common.QueryFilter;
 import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.ConnectionException;
 import io.commercelayer.api.model.Address;
 import io.commercelayer.api.model.Geocoder;
-import io.commercelayer.api.service.AddressService;
-import retrofit2.Call;
 
-public class AddressTest extends AbstractModelTest<AddressService> {
+public class AddressTest extends AbstractModelTest<Address> {
 	
-	private AddressService service;
-	
-	@Override
-	public void initServiceInterface() {
-		super.initServiceInterface(AddressService.class);
-	}
-
+	private AddressServiceClient serviceClient = initServiceClient(AddressServiceClient.class);
 	
 	@Test
 	public void createAddressTest() throws ConnectionException, ApiException {
@@ -43,9 +36,9 @@ public class AddressTest extends AbstractModelTest<AddressService> {
 		Geocoder g = getGeocoderTestData();
 		a.setGeocoderResource(g);
 		
-		Call<Address> call = service.createAddress(a);
+		Address address = serviceClient.createAddress(a);
 		
-		return apiCaller.call(call);
+		return address;
 
 	}
 	
@@ -67,9 +60,9 @@ public class AddressTest extends AbstractModelTest<AddressService> {
 	
 	public Address retrieveAddress(String id) throws ConnectionException, ApiException {
 		
-		Call<Address> call = service.retrieveAddress(id);
+		Address address = serviceClient.retrieveAddress(id);
 		
-		return apiCaller.call(call);
+		return address;
 		
 	}
 	
@@ -91,9 +84,9 @@ public class AddressTest extends AbstractModelTest<AddressService> {
 		
 		a.setId(id);
 		
-		Call<Address> call = service.updateAddress(id, a);
+		Address address = serviceClient.updateAddress(id, a);
 		
-		return apiCaller.call(call);
+		return address;
 		
 	}
 	
@@ -117,17 +110,17 @@ public class AddressTest extends AbstractModelTest<AddressService> {
 	
 	public List<Address> listAddresses() throws ApiException, ConnectionException {
 		
-		Call<List<Address>> apiCall = service.listAddresses();
+		List<Address> addresses = serviceClient.listAddresses();
 		
-		return apiCaller.call(apiCall);
+		return addresses;
 
 	}
 	
 	public List<Address> listAddresses(QueryFilter filter) throws ApiException, ConnectionException {
 		
-		Call<List<Address>> apiCall = service.listAddresses(filter);
+		List<Address> addresses = serviceClient.listAddresses(filter);
 		
-		return apiCaller.call(apiCall);
+		return addresses;
 
 	}
 	
@@ -175,14 +168,5 @@ public class AddressTest extends AbstractModelTest<AddressService> {
 		return g;
 		
 	}
-	
-	
-	public static void main(String[] args) throws ConnectionException, ApiException {
-		initServiceClient();
-		AddressTest test = new AddressTest();
-		test.initServiceInterface();
-		List<Address> out = test.listAddresses();
-		System.out.println(out.get(0));
-	}
-	
+
 }
