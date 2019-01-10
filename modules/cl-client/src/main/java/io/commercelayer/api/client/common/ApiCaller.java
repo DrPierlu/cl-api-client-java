@@ -84,6 +84,11 @@ public class ApiCaller {
 		return new OkHttpClientBuilder(clientSetup).build();
 
 	}
+	
+	
+	public final <T> T getServiceCallFactory(Class<T> service) {
+		return getServiceCallFactory(service, (Class<? extends Resource>[])null);
+	}
 
 
 	@SafeVarargs
@@ -110,11 +115,6 @@ public class ApiCaller {
 
 		return retrofit.create(service);
 
-	}
-	
-	
-	public final <T> T getServiceCallFactory(Class<T> service) {
-		return getServiceCallFactory(service, (Class<? extends Resource>[])null);
 	}
 	
 	
