@@ -124,14 +124,25 @@ public class QueryFilter extends LinkedHashMap<String, String> {
 			  .putMap(buildIncludedQueryMap())
 			  .putMap(buildSparseFieldsetsQueryMap())
 			  .putMap(buildSortQueryMap())
-			  .putMap(this.queryStringParams)
+			  .putMap(buildCustomQueryMap())
+			  .putMap(buildPaginationQueryMap())
 			;
-			
-			if (this.pageNumber != null) qf.put("page[number]", String.valueOf(this.pageNumber));
-			if (this.pageSize != null) qf.put("page[size]", String.valueOf(this.pageSize));
 			
 			return qf;
 			
+		}
+		
+		
+		private Map<String, String> buildCustomQueryMap() {
+			return this.queryStringParams;
+		}
+		
+		
+		private Map<String, String> buildPaginationQueryMap() {
+			Map<String, String> params = new LinkedHashMap<>();
+			if (this.pageNumber != null) params.put("page[number]", String.valueOf(this.pageNumber));
+			if (this.pageSize != null) params.put("page[size]", String.valueOf(this.pageSize));
+			return params;
 		}
 		
 		
