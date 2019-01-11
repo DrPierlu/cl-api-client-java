@@ -12,6 +12,8 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import io.commercelayer.api.codegen.CodegenConfig;
+import io.commercelayer.api.codegen.CodegenConfig.Module;
 import io.commercelayer.api.codegen.test.ApiSecurityMap.Permissions;
 import io.commercelayer.api.util.CLInflector;
 
@@ -108,7 +110,7 @@ public class ApiSecurityScanner {
 
 	public static void main(String[] args) {
 		try {
-			new ApiSecurityScanner().scan(new URL("https://commercelayer.io/api/reference/roles-and-permissions/"));
+			new ApiSecurityScanner().scan(new URL(CodegenConfig.getProperty(Module.Test, "api.permissions.url")));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
