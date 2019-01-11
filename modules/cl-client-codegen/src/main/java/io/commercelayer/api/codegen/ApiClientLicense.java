@@ -13,16 +13,16 @@ import org.slf4j.LoggerFactory;
 
 import io.commercelayer.api.codegen.CodegenConfig.Module;
 
-public final class ApiLicense {
+public final class ApiClientLicense {
 	
 	private static final String LICENSE_FILE = CodegenConfig.getProperty(Module.Source, "license.file");
 	private static final String CHARSET = "UTF-8";
 
-	private static final Logger logger = LoggerFactory.getLogger(ApiLicense.class);
+	private static final Logger logger = LoggerFactory.getLogger(ApiClientLicense.class);
 	
 	private static List<String> licenseLines;
 	
-	private ApiLicense() {
+	private ApiClientLicense() {
 		
 	}
 	

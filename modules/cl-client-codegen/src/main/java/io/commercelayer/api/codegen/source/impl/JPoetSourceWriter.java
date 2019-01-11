@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.TypeSpec;
 
-import io.commercelayer.api.codegen.ApiLicense;
+import io.commercelayer.api.codegen.ApiClientLicense;
 import io.commercelayer.api.codegen.CodegenConfig;
 import io.commercelayer.api.codegen.CodegenConfig.Module;
 import io.commercelayer.api.codegen.source.ApiWriteable;
@@ -49,7 +49,7 @@ public class JPoetSourceWriter implements SourceWriter {
 			// License Header Management
 			if (CodegenConfig.isPropertyEnabled(Module.Source, "license.header")) {
 				Path outFilePath = classesDir.resolve(classe.name.concat(".java"));
-				ApiLicense.insertLicenseHeader(outFilePath);
+				ApiClientLicense.insertLicenseHeader(outFilePath);
 			}
 			
 		}
