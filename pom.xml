@@ -13,12 +13,12 @@
 	<name>Commerce Layer API Java Client</name>
 	<description>Commerce Layer API Java Client</description>
 	<url>https://github.com/DrPierlu/cl-api-client-java</url>
-	
+
 	<licenses>
-  		<license>
-    		<name>MIT License</name>
-    		<url>http://www.opensource.org/licenses/mit-license.php</url>
-  		</license>
+		<license>
+			<name>MIT License</name>
+			<url>http://www.opensource.org/licenses/mit-license.php</url>
+		</license>
 	</licenses>
 
 	<developers>
@@ -33,11 +33,11 @@
 			<timezone>Europe/Rome</timezone>
 		</developer>
 	</developers>
-	
+
 	<scm>
-  		<connection>scm:git:git://github.com/DrPierlu/cl-api-client-java</connection>
-  		<developerConnection>scm:git:ssh://github.com:DrPierlu/cl-api-client-java</developerConnection>
-  		<url>https://github.com/DrPierlu/cl-api-client-java/tree/master</url>
+		<connection>scm:git:git://github.com/DrPierlu/cl-api-client-java</connection>
+		<developerConnection>scm:git:ssh://github.com:DrPierlu/cl-api-client-java</developerConnection>
+		<url>https://github.com/DrPierlu/cl-api-client-java/tree/master</url>
 	</scm>
 
 	<modules>
@@ -80,7 +80,7 @@
 				<artifactId>commons-text</artifactId>
 				<version>1.1</version>
 			</dependency>
-			
+
 
 			<!-- CODEGEN -->
 			<dependency>
@@ -98,6 +98,12 @@
 				<artifactId>moshi</artifactId>
 				<version>1.6.0</version>
 			</dependency>
+			<dependency>
+				<groupId>org.jsoup</groupId>
+				<artifactId>jsoup</artifactId>
+				<version>1.8.3</version>
+			</dependency>
+
 
 
 			<!-- GitHub imported libraries -->
