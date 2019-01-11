@@ -35,12 +35,34 @@ public class ApiSecurityScanner {
 			throw ioe;
 		}
 
-		Element acTable = getAccessControlTable(doc.body());
+		Element acTable = getPermissionsTable(doc, "Client Credentials");
+		
+		ApiSecurityMap asMap = permissionsTableToSecurityMap(acTable);
+		
+		
+		
+		logger.info("HTML page scan succesfully terminated.");
+		
+//		logger.info("---------- ---------- ---------- ----------");
+//		logResourcePermissions(asMap);
+		
+		return asMap;
+
+	}
+	
+	
+	private Element getPermissionsTable(Document doc, String securitySection) {
+		Element acTable = doc.body().getElementsMatchingOwnText(String.format("^%s$", securitySection)).first();
+		return acTable.nextElementSibling().nextElementSibling();
+	}
+
+
+	private ApiSecurityMap permissionsTableToSecurityMap(Element htmlTable) {
+		
+		ApiSecurityMap secMap = new ApiSecurityMap();
 		
 		// Get permissions rows
-		Elements rows = acTable.getElementsByTag("tbody").first().children();
-		
-		ApiSecurityMap asMap = new ApiSecurityMap();
+		Elements rows = htmlTable.getElementsByTag("tbody").first().children();
 		
 		logger.info("Found {} resources:", rows.size());
 		
@@ -64,20 +86,16 @@ public class ApiSecurityScanner {
 			boolean delete = !td.getElementsByTag("i").isEmpty();
 			td = td.nextElementSibling();
 			
-			asMap.setResourcePermissions(resource, create, read, update, delete);
+			secMap.setResourcePermissions(resource, create, read, update, delete);
 		
 			logger.info("{} [create={}, read={}, update={}, delete={}]", resource, create, read, update, delete);
 			
 		}
 		
-		logger.info("HTML page scan succesfully terminated.");
+		return secMap;
 		
-//		logger.info("---------- ---------- ---------- ----------");
-//		logResourcePermissions(asMap);
-		
-		return asMap;
-
 	}
+	
 	
 	@SuppressWarnings("unused")
 	private void logResourcePermissions(ApiSecurityMap asMap) {
@@ -86,14 +104,7 @@ public class ApiSecurityScanner {
 			logger.info("{} {}", entry.getKey(), entry.getValue());
 		}
 	}
-	
-	private Element getAccessControlTable(Element body) {
-		
-		Element cc = body.getElementsMatchingOwnText("^Client Credentials$").first();
-		
-		return cc.nextElementSibling().nextElementSibling();
-		
-	}
+
 
 	public static void main(String[] args) {
 		try {
