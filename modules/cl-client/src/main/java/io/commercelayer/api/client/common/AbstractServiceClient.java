@@ -6,7 +6,7 @@ import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.client.exception.ConnectionException;
 import io.commercelayer.api.exception.ApiException;
 import io.commercelayer.api.model.common.ApiOrganization;
-import moe.banana.jsonapi2.Resource;
+import io.commercelayer.api.model.common.ApiResource;
 import retrofit2.Call;
 
 public abstract class AbstractServiceClient<SERVICE> {
@@ -29,7 +29,12 @@ public abstract class AbstractServiceClient<SERVICE> {
 	}
 	
 	@SafeVarargs
-	protected final void initServiceCallFactory(Class<SERVICE> service, Class<? extends Resource>... resources) {
+	protected final void initServiceCallFactory(Class<SERVICE> service, boolean includeRelatedResources, Class<? extends ApiResource>... resources) {
+		this.service = this.apiCaller.getServiceCallFactory(service, includeRelatedResources, resources);
+	}
+	
+	@SafeVarargs
+	protected final void initServiceCallFactory(Class<SERVICE> service, Class<? extends ApiResource>... resources) {
 		this.service = this.apiCaller.getServiceCallFactory(service, resources);
 	}
 	

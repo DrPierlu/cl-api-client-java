@@ -13,7 +13,7 @@ import io.commercelayer.api.model.adapter.CLLinksAdapter;
 import io.commercelayer.api.model.adapter.CLMetaAdapter;
 import moe.banana.jsonapi2.Resource;
 
-public class ApiResource extends Resource {
+public abstract class ApiResource extends Resource {
 
 	private static final long serialVersionUID = -1988168104060681488L;
 	

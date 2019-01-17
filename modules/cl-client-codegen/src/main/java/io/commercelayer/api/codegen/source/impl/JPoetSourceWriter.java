@@ -35,7 +35,8 @@ public class JPoetSourceWriter implements SourceWriter {
 		for (TypeSpec classe : apiWriteable.getClasses()) {
 
 			logger.info("Writing file {}.java", classe.name);
-			JavaFile javaFile = JavaFile.builder(apiWriteable.getRootPackage(), classe).skipJavaLangImports(true)
+			JavaFile javaFile = JavaFile.builder(apiWriteable.getRootPackage(), classe)
+				.skipJavaLangImports(true)
 //				.addFileComment()
 				.build();
 

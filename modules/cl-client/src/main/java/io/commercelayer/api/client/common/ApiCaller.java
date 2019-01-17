@@ -1,6 +1,7 @@
 package io.commercelayer.api.client.common;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.time.ZonedDateTime;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.exception.ConnectionException;
 import io.commercelayer.api.config.ApiConfig;
 import io.commercelayer.api.config.ApiConfig.Group;
+import io.commercelayer.api.config.ApiConstants;
 import io.commercelayer.api.domain.ContentType;
 import io.commercelayer.api.exception.ApiException;
 import io.commercelayer.api.http.auth.HttpAuthOAuth2;
@@ -24,6 +26,7 @@ import io.commercelayer.api.http.ok.interceptor.OAuth2Interceptor;
 import io.commercelayer.api.model.adapter.BooleanAdapter;
 import io.commercelayer.api.model.adapter.ZonedDateTimeAdapter;
 import io.commercelayer.api.model.common.ApiOrganization;
+import io.commercelayer.api.model.common.ApiResource;
 import io.commercelayer.api.model.common.Unknown;
 import io.commercelayer.api.model.common.error.ApiError;
 import io.commercelayer.api.model.common.error.ApiErrors;
@@ -89,13 +92,48 @@ public class ApiCaller {
 	public final <T> T getServiceCallFactory(Class<T> service) {
 		return getServiceCallFactory(service, (Class<? extends Resource>[])null);
 	}
-
-
+	
 	@SafeVarargs
 	public final <T> T getServiceCallFactory(Class<T> service, Class<? extends Resource>... resources) {
+		return getServiceCallFactory(service, false, resources);
+	}
+
+	
+	@SafeVarargs
+	private final void includRelatedResourcesAdapters(ResourceAdapterFactory.Builder rafBuilder, Class<? extends Resource>... resources) {
+		
+		for (Class<? extends Resource> resClass : resources) {
+			
+			if (!ApiResource.class.isAssignableFrom(resClass)) continue;
+			
+			try {
+				
+				Field relResListField = resClass.getField(ApiConstants.RELATED_RESOURCES_FIELD_NAME);
+				
+				@SuppressWarnings("unchecked")
+				List<Class<? extends ApiResource>> relResList = (List<Class<? extends ApiResource>>)relResListField.get(null);
+				
+				if (relResList != null)
+				for (Class<? extends ApiResource> relResClass : relResList)
+					rafBuilder.add(relResClass);
+				
+			}
+			catch (NoSuchFieldException | SecurityException | IllegalAccessException e) {
+				logger.warn(e.getMessage());
+			}
+			
+		}
+		
+	}
+	
+
+	@SafeVarargs
+	public final <T> T getServiceCallFactory(Class<T> service, boolean includeRelatedResources, Class<? extends Resource>... resources) {
 
 		ResourceAdapterFactory.Builder rafBuilder = ResourceAdapterFactory.builder();
 		if ((resources != null) && (resources.length > 0)) rafBuilder.add(resources);
+		
+		if (includeRelatedResources) includRelatedResourcesAdapters(rafBuilder, resources);
 		
 		JsonAdapter.Factory jsonApiAdapterFactory = rafBuilder.add(Unknown.class).build();
 

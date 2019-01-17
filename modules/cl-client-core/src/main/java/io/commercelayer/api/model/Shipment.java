@@ -3,6 +3,8 @@ package io.commercelayer.api.model;
 import com.squareup.moshi.Json;
 import io.commercelayer.api.model.adapter.CLLinksAdapter;
 import io.commercelayer.api.model.common.ApiResource;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import moe.banana.jsonapi2.HasMany;
@@ -14,6 +16,8 @@ import moe.banana.jsonapi2.JsonApi;
 )
 public class Shipment extends ApiResource {
   public static final long serialVersionUID = -1;
+
+  public static final List<Class<? extends ApiResource>> _RELATED_RESOURCES = Collections.unmodifiableList(Arrays.asList(ShippingMethod.class, ShippingCategory.class, StockLocation.class, Address.class, LineItem.class, Parcel.class));
 
   @Json(
       name = "_on_hold"

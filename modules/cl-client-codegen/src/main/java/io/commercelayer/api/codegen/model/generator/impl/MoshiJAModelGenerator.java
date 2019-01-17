@@ -1,6 +1,8 @@
 package io.commercelayer.api.codegen.model.generator.impl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,11 +16,13 @@ import org.slf4j.LoggerFactory;
 
 import com.squareup.javapoet.AnnotationSpec;
 import com.squareup.javapoet.ClassName;
+import com.squareup.javapoet.CodeBlock;
 import com.squareup.javapoet.FieldSpec;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.ParameterizedTypeName;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
+import com.squareup.javapoet.WildcardTypeName;
 import com.squareup.moshi.Json;
 
 import io.commercelayer.api.codegen.CodegenConfig;
@@ -35,6 +39,7 @@ import io.commercelayer.api.codegen.schema.ApiRelationship.Cardinality;
 import io.commercelayer.api.codegen.schema.ApiResponse;
 import io.commercelayer.api.codegen.schema.ApiSchema;
 import io.commercelayer.api.codegen.schema.parser.SchemaParserUtils;
+import io.commercelayer.api.config.ApiConstants;
 import io.commercelayer.api.domain.OperationType;
 import io.commercelayer.api.model.adapter.CLLinksAdapter;
 import io.commercelayer.api.model.common.ApiResource;
@@ -140,6 +145,7 @@ public class MoshiJAModelGenerator implements ModelGenerator {
 			
 			// Relationships
 			generateRelationships(classe, relationships);
+			if (CodegenConfig.isPropertyEnabled(Module.Model, "related.resources")) relatedResourcesField(classe, relationships);
 			logger.info("{} relationships generated", resName);
 			
 			
@@ -203,9 +209,12 @@ public class MoshiJAModelGenerator implements ModelGenerator {
 				//.addStatement("return get$L().get(getDocument())", relFieldNameCap)
 				.addStatement("return ($T)getResource(get$L().get(getDocument()))", relResTypeName, relFieldNameCap);
 			
-			if (multiRel) relResGetMethodBuilder.addAnnotation(AnnotationSpec.builder(SuppressWarnings.class)
+			if (multiRel) {
+				relResGetMethodBuilder.addAnnotation(AnnotationSpec.builder(SuppressWarnings.class)
 					.addMember("value", "$S", "unchecked")
-					.build());
+					.build()
+				);
+			}
 			
 			MethodSpec relResGetMethod = relResGetMethodBuilder.build();
 			classe.addMethod(relResGetMethod);
@@ -232,6 +241,46 @@ public class MoshiJAModelGenerator implements ModelGenerator {
 			classe.addMethod(relResLinksMethod);
 			
 		}
+		
+	}
+	
+	
+	private void relatedResourcesField(TypeSpec.Builder classe, Map<String, Cardinality> relationships) {
+		
+		if (relationships == null) return;
+		
+		FieldSpec.Builder field = FieldSpec.builder(
+			ParameterizedTypeName.get(
+				ClassName.get(List.class), 
+				ParameterizedTypeName.get(
+					ClassName.get(Class.class), 
+					WildcardTypeName.subtypeOf(ApiResource.class)
+				)
+			), 
+			ApiConstants.RELATED_RESOURCES_FIELD_NAME, Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL);
+		
+		List<String> rels = new ArrayList<>();
+		StringBuilder sb = new StringBuilder();
+		
+		for (Map.Entry<String, Cardinality> rel : relationships.entrySet()) {
+			
+			final String relFieldName = ModelGeneratorUtils.toCamelCase(rel.getKey());
+			final String relFieldNameCap = StringUtils.capitalize(relFieldName);
+			final String relResName = CLInflector.getInstance().singularize(relFieldNameCap);
+			final String relResNameRemapped = CodegenConfig.mapModelResource(relResName);
+			
+			if (!rels.contains(relResNameRemapped)) {
+				if (sb.length() > 0) sb.append(", ");
+				sb.append(relResNameRemapped).append(".class");
+				rels.add(relResNameRemapped);
+			}
+			
+		}
+		
+		
+		field.initializer(CodeBlock.builder().add("$T.unmodifiableList($T.asList($L))", Collections.class, Arrays.class, sb.toString()).build());
+		
+		classe.addField(field.build());
 		
 	}
 	

@@ -21,7 +21,7 @@ import retrofit2.Call;
 
 public class OrderServiceClient extends AbstractServiceClient<OrderService> {
   {
-    initServiceCallFactory(OrderService.class, Order.class/*, LineItem.class, Customer.class*/);
+    initServiceCallFactory(OrderService.class, true, Order.class);
   }
 
   public OrderServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {

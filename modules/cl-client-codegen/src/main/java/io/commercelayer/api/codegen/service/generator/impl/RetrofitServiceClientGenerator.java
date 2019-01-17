@@ -238,6 +238,7 @@ public class RetrofitServiceClientGenerator implements ServiceGenerator {
 		service.addInitializerBlock(initBlock);
 	}
 	
+	
 	private void createConstructors(TypeSpec.Builder service, ClassName serviceClassName, ClassName resourceClassName) {
 		
 		MethodSpec constAuth = MethodSpec.constructorBuilder()
