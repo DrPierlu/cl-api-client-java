@@ -148,7 +148,7 @@ public class Sku extends ApiResource {
   }
 
   public ShippingCategory getShippingCategoryResource() {
-    return getShippingCategory().get(getDocument());
+    return (ShippingCategory)getResource(getShippingCategory().get(getDocument()));
   }
 
   public void setShippingCategoryResource(ShippingCategory shippingCategory) {
@@ -168,8 +168,9 @@ public class Sku extends ApiResource {
     this.prices = prices;
   }
 
+  @SuppressWarnings("unchecked")
   public List<Price> getPriceResourceList() {
-    return getPrices().get(getDocument());
+    return (List<Price>)getResource(getPrices().get(getDocument()));
   }
 
   public void setPriceResourceList(List<Price> prices) {
@@ -189,8 +190,9 @@ public class Sku extends ApiResource {
     this.stockItems = stockItems;
   }
 
+  @SuppressWarnings("unchecked")
   public List<StockItem> getStockItemResourceList() {
-    return getStockItems().get(getDocument());
+    return (List<StockItem>)getResource(getStockItems().get(getDocument()));
   }
 
   public void setStockItemResourceList(List<StockItem> stockItems) {
@@ -210,8 +212,9 @@ public class Sku extends ApiResource {
     this.deliveryLeadTimes = deliveryLeadTimes;
   }
 
+  @SuppressWarnings("unchecked")
   public List<DeliveryLeadTime> getDeliveryLeadTimeResourceList() {
-    return getDeliveryLeadTimes().get(getDocument());
+    return (List<DeliveryLeadTime>)getResource(getDeliveryLeadTimes().get(getDocument()));
   }
 
   public void setDeliveryLeadTimeResourceList(List<DeliveryLeadTime> deliveryLeadTimes) {
@@ -231,8 +234,9 @@ public class Sku extends ApiResource {
     this.skuOptions = skuOptions;
   }
 
+  @SuppressWarnings("unchecked")
   public List<SkuOption> getSkuOptionResourceList() {
-    return getSkuOptions().get(getDocument());
+    return (List<SkuOption>)getResource(getSkuOptions().get(getDocument()));
   }
 
   public void setSkuOptionResourceList(List<SkuOption> skuOptions) {

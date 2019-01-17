@@ -84,7 +84,7 @@ public class DeliveryLeadTime extends ApiResource {
   }
 
   public StockLocation getStockLocationResource() {
-    return getStockLocation().get(getDocument());
+    return (StockLocation)getResource(getStockLocation().get(getDocument()));
   }
 
   public void setStockLocationResource(StockLocation stockLocation) {
@@ -105,7 +105,7 @@ public class DeliveryLeadTime extends ApiResource {
   }
 
   public ShippingMethod getShippingMethodResource() {
-    return getShippingMethod().get(getDocument());
+    return (ShippingMethod)getResource(getShippingMethod().get(getDocument()));
   }
 
   public void setShippingMethodResource(ShippingMethod shippingMethod) {

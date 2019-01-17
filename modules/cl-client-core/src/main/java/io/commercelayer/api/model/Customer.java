@@ -69,8 +69,9 @@ public class Customer extends ApiResource {
     this.customerAddresses = customerAddresses;
   }
 
+  @SuppressWarnings("unchecked")
   public List<CustomerAddress> getCustomerAddressResourceList() {
-    return getCustomerAddresses().get(getDocument());
+    return (List<CustomerAddress>)getResource(getCustomerAddresses().get(getDocument()));
   }
 
   public void setCustomerAddressResourceList(List<CustomerAddress> customerAddresses) {
@@ -90,8 +91,9 @@ public class Customer extends ApiResource {
     this.customerPaymentSources = customerPaymentSources;
   }
 
+  @SuppressWarnings("unchecked")
   public List<CustomerPaymentSource> getCustomerPaymentSourceResourceList() {
-    return getCustomerPaymentSources().get(getDocument());
+    return (List<CustomerPaymentSource>)getResource(getCustomerPaymentSources().get(getDocument()));
   }
 
   public void setCustomerPaymentSourceResourceList(
@@ -112,8 +114,9 @@ public class Customer extends ApiResource {
     this.customerSubscriptions = customerSubscriptions;
   }
 
+  @SuppressWarnings("unchecked")
   public List<CustomerSubscription> getCustomerSubscriptionResourceList() {
-    return getCustomerSubscriptions().get(getDocument());
+    return (List<CustomerSubscription>)getResource(getCustomerSubscriptions().get(getDocument()));
   }
 
   public void setCustomerSubscriptionResourceList(
@@ -134,8 +137,9 @@ public class Customer extends ApiResource {
     this.orders = orders;
   }
 
+  @SuppressWarnings("unchecked")
   public List<Order> getOrderResourceList() {
-    return getOrders().get(getDocument());
+    return (List<Order>)getResource(getOrders().get(getDocument()));
   }
 
   public void setOrderResourceList(List<Order> orders) {

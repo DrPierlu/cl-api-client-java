@@ -35,7 +35,7 @@ public class CustomerAddress extends ApiResource {
   }
 
   public Customer getCustomerResource() {
-    return getCustomer().get(getDocument());
+    return (Customer)getResource(getCustomer().get(getDocument()));
   }
 
   public void setCustomerResource(Customer customer) {
@@ -56,7 +56,7 @@ public class CustomerAddress extends ApiResource {
   }
 
   public Address getAddressResource() {
-    return getAddress().get(getDocument());
+    return (Address)getResource(getAddress().get(getDocument()));
   }
 
   public void setAddressResource(Address address) {

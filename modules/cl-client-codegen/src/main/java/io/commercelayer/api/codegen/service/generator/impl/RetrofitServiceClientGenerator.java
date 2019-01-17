@@ -25,7 +25,6 @@ import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
 import io.commercelayer.api.client.common.QueryFilter;
-import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.codegen.model.generator.ModelGeneratorUtils;
 import io.commercelayer.api.codegen.schema.ApiOperation;
@@ -37,6 +36,7 @@ import io.commercelayer.api.codegen.service.generator.ServiceException;
 import io.commercelayer.api.codegen.service.generator.ServiceGenerator;
 import io.commercelayer.api.codegen.service.generator.ServiceGeneratorUtils;
 import io.commercelayer.api.domain.OperationType;
+import io.commercelayer.api.exception.ApiException;
 import io.commercelayer.api.model.common.ApiOrganization;
 import io.commercelayer.api.util.CLInflector;
 

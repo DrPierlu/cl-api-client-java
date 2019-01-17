@@ -4,10 +4,9 @@ import java.util.List;
 
 import io.commercelayer.api.client.AddressServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
-
-import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.client.exception.ConnectionException;
+import io.commercelayer.api.exception.ApiException;
 import io.commercelayer.api.model.Address;
 import io.commercelayer.api.model.common.error.ApiError;
 import okhttp3.Request;

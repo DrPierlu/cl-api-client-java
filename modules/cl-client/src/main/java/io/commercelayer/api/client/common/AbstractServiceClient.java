@@ -2,9 +2,9 @@ package io.commercelayer.api.client.common;
 
 import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
-import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.client.exception.ConnectionException;
+import io.commercelayer.api.exception.ApiException;
 import io.commercelayer.api.model.common.ApiOrganization;
 import moe.banana.jsonapi2.Resource;
 import retrofit2.Call;

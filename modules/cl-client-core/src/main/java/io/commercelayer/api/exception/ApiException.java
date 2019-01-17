@@ -1,4 +1,4 @@
-package io.commercelayer.api.client.exception;
+package io.commercelayer.api.exception;
 
 import java.util.LinkedList;
 import java.util.List;

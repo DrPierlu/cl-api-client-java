@@ -261,7 +261,7 @@ public class LineItem extends ApiResource {
   }
 
   public Order getOrderResource() {
-    return getOrder().get(getDocument());
+    return (Order)getResource(getOrder().get(getDocument()));
   }
 
   public void setOrderResource(Order order) {
@@ -282,7 +282,7 @@ public class LineItem extends ApiResource {
   }
 
   public Item getItemResource() {
-    return getItem().get(getDocument());
+    return (Item)getResource(getItem().get(getDocument()));
   }
 
   public void setItemResource(Item item) {
@@ -302,8 +302,9 @@ public class LineItem extends ApiResource {
     this.lineItemOptions = lineItemOptions;
   }
 
+  @SuppressWarnings("unchecked")
   public List<LineItemOption> getLineItemOptionResourceList() {
-    return getLineItemOptions().get(getDocument());
+    return (List<LineItemOption>)getResource(getLineItemOptions().get(getDocument()));
   }
 
   public void setLineItemOptionResourceList(List<LineItemOption> lineItemOptions) {

@@ -23,6 +23,7 @@ public final class TestData {
 		
 		auth.setClientId("ee681994dcef7de5baeee50a54a047e4013a046177a1a324c1f732bd1160dcda");
 		auth.setClientSecret("353fed7dfdb7158902ff306b7c2d0a553697c31f73b98e5df1b302bf22528a3d");
+		auth.setScope("market:32");
 		
 		return auth;
 		

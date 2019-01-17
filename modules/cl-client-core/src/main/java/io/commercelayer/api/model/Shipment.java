@@ -222,7 +222,7 @@ public class Shipment extends ApiResource {
   }
 
   public ShippingMethod getShippingMethodResource() {
-    return getShippingMethod().get(getDocument());
+    return (ShippingMethod)getResource(getShippingMethod().get(getDocument()));
   }
 
   public void setShippingMethodResource(ShippingMethod shippingMethod) {
@@ -243,7 +243,7 @@ public class Shipment extends ApiResource {
   }
 
   public ShippingCategory getShippingCategoryResource() {
-    return getShippingCategory().get(getDocument());
+    return (ShippingCategory)getResource(getShippingCategory().get(getDocument()));
   }
 
   public void setShippingCategoryResource(ShippingCategory shippingCategory) {
@@ -264,7 +264,7 @@ public class Shipment extends ApiResource {
   }
 
   public StockLocation getStockLocationResource() {
-    return getStockLocation().get(getDocument());
+    return (StockLocation)getResource(getStockLocation().get(getDocument()));
   }
 
   public void setStockLocationResource(StockLocation stockLocation) {
@@ -285,7 +285,7 @@ public class Shipment extends ApiResource {
   }
 
   public Address getShippingAddressResource() {
-    return getShippingAddress().get(getDocument());
+    return (Address)getResource(getShippingAddress().get(getDocument()));
   }
 
   public void setShippingAddressResource(Address shippingAddress) {
@@ -305,8 +305,9 @@ public class Shipment extends ApiResource {
     this.shipmentLineItems = shipmentLineItems;
   }
 
+  @SuppressWarnings("unchecked")
   public List<LineItem> getShipmentLineItemResourceList() {
-    return getShipmentLineItems().get(getDocument());
+    return (List<LineItem>)getResource(getShipmentLineItems().get(getDocument()));
   }
 
   public void setShipmentLineItemResourceList(List<LineItem> shipmentLineItems) {
@@ -326,8 +327,9 @@ public class Shipment extends ApiResource {
     this.availableShippingMethods = availableShippingMethods;
   }
 
+  @SuppressWarnings("unchecked")
   public List<ShippingMethod> getAvailableShippingMethodResourceList() {
-    return getAvailableShippingMethods().get(getDocument());
+    return (List<ShippingMethod>)getResource(getAvailableShippingMethods().get(getDocument()));
   }
 
   public void setAvailableShippingMethodResourceList(
@@ -348,8 +350,9 @@ public class Shipment extends ApiResource {
     this.parcels = parcels;
   }
 
+  @SuppressWarnings("unchecked")
   public List<Parcel> getParcelResourceList() {
-    return getParcels().get(getDocument());
+    return (List<Parcel>)getResource(getParcels().get(getDocument()));
   }
 
   public void setParcelResourceList(List<Parcel> parcels) {

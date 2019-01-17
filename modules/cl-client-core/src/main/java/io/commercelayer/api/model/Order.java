@@ -1251,7 +1251,7 @@ public class Order extends ApiResource {
   }
 
   public Market getMarketResource() {
-    return getMarket().get(getDocument());
+    return (Market)getResource(getMarket().get(getDocument()));
   }
 
   public void setMarketResource(Market market) {
@@ -1272,7 +1272,7 @@ public class Order extends ApiResource {
   }
 
   public Customer getCustomerResource() {
-    return getCustomer().get(getDocument());
+    return (Customer)getResource(getCustomer().get(getDocument()));
   }
 
   public void setCustomerResource(Customer customer) {
@@ -1293,7 +1293,7 @@ public class Order extends ApiResource {
   }
 
   public Address getShippingAddressResource() {
-    return getShippingAddress().get(getDocument());
+    return (Address)getResource(getShippingAddress().get(getDocument()));
   }
 
   public void setShippingAddressResource(Address shippingAddress) {
@@ -1314,7 +1314,7 @@ public class Order extends ApiResource {
   }
 
   public Address getBillingAddressResource() {
-    return getBillingAddress().get(getDocument());
+    return (Address)getResource(getBillingAddress().get(getDocument()));
   }
 
   public void setBillingAddressResource(Address billingAddress) {
@@ -1335,7 +1335,7 @@ public class Order extends ApiResource {
   }
 
   public PaymentMethod getPaymentMethodResource() {
-    return getPaymentMethod().get(getDocument());
+    return (PaymentMethod)getResource(getPaymentMethod().get(getDocument()));
   }
 
   public void setPaymentMethodResource(PaymentMethod paymentMethod) {
@@ -1356,7 +1356,7 @@ public class Order extends ApiResource {
   }
 
   public PaymentSource getPaymentSourceResource() {
-    return getPaymentSource().get(getDocument());
+    return (PaymentSource)getResource(getPaymentSource().get(getDocument()));
   }
 
   public void setPaymentSourceResource(PaymentSource paymentSource) {
@@ -1376,8 +1376,9 @@ public class Order extends ApiResource {
     this.lineItems = lineItems;
   }
 
+  @SuppressWarnings("unchecked")
   public List<LineItem> getLineItemResourceList() {
-    return getLineItems().get(getDocument());
+    return (List<LineItem>)getResource(getLineItems().get(getDocument()));
   }
 
   public void setLineItemResourceList(List<LineItem> lineItems) {
@@ -1397,8 +1398,9 @@ public class Order extends ApiResource {
     this.shipments = shipments;
   }
 
+  @SuppressWarnings("unchecked")
   public List<Shipment> getShipmentResourceList() {
-    return getShipments().get(getDocument());
+    return (List<Shipment>)getResource(getShipments().get(getDocument()));
   }
 
   public void setShipmentResourceList(List<Shipment> shipments) {

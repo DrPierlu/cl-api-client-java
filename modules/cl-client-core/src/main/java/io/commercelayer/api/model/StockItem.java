@@ -52,7 +52,7 @@ public class StockItem extends ApiResource {
   }
 
   public StockLocation getStockLocationResource() {
-    return getStockLocation().get(getDocument());
+    return (StockLocation)getResource(getStockLocation().get(getDocument()));
   }
 
   public void setStockLocationResource(StockLocation stockLocation) {
@@ -73,7 +73,7 @@ public class StockItem extends ApiResource {
   }
 
   public Sku getSkuResource() {
-    return getSku().get(getDocument());
+    return (Sku)getResource(getSku().get(getDocument()));
   }
 
   public void setSkuResource(Sku sku) {

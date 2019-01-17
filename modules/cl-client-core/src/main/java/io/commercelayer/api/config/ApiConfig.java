@@ -15,7 +15,7 @@ public final class ApiConfig {
 	private static final Logger logger = LoggerFactory.getLogger(ApiConfig.class);
 	
 	public static enum Group {
-		api, http, test
+		api, http, debug
 	}
 	
 	private static Properties settings = new Properties();
@@ -55,8 +55,8 @@ public final class ApiConfig {
 		return Boolean.valueOf(getProperty(group, key));
 	}
 	
-	public static boolean testModeEnabled() {
-		return ApiConfig.isPropertyEnabled(Group.test, "mode");
+	public static boolean debugModeEnabled() {
+		return ApiConfig.isPropertyEnabled(Group.debug, "enabled");
 	}
 	
 	public static String getApiBaseUrl() {

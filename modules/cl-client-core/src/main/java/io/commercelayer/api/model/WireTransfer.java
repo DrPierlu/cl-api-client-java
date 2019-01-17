@@ -23,7 +23,7 @@ public class WireTransfer extends ApiResource {
   }
 
   public Order getOrderResource() {
-    return getOrder().get(getDocument());
+    return (Order)getResource(getOrder().get(getDocument()));
   }
 
   public void setOrderResource(Order order) {

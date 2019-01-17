@@ -112,7 +112,7 @@ public class SkuOption extends ApiResource {
   }
 
   public Market getMarketResource() {
-    return getMarket().get(getDocument());
+    return (Market)getResource(getMarket().get(getDocument()));
   }
 
   public void setMarketResource(Market market) {

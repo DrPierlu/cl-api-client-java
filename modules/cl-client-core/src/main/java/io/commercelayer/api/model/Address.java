@@ -309,7 +309,7 @@ public class Address extends ApiResource {
   }
 
   public Geocoder getGeocoderResource() {
-    return getGeocoder().get(getDocument());
+    return (Geocoder)getResource(getGeocoder().get(getDocument()));
   }
 
   public void setGeocoderResource(Geocoder geocoder) {

@@ -39,7 +39,7 @@ public class CustomerPaymentSource extends ApiResource {
   }
 
   public Customer getCustomerResource() {
-    return getCustomer().get(getDocument());
+    return (Customer)getResource(getCustomer().get(getDocument()));
   }
 
   public void setCustomerResource(Customer customer) {
@@ -60,7 +60,7 @@ public class CustomerPaymentSource extends ApiResource {
   }
 
   public PaymentSource getPaymentSourceResource() {
-    return getPaymentSource().get(getDocument());
+    return (PaymentSource)getResource(getPaymentSource().get(getDocument()));
   }
 
   public void setPaymentSourceResource(PaymentSource paymentSource) {

@@ -33,8 +33,9 @@ public class ShippingCategory extends ApiResource {
     this.skus = skus;
   }
 
+  @SuppressWarnings("unchecked")
   public List<Sku> getSkuResourceList() {
-    return getSkus().get(getDocument());
+    return (List<Sku>)getResource(getSkus().get(getDocument()));
   }
 
   public void setSkuResourceList(List<Sku> skus) {

@@ -179,7 +179,7 @@ public class ShippingMethod extends ApiResource {
   }
 
   public Market getMarketResource() {
-    return getMarket().get(getDocument());
+    return (Market)getResource(getMarket().get(getDocument()));
   }
 
   public void setMarketResource(Market market) {
@@ -200,7 +200,7 @@ public class ShippingMethod extends ApiResource {
   }
 
   public ShippingZone getShippingZoneResource() {
-    return getShippingZone().get(getDocument());
+    return (ShippingZone)getResource(getShippingZone().get(getDocument()));
   }
 
   public void setShippingZoneResource(ShippingZone shippingZone) {
@@ -221,7 +221,7 @@ public class ShippingMethod extends ApiResource {
   }
 
   public ShippingCategory getShippingCategoryResource() {
-    return getShippingCategory().get(getDocument());
+    return (ShippingCategory)getResource(getShippingCategory().get(getDocument()));
   }
 
   public void setShippingCategoryResource(ShippingCategory shippingCategory) {
@@ -242,7 +242,7 @@ public class ShippingMethod extends ApiResource {
   }
 
   public DeliveryLeadTime getDeliveryLeadTimeForShipmentResource() {
-    return getDeliveryLeadTimeForShipment().get(getDocument());
+    return (DeliveryLeadTime)getResource(getDeliveryLeadTimeForShipment().get(getDocument()));
   }
 
   public void setDeliveryLeadTimeForShipmentResource(DeliveryLeadTime deliveryLeadTimeForShipment) {

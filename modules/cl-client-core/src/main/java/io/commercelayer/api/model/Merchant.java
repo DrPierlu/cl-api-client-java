@@ -33,7 +33,7 @@ public class Merchant extends ApiResource {
   }
 
   public Address getAddressResource() {
-    return getAddress().get(getDocument());
+    return (Address)getResource(getAddress().get(getDocument()));
   }
 
   public void setAddressResource(Address address) {

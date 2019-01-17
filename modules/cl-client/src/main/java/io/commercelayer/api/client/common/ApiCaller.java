@@ -11,11 +11,11 @@ import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 
 import io.commercelayer.api.auth.ApiToken;
-import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.ConnectionException;
 import io.commercelayer.api.config.ApiConfig;
 import io.commercelayer.api.config.ApiConfig.Group;
 import io.commercelayer.api.domain.ContentType;
+import io.commercelayer.api.exception.ApiException;
 import io.commercelayer.api.http.auth.HttpAuthOAuth2;
 import io.commercelayer.api.http.ok.HttpLogger;
 import io.commercelayer.api.http.ok.OkHttpClientBuilder;
@@ -76,7 +76,7 @@ public class ApiCaller {
 		logger.debug("Added ContentType Inteceptor: {}", added);
 		
 		HttpLoggingInterceptor hli = new HttpLoggingInterceptor(new HttpLogger(logger));
-		hli.setLevel(ApiConfig.testModeEnabled()? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.BASIC);
+		hli.setLevel(ApiConfig.debugModeEnabled()? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.BASIC);
 		hli.setLevel(HttpLoggingInterceptor.Level.BASIC);
 		added = clientSetup.addInterceptor(hli);
 		logger.debug("Added Logging Inteceptor: {}", added);

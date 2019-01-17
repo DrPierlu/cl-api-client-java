@@ -55,7 +55,7 @@ public class StockLevel extends ApiResource {
   }
 
   public StockLocation getStockLocationResource() {
-    return getStockLocation().get(getDocument());
+    return (StockLocation)getResource(getStockLocation().get(getDocument()));
   }
 
   public void setStockLocationResource(StockLocation stockLocation) {
@@ -76,7 +76,7 @@ public class StockLevel extends ApiResource {
   }
 
   public InventoryModel getInventoryModelResource() {
-    return getInventoryModel().get(getDocument());
+    return (InventoryModel)getResource(getInventoryModel().get(getDocument()));
   }
 
   public void setInventoryModelResource(InventoryModel inventoryModel) {

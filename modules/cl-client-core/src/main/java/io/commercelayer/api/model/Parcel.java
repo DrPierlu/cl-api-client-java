@@ -307,7 +307,7 @@ public class Parcel extends ApiResource {
   }
 
   public Shipment getShipmentResource() {
-    return getShipment().get(getDocument());
+    return (Shipment)getResource(getShipment().get(getDocument()));
   }
 
   public void setShipmentResource(Shipment shipment) {

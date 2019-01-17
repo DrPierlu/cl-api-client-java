@@ -9,8 +9,8 @@ import org.junit.Test;
 
 import io.commercelayer.api.client.CustomerServiceClient;
 import io.commercelayer.api.client.common.QueryFilter;
-import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.ConnectionException;
+import io.commercelayer.api.exception.ApiException;
 import io.commercelayer.api.model.Address;
 import io.commercelayer.api.model.Customer;
 import io.commercelayer.api.test.TestData;

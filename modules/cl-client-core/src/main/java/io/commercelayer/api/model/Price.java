@@ -133,7 +133,7 @@ public class Price extends ApiResource {
   }
 
   public PriceList getPriceListResource() {
-    return getPriceList().get(getDocument());
+    return (PriceList)getResource(getPriceList().get(getDocument()));
   }
 
   public void setPriceListResource(PriceList priceList) {
@@ -154,7 +154,7 @@ public class Price extends ApiResource {
   }
 
   public Sku getSkuResource() {
-    return getSku().get(getDocument());
+    return (Sku)getResource(getSku().get(getDocument()));
   }
 
   public void setSkuResource(Sku sku) {

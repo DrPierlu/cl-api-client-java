@@ -3,8 +3,8 @@ package io.commercelayer.api.test.model;
 import org.junit.Test;
 
 import io.commercelayer.api.client.MerchantServiceClient;
-import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.ConnectionException;
+import io.commercelayer.api.exception.ApiException;
 import io.commercelayer.api.model.Merchant;
 
 public class MerchantTest extends AbstractModelTest<Merchant> {

@@ -179,7 +179,7 @@ public class LineItemOption extends ApiResource {
   }
 
   public LineItem getLineItemResource() {
-    return getLineItem().get(getDocument());
+    return (LineItem)getResource(getLineItem().get(getDocument()));
   }
 
   public void setLineItemResource(LineItem lineItem) {
@@ -200,7 +200,7 @@ public class LineItemOption extends ApiResource {
   }
 
   public SkuOption getSkuOptionResource() {
-    return getSkuOption().get(getDocument());
+    return (SkuOption)getResource(getSkuOption().get(getDocument()));
   }
 
   public void setSkuOptionResource(SkuOption skuOption) {

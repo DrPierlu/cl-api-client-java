@@ -44,7 +44,7 @@ public class Market extends ApiResource {
   }
 
   public Merchant getMerchantResource() {
-    return getMerchant().get(getDocument());
+    return (Merchant)getResource(getMerchant().get(getDocument()));
   }
 
   public void setMerchantResource(Merchant merchant) {
@@ -65,7 +65,7 @@ public class Market extends ApiResource {
   }
 
   public PriceList getPriceListResource() {
-    return getPriceList().get(getDocument());
+    return (PriceList)getResource(getPriceList().get(getDocument()));
   }
 
   public void setPriceListResource(PriceList priceList) {
@@ -86,7 +86,7 @@ public class Market extends ApiResource {
   }
 
   public InventoryModel getInventoryModelResource() {
-    return getInventoryModel().get(getDocument());
+    return (InventoryModel)getResource(getInventoryModel().get(getDocument()));
   }
 
   public void setInventoryModelResource(InventoryModel inventoryModel) {

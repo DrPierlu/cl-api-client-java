@@ -36,7 +36,7 @@ public class JSONUtils {
 			.build();
 		
 		JsonAdapter<T> jsonAdapter = moshi.adapter(class_);
-		if (ApiConfig.testModeEnabled()) jsonAdapter = jsonAdapter.indent("    ");
+		if (ApiConfig.debugModeEnabled()) jsonAdapter = jsonAdapter.indent("    ");
 		
 		return jsonAdapter;
 		

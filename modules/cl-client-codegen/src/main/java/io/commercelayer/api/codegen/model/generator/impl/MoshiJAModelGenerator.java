@@ -197,11 +197,17 @@ public class MoshiJAModelGenerator implements ModelGenerator {
 			
 			// Relationship get Resource/ResourceList method
 			final String relResGetMethodName = String.format("get%sResource%s", relResName, multiRel? "List" : "");
-			MethodSpec relResGetMethod = MethodSpec.methodBuilder(relResGetMethodName)
+			MethodSpec.Builder relResGetMethodBuilder = MethodSpec.methodBuilder(relResGetMethodName)
 				.addModifiers(Modifier.PUBLIC)
 				.returns(relResTypeName)
-				.addStatement("return get$L().get(getDocument())", relFieldNameCap)
-				.build();
+				//.addStatement("return get$L().get(getDocument())", relFieldNameCap)
+				.addStatement("return ($T)getResource(get$L().get(getDocument()))", relResTypeName, relFieldNameCap);
+			
+			if (multiRel) relResGetMethodBuilder.addAnnotation(AnnotationSpec.builder(SuppressWarnings.class)
+					.addMember("value", "$S", "unchecked")
+					.build());
+			
+			MethodSpec relResGetMethod = relResGetMethodBuilder.build();
 			classe.addMethod(relResGetMethod);
 			
 			final String relResSetMethodName = String.format("set%sResource%s", relResName, multiRel? "List" : "");

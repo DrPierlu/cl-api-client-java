@@ -91,7 +91,7 @@ public class PaymentMethod extends ApiResource {
   }
 
   public Market getMarketResource() {
-    return getMarket().get(getDocument());
+    return (Market)getResource(getMarket().get(getDocument()));
   }
 
   public void setMarketResource(Market market) {
@@ -112,7 +112,7 @@ public class PaymentMethod extends ApiResource {
   }
 
   public PaymentGateway getPaymentGatewayResource() {
-    return getPaymentGateway().get(getDocument());
+    return (PaymentGateway)getResource(getPaymentGateway().get(getDocument()));
   }
 
   public void setPaymentGatewayResource(PaymentGateway paymentGateway) {

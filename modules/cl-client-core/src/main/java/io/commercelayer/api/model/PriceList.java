@@ -60,8 +60,9 @@ public class PriceList extends ApiResource {
     this.prices = prices;
   }
 
+  @SuppressWarnings("unchecked")
   public List<Price> getPriceResourceList() {
-    return getPrices().get(getDocument());
+    return (List<Price>)getResource(getPrices().get(getDocument()));
   }
 
   public void setPriceResourceList(List<Price> prices) {

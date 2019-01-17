@@ -59,7 +59,7 @@ public class StockLocation extends ApiResource {
   }
 
   public Address getAddressResource() {
-    return getAddress().get(getDocument());
+    return (Address)getResource(getAddress().get(getDocument()));
   }
 
   public void setAddressResource(Address address) {
@@ -79,8 +79,9 @@ public class StockLocation extends ApiResource {
     this.stockLevels = stockLevels;
   }
 
+  @SuppressWarnings("unchecked")
   public List<StockLevel> getStockLevelResourceList() {
-    return getStockLevels().get(getDocument());
+    return (List<StockLevel>)getResource(getStockLevels().get(getDocument()));
   }
 
   public void setStockLevelResourceList(List<StockLevel> stockLevels) {
@@ -100,8 +101,9 @@ public class StockLocation extends ApiResource {
     this.stockItems = stockItems;
   }
 
+  @SuppressWarnings("unchecked")
   public List<StockItem> getStockItemResourceList() {
-    return getStockItems().get(getDocument());
+    return (List<StockItem>)getResource(getStockItems().get(getDocument()));
   }
 
   public void setStockItemResourceList(List<StockItem> stockItems) {

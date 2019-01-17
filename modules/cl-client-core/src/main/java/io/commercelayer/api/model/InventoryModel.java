@@ -37,8 +37,9 @@ public class InventoryModel extends ApiResource {
     this.stockLevels = stockLevels;
   }
 
+  @SuppressWarnings("unchecked")
   public List<StockLevel> getStockLevelResourceList() {
-    return getStockLevels().get(getDocument());
+    return (List<StockLevel>)getResource(getStockLevels().get(getDocument()));
   }
 
   public void setStockLevelResourceList(List<StockLevel> stockLevels) {

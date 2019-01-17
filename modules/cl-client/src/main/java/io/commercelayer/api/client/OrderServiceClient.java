@@ -5,8 +5,8 @@ import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
 import io.commercelayer.api.client.common.QueryFilter;
-import io.commercelayer.api.client.exception.ApiException;
 import io.commercelayer.api.client.exception.AuthException;
+import io.commercelayer.api.exception.ApiException;
 import io.commercelayer.api.model.Address;
 import io.commercelayer.api.model.Customer;
 import io.commercelayer.api.model.LineItem;
@@ -21,7 +21,7 @@ import retrofit2.Call;
 
 public class OrderServiceClient extends AbstractServiceClient<OrderService> {
   {
-    initServiceCallFactory(OrderService.class, Order.class);
+    initServiceCallFactory(OrderService.class, Order.class/*, LineItem.class, Customer.class*/);
   }
 
   public OrderServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {

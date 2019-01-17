@@ -89,7 +89,7 @@ public class CustomerPasswordReset extends ApiResource {
   }
 
   public Customer getCustomerResource() {
-    return getCustomer().get(getDocument());
+    return (Customer)getResource(getCustomer().get(getDocument()));
   }
 
   public void setCustomerResource(Customer customer) {

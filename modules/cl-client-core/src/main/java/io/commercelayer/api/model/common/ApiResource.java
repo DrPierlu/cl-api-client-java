@@ -3,10 +3,12 @@ package io.commercelayer.api.model.common;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.Map;
 
 import com.squareup.moshi.Json;
 
+import io.commercelayer.api.exception.UnknownResourceException;
 import io.commercelayer.api.model.adapter.CLLinksAdapter;
 import io.commercelayer.api.model.adapter.CLMetaAdapter;
 import moe.banana.jsonapi2.Resource;
@@ -122,5 +124,21 @@ public class ApiResource extends Resource {
 	public Map<String, String> getMetaMap() {
 		return (Map<String, String>)getMeta().get(new CLMetaAdapter());
 	}
+	
+	protected Object getResource(Object o) {
+		
+		Resource r = null;
+		
+		if (o instanceof List) {
+			@SuppressWarnings({ "rawtypes", "unchecked" })
+			List<? extends Resource> ol = (List)o;
+			if (!ol.isEmpty()) r = ol.get(0);
+		}
+		else r = (Resource)o;
+		
+		if (r instanceof Unknown) throw new UnknownResourceException((Unknown)r);
+		else return o;
+		
+	  }
 	
 }
