@@ -107,6 +107,7 @@ public final class ServiceGeneratorUtils {
 		
 	}
 	
+	
 	public static TypeName getOperationReturnTypeArgument(String resourcePath, ApiOperation operation) {
 		
 		if (OperationType.DELETE.equals(operation.getType())) return TypeName.get(Void.class);
@@ -133,10 +134,12 @@ public final class ServiceGeneratorUtils {
 		
 	}
 	
+	
 	public static TypeName getOperationReturnType(String resourcePath, ApiOperation operation) {
 		TypeName typeArgument = getOperationReturnTypeArgument(resourcePath, operation);
 		return ParameterizedTypeName.get(ClassName.get(Call.class), typeArgument);
 	}
+	
 	
 	public static TypeName getOperationReturnType(TypeName typeArgument) {
 		return ParameterizedTypeName.get(ClassName.get(Call.class), typeArgument);

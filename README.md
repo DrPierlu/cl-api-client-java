@@ -1,4 +1,4 @@
-# CLAPI-Client
+# Commerce Layer API Java Client
 
 TODO: Project description
 
