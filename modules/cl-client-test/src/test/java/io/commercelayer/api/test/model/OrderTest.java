@@ -1,19 +1,11 @@
 package io.commercelayer.api.test.model;
 
-import java.util.List;
-
 import org.junit.Test;
 
 import io.commercelayer.api.client.OrderServiceClient;
-import io.commercelayer.api.client.common.ApiCallback;
 import io.commercelayer.api.client.common.QueryFilter;
-import io.commercelayer.api.client.exception.ConnectionException;
 import io.commercelayer.api.exception.ApiException;
-import io.commercelayer.api.model.Market;
 import io.commercelayer.api.model.Order;
-import io.commercelayer.api.model.common.error.ApiError;
-import io.commercelayer.api.util.LogUtils;
-import okhttp3.Request;
 
 public class OrderTest extends AbstractModelTest<OrderServiceClient> {
 
@@ -38,8 +30,8 @@ public class OrderTest extends AbstractModelTest<OrderServiceClient> {
 	public Order retrieveOrder(String orderId) throws ApiException {
 		
 		QueryFilter filter = QueryFilter.builder()
-				.include("line_items")
-				.include("customer")
+				.include(Order.Inclusions.LINE_ITEMS)
+				.include(Order.Inclusions.CUSTOMER)
 				.build();
 		
 		Order order = serviceClient.retrieveOrder(orderId, filter);

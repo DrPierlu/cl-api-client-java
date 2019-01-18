@@ -1,5 +1,6 @@
 package io.commercelayer.api.test;
 
+
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
