@@ -154,4 +154,14 @@ public class Customer extends ApiResource {
   public Map<String, String> getOrdersLinksMap() {
     return (Map<String, String>)getOrders().getLinks().get(new CLLinksAdapter());
   }
+
+  public interface Inclusions {
+    String CUSTOMER_ADDRESSES = "customer_addresses";
+
+    String CUSTOMER_PAYMENT_SOURCES = "customer_payment_sources";
+
+    String CUSTOMER_SUBSCRIPTIONS = "customer_subscriptions";
+
+    String ORDERS = "orders";
+  }
 }

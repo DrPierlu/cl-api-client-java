@@ -77,4 +77,8 @@ public class PriceList extends ApiResource {
   public Map<String, String> getPricesLinksMap() {
     return (Map<String, String>)getPrices().getLinks().get(new CLLinksAdapter());
   }
+
+  public interface Inclusions {
+    String PRICES = "prices";
+  }
 }

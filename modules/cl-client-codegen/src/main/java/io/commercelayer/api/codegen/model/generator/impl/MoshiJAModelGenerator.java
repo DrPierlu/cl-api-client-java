@@ -145,7 +145,8 @@ public class MoshiJAModelGenerator implements ModelGenerator {
 			
 			// Relationships
 			generateRelationships(classe, relationships);
-			if (CodegenConfig.isPropertyEnabled(Module.Model, "related.resources")) relatedResourcesField(classe, relationships);
+			if (CodegenConfig.isPropertyEnabled(Module.Model, "related.resources")) addRelatedResourcesField(classe, relationships);
+			if (CodegenConfig.isPropertyEnabled(Module.Model, "inclusion.helper")) addInclusionEnumHelper(classe, relationships);
 			logger.info("{} relationships generated", resName);
 			
 			
@@ -245,7 +246,7 @@ public class MoshiJAModelGenerator implements ModelGenerator {
 	}
 	
 	
-	private void relatedResourcesField(TypeSpec.Builder classe, Map<String, Cardinality> relationships) {
+	private void addRelatedResourcesField(TypeSpec.Builder classe, Map<String, Cardinality> relationships) {
 		
 		if (relationships == null) return;
 		
@@ -282,6 +283,27 @@ public class MoshiJAModelGenerator implements ModelGenerator {
 		
 		classe.addField(field.build());
 		
+	}
+	
+	
+	private void addInclusionEnumHelper(TypeSpec.Builder classe, Map<String, Cardinality> relationships) {
+		
+		if (relationships.isEmpty()) return;
+		
+		TypeSpec.Builder intBuilder = TypeSpec.interfaceBuilder("Inclusions")
+			.addModifiers(Modifier.PUBLIC, Modifier.STATIC);
+		
+		for (Map.Entry<String, Cardinality> relEntry : relationships.entrySet()) {
+			String rel = relEntry.getKey();
+			intBuilder.addField(
+				FieldSpec.builder(String.class, rel.toUpperCase(), Modifier.PUBLIC, Modifier.FINAL, Modifier.STATIC)
+					.initializer("$S", rel)
+					.build()
+			);
+		}
+		
+		classe.addType(intBuilder.build());
+	
 	}
 	
 	

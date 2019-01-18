@@ -170,4 +170,10 @@ public class Price extends ApiResource {
   public Map<String, String> getSkuLinksMap() {
     return (Map<String, String>)getSku().getLinks().get(new CLLinksAdapter());
   }
+
+  public interface Inclusions {
+    String PRICE_LIST = "price_list";
+
+    String SKU = "sku";
+  }
 }

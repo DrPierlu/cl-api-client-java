@@ -39,4 +39,8 @@ public class WireTransfer extends ApiResource {
   public Map<String, String> getOrderLinksMap() {
     return (Map<String, String>)getOrder().getLinks().get(new CLLinksAdapter());
   }
+
+  public interface Inclusions {
+    String ORDER = "order";
+  }
 }

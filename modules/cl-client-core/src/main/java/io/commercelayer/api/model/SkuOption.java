@@ -128,4 +128,8 @@ public class SkuOption extends ApiResource {
   public Map<String, String> getMarketLinksMap() {
     return (Map<String, String>)getMarket().getLinks().get(new CLLinksAdapter());
   }
+
+  public interface Inclusions {
+    String MARKET = "market";
+  }
 }

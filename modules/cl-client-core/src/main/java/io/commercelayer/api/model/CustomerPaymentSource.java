@@ -76,4 +76,10 @@ public class CustomerPaymentSource extends ApiResource {
   public Map<String, String> getPaymentSourceLinksMap() {
     return (Map<String, String>)getPaymentSource().getLinks().get(new CLLinksAdapter());
   }
+
+  public interface Inclusions {
+    String CUSTOMER = "customer";
+
+    String PAYMENT_SOURCE = "payment_source";
+  }
 }

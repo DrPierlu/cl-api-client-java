@@ -251,4 +251,16 @@ public class Sku extends ApiResource {
   public Map<String, String> getSkuOptionsLinksMap() {
     return (Map<String, String>)getSkuOptions().getLinks().get(new CLLinksAdapter());
   }
+
+  public interface Inclusions {
+    String SHIPPING_CATEGORY = "shipping_category";
+
+    String PRICES = "prices";
+
+    String STOCK_ITEMS = "stock_items";
+
+    String DELIVERY_LEAD_TIMES = "delivery_lead_times";
+
+    String SKU_OPTIONS = "sku_options";
+  }
 }

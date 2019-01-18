@@ -1415,4 +1415,22 @@ public class Order extends ApiResource {
   public Map<String, String> getShipmentsLinksMap() {
     return (Map<String, String>)getShipments().getLinks().get(new CLLinksAdapter());
   }
+
+  public interface Inclusions {
+    String MARKET = "market";
+
+    String CUSTOMER = "customer";
+
+    String SHIPPING_ADDRESS = "shipping_address";
+
+    String BILLING_ADDRESS = "billing_address";
+
+    String PAYMENT_METHOD = "payment_method";
+
+    String PAYMENT_SOURCE = "payment_source";
+
+    String LINE_ITEMS = "line_items";
+
+    String SHIPMENTS = "shipments";
+  }
 }

@@ -323,4 +323,8 @@ public class Parcel extends ApiResource {
   public Map<String, String> getShipmentLinksMap() {
     return (Map<String, String>)getShipment().getLinks().get(new CLLinksAdapter());
   }
+
+  public interface Inclusions {
+    String SHIPMENT = "shipment";
+  }
 }

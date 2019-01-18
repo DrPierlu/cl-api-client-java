@@ -319,4 +319,12 @@ public class LineItem extends ApiResource {
   public Map<String, String> getLineItemOptionsLinksMap() {
     return (Map<String, String>)getLineItemOptions().getLinks().get(new CLLinksAdapter());
   }
+
+  public interface Inclusions {
+    String ORDER = "order";
+
+    String ITEM = "item";
+
+    String LINE_ITEM_OPTIONS = "line_item_options";
+  }
 }

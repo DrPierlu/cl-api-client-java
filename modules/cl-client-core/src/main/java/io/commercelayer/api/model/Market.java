@@ -102,4 +102,12 @@ public class Market extends ApiResource {
   public Map<String, String> getInventoryModelLinksMap() {
     return (Map<String, String>)getInventoryModel().getLinks().get(new CLLinksAdapter());
   }
+
+  public interface Inclusions {
+    String MERCHANT = "merchant";
+
+    String PRICE_LIST = "price_list";
+
+    String INVENTORY_MODEL = "inventory_model";
+  }
 }

@@ -325,4 +325,8 @@ public class Address extends ApiResource {
   public Map<String, String> getGeocoderLinksMap() {
     return (Map<String, String>)getGeocoder().getLinks().get(new CLLinksAdapter());
   }
+
+  public interface Inclusions {
+    String GEOCODER = "geocoder";
+  }
 }

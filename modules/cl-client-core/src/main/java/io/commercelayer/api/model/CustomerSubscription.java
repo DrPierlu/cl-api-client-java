@@ -53,4 +53,8 @@ public class CustomerSubscription extends ApiResource {
   public Map<String, String> getCustomerLinksMap() {
     return (Map<String, String>)getCustomer().getLinks().get(new CLLinksAdapter());
   }
+
+  public interface Inclusions {
+    String CUSTOMER = "customer";
+  }
 }

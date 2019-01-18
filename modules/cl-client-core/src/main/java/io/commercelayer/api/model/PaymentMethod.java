@@ -128,4 +128,10 @@ public class PaymentMethod extends ApiResource {
   public Map<String, String> getPaymentGatewayLinksMap() {
     return (Map<String, String>)getPaymentGateway().getLinks().get(new CLLinksAdapter());
   }
+
+  public interface Inclusions {
+    String MARKET = "market";
+
+    String PAYMENT_GATEWAY = "payment_gateway";
+  }
 }

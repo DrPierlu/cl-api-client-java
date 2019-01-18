@@ -50,4 +50,8 @@ public class ShippingCategory extends ApiResource {
   public Map<String, String> getSkusLinksMap() {
     return (Map<String, String>)getSkus().getLinks().get(new CLLinksAdapter());
   }
+
+  public interface Inclusions {
+    String SKUS = "skus";
+  }
 }

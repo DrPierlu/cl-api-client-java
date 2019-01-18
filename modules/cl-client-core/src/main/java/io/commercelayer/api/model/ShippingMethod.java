@@ -258,4 +258,14 @@ public class ShippingMethod extends ApiResource {
   public Map<String, String> getDeliveryLeadTimeForShipmentLinksMap() {
     return (Map<String, String>)getDeliveryLeadTimeForShipment().getLinks().get(new CLLinksAdapter());
   }
+
+  public interface Inclusions {
+    String MARKET = "market";
+
+    String SHIPPING_ZONE = "shipping_zone";
+
+    String SHIPPING_CATEGORY = "shipping_category";
+
+    String DELIVERY_LEAD_TIME_FOR_SHIPMENT = "delivery_lead_time_for_shipment";
+  }
 }

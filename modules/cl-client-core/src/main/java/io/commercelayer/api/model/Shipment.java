@@ -367,4 +367,20 @@ public class Shipment extends ApiResource {
   public Map<String, String> getParcelsLinksMap() {
     return (Map<String, String>)getParcels().getLinks().get(new CLLinksAdapter());
   }
+
+  public interface Inclusions {
+    String SHIPPING_METHOD = "shipping_method";
+
+    String SHIPPING_CATEGORY = "shipping_category";
+
+    String STOCK_LOCATION = "stock_location";
+
+    String SHIPPING_ADDRESS = "shipping_address";
+
+    String SHIPMENT_LINE_ITEMS = "shipment_line_items";
+
+    String AVAILABLE_SHIPPING_METHODS = "available_shipping_methods";
+
+    String PARCELS = "parcels";
+  }
 }

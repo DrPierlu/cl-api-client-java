@@ -216,4 +216,10 @@ public class LineItemOption extends ApiResource {
   public Map<String, String> getSkuOptionLinksMap() {
     return (Map<String, String>)getSkuOption().getLinks().get(new CLLinksAdapter());
   }
+
+  public interface Inclusions {
+    String LINE_ITEM = "line_item";
+
+    String SKU_OPTION = "sku_option";
+  }
 }

@@ -121,4 +121,10 @@ public class DeliveryLeadTime extends ApiResource {
   public Map<String, String> getShippingMethodLinksMap() {
     return (Map<String, String>)getShippingMethod().getLinks().get(new CLLinksAdapter());
   }
+
+  public interface Inclusions {
+    String STOCK_LOCATION = "stock_location";
+
+    String SHIPPING_METHOD = "shipping_method";
+  }
 }

@@ -92,4 +92,10 @@ public class StockLevel extends ApiResource {
   public Map<String, String> getInventoryModelLinksMap() {
     return (Map<String, String>)getInventoryModel().getLinks().get(new CLLinksAdapter());
   }
+
+  public interface Inclusions {
+    String STOCK_LOCATION = "stock_location";
+
+    String INVENTORY_MODEL = "inventory_model";
+  }
 }

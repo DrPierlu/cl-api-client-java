@@ -118,4 +118,12 @@ public class StockLocation extends ApiResource {
   public Map<String, String> getStockItemsLinksMap() {
     return (Map<String, String>)getStockItems().getLinks().get(new CLLinksAdapter());
   }
+
+  public interface Inclusions {
+    String ADDRESS = "address";
+
+    String STOCK_LEVELS = "stock_levels";
+
+    String STOCK_ITEMS = "stock_items";
+  }
 }

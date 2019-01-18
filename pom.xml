@@ -44,6 +44,7 @@
 		<module>modules/cl-client-codegen</module>
 		<module>modules/cl-client</module>
 		<module>modules/cl-client-core</module>
+		<module>modules/cl-client-test</module>
 	</modules>
 
 	<properties>

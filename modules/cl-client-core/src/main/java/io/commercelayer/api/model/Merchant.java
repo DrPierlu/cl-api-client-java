@@ -49,4 +49,8 @@ public class Merchant extends ApiResource {
   public Map<String, String> getAddressLinksMap() {
     return (Map<String, String>)getAddress().getLinks().get(new CLLinksAdapter());
   }
+
+  public interface Inclusions {
+    String ADDRESS = "address";
+  }
 }

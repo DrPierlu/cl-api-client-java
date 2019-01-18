@@ -89,4 +89,10 @@ public class StockItem extends ApiResource {
   public Map<String, String> getSkuLinksMap() {
     return (Map<String, String>)getSku().getLinks().get(new CLLinksAdapter());
   }
+
+  public interface Inclusions {
+    String STOCK_LOCATION = "stock_location";
+
+    String SKU = "sku";
+  }
 }
