@@ -114,8 +114,8 @@ public class ApiCaller {
 				List<Class<? extends ApiResource>> relResList = (List<Class<? extends ApiResource>>)relResListField.get(null);
 				
 				if (relResList != null)
-				for (Class<? extends ApiResource> relResClass : relResList)
-					rafBuilder.add(relResClass);
+					for (Class<? extends ApiResource> relResClass : relResList)
+						rafBuilder.add(relResClass);
 				
 			}
 			catch (NoSuchFieldException | SecurityException | IllegalAccessException e) {
@@ -131,8 +131,9 @@ public class ApiCaller {
 	public final <T> T getServiceCallFactory(Class<T> service, boolean includeRelatedResources, Class<? extends Resource>... resources) {
 
 		ResourceAdapterFactory.Builder rafBuilder = ResourceAdapterFactory.builder();
+		// Add declared resources
 		if ((resources != null) && (resources.length > 0)) rafBuilder.add(resources);
-		
+		// Eventually add undeclared but related resources
 		if (includeRelatedResources) includRelatedResourcesAdapters(rafBuilder, resources);
 		
 		JsonAdapter.Factory jsonApiAdapterFactory = rafBuilder.add(Unknown.class).build();

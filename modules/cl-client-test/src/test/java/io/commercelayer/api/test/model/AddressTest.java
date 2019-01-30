@@ -168,5 +168,14 @@ public class AddressTest extends AbstractModelTest<Address> {
 		return g;
 		
 	}
+	
+	
+	public static void main(String[] args) {
+		try {
+			new AddressTest().createAddressTest();
+		} catch (ConnectionException | ApiException e) {
+			e.printStackTrace();
+		}
+	}
 
 }
