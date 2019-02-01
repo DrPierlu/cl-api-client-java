@@ -6,7 +6,7 @@
 
 	<groupId>io.commercelayer.api</groupId>
 	<artifactId>cl-api-client-java</artifactId>
-	<version>v2</version>
+	<version>2.0</version>
 
 	<packaging>pom</packaging>
 
@@ -42,6 +42,13 @@
 		<tag>HEAD</tag>
 	</scm>
 
+	<repositories>
+		<repository>
+			<id>jcenter</id>
+			<name>jcenter</name>
+			<url>http://jcenter.bintray.com/</url>
+		</repository>
+	</repositories>
 
 	<distributionManagement>
 		<snapshotRepository>
@@ -129,34 +136,6 @@
 					<autoReleaseAfterClose>true</autoReleaseAfterClose>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
-				<version>3.0.1</version>
-				<executions>
-					<execution>
-						<id>attach-sources</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
-				<!-- <version>2.10.4</version> -->
-				<version>3.0.1</version>
-				<configuration>
-					<encoding>UTF-8</encoding>
-				</configuration>
-				<executions>
-					<execution>
-						<id>attach-javadoc</id>
-						<goals />
-					</execution>
-				</executions>
-			</plugin>
 		</plugins>
 	</build>
 
@@ -236,7 +215,7 @@
 			<!-- GitHub imported libraries -->
 			<dependency>
 				<groupId>moe.banana</groupId>
-				<artifactId>moshi-jsonapi-core</artifactId>
+				<artifactId>moshi-jsonapi</artifactId>
 				<version>${moshi-jsonapi.version}</version>
 			</dependency>
 			<dependency>
@@ -247,7 +226,8 @@
 			<dependency>
 				<groupId>com.reprezen.kaizen</groupId>
 				<artifactId>openapi-parser</artifactId>
-				<version>2.2.0-SNAPSHOT</version>
+				<!-- <version>2.2.0-SNAPSHOT</version> -->
+				<version>4.0.3</version>
 			</dependency>
 
 

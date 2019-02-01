@@ -3,15 +3,11 @@ package io.commercelayer.api.test.model;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import java.util.List;
-
 import org.junit.Test;
 
 import io.commercelayer.api.client.CustomerServiceClient;
-import io.commercelayer.api.client.common.QueryFilter;
 import io.commercelayer.api.client.exception.ConnectionException;
 import io.commercelayer.api.exception.ApiException;
-import io.commercelayer.api.model.Address;
 import io.commercelayer.api.model.Customer;
 import io.commercelayer.api.test.TestData;
 

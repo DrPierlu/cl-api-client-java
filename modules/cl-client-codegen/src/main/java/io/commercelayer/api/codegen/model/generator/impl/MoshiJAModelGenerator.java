@@ -311,6 +311,7 @@ public class MoshiJAModelGenerator implements ModelGenerator {
 		for (ApiAttribute attr : attributes.values()) {
 			FieldSpec.Builder field = FieldSpec.builder(SchemaParserUtils.decodeAttributeType(attr), ModelGeneratorUtils.toCamelCase(attr.getName()), Modifier.PRIVATE);
 			setJsonFieldAnnotation(attr.getName(), field);
+			// if (attr.isRequired()) field.addAnnotation(AnnotationSpec.builder(Required.class).build());
 			addResourceField(classe, field.build());
 		}
 	}

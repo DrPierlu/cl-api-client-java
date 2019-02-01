@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<artifactId>cl-client</artifactId>
 	<name>CLAPI-Client</name>
 	<description>Commerce Layer API Java Client - Client Implementation</description>
@@ -15,7 +15,7 @@
 		<version>2.0</version>
 		<relativePath>../../</relativePath>
 	</parent>
-	
+
 
 	<dependencies>
 
@@ -29,23 +29,10 @@
 			<groupId>com.squareup.retrofit2</groupId>
 			<artifactId>retrofit</artifactId>
 		</dependency>
-		
-		<dependency>
-    		<groupId>com.squareup.okhttp3</groupId>
-    		<artifactId>logging-interceptor</artifactId>
-    	</dependency>
 
-
-		<!-- TEST -->
 		<dependency>
-		    <groupId>junit</groupId>
-		    <artifactId>junit</artifactId>
-		    <scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<scope>test</scope>
+			<groupId>com.squareup.okhttp3</groupId>
+			<artifactId>logging-interceptor</artifactId>
 		</dependency>
 
 	</dependencies>
