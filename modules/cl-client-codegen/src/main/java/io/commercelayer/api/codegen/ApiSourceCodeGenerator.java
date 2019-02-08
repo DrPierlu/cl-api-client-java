@@ -49,8 +49,8 @@ public class ApiSourceCodeGenerator {
 			
 			logger.info("Source Code Generation successfully terminated.");
 			
-		} catch (CodegenException e) {
-			logger.error(LogUtils.printStackTrace(e));
+		} catch (CodegenException ce) {
+			logger.error(LogUtils.printStackTrace(ce));
 			logger.info("Source Code Generation ended with errors.");
 		}
 		
