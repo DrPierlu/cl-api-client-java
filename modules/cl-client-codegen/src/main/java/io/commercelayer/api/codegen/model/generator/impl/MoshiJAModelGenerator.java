@@ -113,8 +113,9 @@ public class MoshiJAModelGenerator implements ModelGenerator {
 						}
 						// Response Relationships
 						for (Map.Entry<String, ApiResponse> r : op.getResponses().entrySet()) {
-							for (ApiRelationship rel : r.getValue().getRelationships())
+							for (ApiRelationship rel : r.getValue().getRelationships()) {
 								if (!relationships.containsKey(rel.getResourceName())) relationships.put(rel.getResourceName(), rel.getCardinality());
+							}
 						}
 						
 					}
