@@ -99,28 +99,30 @@ public class ApiCaller {
 	}
 
 	
+	@SuppressWarnings("unchecked")
 	@SafeVarargs
-	private final void includRelatedResourcesAdapters(ResourceAdapterFactory.Builder rafBuilder, Class<? extends Resource>... resources) {
+	private final void includeRelatedResourcesAdapters(ResourceAdapterFactory.Builder rafBuilder, Class<? extends Resource>... resources) {
 		
 		for (Class<? extends Resource> resClass : resources) {
 			
 			if (!ApiResource.class.isAssignableFrom(resClass)) continue;
 			
+			List<Class<? extends ApiResource>> relResList = null;
+			
+			if (AdaptersCacheMap.hasCachedAdapters(resClass)) relResList = AdaptersCacheMap.getAdaptersList(resClass);
+			else
 			try {
-				
 				Field relResListField = resClass.getField(ApiConstants.RELATED_RESOURCES_FIELD_NAME);
-				
-				@SuppressWarnings("unchecked")
-				List<Class<? extends ApiResource>> relResList = (List<Class<? extends ApiResource>>)relResListField.get(null);
-				
-				if (relResList != null)
-					for (Class<? extends ApiResource> relResClass : relResList)
-						rafBuilder.add(relResClass);
-				
+				relResList = (List<Class<? extends ApiResource>>)relResListField.get(null);
+				AdaptersCacheMap.addAdaptersList(resClass, relResList);
 			}
 			catch (NoSuchFieldException | SecurityException | IllegalAccessException e) {
 				logger.warn(e.getMessage());
+				relResList = null;
 			}
+			
+			if (relResList != null)
+				for (Class<? extends ApiResource> relResClass : relResList) rafBuilder.add(relResClass);
 			
 		}
 		
@@ -134,7 +136,7 @@ public class ApiCaller {
 		// Add declared resources
 		if ((resources != null) && (resources.length > 0)) rafBuilder.add(resources);
 		// Eventually add undeclared but related resources
-		if (includeRelatedResources) includRelatedResourcesAdapters(rafBuilder, resources);
+		if (includeRelatedResources) includeRelatedResourcesAdapters(rafBuilder, resources);
 		
 		JsonAdapter.Factory jsonApiAdapterFactory = rafBuilder.add(Unknown.class).build();
 
