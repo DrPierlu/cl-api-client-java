@@ -160,7 +160,10 @@ public class RetrofitServiceClientGenerator implements ServiceGenerator {
 		if (op.hasRequestBody()) {
 			String pName = StringUtils.uncapitalize(resourceName);
 			methodBuilder.addParameter(
-				ParameterSpec.builder(ClassName.get(ModelGeneratorUtils.MODEL_BASE_PACKAGE, resourceName), pName).build()
+				ParameterSpec.builder(
+					ClassName.get(ModelGeneratorUtils.MODEL_BASE_PACKAGE, resourceName),
+					ServiceGeneratorUtils.unreserve(pName)
+				).build()
 			);
 			methodParams.add(pName);
 		}
@@ -202,7 +205,10 @@ public class RetrofitServiceClientGenerator implements ServiceGenerator {
 		if (op.hasRequestBody()) {
 			String pName = StringUtils.uncapitalize(resourceName);
 			methodBuilder.addParameter(
-				ParameterSpec.builder(ClassName.get(ModelGeneratorUtils.MODEL_BASE_PACKAGE, resourceName), pName).build()
+				ParameterSpec.builder(
+					ClassName.get(ModelGeneratorUtils.MODEL_BASE_PACKAGE, resourceName),
+					ServiceGeneratorUtils.unreserve(pName)
+				).build()
 			);
 			methodParams.add(pName);
 		}

@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.lang.model.SourceVersion;
+
 import org.apache.commons.lang3.StringUtils;
 
 import com.squareup.javapoet.ClassName;
@@ -143,6 +145,10 @@ public final class ServiceGeneratorUtils {
 	
 	public static TypeName getOperationReturnType(TypeName typeArgument) {
 		return ParameterizedTypeName.get(ClassName.get(Call.class), typeArgument);
+	}
+	
+	public static String unreserve(String keyword) {
+		return SourceVersion.isKeyword(keyword)? keyword.concat("_") : keyword;
 	}
 
 }

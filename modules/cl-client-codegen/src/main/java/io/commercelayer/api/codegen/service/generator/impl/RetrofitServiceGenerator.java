@@ -106,8 +106,11 @@ public class RetrofitServiceGenerator implements ServiceGenerator {
 				// Body Parameter
 				if (op.hasRequestBody()) {
 					methodBuilder.addParameter(
-						ParameterSpec.builder(ClassName.get(ModelGeneratorUtils.MODEL_BASE_PACKAGE, resourceName), StringUtils.uncapitalize(resourceName))
-							.addAnnotation(AnnotationSpec.builder(Body.class).build())
+						ParameterSpec.builder(
+							ClassName.get(ModelGeneratorUtils.MODEL_BASE_PACKAGE, resourceName),
+							ServiceGeneratorUtils.unreserve(StringUtils.uncapitalize(resourceName))
+						)
+						.addAnnotation(AnnotationSpec.builder(Body.class).build())
 						.build()
 					);
 				}

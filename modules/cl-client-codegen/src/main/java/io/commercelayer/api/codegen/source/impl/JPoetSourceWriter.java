@@ -28,8 +28,11 @@ public class JPoetSourceWriter implements SourceWriter {
 			throw new SourceException("No classes to write");
 
 		Path rootDir = Paths.get(destDir);
+		rootDir.toFile().mkdirs();
+		
 		logger.info("Root directory: {}", destDir);
 		logger.info("Root package: {}", apiWriteable.getRootPackage());
+		
 		final Path classesDir = getOutputDirPath(rootDir, apiWriteable.getRootPackage());
 
 		for (TypeSpec classe : apiWriteable.getClasses()) {
