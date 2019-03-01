@@ -66,15 +66,15 @@ public final class ServiceGeneratorUtils {
 		
 		switch (opType) {
 			case GET: {
-				func = byId || !listRes? "retrieve" : "list";
+				func = byId || !listRes? ServiceOperation.retrieve.name() : ServiceOperation.list.name();
 				break;
 			}
 			case PATCH: {
-				func = "update";
+				func = ServiceOperation.update.name();
 				break;
 			}
 			case POST: {
-				func = "create";
+				func = ServiceOperation.create.name();
 				break;
 			}
 			default: {
