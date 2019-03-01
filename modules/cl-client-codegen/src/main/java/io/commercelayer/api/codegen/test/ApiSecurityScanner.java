@@ -16,6 +16,7 @@ import io.commercelayer.api.codegen.CodegenConfig;
 import io.commercelayer.api.codegen.CodegenConfig.Module;
 import io.commercelayer.api.codegen.test.ApiSecurityMap.Permissions;
 import io.commercelayer.api.util.CLInflector;
+import io.commercelayer.api.util.LogUtils;
 
 public class ApiSecurityScanner {
 	
@@ -90,16 +91,17 @@ public class ApiSecurityScanner {
 			
 			secMap.setResourcePermissions(resource, create, read, update, delete);
 		
-			logger.info("{} [create={}, read={}, update={}, delete={}]", resource, create, read, update, delete);
+//			logger.info("{} [create={}, read={}, update={}, delete={}]", resource, create, read, update, delete);
 			
 		}
+		
+		logResourcePermissions(secMap);
 		
 		return secMap;
 		
 	}
 	
 	
-	@SuppressWarnings("unused")
 	private void logResourcePermissions(ApiSecurityMap asMap) {
 		logger.info("ApiSecurityMap resources:");
 		for (Map.Entry<String, Permissions> entry : asMap.getPermissions().entrySet()) {
@@ -112,7 +114,7 @@ public class ApiSecurityScanner {
 		try {
 			new ApiSecurityScanner().scan(new URL(CodegenConfig.getProperty(Module.Test, "api.permissions.url")));
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(LogUtils.printStackTrace(e));
 		}
 	}
 

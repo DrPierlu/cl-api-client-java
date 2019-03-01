@@ -18,7 +18,7 @@ public class Test {
 		newList.addAll(Order._RELATED_RESOURCES);
 		newList.add(Order.class);
 		
-		testVarargs("", newList.toArray(null));
+		testVarargs("", newList.toArray((Class<? extends ApiResource>[])null));
 		
 	}
 	
