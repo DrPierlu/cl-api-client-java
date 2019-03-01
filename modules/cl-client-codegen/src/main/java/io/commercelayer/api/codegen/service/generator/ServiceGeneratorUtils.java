@@ -39,12 +39,15 @@ public final class ServiceGeneratorUtils {
 		// SERVICE_CLIENT_BASE_PACKAGE
 		SERVICE_CLIENT_BASE_PACKAGE = CodegenConfig.getProperty(Module.Service, "client.base.package");
 		
-		// SERVICE_OP_PREFIX
-		SERVICE_OP_PREFIX.put("retrieve", 	CodegenConfig.getProperty(Module.Service, "operation.prefix.retrieve"));
-		SERVICE_OP_PREFIX.put("list", 		CodegenConfig.getProperty(Module.Service, "operation.prefix.list"));
-		SERVICE_OP_PREFIX.put("update", 	CodegenConfig.getProperty(Module.Service, "operation.prefix.update"));
-		SERVICE_OP_PREFIX.put("create", 	CodegenConfig.getProperty(Module.Service, "operation.prefix.create"));
-		SERVICE_OP_PREFIX.put("delete", 	CodegenConfig.getProperty(Module.Service, "operation.prefix.delete"));
+		// SERVICE_OP_PREFIX		
+//		SERVICE_OP_PREFIX.put(ServiceOperation.retrieve.name(), 	CodegenConfig.getProperty(Module.Service, "operation.prefix.retrieve"));
+//		SERVICE_OP_PREFIX.put(ServiceOperation.list.name(), 		CodegenConfig.getProperty(Module.Service, "operation.prefix.list"));
+//		SERVICE_OP_PREFIX.put(ServiceOperation.update.name(), 		CodegenConfig.getProperty(Module.Service, "operation.prefix.update"));
+//		SERVICE_OP_PREFIX.put(ServiceOperation.create.name(), 		CodegenConfig.getProperty(Module.Service, "operation.prefix.create"));
+//		SERVICE_OP_PREFIX.put(ServiceOperation.delete.name(), 		CodegenConfig.getProperty(Module.Service, "operation.prefix.delete"));
+		for (ServiceOperation so : ServiceOperation.values()) {
+			SERVICE_OP_PREFIX.put(so.name(), CodegenConfig.getProperty(Module.Service, String.format("operation.prefix.%s", so.name())));
+		}
 		
 	}
 	
