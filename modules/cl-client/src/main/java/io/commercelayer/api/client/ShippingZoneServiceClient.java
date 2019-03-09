@@ -4,7 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
-import io.commercelayer.api.client.common.QueryFilter;
+import io.commercelayer.api.client.common.query.QueryFilter;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.exception.ApiException;
 import io.commercelayer.api.model.ShippingZone;
@@ -68,16 +68,6 @@ public class ShippingZoneServiceClient extends AbstractServiceClient<ShippingZon
     asyncCall(call, callback);
   }
 
-  public void deleteShippingZone(String shippingZoneId) throws ApiException {
-    Call<Void> call = service.deleteShippingZone(shippingZoneId);
-    syncCall(call);
-  }
-
-  public void deleteShippingZone(String shippingZoneId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteShippingZone(shippingZoneId);
-    asyncCall(call, callback);
-  }
-
   public ShippingZone retrieveShippingZone(String shippingZoneId, QueryFilter queryFilter) throws
       ApiException {
     Call<ShippingZone> call = service.retrieveShippingZone(shippingZoneId, queryFilter);
@@ -97,6 +87,16 @@ public class ShippingZoneServiceClient extends AbstractServiceClient<ShippingZon
 
   public void retrieveShippingZone(String shippingZoneId, ApiCallback<ShippingZone> callback) {
     Call<ShippingZone> call = service.retrieveShippingZone(shippingZoneId);
+    asyncCall(call, callback);
+  }
+
+  public void deleteShippingZone(String shippingZoneId) throws ApiException {
+    Call<Void> call = service.deleteShippingZone(shippingZoneId);
+    syncCall(call);
+  }
+
+  public void deleteShippingZone(String shippingZoneId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteShippingZone(shippingZoneId);
     asyncCall(call, callback);
   }
 }

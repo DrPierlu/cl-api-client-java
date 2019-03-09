@@ -4,7 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
-import io.commercelayer.api.client.common.QueryFilter;
+import io.commercelayer.api.client.common.query.QueryFilter;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.exception.ApiException;
 import io.commercelayer.api.model.ShippingCategory;
@@ -75,16 +75,6 @@ public class ShippingCategoryServiceClient extends AbstractServiceClient<Shippin
     asyncCall(call, callback);
   }
 
-  public void deleteShippingCategory(String shippingCategoryId) throws ApiException {
-    Call<Void> call = service.deleteShippingCategory(shippingCategoryId);
-    syncCall(call);
-  }
-
-  public void deleteShippingCategory(String shippingCategoryId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteShippingCategory(shippingCategoryId);
-    asyncCall(call, callback);
-  }
-
   public ShippingCategory retrieveShippingCategory(String shippingCategoryId,
       QueryFilter queryFilter) throws ApiException {
     Call<ShippingCategory> call = service.retrieveShippingCategory(shippingCategoryId, queryFilter);
@@ -105,6 +95,16 @@ public class ShippingCategoryServiceClient extends AbstractServiceClient<Shippin
   public void retrieveShippingCategory(String shippingCategoryId,
       ApiCallback<ShippingCategory> callback) {
     Call<ShippingCategory> call = service.retrieveShippingCategory(shippingCategoryId);
+    asyncCall(call, callback);
+  }
+
+  public void deleteShippingCategory(String shippingCategoryId) throws ApiException {
+    Call<Void> call = service.deleteShippingCategory(shippingCategoryId);
+    syncCall(call);
+  }
+
+  public void deleteShippingCategory(String shippingCategoryId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteShippingCategory(shippingCategoryId);
     asyncCall(call, callback);
   }
 

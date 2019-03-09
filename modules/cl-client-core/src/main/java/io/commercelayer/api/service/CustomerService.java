@@ -2,6 +2,7 @@ package io.commercelayer.api.service;
 
 import io.commercelayer.api.model.Customer;
 import io.commercelayer.api.model.CustomerAddress;
+import io.commercelayer.api.model.CustomerGroup;
 import io.commercelayer.api.model.CustomerPaymentSource;
 import io.commercelayer.api.model.CustomerSubscription;
 import io.commercelayer.api.model.Order;
@@ -29,9 +30,6 @@ public interface CustomerService {
   @PATCH("customers/{customerId}")
   Call<Customer> updateCustomer(@Path("customerId") String customerId, @Body Customer customer);
 
-  @DELETE("customers/{customerId}")
-  Call<Void> deleteCustomer(@Path("customerId") String customerId);
-
   @GET("customers/{customerId}")
   Call<Customer> retrieveCustomer(@Path("customerId") String customerId);
 
@@ -39,11 +37,21 @@ public interface CustomerService {
   Call<Customer> retrieveCustomer(@Path("customerId") String customerId,
       @QueryMap Map<String, String> queryStringParams);
 
+  @DELETE("customers/{customerId}")
+  Call<Void> deleteCustomer(@Path("customerId") String customerId);
+
   @GET("customers/{customerId}/customer_addresses")
   Call<List<CustomerAddress>> listCustomerCustomerAddresses(@Path("customerId") String customerId);
 
   @GET("customers/{customerId}/customer_addresses")
   Call<List<CustomerAddress>> listCustomerCustomerAddresses(@Path("customerId") String customerId,
+      @QueryMap Map<String, String> queryStringParams);
+
+  @GET("customers/{customerId}/customer_group")
+  Call<CustomerGroup> retrieveCustomerCustomerGroup(@Path("customerId") String customerId);
+
+  @GET("customers/{customerId}/customer_group")
+  Call<CustomerGroup> retrieveCustomerCustomerGroup(@Path("customerId") String customerId,
       @QueryMap Map<String, String> queryStringParams);
 
   @GET("customers/{customerId}/customer_payment_sources")

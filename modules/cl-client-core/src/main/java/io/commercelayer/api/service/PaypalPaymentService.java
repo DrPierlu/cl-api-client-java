@@ -27,15 +27,15 @@ public interface PaypalPaymentService {
   Call<PaypalPayment> updatePaypalPayment(@Path("paypalPaymentId") String paypalPaymentId,
       @Body PaypalPayment paypalPayment);
 
-  @DELETE("paypal_payments/{paypalPaymentId}")
-  Call<Void> deletePaypalPayment(@Path("paypalPaymentId") String paypalPaymentId);
-
   @GET("paypal_payments/{paypalPaymentId}")
   Call<PaypalPayment> retrievePaypalPayment(@Path("paypalPaymentId") String paypalPaymentId);
 
   @GET("paypal_payments/{paypalPaymentId}")
   Call<PaypalPayment> retrievePaypalPayment(@Path("paypalPaymentId") String paypalPaymentId,
       @QueryMap Map<String, String> queryStringParams);
+
+  @DELETE("paypal_payments/{paypalPaymentId}")
+  Call<Void> deletePaypalPayment(@Path("paypalPaymentId") String paypalPaymentId);
 
   @GET("paypal_payments/{paypalPaymentId}/order")
   Call<Order> retrievePaypalPaymentOrder(@Path("paypalPaymentId") String paypalPaymentId);

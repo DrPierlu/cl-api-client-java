@@ -4,7 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
-import io.commercelayer.api.client.common.QueryFilter;
+import io.commercelayer.api.client.common.query.QueryFilter;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.exception.ApiException;
 import io.commercelayer.api.model.Address;
@@ -67,16 +67,6 @@ public class MerchantServiceClient extends AbstractServiceClient<MerchantService
     asyncCall(call, callback);
   }
 
-  public void deleteMerchant(String merchantId) throws ApiException {
-    Call<Void> call = service.deleteMerchant(merchantId);
-    syncCall(call);
-  }
-
-  public void deleteMerchant(String merchantId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteMerchant(merchantId);
-    asyncCall(call, callback);
-  }
-
   public Merchant retrieveMerchant(String merchantId, QueryFilter queryFilter) throws ApiException {
     Call<Merchant> call = service.retrieveMerchant(merchantId, queryFilter);
     return syncCall(call);
@@ -95,6 +85,16 @@ public class MerchantServiceClient extends AbstractServiceClient<MerchantService
 
   public void retrieveMerchant(String merchantId, ApiCallback<Merchant> callback) {
     Call<Merchant> call = service.retrieveMerchant(merchantId);
+    asyncCall(call, callback);
+  }
+
+  public void deleteMerchant(String merchantId) throws ApiException {
+    Call<Void> call = service.deleteMerchant(merchantId);
+    syncCall(call);
+  }
+
+  public void deleteMerchant(String merchantId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteMerchant(merchantId);
     asyncCall(call, callback);
   }
 

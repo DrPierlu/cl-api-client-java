@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import moe.banana.jsonapi2.HasMany;
+import moe.banana.jsonapi2.HasOne;
 import moe.banana.jsonapi2.JsonApi;
 
 @JsonApi(
@@ -16,13 +17,18 @@ import moe.banana.jsonapi2.JsonApi;
 public class Customer extends ApiResource {
   public static final long serialVersionUID = -1;
 
-  public static final List<Class<? extends ApiResource>> _RELATED_RESOURCES = Collections.unmodifiableList(Arrays.asList(CustomerAddress.class, CustomerPaymentSource.class, CustomerSubscription.class, Order.class));
+  public static final List<Class<? extends ApiResource>> _RELATED_RESOURCES = Collections.unmodifiableList(Arrays.asList(CustomerGroup.class, CustomerAddress.class, CustomerPaymentSource.class, CustomerSubscription.class, Order.class));
 
   private String email;
 
   private String password;
 
   private String status;
+
+  @Json(
+      name = "customer_group"
+  )
+  private HasOne<CustomerGroup> customerGroup;
 
   @Json(
       name = "customer_addresses"
@@ -63,6 +69,27 @@ public class Customer extends ApiResource {
 
   public void setStatus(String status) {
     this.status = status;
+  }
+
+  public HasOne<CustomerGroup> getCustomerGroup() {
+    return this.customerGroup;
+  }
+
+  public void setCustomerGroup(HasOne<CustomerGroup> customerGroup) {
+    this.customerGroup = customerGroup;
+  }
+
+  public CustomerGroup getCustomerGroupResource() {
+    return (CustomerGroup)getResource(getCustomerGroup().get(getDocument()));
+  }
+
+  public void setCustomerGroupResource(CustomerGroup customerGroup) {
+    setCustomerGroup(new HasOne<CustomerGroup>(customerGroup));
+  }
+
+  @SuppressWarnings("unchecked")
+  public Map<String, String> getCustomerGroupLinksMap() {
+    return (Map<String, String>)getCustomerGroup().getLinks().get(new CLLinksAdapter());
   }
 
   public HasMany<CustomerAddress> getCustomerAddresses() {
@@ -156,6 +183,8 @@ public class Customer extends ApiResource {
   }
 
   public interface Inclusions {
+    String CUSTOMER_GROUP = "customer_group";
+
     String CUSTOMER_ADDRESSES = "customer_addresses";
 
     String CUSTOMER_PAYMENT_SOURCES = "customer_payment_sources";

@@ -30,10 +30,6 @@ public interface CustomerPaymentSourceService {
       @Path("customerPaymentSourceId") String customerPaymentSourceId,
       @Body CustomerPaymentSource customerPaymentSource);
 
-  @DELETE("customer_payment_sources/{customerPaymentSourceId}")
-  Call<Void> deleteCustomerPaymentSource(
-      @Path("customerPaymentSourceId") String customerPaymentSourceId);
-
   @GET("customer_payment_sources/{customerPaymentSourceId}")
   Call<CustomerPaymentSource> retrieveCustomerPaymentSource(
       @Path("customerPaymentSourceId") String customerPaymentSourceId);
@@ -42,6 +38,10 @@ public interface CustomerPaymentSourceService {
   Call<CustomerPaymentSource> retrieveCustomerPaymentSource(
       @Path("customerPaymentSourceId") String customerPaymentSourceId,
       @QueryMap Map<String, String> queryStringParams);
+
+  @DELETE("customer_payment_sources/{customerPaymentSourceId}")
+  Call<Void> deleteCustomerPaymentSource(
+      @Path("customerPaymentSourceId") String customerPaymentSourceId);
 
   @GET("customer_payment_sources/{customerPaymentSourceId}/customer")
   Call<Customer> retrieveCustomerPaymentSourceCustomer(

@@ -20,6 +20,11 @@ public class Market extends ApiResource {
 
   private String name;
 
+  @Json(
+      name = "facebook_pixel_id"
+  )
+  private String facebookPixelId;
+
   private HasOne<Merchant> merchant;
 
   @Json(
@@ -38,6 +43,14 @@ public class Market extends ApiResource {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public String getFacebookPixelId() {
+    return this.facebookPixelId;
+  }
+
+  public void setFacebookPixelId(String facebookPixelId) {
+    this.facebookPixelId = facebookPixelId;
   }
 
   public HasOne<Merchant> getMerchant() {

@@ -29,15 +29,15 @@ public interface StockLocationService {
   Call<StockLocation> updateStockLocation(@Path("stockLocationId") String stockLocationId,
       @Body StockLocation stockLocation);
 
-  @DELETE("stock_locations/{stockLocationId}")
-  Call<Void> deleteStockLocation(@Path("stockLocationId") String stockLocationId);
-
   @GET("stock_locations/{stockLocationId}")
   Call<StockLocation> retrieveStockLocation(@Path("stockLocationId") String stockLocationId);
 
   @GET("stock_locations/{stockLocationId}")
   Call<StockLocation> retrieveStockLocation(@Path("stockLocationId") String stockLocationId,
       @QueryMap Map<String, String> queryStringParams);
+
+  @DELETE("stock_locations/{stockLocationId}")
+  Call<Void> deleteStockLocation(@Path("stockLocationId") String stockLocationId);
 
   @GET("stock_locations/{stockLocationId}/address")
   Call<Address> retrieveStockLocationAddress(@Path("stockLocationId") String stockLocationId);

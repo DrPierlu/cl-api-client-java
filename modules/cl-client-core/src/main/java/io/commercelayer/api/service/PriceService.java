@@ -27,15 +27,15 @@ public interface PriceService {
   @PATCH("prices/{priceId}")
   Call<Price> updatePrice(@Path("priceId") String priceId, @Body Price price);
 
-  @DELETE("prices/{priceId}")
-  Call<Void> deletePrice(@Path("priceId") String priceId);
-
   @GET("prices/{priceId}")
   Call<Price> retrievePrice(@Path("priceId") String priceId);
 
   @GET("prices/{priceId}")
   Call<Price> retrievePrice(@Path("priceId") String priceId,
       @QueryMap Map<String, String> queryStringParams);
+
+  @DELETE("prices/{priceId}")
+  Call<Void> deletePrice(@Path("priceId") String priceId);
 
   @GET("prices/{priceId}/price_list")
   Call<PriceList> retrievePricePriceList(@Path("priceId") String priceId);

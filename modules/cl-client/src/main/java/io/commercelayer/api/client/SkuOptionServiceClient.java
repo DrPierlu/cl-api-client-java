@@ -4,7 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
-import io.commercelayer.api.client.common.QueryFilter;
+import io.commercelayer.api.client.common.query.QueryFilter;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.exception.ApiException;
 import io.commercelayer.api.model.Market;
@@ -68,16 +68,6 @@ public class SkuOptionServiceClient extends AbstractServiceClient<SkuOptionServi
     asyncCall(call, callback);
   }
 
-  public void deleteSkuOption(String skuOptionId) throws ApiException {
-    Call<Void> call = service.deleteSkuOption(skuOptionId);
-    syncCall(call);
-  }
-
-  public void deleteSkuOption(String skuOptionId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteSkuOption(skuOptionId);
-    asyncCall(call, callback);
-  }
-
   public SkuOption retrieveSkuOption(String skuOptionId, QueryFilter queryFilter) throws
       ApiException {
     Call<SkuOption> call = service.retrieveSkuOption(skuOptionId, queryFilter);
@@ -97,6 +87,16 @@ public class SkuOptionServiceClient extends AbstractServiceClient<SkuOptionServi
 
   public void retrieveSkuOption(String skuOptionId, ApiCallback<SkuOption> callback) {
     Call<SkuOption> call = service.retrieveSkuOption(skuOptionId);
+    asyncCall(call, callback);
+  }
+
+  public void deleteSkuOption(String skuOptionId) throws ApiException {
+    Call<Void> call = service.deleteSkuOption(skuOptionId);
+    syncCall(call);
+  }
+
+  public void deleteSkuOption(String skuOptionId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteSkuOption(skuOptionId);
     asyncCall(call, callback);
   }
 

@@ -4,7 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
-import io.commercelayer.api.client.common.QueryFilter;
+import io.commercelayer.api.client.common.query.QueryFilter;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.exception.ApiException;
 import io.commercelayer.api.model.CreditCard;
@@ -69,16 +69,6 @@ public class CreditCardServiceClient extends AbstractServiceClient<CreditCardSer
     asyncCall(call, callback);
   }
 
-  public void deleteCreditCard(String creditCardId) throws ApiException {
-    Call<Void> call = service.deleteCreditCard(creditCardId);
-    syncCall(call);
-  }
-
-  public void deleteCreditCard(String creditCardId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteCreditCard(creditCardId);
-    asyncCall(call, callback);
-  }
-
   public CreditCard retrieveCreditCard(String creditCardId, QueryFilter queryFilter) throws
       ApiException {
     Call<CreditCard> call = service.retrieveCreditCard(creditCardId, queryFilter);
@@ -98,6 +88,16 @@ public class CreditCardServiceClient extends AbstractServiceClient<CreditCardSer
 
   public void retrieveCreditCard(String creditCardId, ApiCallback<CreditCard> callback) {
     Call<CreditCard> call = service.retrieveCreditCard(creditCardId);
+    asyncCall(call, callback);
+  }
+
+  public void deleteCreditCard(String creditCardId) throws ApiException {
+    Call<Void> call = service.deleteCreditCard(creditCardId);
+    syncCall(call);
+  }
+
+  public void deleteCreditCard(String creditCardId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteCreditCard(creditCardId);
     asyncCall(call, callback);
   }
 

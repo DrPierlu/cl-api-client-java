@@ -26,15 +26,15 @@ public interface AddressService {
   @PATCH("addresses/{addressId}")
   Call<Address> updateAddress(@Path("addressId") String addressId, @Body Address address);
 
-  @DELETE("addresses/{addressId}")
-  Call<Void> deleteAddress(@Path("addressId") String addressId);
-
   @GET("addresses/{addressId}")
   Call<Address> retrieveAddress(@Path("addressId") String addressId);
 
   @GET("addresses/{addressId}")
   Call<Address> retrieveAddress(@Path("addressId") String addressId,
       @QueryMap Map<String, String> queryStringParams);
+
+  @DELETE("addresses/{addressId}")
+  Call<Void> deleteAddress(@Path("addressId") String addressId);
 
   @GET("addresses/{addressId}/geocoder")
   Call<Geocoder> retrieveAddressGeocoder(@Path("addressId") String addressId);

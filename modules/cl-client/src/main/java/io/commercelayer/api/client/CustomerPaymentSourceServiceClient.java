@@ -4,7 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
-import io.commercelayer.api.client.common.QueryFilter;
+import io.commercelayer.api.client.common.query.QueryFilter;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.exception.ApiException;
 import io.commercelayer.api.model.Customer;
@@ -75,17 +75,6 @@ public class CustomerPaymentSourceServiceClient extends AbstractServiceClient<Cu
     asyncCall(call, callback);
   }
 
-  public void deleteCustomerPaymentSource(String customerPaymentSourceId) throws ApiException {
-    Call<Void> call = service.deleteCustomerPaymentSource(customerPaymentSourceId);
-    syncCall(call);
-  }
-
-  public void deleteCustomerPaymentSource(String customerPaymentSourceId,
-      ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteCustomerPaymentSource(customerPaymentSourceId);
-    asyncCall(call, callback);
-  }
-
   public CustomerPaymentSource retrieveCustomerPaymentSource(String customerPaymentSourceId,
       QueryFilter queryFilter) throws ApiException {
     Call<CustomerPaymentSource> call = service.retrieveCustomerPaymentSource(customerPaymentSourceId, queryFilter);
@@ -107,6 +96,17 @@ public class CustomerPaymentSourceServiceClient extends AbstractServiceClient<Cu
   public void retrieveCustomerPaymentSource(String customerPaymentSourceId,
       ApiCallback<CustomerPaymentSource> callback) {
     Call<CustomerPaymentSource> call = service.retrieveCustomerPaymentSource(customerPaymentSourceId);
+    asyncCall(call, callback);
+  }
+
+  public void deleteCustomerPaymentSource(String customerPaymentSourceId) throws ApiException {
+    Call<Void> call = service.deleteCustomerPaymentSource(customerPaymentSourceId);
+    syncCall(call);
+  }
+
+  public void deleteCustomerPaymentSource(String customerPaymentSourceId,
+      ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteCustomerPaymentSource(customerPaymentSourceId);
     asyncCall(call, callback);
   }
 

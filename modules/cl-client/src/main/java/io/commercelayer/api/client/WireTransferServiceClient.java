@@ -4,7 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
-import io.commercelayer.api.client.common.QueryFilter;
+import io.commercelayer.api.client.common.query.QueryFilter;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.exception.ApiException;
 import io.commercelayer.api.model.Order;
@@ -69,16 +69,6 @@ public class WireTransferServiceClient extends AbstractServiceClient<WireTransfe
     asyncCall(call, callback);
   }
 
-  public void deleteWireTransfer(String wireTransferId) throws ApiException {
-    Call<Void> call = service.deleteWireTransfer(wireTransferId);
-    syncCall(call);
-  }
-
-  public void deleteWireTransfer(String wireTransferId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteWireTransfer(wireTransferId);
-    asyncCall(call, callback);
-  }
-
   public WireTransfer retrieveWireTransfer(String wireTransferId, QueryFilter queryFilter) throws
       ApiException {
     Call<WireTransfer> call = service.retrieveWireTransfer(wireTransferId, queryFilter);
@@ -98,6 +88,16 @@ public class WireTransferServiceClient extends AbstractServiceClient<WireTransfe
 
   public void retrieveWireTransfer(String wireTransferId, ApiCallback<WireTransfer> callback) {
     Call<WireTransfer> call = service.retrieveWireTransfer(wireTransferId);
+    asyncCall(call, callback);
+  }
+
+  public void deleteWireTransfer(String wireTransferId) throws ApiException {
+    Call<Void> call = service.deleteWireTransfer(wireTransferId);
+    syncCall(call);
+  }
+
+  public void deleteWireTransfer(String wireTransferId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteWireTransfer(wireTransferId);
     asyncCall(call, callback);
   }
 

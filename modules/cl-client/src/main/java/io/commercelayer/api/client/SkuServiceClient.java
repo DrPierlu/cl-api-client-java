@@ -4,7 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
-import io.commercelayer.api.client.common.QueryFilter;
+import io.commercelayer.api.client.common.query.QueryFilter;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.exception.ApiException;
 import io.commercelayer.api.model.DeliveryLeadTime;
@@ -71,16 +71,6 @@ public class SkuServiceClient extends AbstractServiceClient<SkuService> {
     asyncCall(call, callback);
   }
 
-  public void deleteSku(String skuId) throws ApiException {
-    Call<Void> call = service.deleteSku(skuId);
-    syncCall(call);
-  }
-
-  public void deleteSku(String skuId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteSku(skuId);
-    asyncCall(call, callback);
-  }
-
   public Sku retrieveSku(String skuId, QueryFilter queryFilter) throws ApiException {
     Call<Sku> call = service.retrieveSku(skuId, queryFilter);
     return syncCall(call);
@@ -98,6 +88,16 @@ public class SkuServiceClient extends AbstractServiceClient<SkuService> {
 
   public void retrieveSku(String skuId, ApiCallback<Sku> callback) {
     Call<Sku> call = service.retrieveSku(skuId);
+    asyncCall(call, callback);
+  }
+
+  public void deleteSku(String skuId) throws ApiException {
+    Call<Void> call = service.deleteSku(skuId);
+    syncCall(call);
+  }
+
+  public void deleteSku(String skuId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteSku(skuId);
     asyncCall(call, callback);
   }
 

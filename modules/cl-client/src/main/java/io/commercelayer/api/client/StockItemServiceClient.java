@@ -4,7 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
-import io.commercelayer.api.client.common.QueryFilter;
+import io.commercelayer.api.client.common.query.QueryFilter;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.exception.ApiException;
 import io.commercelayer.api.model.Sku;
@@ -69,16 +69,6 @@ public class StockItemServiceClient extends AbstractServiceClient<StockItemServi
     asyncCall(call, callback);
   }
 
-  public void deleteStockItem(String stockItemId) throws ApiException {
-    Call<Void> call = service.deleteStockItem(stockItemId);
-    syncCall(call);
-  }
-
-  public void deleteStockItem(String stockItemId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteStockItem(stockItemId);
-    asyncCall(call, callback);
-  }
-
   public StockItem retrieveStockItem(String stockItemId, QueryFilter queryFilter) throws
       ApiException {
     Call<StockItem> call = service.retrieveStockItem(stockItemId, queryFilter);
@@ -98,6 +88,16 @@ public class StockItemServiceClient extends AbstractServiceClient<StockItemServi
 
   public void retrieveStockItem(String stockItemId, ApiCallback<StockItem> callback) {
     Call<StockItem> call = service.retrieveStockItem(stockItemId);
+    asyncCall(call, callback);
+  }
+
+  public void deleteStockItem(String stockItemId) throws ApiException {
+    Call<Void> call = service.deleteStockItem(stockItemId);
+    syncCall(call);
+  }
+
+  public void deleteStockItem(String stockItemId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteStockItem(stockItemId);
     asyncCall(call, callback);
   }
 

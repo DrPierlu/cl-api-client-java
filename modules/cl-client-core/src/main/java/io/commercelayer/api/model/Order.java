@@ -82,6 +82,11 @@ public class Order extends ApiResource {
   private Integer _approve;
 
   @Json(
+      name = "_capture"
+  )
+  private Integer _capture;
+
+  @Json(
       name = "_update_taxes"
   )
   private Integer _updateTaxes;
@@ -433,6 +438,16 @@ public class Order extends ApiResource {
   private Integer skusCount;
 
   @Json(
+      name = "line_item_options_count"
+  )
+  private Integer lineItemOptionsCount;
+
+  @Json(
+      name = "shipments_count"
+  )
+  private Integer shipmentsCount;
+
+  @Json(
       name = "payment_source_details"
   )
   private Object paymentSourceDetails;
@@ -602,6 +617,14 @@ public class Order extends ApiResource {
 
   public void setApprove_(Integer _approve) {
     this._approve = _approve;
+  }
+
+  public Integer getCapture_() {
+    return this._capture;
+  }
+
+  public void setCapture_(Integer _capture) {
+    this._capture = _capture;
   }
 
   public Integer getUpdateTaxes_() {
@@ -1180,6 +1203,22 @@ public class Order extends ApiResource {
 
   public void setSkusCount(Integer skusCount) {
     this.skusCount = skusCount;
+  }
+
+  public Integer getLineItemOptionsCount() {
+    return this.lineItemOptionsCount;
+  }
+
+  public void setLineItemOptionsCount(Integer lineItemOptionsCount) {
+    this.lineItemOptionsCount = lineItemOptionsCount;
+  }
+
+  public Integer getShipmentsCount() {
+    return this.shipmentsCount;
+  }
+
+  public void setShipmentsCount(Integer shipmentsCount) {
+    this.shipmentsCount = shipmentsCount;
   }
 
   public Object getPaymentSourceDetails() {

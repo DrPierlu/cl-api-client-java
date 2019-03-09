@@ -28,15 +28,15 @@ public interface StockItemService {
   Call<StockItem> updateStockItem(@Path("stockItemId") String stockItemId,
       @Body StockItem stockItem);
 
-  @DELETE("stock_items/{stockItemId}")
-  Call<Void> deleteStockItem(@Path("stockItemId") String stockItemId);
-
   @GET("stock_items/{stockItemId}")
   Call<StockItem> retrieveStockItem(@Path("stockItemId") String stockItemId);
 
   @GET("stock_items/{stockItemId}")
   Call<StockItem> retrieveStockItem(@Path("stockItemId") String stockItemId,
       @QueryMap Map<String, String> queryStringParams);
+
+  @DELETE("stock_items/{stockItemId}")
+  Call<Void> deleteStockItem(@Path("stockItemId") String stockItemId);
 
   @GET("stock_items/{stockItemId}/sku")
   Call<Sku> retrieveStockItemSku(@Path("stockItemId") String stockItemId);

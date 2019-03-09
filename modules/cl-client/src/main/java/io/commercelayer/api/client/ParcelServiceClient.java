@@ -4,7 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
-import io.commercelayer.api.client.common.QueryFilter;
+import io.commercelayer.api.client.common.query.QueryFilter;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.exception.ApiException;
 import io.commercelayer.api.model.Parcel;
@@ -67,16 +67,6 @@ public class ParcelServiceClient extends AbstractServiceClient<ParcelService> {
     asyncCall(call, callback);
   }
 
-  public void deleteParcel(String parcelId) throws ApiException {
-    Call<Void> call = service.deleteParcel(parcelId);
-    syncCall(call);
-  }
-
-  public void deleteParcel(String parcelId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteParcel(parcelId);
-    asyncCall(call, callback);
-  }
-
   public Parcel retrieveParcel(String parcelId, QueryFilter queryFilter) throws ApiException {
     Call<Parcel> call = service.retrieveParcel(parcelId, queryFilter);
     return syncCall(call);
@@ -95,6 +85,16 @@ public class ParcelServiceClient extends AbstractServiceClient<ParcelService> {
 
   public void retrieveParcel(String parcelId, ApiCallback<Parcel> callback) {
     Call<Parcel> call = service.retrieveParcel(parcelId);
+    asyncCall(call, callback);
+  }
+
+  public void deleteParcel(String parcelId) throws ApiException {
+    Call<Void> call = service.deleteParcel(parcelId);
+    syncCall(call);
+  }
+
+  public void deleteParcel(String parcelId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteParcel(parcelId);
     asyncCall(call, callback);
   }
 

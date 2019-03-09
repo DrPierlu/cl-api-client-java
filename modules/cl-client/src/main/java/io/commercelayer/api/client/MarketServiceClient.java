@@ -4,7 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
-import io.commercelayer.api.client.common.QueryFilter;
+import io.commercelayer.api.client.common.query.QueryFilter;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.exception.ApiException;
 import io.commercelayer.api.model.InventoryModel;
@@ -69,16 +69,6 @@ public class MarketServiceClient extends AbstractServiceClient<MarketService> {
     asyncCall(call, callback);
   }
 
-  public void deleteMarket(String marketId) throws ApiException {
-    Call<Void> call = service.deleteMarket(marketId);
-    syncCall(call);
-  }
-
-  public void deleteMarket(String marketId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteMarket(marketId);
-    asyncCall(call, callback);
-  }
-
   public Market retrieveMarket(String marketId, QueryFilter queryFilter) throws ApiException {
     Call<Market> call = service.retrieveMarket(marketId, queryFilter);
     return syncCall(call);
@@ -97,6 +87,16 @@ public class MarketServiceClient extends AbstractServiceClient<MarketService> {
 
   public void retrieveMarket(String marketId, ApiCallback<Market> callback) {
     Call<Market> call = service.retrieveMarket(marketId);
+    asyncCall(call, callback);
+  }
+
+  public void deleteMarket(String marketId) throws ApiException {
+    Call<Void> call = service.deleteMarket(marketId);
+    syncCall(call);
+  }
+
+  public void deleteMarket(String marketId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteMarket(marketId);
     asyncCall(call, callback);
   }
 

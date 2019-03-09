@@ -26,15 +26,15 @@ public interface ParcelService {
   @PATCH("parcels/{parcelId}")
   Call<Parcel> updateParcel(@Path("parcelId") String parcelId, @Body Parcel parcel);
 
-  @DELETE("parcels/{parcelId}")
-  Call<Void> deleteParcel(@Path("parcelId") String parcelId);
-
   @GET("parcels/{parcelId}")
   Call<Parcel> retrieveParcel(@Path("parcelId") String parcelId);
 
   @GET("parcels/{parcelId}")
   Call<Parcel> retrieveParcel(@Path("parcelId") String parcelId,
       @QueryMap Map<String, String> queryStringParams);
+
+  @DELETE("parcels/{parcelId}")
+  Call<Void> deleteParcel(@Path("parcelId") String parcelId);
 
   @GET("parcels/{parcelId}/shipment")
   Call<Shipment> retrieveParcelShipment(@Path("parcelId") String parcelId);

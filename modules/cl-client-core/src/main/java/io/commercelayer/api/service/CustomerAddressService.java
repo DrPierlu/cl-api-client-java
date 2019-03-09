@@ -29,9 +29,6 @@ public interface CustomerAddressService {
   Call<CustomerAddress> updateCustomerAddress(@Path("customerAddressId") String customerAddressId,
       @Body CustomerAddress customerAddress);
 
-  @DELETE("customer_addresses/{customerAddressId}")
-  Call<Void> deleteCustomerAddress(@Path("customerAddressId") String customerAddressId);
-
   @GET("customer_addresses/{customerAddressId}")
   Call<CustomerAddress> retrieveCustomerAddress(
       @Path("customerAddressId") String customerAddressId);
@@ -39,6 +36,9 @@ public interface CustomerAddressService {
   @GET("customer_addresses/{customerAddressId}")
   Call<CustomerAddress> retrieveCustomerAddress(@Path("customerAddressId") String customerAddressId,
       @QueryMap Map<String, String> queryStringParams);
+
+  @DELETE("customer_addresses/{customerAddressId}")
+  Call<Void> deleteCustomerAddress(@Path("customerAddressId") String customerAddressId);
 
   @GET("customer_addresses/{customerAddressId}/address")
   Call<Address> retrieveCustomerAddressAddress(@Path("customerAddressId") String customerAddressId);

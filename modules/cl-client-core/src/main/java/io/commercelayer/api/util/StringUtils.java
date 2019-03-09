@@ -18,6 +18,10 @@ public class StringUtils {
 	}
 	
 	public static String join(Collection<String> list, char separator) {
+		return join(list, String.valueOf(separator));
+	}
+	
+	public static String join(Collection<String> list, String separator) {
 		
 		if (list == null) return null;
 		if (list.isEmpty()) return "";
@@ -33,6 +37,10 @@ public class StringUtils {
 	}
 	
 	public static String join(String[] list, char separator) {
+		return join(list, String.valueOf(separator));
+	}
+	
+	public static String join(String[] list, String separator) {
 		if (list == null) return null;
 		else return join(Arrays.asList(list), separator);
 	}

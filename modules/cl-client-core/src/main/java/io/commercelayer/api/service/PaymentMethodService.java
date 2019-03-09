@@ -28,15 +28,15 @@ public interface PaymentMethodService {
   Call<PaymentMethod> updatePaymentMethod(@Path("paymentMethodId") String paymentMethodId,
       @Body PaymentMethod paymentMethod);
 
-  @DELETE("payment_methods/{paymentMethodId}")
-  Call<Void> deletePaymentMethod(@Path("paymentMethodId") String paymentMethodId);
-
   @GET("payment_methods/{paymentMethodId}")
   Call<PaymentMethod> retrievePaymentMethod(@Path("paymentMethodId") String paymentMethodId);
 
   @GET("payment_methods/{paymentMethodId}")
   Call<PaymentMethod> retrievePaymentMethod(@Path("paymentMethodId") String paymentMethodId,
       @QueryMap Map<String, String> queryStringParams);
+
+  @DELETE("payment_methods/{paymentMethodId}")
+  Call<Void> deletePaymentMethod(@Path("paymentMethodId") String paymentMethodId);
 
   @GET("payment_methods/{paymentMethodId}/market")
   Call<Market> retrievePaymentMethodMarket(@Path("paymentMethodId") String paymentMethodId);

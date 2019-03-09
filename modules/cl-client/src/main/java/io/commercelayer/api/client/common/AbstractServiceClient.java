@@ -2,6 +2,7 @@ package io.commercelayer.api.client.common;
 
 import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
+import io.commercelayer.api.client.common.query.QueryFilter;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.client.exception.ConnectionException;
 import io.commercelayer.api.exception.ApiException;

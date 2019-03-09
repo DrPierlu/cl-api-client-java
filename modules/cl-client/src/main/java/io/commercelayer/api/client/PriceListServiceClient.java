@@ -4,7 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
-import io.commercelayer.api.client.common.QueryFilter;
+import io.commercelayer.api.client.common.query.QueryFilter;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.exception.ApiException;
 import io.commercelayer.api.model.Price;
@@ -68,16 +68,6 @@ public class PriceListServiceClient extends AbstractServiceClient<PriceListServi
     asyncCall(call, callback);
   }
 
-  public void deletePriceList(String priceListId) throws ApiException {
-    Call<Void> call = service.deletePriceList(priceListId);
-    syncCall(call);
-  }
-
-  public void deletePriceList(String priceListId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deletePriceList(priceListId);
-    asyncCall(call, callback);
-  }
-
   public PriceList retrievePriceList(String priceListId, QueryFilter queryFilter) throws
       ApiException {
     Call<PriceList> call = service.retrievePriceList(priceListId, queryFilter);
@@ -97,6 +87,16 @@ public class PriceListServiceClient extends AbstractServiceClient<PriceListServi
 
   public void retrievePriceList(String priceListId, ApiCallback<PriceList> callback) {
     Call<PriceList> call = service.retrievePriceList(priceListId);
+    asyncCall(call, callback);
+  }
+
+  public void deletePriceList(String priceListId) throws ApiException {
+    Call<Void> call = service.deletePriceList(priceListId);
+    syncCall(call);
+  }
+
+  public void deletePriceList(String priceListId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deletePriceList(priceListId);
     asyncCall(call, callback);
   }
 

@@ -30,10 +30,6 @@ public interface CustomerSubscriptionService {
       @Path("customerSubscriptionId") String customerSubscriptionId,
       @Body CustomerSubscription customerSubscription);
 
-  @DELETE("customer_subscriptions/{customerSubscriptionId}")
-  Call<Void> deleteCustomerSubscription(
-      @Path("customerSubscriptionId") String customerSubscriptionId);
-
   @GET("customer_subscriptions/{customerSubscriptionId}")
   Call<CustomerSubscription> retrieveCustomerSubscription(
       @Path("customerSubscriptionId") String customerSubscriptionId);
@@ -42,6 +38,10 @@ public interface CustomerSubscriptionService {
   Call<CustomerSubscription> retrieveCustomerSubscription(
       @Path("customerSubscriptionId") String customerSubscriptionId,
       @QueryMap Map<String, String> queryStringParams);
+
+  @DELETE("customer_subscriptions/{customerSubscriptionId}")
+  Call<Void> deleteCustomerSubscription(
+      @Path("customerSubscriptionId") String customerSubscriptionId);
 
   @GET("customer_subscriptions/{customerSubscriptionId}/customer")
   Call<Customer> retrieveCustomerSubscriptionCustomer(

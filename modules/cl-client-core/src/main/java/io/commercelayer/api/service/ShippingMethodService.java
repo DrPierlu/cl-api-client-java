@@ -30,15 +30,15 @@ public interface ShippingMethodService {
   Call<ShippingMethod> updateShippingMethod(@Path("shippingMethodId") String shippingMethodId,
       @Body ShippingMethod shippingMethod);
 
-  @DELETE("shipping_methods/{shippingMethodId}")
-  Call<Void> deleteShippingMethod(@Path("shippingMethodId") String shippingMethodId);
-
   @GET("shipping_methods/{shippingMethodId}")
   Call<ShippingMethod> retrieveShippingMethod(@Path("shippingMethodId") String shippingMethodId);
 
   @GET("shipping_methods/{shippingMethodId}")
   Call<ShippingMethod> retrieveShippingMethod(@Path("shippingMethodId") String shippingMethodId,
       @QueryMap Map<String, String> queryStringParams);
+
+  @DELETE("shipping_methods/{shippingMethodId}")
+  Call<Void> deleteShippingMethod(@Path("shippingMethodId") String shippingMethodId);
 
   @GET("shipping_methods/{shippingMethodId}/delivery_lead_time_for_shipment")
   Call<List<DeliveryLeadTime>> retrieveShippingMethodDeliveryLeadTimeForShipment(

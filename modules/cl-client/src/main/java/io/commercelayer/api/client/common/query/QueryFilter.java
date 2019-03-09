@@ -1,4 +1,4 @@
-package io.commercelayer.api.client.common;
+package io.commercelayer.api.client.common.query;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -13,7 +13,7 @@ public class QueryFilter extends LinkedHashMap<String, String> {
 
 	private static final long serialVersionUID = -4968770304692953164L;
 	
-	private QueryFilter() {
+	protected QueryFilter() {
 		
 	}
 	
@@ -25,7 +25,7 @@ public class QueryFilter extends LinkedHashMap<String, String> {
 		return new Builder().build();
 	}
 	
-	private QueryFilter putMap(Map<String, String> map) {
+	protected QueryFilter putMap(Map<String, String> map) {
 		if ((map != null) && !map.isEmpty()) super.putAll(map);
 		return this;
 	}
@@ -41,7 +41,7 @@ public class QueryFilter extends LinkedHashMap<String, String> {
 	
 	
 	
-	public static final class Builder {
+	public static class Builder {
 		
 		private Map<String, String> queryStringParams = new LinkedHashMap<>();
 		private List<String> includedResources = new LinkedList<>();
@@ -51,7 +51,7 @@ public class QueryFilter extends LinkedHashMap<String, String> {
 		private Integer pageNumber;
 		private Integer pageSize;
 		
-		private Builder() {
+		protected Builder() {
 			
 		}
 		
@@ -115,6 +115,17 @@ public class QueryFilter extends LinkedHashMap<String, String> {
 			this.pageSize = size;
 			return this;
 		}
+		
+		public Builder pageSize(Integer size) {
+			this.pageSize = size;
+			return this;
+		}
+		
+		public Builder pageNumber(Integer number) {
+			this.pageNumber = number;
+			return this;
+		}
+		
 		
 		public QueryFilter build() {
 			

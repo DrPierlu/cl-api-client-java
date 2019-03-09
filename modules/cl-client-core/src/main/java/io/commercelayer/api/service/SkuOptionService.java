@@ -27,15 +27,15 @@ public interface SkuOptionService {
   Call<SkuOption> updateSkuOption(@Path("skuOptionId") String skuOptionId,
       @Body SkuOption skuOption);
 
-  @DELETE("sku_options/{skuOptionId}")
-  Call<Void> deleteSkuOption(@Path("skuOptionId") String skuOptionId);
-
   @GET("sku_options/{skuOptionId}")
   Call<SkuOption> retrieveSkuOption(@Path("skuOptionId") String skuOptionId);
 
   @GET("sku_options/{skuOptionId}")
   Call<SkuOption> retrieveSkuOption(@Path("skuOptionId") String skuOptionId,
       @QueryMap Map<String, String> queryStringParams);
+
+  @DELETE("sku_options/{skuOptionId}")
+  Call<Void> deleteSkuOption(@Path("skuOptionId") String skuOptionId);
 
   @GET("sku_options/{skuOptionId}/market")
   Call<Market> retrieveSkuOptionMarket(@Path("skuOptionId") String skuOptionId);

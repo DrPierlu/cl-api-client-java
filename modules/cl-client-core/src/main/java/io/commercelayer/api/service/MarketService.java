@@ -28,15 +28,15 @@ public interface MarketService {
   @PATCH("markets/{marketId}")
   Call<Market> updateMarket(@Path("marketId") String marketId, @Body Market market);
 
-  @DELETE("markets/{marketId}")
-  Call<Void> deleteMarket(@Path("marketId") String marketId);
-
   @GET("markets/{marketId}")
   Call<Market> retrieveMarket(@Path("marketId") String marketId);
 
   @GET("markets/{marketId}")
   Call<Market> retrieveMarket(@Path("marketId") String marketId,
       @QueryMap Map<String, String> queryStringParams);
+
+  @DELETE("markets/{marketId}")
+  Call<Void> deleteMarket(@Path("marketId") String marketId);
 
   @GET("markets/{marketId}/inventory_model")
   Call<InventoryModel> retrieveMarketInventoryModel(@Path("marketId") String marketId);

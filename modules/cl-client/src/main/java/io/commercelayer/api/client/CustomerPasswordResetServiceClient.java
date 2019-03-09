@@ -4,7 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
-import io.commercelayer.api.client.common.QueryFilter;
+import io.commercelayer.api.client.common.query.QueryFilter;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.exception.ApiException;
 import io.commercelayer.api.model.Customer;
@@ -75,17 +75,6 @@ public class CustomerPasswordResetServiceClient extends AbstractServiceClient<Cu
     asyncCall(call, callback);
   }
 
-  public void deleteCustomerPasswordReset(String customerPasswordResetId) throws ApiException {
-    Call<Void> call = service.deleteCustomerPasswordReset(customerPasswordResetId);
-    syncCall(call);
-  }
-
-  public void deleteCustomerPasswordReset(String customerPasswordResetId,
-      ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteCustomerPasswordReset(customerPasswordResetId);
-    asyncCall(call, callback);
-  }
-
   public CustomerPasswordReset retrieveCustomerPasswordReset(String customerPasswordResetId,
       QueryFilter queryFilter) throws ApiException {
     Call<CustomerPasswordReset> call = service.retrieveCustomerPasswordReset(customerPasswordResetId, queryFilter);
@@ -107,6 +96,17 @@ public class CustomerPasswordResetServiceClient extends AbstractServiceClient<Cu
   public void retrieveCustomerPasswordReset(String customerPasswordResetId,
       ApiCallback<CustomerPasswordReset> callback) {
     Call<CustomerPasswordReset> call = service.retrieveCustomerPasswordReset(customerPasswordResetId);
+    asyncCall(call, callback);
+  }
+
+  public void deleteCustomerPasswordReset(String customerPasswordResetId) throws ApiException {
+    Call<Void> call = service.deleteCustomerPasswordReset(customerPasswordResetId);
+    syncCall(call);
+  }
+
+  public void deleteCustomerPasswordReset(String customerPasswordResetId,
+      ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteCustomerPasswordReset(customerPasswordResetId);
     asyncCall(call, callback);
   }
 

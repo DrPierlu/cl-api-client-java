@@ -4,7 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
-import io.commercelayer.api.client.common.QueryFilter;
+import io.commercelayer.api.client.common.query.QueryFilter;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.exception.ApiException;
 import io.commercelayer.api.model.Address;
@@ -74,16 +74,6 @@ public class StockLocationServiceClient extends AbstractServiceClient<StockLocat
     asyncCall(call, callback);
   }
 
-  public void deleteStockLocation(String stockLocationId) throws ApiException {
-    Call<Void> call = service.deleteStockLocation(stockLocationId);
-    syncCall(call);
-  }
-
-  public void deleteStockLocation(String stockLocationId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteStockLocation(stockLocationId);
-    asyncCall(call, callback);
-  }
-
   public StockLocation retrieveStockLocation(String stockLocationId, QueryFilter queryFilter) throws
       ApiException {
     Call<StockLocation> call = service.retrieveStockLocation(stockLocationId, queryFilter);
@@ -103,6 +93,16 @@ public class StockLocationServiceClient extends AbstractServiceClient<StockLocat
 
   public void retrieveStockLocation(String stockLocationId, ApiCallback<StockLocation> callback) {
     Call<StockLocation> call = service.retrieveStockLocation(stockLocationId);
+    asyncCall(call, callback);
+  }
+
+  public void deleteStockLocation(String stockLocationId) throws ApiException {
+    Call<Void> call = service.deleteStockLocation(stockLocationId);
+    syncCall(call);
+  }
+
+  public void deleteStockLocation(String stockLocationId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteStockLocation(stockLocationId);
     asyncCall(call, callback);
   }
 

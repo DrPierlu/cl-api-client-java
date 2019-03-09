@@ -26,13 +26,13 @@ public interface ShippingZoneService {
   Call<ShippingZone> updateShippingZone(@Path("shippingZoneId") String shippingZoneId,
       @Body ShippingZone shippingZone);
 
-  @DELETE("shipping_zones/{shippingZoneId}")
-  Call<Void> deleteShippingZone(@Path("shippingZoneId") String shippingZoneId);
-
   @GET("shipping_zones/{shippingZoneId}")
   Call<ShippingZone> retrieveShippingZone(@Path("shippingZoneId") String shippingZoneId);
 
   @GET("shipping_zones/{shippingZoneId}")
   Call<ShippingZone> retrieveShippingZone(@Path("shippingZoneId") String shippingZoneId,
       @QueryMap Map<String, String> queryStringParams);
+
+  @DELETE("shipping_zones/{shippingZoneId}")
+  Call<Void> deleteShippingZone(@Path("shippingZoneId") String shippingZoneId);
 }

@@ -31,15 +31,15 @@ public interface OrderService {
   @PATCH("orders/{orderId}")
   Call<Order> updateOrder(@Path("orderId") String orderId, @Body Order order);
 
-  @DELETE("orders/{orderId}")
-  Call<Void> deleteOrder(@Path("orderId") String orderId);
-
   @GET("orders/{orderId}")
   Call<Order> retrieveOrder(@Path("orderId") String orderId);
 
   @GET("orders/{orderId}")
   Call<Order> retrieveOrder(@Path("orderId") String orderId,
       @QueryMap Map<String, String> queryStringParams);
+
+  @DELETE("orders/{orderId}")
+  Call<Void> deleteOrder(@Path("orderId") String orderId);
 
   @GET("orders/{orderId}/billing_address")
   Call<List<Address>> retrieveOrderBillingAddress(@Path("orderId") String orderId);

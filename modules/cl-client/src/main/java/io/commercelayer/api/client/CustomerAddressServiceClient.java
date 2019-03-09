@@ -4,7 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
-import io.commercelayer.api.client.common.QueryFilter;
+import io.commercelayer.api.client.common.query.QueryFilter;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.exception.ApiException;
 import io.commercelayer.api.model.Address;
@@ -75,16 +75,6 @@ public class CustomerAddressServiceClient extends AbstractServiceClient<Customer
     asyncCall(call, callback);
   }
 
-  public void deleteCustomerAddress(String customerAddressId) throws ApiException {
-    Call<Void> call = service.deleteCustomerAddress(customerAddressId);
-    syncCall(call);
-  }
-
-  public void deleteCustomerAddress(String customerAddressId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteCustomerAddress(customerAddressId);
-    asyncCall(call, callback);
-  }
-
   public CustomerAddress retrieveCustomerAddress(String customerAddressId, QueryFilter queryFilter)
       throws ApiException {
     Call<CustomerAddress> call = service.retrieveCustomerAddress(customerAddressId, queryFilter);
@@ -105,6 +95,16 @@ public class CustomerAddressServiceClient extends AbstractServiceClient<Customer
   public void retrieveCustomerAddress(String customerAddressId,
       ApiCallback<CustomerAddress> callback) {
     Call<CustomerAddress> call = service.retrieveCustomerAddress(customerAddressId);
+    asyncCall(call, callback);
+  }
+
+  public void deleteCustomerAddress(String customerAddressId) throws ApiException {
+    Call<Void> call = service.deleteCustomerAddress(customerAddressId);
+    syncCall(call);
+  }
+
+  public void deleteCustomerAddress(String customerAddressId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteCustomerAddress(customerAddressId);
     asyncCall(call, callback);
   }
 

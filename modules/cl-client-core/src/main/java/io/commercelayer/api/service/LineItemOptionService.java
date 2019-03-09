@@ -28,15 +28,15 @@ public interface LineItemOptionService {
   Call<LineItemOption> updateLineItemOption(@Path("lineItemOptionId") String lineItemOptionId,
       @Body LineItemOption lineItemOption);
 
-  @DELETE("line_item_options/{lineItemOptionId}")
-  Call<Void> deleteLineItemOption(@Path("lineItemOptionId") String lineItemOptionId);
-
   @GET("line_item_options/{lineItemOptionId}")
   Call<LineItemOption> retrieveLineItemOption(@Path("lineItemOptionId") String lineItemOptionId);
 
   @GET("line_item_options/{lineItemOptionId}")
   Call<LineItemOption> retrieveLineItemOption(@Path("lineItemOptionId") String lineItemOptionId,
       @QueryMap Map<String, String> queryStringParams);
+
+  @DELETE("line_item_options/{lineItemOptionId}")
+  Call<Void> deleteLineItemOption(@Path("lineItemOptionId") String lineItemOptionId);
 
   @GET("line_item_options/{lineItemOptionId}/line_item")
   Call<LineItem> retrieveLineItemOptionLineItem(@Path("lineItemOptionId") String lineItemOptionId);

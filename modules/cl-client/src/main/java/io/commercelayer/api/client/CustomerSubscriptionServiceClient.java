@@ -4,7 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
-import io.commercelayer.api.client.common.QueryFilter;
+import io.commercelayer.api.client.common.query.QueryFilter;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.exception.ApiException;
 import io.commercelayer.api.model.Customer;
@@ -75,17 +75,6 @@ public class CustomerSubscriptionServiceClient extends AbstractServiceClient<Cus
     asyncCall(call, callback);
   }
 
-  public void deleteCustomerSubscription(String customerSubscriptionId) throws ApiException {
-    Call<Void> call = service.deleteCustomerSubscription(customerSubscriptionId);
-    syncCall(call);
-  }
-
-  public void deleteCustomerSubscription(String customerSubscriptionId,
-      ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteCustomerSubscription(customerSubscriptionId);
-    asyncCall(call, callback);
-  }
-
   public CustomerSubscription retrieveCustomerSubscription(String customerSubscriptionId,
       QueryFilter queryFilter) throws ApiException {
     Call<CustomerSubscription> call = service.retrieveCustomerSubscription(customerSubscriptionId, queryFilter);
@@ -107,6 +96,17 @@ public class CustomerSubscriptionServiceClient extends AbstractServiceClient<Cus
   public void retrieveCustomerSubscription(String customerSubscriptionId,
       ApiCallback<CustomerSubscription> callback) {
     Call<CustomerSubscription> call = service.retrieveCustomerSubscription(customerSubscriptionId);
+    asyncCall(call, callback);
+  }
+
+  public void deleteCustomerSubscription(String customerSubscriptionId) throws ApiException {
+    Call<Void> call = service.deleteCustomerSubscription(customerSubscriptionId);
+    syncCall(call);
+  }
+
+  public void deleteCustomerSubscription(String customerSubscriptionId,
+      ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteCustomerSubscription(customerSubscriptionId);
     asyncCall(call, callback);
   }
 

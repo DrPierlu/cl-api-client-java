@@ -4,7 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
-import io.commercelayer.api.client.common.QueryFilter;
+import io.commercelayer.api.client.common.query.QueryFilter;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.exception.ApiException;
 import io.commercelayer.api.model.InventoryModel;
@@ -72,16 +72,6 @@ public class InventoryModelServiceClient extends AbstractServiceClient<Inventory
     asyncCall(call, callback);
   }
 
-  public void deleteInventoryModel(String inventoryModelId) throws ApiException {
-    Call<Void> call = service.deleteInventoryModel(inventoryModelId);
-    syncCall(call);
-  }
-
-  public void deleteInventoryModel(String inventoryModelId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteInventoryModel(inventoryModelId);
-    asyncCall(call, callback);
-  }
-
   public InventoryModel retrieveInventoryModel(String inventoryModelId, QueryFilter queryFilter)
       throws ApiException {
     Call<InventoryModel> call = service.retrieveInventoryModel(inventoryModelId, queryFilter);
@@ -102,6 +92,16 @@ public class InventoryModelServiceClient extends AbstractServiceClient<Inventory
   public void retrieveInventoryModel(String inventoryModelId,
       ApiCallback<InventoryModel> callback) {
     Call<InventoryModel> call = service.retrieveInventoryModel(inventoryModelId);
+    asyncCall(call, callback);
+  }
+
+  public void deleteInventoryModel(String inventoryModelId) throws ApiException {
+    Call<Void> call = service.deleteInventoryModel(inventoryModelId);
+    syncCall(call);
+  }
+
+  public void deleteInventoryModel(String inventoryModelId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteInventoryModel(inventoryModelId);
     asyncCall(call, callback);
   }
 

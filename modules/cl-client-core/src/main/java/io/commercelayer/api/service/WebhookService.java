@@ -25,13 +25,13 @@ public interface WebhookService {
   @PATCH("webhooks/{webhookId}")
   Call<Webhook> updateWebhook(@Path("webhookId") String webhookId, @Body Webhook webhook);
 
-  @DELETE("webhooks/{webhookId}")
-  Call<Void> deleteWebhook(@Path("webhookId") String webhookId);
-
   @GET("webhooks/{webhookId}")
   Call<Webhook> retrieveWebhook(@Path("webhookId") String webhookId);
 
   @GET("webhooks/{webhookId}")
   Call<Webhook> retrieveWebhook(@Path("webhookId") String webhookId,
       @QueryMap Map<String, String> queryStringParams);
+
+  @DELETE("webhooks/{webhookId}")
+  Call<Void> deleteWebhook(@Path("webhookId") String webhookId);
 }

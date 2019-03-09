@@ -3,7 +3,7 @@ package io.commercelayer.api.test.model;
 import org.junit.Test;
 
 import io.commercelayer.api.client.OrderServiceClient;
-import io.commercelayer.api.client.common.QueryFilter;
+import io.commercelayer.api.client.common.query.QueryFilter;
 import io.commercelayer.api.exception.ApiException;
 import io.commercelayer.api.model.Order;
 

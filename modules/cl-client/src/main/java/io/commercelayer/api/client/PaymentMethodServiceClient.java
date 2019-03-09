@@ -4,7 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
-import io.commercelayer.api.client.common.QueryFilter;
+import io.commercelayer.api.client.common.query.QueryFilter;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.exception.ApiException;
 import io.commercelayer.api.model.Market;
@@ -73,16 +73,6 @@ public class PaymentMethodServiceClient extends AbstractServiceClient<PaymentMet
     asyncCall(call, callback);
   }
 
-  public void deletePaymentMethod(String paymentMethodId) throws ApiException {
-    Call<Void> call = service.deletePaymentMethod(paymentMethodId);
-    syncCall(call);
-  }
-
-  public void deletePaymentMethod(String paymentMethodId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deletePaymentMethod(paymentMethodId);
-    asyncCall(call, callback);
-  }
-
   public PaymentMethod retrievePaymentMethod(String paymentMethodId, QueryFilter queryFilter) throws
       ApiException {
     Call<PaymentMethod> call = service.retrievePaymentMethod(paymentMethodId, queryFilter);
@@ -102,6 +92,16 @@ public class PaymentMethodServiceClient extends AbstractServiceClient<PaymentMet
 
   public void retrievePaymentMethod(String paymentMethodId, ApiCallback<PaymentMethod> callback) {
     Call<PaymentMethod> call = service.retrievePaymentMethod(paymentMethodId);
+    asyncCall(call, callback);
+  }
+
+  public void deletePaymentMethod(String paymentMethodId) throws ApiException {
+    Call<Void> call = service.deletePaymentMethod(paymentMethodId);
+    syncCall(call);
+  }
+
+  public void deletePaymentMethod(String paymentMethodId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deletePaymentMethod(paymentMethodId);
     asyncCall(call, callback);
   }
 

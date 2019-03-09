@@ -27,15 +27,15 @@ public interface InventoryModelService {
   Call<InventoryModel> updateInventoryModel(@Path("inventoryModelId") String inventoryModelId,
       @Body InventoryModel inventoryModel);
 
-  @DELETE("inventory_models/{inventoryModelId}")
-  Call<Void> deleteInventoryModel(@Path("inventoryModelId") String inventoryModelId);
-
   @GET("inventory_models/{inventoryModelId}")
   Call<InventoryModel> retrieveInventoryModel(@Path("inventoryModelId") String inventoryModelId);
 
   @GET("inventory_models/{inventoryModelId}")
   Call<InventoryModel> retrieveInventoryModel(@Path("inventoryModelId") String inventoryModelId,
       @QueryMap Map<String, String> queryStringParams);
+
+  @DELETE("inventory_models/{inventoryModelId}")
+  Call<Void> deleteInventoryModel(@Path("inventoryModelId") String inventoryModelId);
 
   @GET("inventory_models/{inventoryModelId}/stock_levels")
   Call<List<StockLevel>> listInventoryModelStockLevels(

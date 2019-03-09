@@ -4,7 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
-import io.commercelayer.api.client.common.QueryFilter;
+import io.commercelayer.api.client.common.query.QueryFilter;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.exception.ApiException;
 import io.commercelayer.api.model.Order;
@@ -72,16 +72,6 @@ public class PaypalPaymentServiceClient extends AbstractServiceClient<PaypalPaym
     asyncCall(call, callback);
   }
 
-  public void deletePaypalPayment(String paypalPaymentId) throws ApiException {
-    Call<Void> call = service.deletePaypalPayment(paypalPaymentId);
-    syncCall(call);
-  }
-
-  public void deletePaypalPayment(String paypalPaymentId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deletePaypalPayment(paypalPaymentId);
-    asyncCall(call, callback);
-  }
-
   public PaypalPayment retrievePaypalPayment(String paypalPaymentId, QueryFilter queryFilter) throws
       ApiException {
     Call<PaypalPayment> call = service.retrievePaypalPayment(paypalPaymentId, queryFilter);
@@ -101,6 +91,16 @@ public class PaypalPaymentServiceClient extends AbstractServiceClient<PaypalPaym
 
   public void retrievePaypalPayment(String paypalPaymentId, ApiCallback<PaypalPayment> callback) {
     Call<PaypalPayment> call = service.retrievePaypalPayment(paypalPaymentId);
+    asyncCall(call, callback);
+  }
+
+  public void deletePaypalPayment(String paypalPaymentId) throws ApiException {
+    Call<Void> call = service.deletePaypalPayment(paypalPaymentId);
+    syncCall(call);
+  }
+
+  public void deletePaypalPayment(String paypalPaymentId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deletePaypalPayment(paypalPaymentId);
     asyncCall(call, callback);
   }
 

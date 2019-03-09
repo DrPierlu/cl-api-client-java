@@ -31,15 +31,15 @@ public interface ShipmentService {
   @PATCH("shipments/{shipmentId}")
   Call<Shipment> updateShipment(@Path("shipmentId") String shipmentId, @Body Shipment shipment);
 
-  @DELETE("shipments/{shipmentId}")
-  Call<Void> deleteShipment(@Path("shipmentId") String shipmentId);
-
   @GET("shipments/{shipmentId}")
   Call<Shipment> retrieveShipment(@Path("shipmentId") String shipmentId);
 
   @GET("shipments/{shipmentId}")
   Call<Shipment> retrieveShipment(@Path("shipmentId") String shipmentId,
       @QueryMap Map<String, String> queryStringParams);
+
+  @DELETE("shipments/{shipmentId}")
+  Call<Void> deleteShipment(@Path("shipmentId") String shipmentId);
 
   @GET("shipments/{shipmentId}/available_shipping_methods")
   Call<List<ShippingMethod>> listShipmentAvailableShippingMethods(

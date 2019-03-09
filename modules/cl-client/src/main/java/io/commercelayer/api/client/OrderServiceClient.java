@@ -4,7 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
-import io.commercelayer.api.client.common.QueryFilter;
+import io.commercelayer.api.client.common.query.QueryFilter;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.exception.ApiException;
 import io.commercelayer.api.model.Address;
@@ -21,7 +21,7 @@ import retrofit2.Call;
 
 public class OrderServiceClient extends AbstractServiceClient<OrderService> {
   {
-    initServiceCallFactory(OrderService.class, true, Order.class);
+    initServiceCallFactory(OrderService.class, Order.class);
   }
 
   public OrderServiceClient(ApiOrganization apiOrg, ApiAuth apiAuth) throws AuthException {
@@ -72,16 +72,6 @@ public class OrderServiceClient extends AbstractServiceClient<OrderService> {
     asyncCall(call, callback);
   }
 
-  public void deleteOrder(String orderId) throws ApiException {
-    Call<Void> call = service.deleteOrder(orderId);
-    syncCall(call);
-  }
-
-  public void deleteOrder(String orderId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteOrder(orderId);
-    asyncCall(call, callback);
-  }
-
   public Order retrieveOrder(String orderId, QueryFilter queryFilter) throws ApiException {
     Call<Order> call = service.retrieveOrder(orderId, queryFilter);
     return syncCall(call);
@@ -99,6 +89,16 @@ public class OrderServiceClient extends AbstractServiceClient<OrderService> {
 
   public void retrieveOrder(String orderId, ApiCallback<Order> callback) {
     Call<Order> call = service.retrieveOrder(orderId);
+    asyncCall(call, callback);
+  }
+
+  public void deleteOrder(String orderId) throws ApiException {
+    Call<Void> call = service.deleteOrder(orderId);
+    syncCall(call);
+  }
+
+  public void deleteOrder(String orderId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteOrder(orderId);
     asyncCall(call, callback);
   }
 

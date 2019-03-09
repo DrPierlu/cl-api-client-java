@@ -30,15 +30,15 @@ public interface SkuService {
   @PATCH("skus/{skuId}")
   Call<Sku> updateSku(@Path("skuId") String skuId, @Body Sku sku);
 
-  @DELETE("skus/{skuId}")
-  Call<Void> deleteSku(@Path("skuId") String skuId);
-
   @GET("skus/{skuId}")
   Call<Sku> retrieveSku(@Path("skuId") String skuId);
 
   @GET("skus/{skuId}")
   Call<Sku> retrieveSku(@Path("skuId") String skuId,
       @QueryMap Map<String, String> queryStringParams);
+
+  @DELETE("skus/{skuId}")
+  Call<Void> deleteSku(@Path("skuId") String skuId);
 
   @GET("skus/{skuId}/delivery_lead_times")
   Call<List<DeliveryLeadTime>> listSkuDeliveryLeadTimes(@Path("skuId") String skuId);

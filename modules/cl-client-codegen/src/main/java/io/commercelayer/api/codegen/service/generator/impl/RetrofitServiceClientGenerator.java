@@ -24,7 +24,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
-import io.commercelayer.api.client.common.QueryFilter;
+import io.commercelayer.api.client.common.query.QueryFilter;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.codegen.model.generator.ModelGeneratorUtils;
 import io.commercelayer.api.codegen.schema.ApiOperation;
@@ -158,17 +158,18 @@ public class RetrofitServiceClientGenerator implements ServiceGenerator {
 		
 		// Body Parameter
 		if (op.hasRequestBody()) {
-			String pName = StringUtils.uncapitalize(resourceName);
+			String pName = ServiceGeneratorUtils.unreserve(StringUtils.uncapitalize(resourceName));
 			methodBuilder.addParameter(
 				ParameterSpec.builder(
 					ClassName.get(ModelGeneratorUtils.MODEL_BASE_PACKAGE, resourceName),
-					ServiceGeneratorUtils.unreserve(pName)
+					pName
 				).build()
 			);
 			methodParams.add(pName);
 		}
 		
-		if (OperationType.GET.equals(op.getType()) && qsParams) {
+//		if (OperationType.GET.equals(op.getType()) && qsParams) {
+		if (!OperationType.DELETE.equals(op.getType()) && qsParams) {
 			ParameterSpec queryFilterParam = buildQueryFilterParameter();
 			methodBuilder.addParameter(queryFilterParam);
 			methodParams.add(queryFilterParam.name);
@@ -203,18 +204,19 @@ public class RetrofitServiceClientGenerator implements ServiceGenerator {
 		
 		// Body Parameter
 		if (op.hasRequestBody()) {
-			String pName = StringUtils.uncapitalize(resourceName);
+			String pName = ServiceGeneratorUtils.unreserve(StringUtils.uncapitalize(resourceName));
 			methodBuilder.addParameter(
 				ParameterSpec.builder(
 					ClassName.get(ModelGeneratorUtils.MODEL_BASE_PACKAGE, resourceName),
-					ServiceGeneratorUtils.unreserve(pName)
+					pName
 				).build()
 			);
 			methodParams.add(pName);
 		}
 		
 		// QueryString Param Map
-		if (OperationType.GET.equals(op.getType()) && qsParams) {
+//		if (OperationType.GET.equals(op.getType()) && qsParams) {
+		if (!OperationType.DELETE.equals(op.getType()) && qsParams) {
 			ParameterSpec queryFilterParam = buildQueryFilterParameter();
 			methodBuilder.addParameter(queryFilterParam);
 			methodParams.add(queryFilterParam.name);

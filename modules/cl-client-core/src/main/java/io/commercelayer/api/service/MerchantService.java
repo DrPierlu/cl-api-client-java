@@ -26,15 +26,15 @@ public interface MerchantService {
   @PATCH("merchants/{merchantId}")
   Call<Merchant> updateMerchant(@Path("merchantId") String merchantId, @Body Merchant merchant);
 
-  @DELETE("merchants/{merchantId}")
-  Call<Void> deleteMerchant(@Path("merchantId") String merchantId);
-
   @GET("merchants/{merchantId}")
   Call<Merchant> retrieveMerchant(@Path("merchantId") String merchantId);
 
   @GET("merchants/{merchantId}")
   Call<Merchant> retrieveMerchant(@Path("merchantId") String merchantId,
       @QueryMap Map<String, String> queryStringParams);
+
+  @DELETE("merchants/{merchantId}")
+  Call<Void> deleteMerchant(@Path("merchantId") String merchantId);
 
   @GET("merchants/{merchantId}/address")
   Call<Address> retrieveMerchantAddress(@Path("merchantId") String merchantId);

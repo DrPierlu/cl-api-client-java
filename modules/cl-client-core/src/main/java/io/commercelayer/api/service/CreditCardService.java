@@ -27,15 +27,15 @@ public interface CreditCardService {
   Call<CreditCard> updateCreditCard(@Path("creditCardId") String creditCardId,
       @Body CreditCard creditCard);
 
-  @DELETE("credit_cards/{creditCardId}")
-  Call<Void> deleteCreditCard(@Path("creditCardId") String creditCardId);
-
   @GET("credit_cards/{creditCardId}")
   Call<CreditCard> retrieveCreditCard(@Path("creditCardId") String creditCardId);
 
   @GET("credit_cards/{creditCardId}")
   Call<CreditCard> retrieveCreditCard(@Path("creditCardId") String creditCardId,
       @QueryMap Map<String, String> queryStringParams);
+
+  @DELETE("credit_cards/{creditCardId}")
+  Call<Void> deleteCreditCard(@Path("creditCardId") String creditCardId);
 
   @GET("credit_cards/{creditCardId}/order")
   Call<Order> retrieveCreditCardOrder(@Path("creditCardId") String creditCardId);

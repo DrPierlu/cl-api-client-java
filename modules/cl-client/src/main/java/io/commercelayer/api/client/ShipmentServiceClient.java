@@ -4,7 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
-import io.commercelayer.api.client.common.QueryFilter;
+import io.commercelayer.api.client.common.query.QueryFilter;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.exception.ApiException;
 import io.commercelayer.api.model.Address;
@@ -72,16 +72,6 @@ public class ShipmentServiceClient extends AbstractServiceClient<ShipmentService
     asyncCall(call, callback);
   }
 
-  public void deleteShipment(String shipmentId) throws ApiException {
-    Call<Void> call = service.deleteShipment(shipmentId);
-    syncCall(call);
-  }
-
-  public void deleteShipment(String shipmentId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteShipment(shipmentId);
-    asyncCall(call, callback);
-  }
-
   public Shipment retrieveShipment(String shipmentId, QueryFilter queryFilter) throws ApiException {
     Call<Shipment> call = service.retrieveShipment(shipmentId, queryFilter);
     return syncCall(call);
@@ -100,6 +90,16 @@ public class ShipmentServiceClient extends AbstractServiceClient<ShipmentService
 
   public void retrieveShipment(String shipmentId, ApiCallback<Shipment> callback) {
     Call<Shipment> call = service.retrieveShipment(shipmentId);
+    asyncCall(call, callback);
+  }
+
+  public void deleteShipment(String shipmentId) throws ApiException {
+    Call<Void> call = service.deleteShipment(shipmentId);
+    syncCall(call);
+  }
+
+  public void deleteShipment(String shipmentId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteShipment(shipmentId);
     asyncCall(call, callback);
   }
 

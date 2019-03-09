@@ -30,9 +30,6 @@ public interface DeliveryLeadTimeService {
       @Path("deliveryLeadTimeId") String deliveryLeadTimeId,
       @Body DeliveryLeadTime deliveryLeadTime);
 
-  @DELETE("delivery_lead_times/{deliveryLeadTimeId}")
-  Call<Void> deleteDeliveryLeadTime(@Path("deliveryLeadTimeId") String deliveryLeadTimeId);
-
   @GET("delivery_lead_times/{deliveryLeadTimeId}")
   Call<DeliveryLeadTime> retrieveDeliveryLeadTime(
       @Path("deliveryLeadTimeId") String deliveryLeadTimeId);
@@ -41,6 +38,9 @@ public interface DeliveryLeadTimeService {
   Call<DeliveryLeadTime> retrieveDeliveryLeadTime(
       @Path("deliveryLeadTimeId") String deliveryLeadTimeId,
       @QueryMap Map<String, String> queryStringParams);
+
+  @DELETE("delivery_lead_times/{deliveryLeadTimeId}")
+  Call<Void> deleteDeliveryLeadTime(@Path("deliveryLeadTimeId") String deliveryLeadTimeId);
 
   @GET("delivery_lead_times/{deliveryLeadTimeId}/shipping_method")
   Call<ShippingMethod> retrieveDeliveryLeadTimeShippingMethod(

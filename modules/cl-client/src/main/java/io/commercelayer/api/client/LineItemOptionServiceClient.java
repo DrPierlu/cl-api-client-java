@@ -4,7 +4,7 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
-import io.commercelayer.api.client.common.QueryFilter;
+import io.commercelayer.api.client.common.query.QueryFilter;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.exception.ApiException;
 import io.commercelayer.api.model.LineItem;
@@ -73,16 +73,6 @@ public class LineItemOptionServiceClient extends AbstractServiceClient<LineItemO
     asyncCall(call, callback);
   }
 
-  public void deleteLineItemOption(String lineItemOptionId) throws ApiException {
-    Call<Void> call = service.deleteLineItemOption(lineItemOptionId);
-    syncCall(call);
-  }
-
-  public void deleteLineItemOption(String lineItemOptionId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteLineItemOption(lineItemOptionId);
-    asyncCall(call, callback);
-  }
-
   public LineItemOption retrieveLineItemOption(String lineItemOptionId, QueryFilter queryFilter)
       throws ApiException {
     Call<LineItemOption> call = service.retrieveLineItemOption(lineItemOptionId, queryFilter);
@@ -103,6 +93,16 @@ public class LineItemOptionServiceClient extends AbstractServiceClient<LineItemO
   public void retrieveLineItemOption(String lineItemOptionId,
       ApiCallback<LineItemOption> callback) {
     Call<LineItemOption> call = service.retrieveLineItemOption(lineItemOptionId);
+    asyncCall(call, callback);
+  }
+
+  public void deleteLineItemOption(String lineItemOptionId) throws ApiException {
+    Call<Void> call = service.deleteLineItemOption(lineItemOptionId);
+    syncCall(call);
+  }
+
+  public void deleteLineItemOption(String lineItemOptionId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteLineItemOption(lineItemOptionId);
     asyncCall(call, callback);
   }
 

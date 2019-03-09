@@ -7,11 +7,12 @@
 	<artifactId>cl-client-test</artifactId>
 	<name>CLAPI-Test</name>
 	<description>Commerce Layer API Java Client - Tests</description>
+	<version>2.0.1</version>
 
 	<parent>
 		<groupId>io.commercelayer.api</groupId>
 		<artifactId>cl-api-client-java</artifactId>
-		<version>2.0</version>
+		<version>[2.0,)</version>
 		<relativePath>../../</relativePath>
 	</parent>
 

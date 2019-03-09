@@ -4,11 +4,12 @@ import io.commercelayer.api.auth.ApiAuth;
 import io.commercelayer.api.auth.ApiToken;
 import io.commercelayer.api.client.common.AbstractServiceClient;
 import io.commercelayer.api.client.common.ApiCallback;
-import io.commercelayer.api.client.common.QueryFilter;
+import io.commercelayer.api.client.common.query.QueryFilter;
 import io.commercelayer.api.client.exception.AuthException;
 import io.commercelayer.api.exception.ApiException;
 import io.commercelayer.api.model.Customer;
 import io.commercelayer.api.model.CustomerAddress;
+import io.commercelayer.api.model.CustomerGroup;
 import io.commercelayer.api.model.CustomerPaymentSource;
 import io.commercelayer.api.model.CustomerSubscription;
 import io.commercelayer.api.model.Order;
@@ -70,16 +71,6 @@ public class CustomerServiceClient extends AbstractServiceClient<CustomerService
     asyncCall(call, callback);
   }
 
-  public void deleteCustomer(String customerId) throws ApiException {
-    Call<Void> call = service.deleteCustomer(customerId);
-    syncCall(call);
-  }
-
-  public void deleteCustomer(String customerId, ApiCallback<Void> callback) {
-    Call<Void> call = service.deleteCustomer(customerId);
-    asyncCall(call, callback);
-  }
-
   public Customer retrieveCustomer(String customerId, QueryFilter queryFilter) throws ApiException {
     Call<Customer> call = service.retrieveCustomer(customerId, queryFilter);
     return syncCall(call);
@@ -98,6 +89,16 @@ public class CustomerServiceClient extends AbstractServiceClient<CustomerService
 
   public void retrieveCustomer(String customerId, ApiCallback<Customer> callback) {
     Call<Customer> call = service.retrieveCustomer(customerId);
+    asyncCall(call, callback);
+  }
+
+  public void deleteCustomer(String customerId) throws ApiException {
+    Call<Void> call = service.deleteCustomer(customerId);
+    syncCall(call);
+  }
+
+  public void deleteCustomer(String customerId, ApiCallback<Void> callback) {
+    Call<Void> call = service.deleteCustomer(customerId);
     asyncCall(call, callback);
   }
 
@@ -122,6 +123,29 @@ public class CustomerServiceClient extends AbstractServiceClient<CustomerService
   public void listCustomerCustomerAddresses(String customerId,
       ApiCallback<List<CustomerAddress>> callback) {
     Call<List<CustomerAddress>> call = service.listCustomerCustomerAddresses(customerId);
+    asyncCall(call, callback);
+  }
+
+  public CustomerGroup retrieveCustomerCustomerGroup(String customerId, QueryFilter queryFilter)
+      throws ApiException {
+    Call<CustomerGroup> call = service.retrieveCustomerCustomerGroup(customerId, queryFilter);
+    return syncCall(call);
+  }
+
+  public void retrieveCustomerCustomerGroup(String customerId, QueryFilter queryFilter,
+      ApiCallback<CustomerGroup> callback) {
+    Call<CustomerGroup> call = service.retrieveCustomerCustomerGroup(customerId, queryFilter);
+    asyncCall(call, callback);
+  }
+
+  public CustomerGroup retrieveCustomerCustomerGroup(String customerId) throws ApiException {
+    Call<CustomerGroup> call = service.retrieveCustomerCustomerGroup(customerId);
+    return syncCall(call);
+  }
+
+  public void retrieveCustomerCustomerGroup(String customerId,
+      ApiCallback<CustomerGroup> callback) {
+    Call<CustomerGroup> call = service.retrieveCustomerCustomerGroup(customerId);
     asyncCall(call, callback);
   }
 

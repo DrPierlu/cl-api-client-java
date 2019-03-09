@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.Test;
 
 import io.commercelayer.api.client.AddressServiceClient;
-import io.commercelayer.api.client.common.QueryFilter;
+import io.commercelayer.api.client.common.query.QueryFilter;
 import io.commercelayer.api.client.exception.ConnectionException;
 import io.commercelayer.api.exception.ApiException;
 import io.commercelayer.api.model.Address;

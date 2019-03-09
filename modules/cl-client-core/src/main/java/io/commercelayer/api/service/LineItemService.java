@@ -27,15 +27,15 @@ public interface LineItemService {
   @PATCH("line_items/{lineItemId}")
   Call<LineItem> updateLineItem(@Path("lineItemId") String lineItemId, @Body LineItem lineItem);
 
-  @DELETE("line_items/{lineItemId}")
-  Call<Void> deleteLineItem(@Path("lineItemId") String lineItemId);
-
   @GET("line_items/{lineItemId}")
   Call<LineItem> retrieveLineItem(@Path("lineItemId") String lineItemId);
 
   @GET("line_items/{lineItemId}")
   Call<LineItem> retrieveLineItem(@Path("lineItemId") String lineItemId,
       @QueryMap Map<String, String> queryStringParams);
+
+  @DELETE("line_items/{lineItemId}")
+  Call<Void> deleteLineItem(@Path("lineItemId") String lineItemId);
 
   @GET("line_items/{lineItemId}/line_item_options")
   Call<List<LineItemOption>> listLineItemLineItemOptions(@Path("lineItemId") String lineItemId);

@@ -28,15 +28,15 @@ public interface StockLevelService {
   Call<StockLevel> updateStockLevel(@Path("stockLevelId") String stockLevelId,
       @Body StockLevel stockLevel);
 
-  @DELETE("stock_levels/{stockLevelId}")
-  Call<Void> deleteStockLevel(@Path("stockLevelId") String stockLevelId);
-
   @GET("stock_levels/{stockLevelId}")
   Call<StockLevel> retrieveStockLevel(@Path("stockLevelId") String stockLevelId);
 
   @GET("stock_levels/{stockLevelId}")
   Call<StockLevel> retrieveStockLevel(@Path("stockLevelId") String stockLevelId,
       @QueryMap Map<String, String> queryStringParams);
+
+  @DELETE("stock_levels/{stockLevelId}")
+  Call<Void> deleteStockLevel(@Path("stockLevelId") String stockLevelId);
 
   @GET("stock_levels/{stockLevelId}/inventory_model")
   Call<InventoryModel> retrieveStockLevelInventoryModel(@Path("stockLevelId") String stockLevelId);

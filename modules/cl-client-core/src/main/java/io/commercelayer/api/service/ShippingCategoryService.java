@@ -29,9 +29,6 @@ public interface ShippingCategoryService {
       @Path("shippingCategoryId") String shippingCategoryId,
       @Body ShippingCategory shippingCategory);
 
-  @DELETE("shipping_categories/{shippingCategoryId}")
-  Call<Void> deleteShippingCategory(@Path("shippingCategoryId") String shippingCategoryId);
-
   @GET("shipping_categories/{shippingCategoryId}")
   Call<ShippingCategory> retrieveShippingCategory(
       @Path("shippingCategoryId") String shippingCategoryId);
@@ -40,6 +37,9 @@ public interface ShippingCategoryService {
   Call<ShippingCategory> retrieveShippingCategory(
       @Path("shippingCategoryId") String shippingCategoryId,
       @QueryMap Map<String, String> queryStringParams);
+
+  @DELETE("shipping_categories/{shippingCategoryId}")
+  Call<Void> deleteShippingCategory(@Path("shippingCategoryId") String shippingCategoryId);
 
   @GET("shipping_categories/{shippingCategoryId}/skus")
   Call<List<Sku>> listShippingCategorySkus(@Path("shippingCategoryId") String shippingCategoryId);

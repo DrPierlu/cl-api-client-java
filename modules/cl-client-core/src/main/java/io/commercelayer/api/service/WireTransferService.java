@@ -27,15 +27,15 @@ public interface WireTransferService {
   Call<WireTransfer> updateWireTransfer(@Path("wireTransferId") String wireTransferId,
       @Body WireTransfer wireTransfer);
 
-  @DELETE("wire_transfers/{wireTransferId}")
-  Call<Void> deleteWireTransfer(@Path("wireTransferId") String wireTransferId);
-
   @GET("wire_transfers/{wireTransferId}")
   Call<WireTransfer> retrieveWireTransfer(@Path("wireTransferId") String wireTransferId);
 
   @GET("wire_transfers/{wireTransferId}")
   Call<WireTransfer> retrieveWireTransfer(@Path("wireTransferId") String wireTransferId,
       @QueryMap Map<String, String> queryStringParams);
+
+  @DELETE("wire_transfers/{wireTransferId}")
+  Call<Void> deleteWireTransfer(@Path("wireTransferId") String wireTransferId);
 
   @GET("wire_transfers/{wireTransferId}/order")
   Call<Order> retrieveWireTransferOrder(@Path("wireTransferId") String wireTransferId);

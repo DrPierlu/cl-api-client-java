@@ -116,7 +116,8 @@ public class RetrofitServiceGenerator implements ServiceGenerator {
 				}
 				
 				// QueryMap Parameter for filters and sparse fieldset
-				if (OperationType.GET.equals(op.getType())) {
+//				if (OperationType.GET.equals(op.getType())) {
+				if (!OperationType.DELETE.equals(op.getType())) {
 					
 					// Add overloaded method without filter parameters
 					service.addMethod(methodBuilder.build());
@@ -130,6 +131,7 @@ public class RetrofitServiceGenerator implements ServiceGenerator {
 					
 				}
 				
+
 				service.addMethod(methodBuilder.build());
 				
 				logger.info("    Created Operation Interface [{}]", serOpName);
