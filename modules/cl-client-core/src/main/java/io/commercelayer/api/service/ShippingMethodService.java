@@ -26,9 +26,17 @@ public interface ShippingMethodService {
   @POST("shipping_methods")
   Call<ShippingMethod> createShippingMethod(@Body ShippingMethod shippingMethod);
 
+  @POST("shipping_methods")
+  Call<ShippingMethod> createShippingMethod(@Body ShippingMethod shippingMethod,
+      @QueryMap Map<String, String> queryStringParams);
+
   @PATCH("shipping_methods/{shippingMethodId}")
   Call<ShippingMethod> updateShippingMethod(@Path("shippingMethodId") String shippingMethodId,
       @Body ShippingMethod shippingMethod);
+
+  @PATCH("shipping_methods/{shippingMethodId}")
+  Call<ShippingMethod> updateShippingMethod(@Path("shippingMethodId") String shippingMethodId,
+      @Body ShippingMethod shippingMethod, @QueryMap Map<String, String> queryStringParams);
 
   @GET("shipping_methods/{shippingMethodId}")
   Call<ShippingMethod> retrieveShippingMethod(@Path("shippingMethodId") String shippingMethodId);

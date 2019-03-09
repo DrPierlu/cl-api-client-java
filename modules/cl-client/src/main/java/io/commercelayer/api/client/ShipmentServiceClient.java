@@ -52,6 +52,17 @@ public class ShipmentServiceClient extends AbstractServiceClient<ShipmentService
     asyncCall(call, callback);
   }
 
+  public Shipment createShipment(Shipment shipment, QueryFilter queryFilter) throws ApiException {
+    Call<Shipment> call = service.createShipment(shipment, queryFilter);
+    return syncCall(call);
+  }
+
+  public void createShipment(Shipment shipment, QueryFilter queryFilter,
+      ApiCallback<Shipment> callback) {
+    Call<Shipment> call = service.createShipment(shipment, queryFilter);
+    asyncCall(call, callback);
+  }
+
   public Shipment createShipment(Shipment shipment) throws ApiException {
     Call<Shipment> call = service.createShipment(shipment);
     return syncCall(call);
@@ -59,6 +70,18 @@ public class ShipmentServiceClient extends AbstractServiceClient<ShipmentService
 
   public void createShipment(Shipment shipment, ApiCallback<Shipment> callback) {
     Call<Shipment> call = service.createShipment(shipment);
+    asyncCall(call, callback);
+  }
+
+  public Shipment updateShipment(String shipmentId, Shipment shipment, QueryFilter queryFilter)
+      throws ApiException {
+    Call<Shipment> call = service.updateShipment(shipmentId, shipment, queryFilter);
+    return syncCall(call);
+  }
+
+  public void updateShipment(String shipmentId, Shipment shipment, QueryFilter queryFilter,
+      ApiCallback<Shipment> callback) {
+    Call<Shipment> call = service.updateShipment(shipmentId, shipment, queryFilter);
     asyncCall(call, callback);
   }
 

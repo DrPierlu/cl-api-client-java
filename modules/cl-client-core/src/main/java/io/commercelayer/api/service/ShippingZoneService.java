@@ -22,9 +22,17 @@ public interface ShippingZoneService {
   @POST("shipping_zones")
   Call<ShippingZone> createShippingZone(@Body ShippingZone shippingZone);
 
+  @POST("shipping_zones")
+  Call<ShippingZone> createShippingZone(@Body ShippingZone shippingZone,
+      @QueryMap Map<String, String> queryStringParams);
+
   @PATCH("shipping_zones/{shippingZoneId}")
   Call<ShippingZone> updateShippingZone(@Path("shippingZoneId") String shippingZoneId,
       @Body ShippingZone shippingZone);
+
+  @PATCH("shipping_zones/{shippingZoneId}")
+  Call<ShippingZone> updateShippingZone(@Path("shippingZoneId") String shippingZoneId,
+      @Body ShippingZone shippingZone, @QueryMap Map<String, String> queryStringParams);
 
   @GET("shipping_zones/{shippingZoneId}")
   Call<ShippingZone> retrieveShippingZone(@Path("shippingZoneId") String shippingZoneId);

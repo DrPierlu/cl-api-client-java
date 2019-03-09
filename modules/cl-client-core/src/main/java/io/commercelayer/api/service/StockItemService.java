@@ -24,9 +24,17 @@ public interface StockItemService {
   @POST("stock_items")
   Call<StockItem> createStockItem(@Body StockItem stockItem);
 
+  @POST("stock_items")
+  Call<StockItem> createStockItem(@Body StockItem stockItem,
+      @QueryMap Map<String, String> queryStringParams);
+
   @PATCH("stock_items/{stockItemId}")
   Call<StockItem> updateStockItem(@Path("stockItemId") String stockItemId,
       @Body StockItem stockItem);
+
+  @PATCH("stock_items/{stockItemId}")
+  Call<StockItem> updateStockItem(@Path("stockItemId") String stockItemId,
+      @Body StockItem stockItem, @QueryMap Map<String, String> queryStringParams);
 
   @GET("stock_items/{stockItemId}")
   Call<StockItem> retrieveStockItem(@Path("stockItemId") String stockItemId);

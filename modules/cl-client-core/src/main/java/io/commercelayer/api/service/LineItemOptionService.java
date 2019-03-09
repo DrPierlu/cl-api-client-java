@@ -24,9 +24,17 @@ public interface LineItemOptionService {
   @POST("line_item_options")
   Call<LineItemOption> createLineItemOption(@Body LineItemOption lineItemOption);
 
+  @POST("line_item_options")
+  Call<LineItemOption> createLineItemOption(@Body LineItemOption lineItemOption,
+      @QueryMap Map<String, String> queryStringParams);
+
   @PATCH("line_item_options/{lineItemOptionId}")
   Call<LineItemOption> updateLineItemOption(@Path("lineItemOptionId") String lineItemOptionId,
       @Body LineItemOption lineItemOption);
+
+  @PATCH("line_item_options/{lineItemOptionId}")
+  Call<LineItemOption> updateLineItemOption(@Path("lineItemOptionId") String lineItemOptionId,
+      @Body LineItemOption lineItemOption, @QueryMap Map<String, String> queryStringParams);
 
   @GET("line_item_options/{lineItemOptionId}")
   Call<LineItemOption> retrieveLineItemOption(@Path("lineItemOptionId") String lineItemOptionId);

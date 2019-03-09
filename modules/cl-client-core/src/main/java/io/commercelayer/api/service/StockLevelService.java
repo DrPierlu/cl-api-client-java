@@ -24,9 +24,17 @@ public interface StockLevelService {
   @POST("stock_levels")
   Call<StockLevel> createStockLevel(@Body StockLevel stockLevel);
 
+  @POST("stock_levels")
+  Call<StockLevel> createStockLevel(@Body StockLevel stockLevel,
+      @QueryMap Map<String, String> queryStringParams);
+
   @PATCH("stock_levels/{stockLevelId}")
   Call<StockLevel> updateStockLevel(@Path("stockLevelId") String stockLevelId,
       @Body StockLevel stockLevel);
+
+  @PATCH("stock_levels/{stockLevelId}")
+  Call<StockLevel> updateStockLevel(@Path("stockLevelId") String stockLevelId,
+      @Body StockLevel stockLevel, @QueryMap Map<String, String> queryStringParams);
 
   @GET("stock_levels/{stockLevelId}")
   Call<StockLevel> retrieveStockLevel(@Path("stockLevelId") String stockLevelId);

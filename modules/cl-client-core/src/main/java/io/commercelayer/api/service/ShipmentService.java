@@ -28,8 +28,16 @@ public interface ShipmentService {
   @POST("shipments")
   Call<Shipment> createShipment(@Body Shipment shipment);
 
+  @POST("shipments")
+  Call<Shipment> createShipment(@Body Shipment shipment,
+      @QueryMap Map<String, String> queryStringParams);
+
   @PATCH("shipments/{shipmentId}")
   Call<Shipment> updateShipment(@Path("shipmentId") String shipmentId, @Body Shipment shipment);
+
+  @PATCH("shipments/{shipmentId}")
+  Call<Shipment> updateShipment(@Path("shipmentId") String shipmentId, @Body Shipment shipment,
+      @QueryMap Map<String, String> queryStringParams);
 
   @GET("shipments/{shipmentId}")
   Call<Shipment> retrieveShipment(@Path("shipmentId") String shipmentId);

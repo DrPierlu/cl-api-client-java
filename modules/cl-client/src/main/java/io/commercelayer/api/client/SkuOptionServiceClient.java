@@ -47,6 +47,18 @@ public class SkuOptionServiceClient extends AbstractServiceClient<SkuOptionServi
     asyncCall(call, callback);
   }
 
+  public SkuOption createSkuOption(SkuOption skuOption, QueryFilter queryFilter) throws
+      ApiException {
+    Call<SkuOption> call = service.createSkuOption(skuOption, queryFilter);
+    return syncCall(call);
+  }
+
+  public void createSkuOption(SkuOption skuOption, QueryFilter queryFilter,
+      ApiCallback<SkuOption> callback) {
+    Call<SkuOption> call = service.createSkuOption(skuOption, queryFilter);
+    asyncCall(call, callback);
+  }
+
   public SkuOption createSkuOption(SkuOption skuOption) throws ApiException {
     Call<SkuOption> call = service.createSkuOption(skuOption);
     return syncCall(call);
@@ -54,6 +66,18 @@ public class SkuOptionServiceClient extends AbstractServiceClient<SkuOptionServi
 
   public void createSkuOption(SkuOption skuOption, ApiCallback<SkuOption> callback) {
     Call<SkuOption> call = service.createSkuOption(skuOption);
+    asyncCall(call, callback);
+  }
+
+  public SkuOption updateSkuOption(String skuOptionId, SkuOption skuOption, QueryFilter queryFilter)
+      throws ApiException {
+    Call<SkuOption> call = service.updateSkuOption(skuOptionId, skuOption, queryFilter);
+    return syncCall(call);
+  }
+
+  public void updateSkuOption(String skuOptionId, SkuOption skuOption, QueryFilter queryFilter,
+      ApiCallback<SkuOption> callback) {
+    Call<SkuOption> call = service.updateSkuOption(skuOptionId, skuOption, queryFilter);
     asyncCall(call, callback);
   }
 

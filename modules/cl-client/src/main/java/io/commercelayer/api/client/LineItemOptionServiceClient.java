@@ -50,6 +50,18 @@ public class LineItemOptionServiceClient extends AbstractServiceClient<LineItemO
     asyncCall(call, callback);
   }
 
+  public LineItemOption createLineItemOption(LineItemOption lineItemOption, QueryFilter queryFilter)
+      throws ApiException {
+    Call<LineItemOption> call = service.createLineItemOption(lineItemOption, queryFilter);
+    return syncCall(call);
+  }
+
+  public void createLineItemOption(LineItemOption lineItemOption, QueryFilter queryFilter,
+      ApiCallback<LineItemOption> callback) {
+    Call<LineItemOption> call = service.createLineItemOption(lineItemOption, queryFilter);
+    asyncCall(call, callback);
+  }
+
   public LineItemOption createLineItemOption(LineItemOption lineItemOption) throws ApiException {
     Call<LineItemOption> call = service.createLineItemOption(lineItemOption);
     return syncCall(call);
@@ -58,6 +70,18 @@ public class LineItemOptionServiceClient extends AbstractServiceClient<LineItemO
   public void createLineItemOption(LineItemOption lineItemOption,
       ApiCallback<LineItemOption> callback) {
     Call<LineItemOption> call = service.createLineItemOption(lineItemOption);
+    asyncCall(call, callback);
+  }
+
+  public LineItemOption updateLineItemOption(String lineItemOptionId, LineItemOption lineItemOption,
+      QueryFilter queryFilter) throws ApiException {
+    Call<LineItemOption> call = service.updateLineItemOption(lineItemOptionId, lineItemOption, queryFilter);
+    return syncCall(call);
+  }
+
+  public void updateLineItemOption(String lineItemOptionId, LineItemOption lineItemOption,
+      QueryFilter queryFilter, ApiCallback<LineItemOption> callback) {
+    Call<LineItemOption> call = service.updateLineItemOption(lineItemOptionId, lineItemOption, queryFilter);
     asyncCall(call, callback);
   }
 

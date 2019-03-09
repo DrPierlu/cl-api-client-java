@@ -50,6 +50,18 @@ public class CustomerGroupServiceClient extends AbstractServiceClient<CustomerGr
     asyncCall(call, callback);
   }
 
+  public CustomerGroup createCustomerGroup(CustomerGroup customerGroup, QueryFilter queryFilter)
+      throws ApiException {
+    Call<CustomerGroup> call = service.createCustomerGroup(customerGroup, queryFilter);
+    return syncCall(call);
+  }
+
+  public void createCustomerGroup(CustomerGroup customerGroup, QueryFilter queryFilter,
+      ApiCallback<CustomerGroup> callback) {
+    Call<CustomerGroup> call = service.createCustomerGroup(customerGroup, queryFilter);
+    asyncCall(call, callback);
+  }
+
   public CustomerGroup createCustomerGroup(CustomerGroup customerGroup) throws ApiException {
     Call<CustomerGroup> call = service.createCustomerGroup(customerGroup);
     return syncCall(call);
@@ -58,6 +70,18 @@ public class CustomerGroupServiceClient extends AbstractServiceClient<CustomerGr
   public void createCustomerGroup(CustomerGroup customerGroup,
       ApiCallback<CustomerGroup> callback) {
     Call<CustomerGroup> call = service.createCustomerGroup(customerGroup);
+    asyncCall(call, callback);
+  }
+
+  public CustomerGroup updateCustomerGroup(String customerGroupId, CustomerGroup customerGroup,
+      QueryFilter queryFilter) throws ApiException {
+    Call<CustomerGroup> call = service.updateCustomerGroup(customerGroupId, customerGroup, queryFilter);
+    return syncCall(call);
+  }
+
+  public void updateCustomerGroup(String customerGroupId, CustomerGroup customerGroup,
+      QueryFilter queryFilter, ApiCallback<CustomerGroup> callback) {
+    Call<CustomerGroup> call = service.updateCustomerGroup(customerGroupId, customerGroup, queryFilter);
     asyncCall(call, callback);
   }
 

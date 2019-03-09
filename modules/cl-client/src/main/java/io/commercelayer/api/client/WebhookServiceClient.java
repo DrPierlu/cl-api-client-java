@@ -46,6 +46,17 @@ public class WebhookServiceClient extends AbstractServiceClient<WebhookService> 
     asyncCall(call, callback);
   }
 
+  public Webhook createWebhook(Webhook webhook, QueryFilter queryFilter) throws ApiException {
+    Call<Webhook> call = service.createWebhook(webhook, queryFilter);
+    return syncCall(call);
+  }
+
+  public void createWebhook(Webhook webhook, QueryFilter queryFilter,
+      ApiCallback<Webhook> callback) {
+    Call<Webhook> call = service.createWebhook(webhook, queryFilter);
+    asyncCall(call, callback);
+  }
+
   public Webhook createWebhook(Webhook webhook) throws ApiException {
     Call<Webhook> call = service.createWebhook(webhook);
     return syncCall(call);
@@ -53,6 +64,18 @@ public class WebhookServiceClient extends AbstractServiceClient<WebhookService> 
 
   public void createWebhook(Webhook webhook, ApiCallback<Webhook> callback) {
     Call<Webhook> call = service.createWebhook(webhook);
+    asyncCall(call, callback);
+  }
+
+  public Webhook updateWebhook(String webhookId, Webhook webhook, QueryFilter queryFilter) throws
+      ApiException {
+    Call<Webhook> call = service.updateWebhook(webhookId, webhook, queryFilter);
+    return syncCall(call);
+  }
+
+  public void updateWebhook(String webhookId, Webhook webhook, QueryFilter queryFilter,
+      ApiCallback<Webhook> callback) {
+    Call<Webhook> call = service.updateWebhook(webhookId, webhook, queryFilter);
     asyncCall(call, callback);
   }
 

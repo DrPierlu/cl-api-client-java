@@ -106,7 +106,8 @@ public class RetrofitServiceClientGenerator implements ServiceGenerator {
 				service.addMethod(methodOpAsync);
 				
 				// Overload Method
-				if (OperationType.GET.equals(op.getType())) {
+//				if (OperationType.GET.equals(op.getType())) {
+				if (!OperationType.DELETE.equals(op.getType())) {
 					
 					MethodSpec methodOpSyncOverload = createSyncMethod(serOpName, op, path, resourceName, false);
 					service.addMethod(methodOpSyncOverload);

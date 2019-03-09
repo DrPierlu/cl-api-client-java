@@ -48,6 +48,18 @@ public class StockLevelServiceClient extends AbstractServiceClient<StockLevelSer
     asyncCall(call, callback);
   }
 
+  public StockLevel createStockLevel(StockLevel stockLevel, QueryFilter queryFilter) throws
+      ApiException {
+    Call<StockLevel> call = service.createStockLevel(stockLevel, queryFilter);
+    return syncCall(call);
+  }
+
+  public void createStockLevel(StockLevel stockLevel, QueryFilter queryFilter,
+      ApiCallback<StockLevel> callback) {
+    Call<StockLevel> call = service.createStockLevel(stockLevel, queryFilter);
+    asyncCall(call, callback);
+  }
+
   public StockLevel createStockLevel(StockLevel stockLevel) throws ApiException {
     Call<StockLevel> call = service.createStockLevel(stockLevel);
     return syncCall(call);
@@ -55,6 +67,18 @@ public class StockLevelServiceClient extends AbstractServiceClient<StockLevelSer
 
   public void createStockLevel(StockLevel stockLevel, ApiCallback<StockLevel> callback) {
     Call<StockLevel> call = service.createStockLevel(stockLevel);
+    asyncCall(call, callback);
+  }
+
+  public StockLevel updateStockLevel(String stockLevelId, StockLevel stockLevel,
+      QueryFilter queryFilter) throws ApiException {
+    Call<StockLevel> call = service.updateStockLevel(stockLevelId, stockLevel, queryFilter);
+    return syncCall(call);
+  }
+
+  public void updateStockLevel(String stockLevelId, StockLevel stockLevel, QueryFilter queryFilter,
+      ApiCallback<StockLevel> callback) {
+    Call<StockLevel> call = service.updateStockLevel(stockLevelId, stockLevel, queryFilter);
     asyncCall(call, callback);
   }
 

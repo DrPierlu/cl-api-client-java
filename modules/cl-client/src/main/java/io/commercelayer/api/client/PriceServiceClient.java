@@ -48,6 +48,16 @@ public class PriceServiceClient extends AbstractServiceClient<PriceService> {
     asyncCall(call, callback);
   }
 
+  public Price createPrice(Price price, QueryFilter queryFilter) throws ApiException {
+    Call<Price> call = service.createPrice(price, queryFilter);
+    return syncCall(call);
+  }
+
+  public void createPrice(Price price, QueryFilter queryFilter, ApiCallback<Price> callback) {
+    Call<Price> call = service.createPrice(price, queryFilter);
+    asyncCall(call, callback);
+  }
+
   public Price createPrice(Price price) throws ApiException {
     Call<Price> call = service.createPrice(price);
     return syncCall(call);
@@ -55,6 +65,18 @@ public class PriceServiceClient extends AbstractServiceClient<PriceService> {
 
   public void createPrice(Price price, ApiCallback<Price> callback) {
     Call<Price> call = service.createPrice(price);
+    asyncCall(call, callback);
+  }
+
+  public Price updatePrice(String priceId, Price price, QueryFilter queryFilter) throws
+      ApiException {
+    Call<Price> call = service.updatePrice(priceId, price, queryFilter);
+    return syncCall(call);
+  }
+
+  public void updatePrice(String priceId, Price price, QueryFilter queryFilter,
+      ApiCallback<Price> callback) {
+    Call<Price> call = service.updatePrice(priceId, price, queryFilter);
     asyncCall(call, callback);
   }
 

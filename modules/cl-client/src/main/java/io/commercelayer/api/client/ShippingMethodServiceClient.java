@@ -52,6 +52,18 @@ public class ShippingMethodServiceClient extends AbstractServiceClient<ShippingM
     asyncCall(call, callback);
   }
 
+  public ShippingMethod createShippingMethod(ShippingMethod shippingMethod, QueryFilter queryFilter)
+      throws ApiException {
+    Call<ShippingMethod> call = service.createShippingMethod(shippingMethod, queryFilter);
+    return syncCall(call);
+  }
+
+  public void createShippingMethod(ShippingMethod shippingMethod, QueryFilter queryFilter,
+      ApiCallback<ShippingMethod> callback) {
+    Call<ShippingMethod> call = service.createShippingMethod(shippingMethod, queryFilter);
+    asyncCall(call, callback);
+  }
+
   public ShippingMethod createShippingMethod(ShippingMethod shippingMethod) throws ApiException {
     Call<ShippingMethod> call = service.createShippingMethod(shippingMethod);
     return syncCall(call);
@@ -60,6 +72,18 @@ public class ShippingMethodServiceClient extends AbstractServiceClient<ShippingM
   public void createShippingMethod(ShippingMethod shippingMethod,
       ApiCallback<ShippingMethod> callback) {
     Call<ShippingMethod> call = service.createShippingMethod(shippingMethod);
+    asyncCall(call, callback);
+  }
+
+  public ShippingMethod updateShippingMethod(String shippingMethodId, ShippingMethod shippingMethod,
+      QueryFilter queryFilter) throws ApiException {
+    Call<ShippingMethod> call = service.updateShippingMethod(shippingMethodId, shippingMethod, queryFilter);
+    return syncCall(call);
+  }
+
+  public void updateShippingMethod(String shippingMethodId, ShippingMethod shippingMethod,
+      QueryFilter queryFilter, ApiCallback<ShippingMethod> callback) {
+    Call<ShippingMethod> call = service.updateShippingMethod(shippingMethodId, shippingMethod, queryFilter);
     asyncCall(call, callback);
   }
 

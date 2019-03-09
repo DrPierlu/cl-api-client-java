@@ -51,6 +51,18 @@ public class ShippingCategoryServiceClient extends AbstractServiceClient<Shippin
     asyncCall(call, callback);
   }
 
+  public ShippingCategory createShippingCategory(ShippingCategory shippingCategory,
+      QueryFilter queryFilter) throws ApiException {
+    Call<ShippingCategory> call = service.createShippingCategory(shippingCategory, queryFilter);
+    return syncCall(call);
+  }
+
+  public void createShippingCategory(ShippingCategory shippingCategory, QueryFilter queryFilter,
+      ApiCallback<ShippingCategory> callback) {
+    Call<ShippingCategory> call = service.createShippingCategory(shippingCategory, queryFilter);
+    asyncCall(call, callback);
+  }
+
   public ShippingCategory createShippingCategory(ShippingCategory shippingCategory) throws
       ApiException {
     Call<ShippingCategory> call = service.createShippingCategory(shippingCategory);
@@ -60,6 +72,18 @@ public class ShippingCategoryServiceClient extends AbstractServiceClient<Shippin
   public void createShippingCategory(ShippingCategory shippingCategory,
       ApiCallback<ShippingCategory> callback) {
     Call<ShippingCategory> call = service.createShippingCategory(shippingCategory);
+    asyncCall(call, callback);
+  }
+
+  public ShippingCategory updateShippingCategory(String shippingCategoryId,
+      ShippingCategory shippingCategory, QueryFilter queryFilter) throws ApiException {
+    Call<ShippingCategory> call = service.updateShippingCategory(shippingCategoryId, shippingCategory, queryFilter);
+    return syncCall(call);
+  }
+
+  public void updateShippingCategory(String shippingCategoryId, ShippingCategory shippingCategory,
+      QueryFilter queryFilter, ApiCallback<ShippingCategory> callback) {
+    Call<ShippingCategory> call = service.updateShippingCategory(shippingCategoryId, shippingCategory, queryFilter);
     asyncCall(call, callback);
   }
 

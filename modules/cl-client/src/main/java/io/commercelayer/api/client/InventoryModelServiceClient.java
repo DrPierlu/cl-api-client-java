@@ -49,6 +49,18 @@ public class InventoryModelServiceClient extends AbstractServiceClient<Inventory
     asyncCall(call, callback);
   }
 
+  public InventoryModel createInventoryModel(InventoryModel inventoryModel, QueryFilter queryFilter)
+      throws ApiException {
+    Call<InventoryModel> call = service.createInventoryModel(inventoryModel, queryFilter);
+    return syncCall(call);
+  }
+
+  public void createInventoryModel(InventoryModel inventoryModel, QueryFilter queryFilter,
+      ApiCallback<InventoryModel> callback) {
+    Call<InventoryModel> call = service.createInventoryModel(inventoryModel, queryFilter);
+    asyncCall(call, callback);
+  }
+
   public InventoryModel createInventoryModel(InventoryModel inventoryModel) throws ApiException {
     Call<InventoryModel> call = service.createInventoryModel(inventoryModel);
     return syncCall(call);
@@ -57,6 +69,18 @@ public class InventoryModelServiceClient extends AbstractServiceClient<Inventory
   public void createInventoryModel(InventoryModel inventoryModel,
       ApiCallback<InventoryModel> callback) {
     Call<InventoryModel> call = service.createInventoryModel(inventoryModel);
+    asyncCall(call, callback);
+  }
+
+  public InventoryModel updateInventoryModel(String inventoryModelId, InventoryModel inventoryModel,
+      QueryFilter queryFilter) throws ApiException {
+    Call<InventoryModel> call = service.updateInventoryModel(inventoryModelId, inventoryModel, queryFilter);
+    return syncCall(call);
+  }
+
+  public void updateInventoryModel(String inventoryModelId, InventoryModel inventoryModel,
+      QueryFilter queryFilter, ApiCallback<InventoryModel> callback) {
+    Call<InventoryModel> call = service.updateInventoryModel(inventoryModelId, inventoryModel, queryFilter);
     asyncCall(call, callback);
   }
 

@@ -51,6 +51,16 @@ public class SkuServiceClient extends AbstractServiceClient<SkuService> {
     asyncCall(call, callback);
   }
 
+  public Sku createSku(Sku sku, QueryFilter queryFilter) throws ApiException {
+    Call<Sku> call = service.createSku(sku, queryFilter);
+    return syncCall(call);
+  }
+
+  public void createSku(Sku sku, QueryFilter queryFilter, ApiCallback<Sku> callback) {
+    Call<Sku> call = service.createSku(sku, queryFilter);
+    asyncCall(call, callback);
+  }
+
   public Sku createSku(Sku sku) throws ApiException {
     Call<Sku> call = service.createSku(sku);
     return syncCall(call);
@@ -58,6 +68,16 @@ public class SkuServiceClient extends AbstractServiceClient<SkuService> {
 
   public void createSku(Sku sku, ApiCallback<Sku> callback) {
     Call<Sku> call = service.createSku(sku);
+    asyncCall(call, callback);
+  }
+
+  public Sku updateSku(String skuId, Sku sku, QueryFilter queryFilter) throws ApiException {
+    Call<Sku> call = service.updateSku(skuId, sku, queryFilter);
+    return syncCall(call);
+  }
+
+  public void updateSku(String skuId, Sku sku, QueryFilter queryFilter, ApiCallback<Sku> callback) {
+    Call<Sku> call = service.updateSku(skuId, sku, queryFilter);
     asyncCall(call, callback);
   }
 

@@ -25,9 +25,17 @@ public interface StockLocationService {
   @POST("stock_locations")
   Call<StockLocation> createStockLocation(@Body StockLocation stockLocation);
 
+  @POST("stock_locations")
+  Call<StockLocation> createStockLocation(@Body StockLocation stockLocation,
+      @QueryMap Map<String, String> queryStringParams);
+
   @PATCH("stock_locations/{stockLocationId}")
   Call<StockLocation> updateStockLocation(@Path("stockLocationId") String stockLocationId,
       @Body StockLocation stockLocation);
+
+  @PATCH("stock_locations/{stockLocationId}")
+  Call<StockLocation> updateStockLocation(@Path("stockLocationId") String stockLocationId,
+      @Body StockLocation stockLocation, @QueryMap Map<String, String> queryStringParams);
 
   @GET("stock_locations/{stockLocationId}")
   Call<StockLocation> retrieveStockLocation(@Path("stockLocationId") String stockLocationId);

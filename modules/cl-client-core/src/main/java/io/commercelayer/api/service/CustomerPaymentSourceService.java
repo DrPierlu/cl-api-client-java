@@ -25,10 +25,21 @@ public interface CustomerPaymentSourceService {
   Call<CustomerPaymentSource> createCustomerPaymentSource(
       @Body CustomerPaymentSource customerPaymentSource);
 
+  @POST("customer_payment_sources")
+  Call<CustomerPaymentSource> createCustomerPaymentSource(
+      @Body CustomerPaymentSource customerPaymentSource,
+      @QueryMap Map<String, String> queryStringParams);
+
   @PATCH("customer_payment_sources/{customerPaymentSourceId}")
   Call<CustomerPaymentSource> updateCustomerPaymentSource(
       @Path("customerPaymentSourceId") String customerPaymentSourceId,
       @Body CustomerPaymentSource customerPaymentSource);
+
+  @PATCH("customer_payment_sources/{customerPaymentSourceId}")
+  Call<CustomerPaymentSource> updateCustomerPaymentSource(
+      @Path("customerPaymentSourceId") String customerPaymentSourceId,
+      @Body CustomerPaymentSource customerPaymentSource,
+      @QueryMap Map<String, String> queryStringParams);
 
   @GET("customer_payment_sources/{customerPaymentSourceId}")
   Call<CustomerPaymentSource> retrieveCustomerPaymentSource(

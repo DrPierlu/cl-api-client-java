@@ -24,9 +24,17 @@ public interface CustomerGroupService {
   @POST("customer_groups")
   Call<CustomerGroup> createCustomerGroup(@Body CustomerGroup customerGroup);
 
+  @POST("customer_groups")
+  Call<CustomerGroup> createCustomerGroup(@Body CustomerGroup customerGroup,
+      @QueryMap Map<String, String> queryStringParams);
+
   @PATCH("customer_groups/{customerGroupId}")
   Call<CustomerGroup> updateCustomerGroup(@Path("customerGroupId") String customerGroupId,
       @Body CustomerGroup customerGroup);
+
+  @PATCH("customer_groups/{customerGroupId}")
+  Call<CustomerGroup> updateCustomerGroup(@Path("customerGroupId") String customerGroupId,
+      @Body CustomerGroup customerGroup, @QueryMap Map<String, String> queryStringParams);
 
   @GET("customer_groups/{customerGroupId}")
   Call<CustomerGroup> retrieveCustomerGroup(@Path("customerGroupId") String customerGroupId);

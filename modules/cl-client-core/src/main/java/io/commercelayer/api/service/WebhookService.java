@@ -22,8 +22,16 @@ public interface WebhookService {
   @POST("webhooks")
   Call<Webhook> createWebhook(@Body Webhook webhook);
 
+  @POST("webhooks")
+  Call<Webhook> createWebhook(@Body Webhook webhook,
+      @QueryMap Map<String, String> queryStringParams);
+
   @PATCH("webhooks/{webhookId}")
   Call<Webhook> updateWebhook(@Path("webhookId") String webhookId, @Body Webhook webhook);
+
+  @PATCH("webhooks/{webhookId}")
+  Call<Webhook> updateWebhook(@Path("webhookId") String webhookId, @Body Webhook webhook,
+      @QueryMap Map<String, String> queryStringParams);
 
   @GET("webhooks/{webhookId}")
   Call<Webhook> retrieveWebhook(@Path("webhookId") String webhookId);

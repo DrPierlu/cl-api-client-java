@@ -23,9 +23,17 @@ public interface CreditCardService {
   @POST("credit_cards")
   Call<CreditCard> createCreditCard(@Body CreditCard creditCard);
 
+  @POST("credit_cards")
+  Call<CreditCard> createCreditCard(@Body CreditCard creditCard,
+      @QueryMap Map<String, String> queryStringParams);
+
   @PATCH("credit_cards/{creditCardId}")
   Call<CreditCard> updateCreditCard(@Path("creditCardId") String creditCardId,
       @Body CreditCard creditCard);
+
+  @PATCH("credit_cards/{creditCardId}")
+  Call<CreditCard> updateCreditCard(@Path("creditCardId") String creditCardId,
+      @Body CreditCard creditCard, @QueryMap Map<String, String> queryStringParams);
 
   @GET("credit_cards/{creditCardId}")
   Call<CreditCard> retrieveCreditCard(@Path("creditCardId") String creditCardId);

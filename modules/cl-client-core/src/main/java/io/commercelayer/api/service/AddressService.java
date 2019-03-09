@@ -23,8 +23,16 @@ public interface AddressService {
   @POST("addresses")
   Call<Address> createAddress(@Body Address address);
 
+  @POST("addresses")
+  Call<Address> createAddress(@Body Address address,
+      @QueryMap Map<String, String> queryStringParams);
+
   @PATCH("addresses/{addressId}")
   Call<Address> updateAddress(@Path("addressId") String addressId, @Body Address address);
+
+  @PATCH("addresses/{addressId}")
+  Call<Address> updateAddress(@Path("addressId") String addressId, @Body Address address,
+      @QueryMap Map<String, String> queryStringParams);
 
   @GET("addresses/{addressId}")
   Call<Address> retrieveAddress(@Path("addressId") String addressId);

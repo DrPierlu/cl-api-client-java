@@ -48,6 +48,18 @@ public class StockItemServiceClient extends AbstractServiceClient<StockItemServi
     asyncCall(call, callback);
   }
 
+  public StockItem createStockItem(StockItem stockItem, QueryFilter queryFilter) throws
+      ApiException {
+    Call<StockItem> call = service.createStockItem(stockItem, queryFilter);
+    return syncCall(call);
+  }
+
+  public void createStockItem(StockItem stockItem, QueryFilter queryFilter,
+      ApiCallback<StockItem> callback) {
+    Call<StockItem> call = service.createStockItem(stockItem, queryFilter);
+    asyncCall(call, callback);
+  }
+
   public StockItem createStockItem(StockItem stockItem) throws ApiException {
     Call<StockItem> call = service.createStockItem(stockItem);
     return syncCall(call);
@@ -55,6 +67,18 @@ public class StockItemServiceClient extends AbstractServiceClient<StockItemServi
 
   public void createStockItem(StockItem stockItem, ApiCallback<StockItem> callback) {
     Call<StockItem> call = service.createStockItem(stockItem);
+    asyncCall(call, callback);
+  }
+
+  public StockItem updateStockItem(String stockItemId, StockItem stockItem, QueryFilter queryFilter)
+      throws ApiException {
+    Call<StockItem> call = service.updateStockItem(stockItemId, stockItem, queryFilter);
+    return syncCall(call);
+  }
+
+  public void updateStockItem(String stockItemId, StockItem stockItem, QueryFilter queryFilter,
+      ApiCallback<StockItem> callback) {
+    Call<StockItem> call = service.updateStockItem(stockItemId, stockItem, queryFilter);
     asyncCall(call, callback);
   }
 

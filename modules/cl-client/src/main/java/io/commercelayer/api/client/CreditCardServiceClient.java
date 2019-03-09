@@ -47,6 +47,18 @@ public class CreditCardServiceClient extends AbstractServiceClient<CreditCardSer
     asyncCall(call, callback);
   }
 
+  public CreditCard createCreditCard(CreditCard creditCard, QueryFilter queryFilter) throws
+      ApiException {
+    Call<CreditCard> call = service.createCreditCard(creditCard, queryFilter);
+    return syncCall(call);
+  }
+
+  public void createCreditCard(CreditCard creditCard, QueryFilter queryFilter,
+      ApiCallback<CreditCard> callback) {
+    Call<CreditCard> call = service.createCreditCard(creditCard, queryFilter);
+    asyncCall(call, callback);
+  }
+
   public CreditCard createCreditCard(CreditCard creditCard) throws ApiException {
     Call<CreditCard> call = service.createCreditCard(creditCard);
     return syncCall(call);
@@ -54,6 +66,18 @@ public class CreditCardServiceClient extends AbstractServiceClient<CreditCardSer
 
   public void createCreditCard(CreditCard creditCard, ApiCallback<CreditCard> callback) {
     Call<CreditCard> call = service.createCreditCard(creditCard);
+    asyncCall(call, callback);
+  }
+
+  public CreditCard updateCreditCard(String creditCardId, CreditCard creditCard,
+      QueryFilter queryFilter) throws ApiException {
+    Call<CreditCard> call = service.updateCreditCard(creditCardId, creditCard, queryFilter);
+    return syncCall(call);
+  }
+
+  public void updateCreditCard(String creditCardId, CreditCard creditCard, QueryFilter queryFilter,
+      ApiCallback<CreditCard> callback) {
+    Call<CreditCard> call = service.updateCreditCard(creditCardId, creditCard, queryFilter);
     asyncCall(call, callback);
   }
 

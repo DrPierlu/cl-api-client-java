@@ -52,6 +52,18 @@ public class CustomerPasswordResetServiceClient extends AbstractServiceClient<Cu
   }
 
   public CustomerPasswordReset createCustomerPasswordReset(
+      CustomerPasswordReset customerPasswordReset, QueryFilter queryFilter) throws ApiException {
+    Call<CustomerPasswordReset> call = service.createCustomerPasswordReset(customerPasswordReset, queryFilter);
+    return syncCall(call);
+  }
+
+  public void createCustomerPasswordReset(CustomerPasswordReset customerPasswordReset,
+      QueryFilter queryFilter, ApiCallback<CustomerPasswordReset> callback) {
+    Call<CustomerPasswordReset> call = service.createCustomerPasswordReset(customerPasswordReset, queryFilter);
+    asyncCall(call, callback);
+  }
+
+  public CustomerPasswordReset createCustomerPasswordReset(
       CustomerPasswordReset customerPasswordReset) throws ApiException {
     Call<CustomerPasswordReset> call = service.createCustomerPasswordReset(customerPasswordReset);
     return syncCall(call);
@@ -60,6 +72,19 @@ public class CustomerPasswordResetServiceClient extends AbstractServiceClient<Cu
   public void createCustomerPasswordReset(CustomerPasswordReset customerPasswordReset,
       ApiCallback<CustomerPasswordReset> callback) {
     Call<CustomerPasswordReset> call = service.createCustomerPasswordReset(customerPasswordReset);
+    asyncCall(call, callback);
+  }
+
+  public CustomerPasswordReset updateCustomerPasswordReset(String customerPasswordResetId,
+      CustomerPasswordReset customerPasswordReset, QueryFilter queryFilter) throws ApiException {
+    Call<CustomerPasswordReset> call = service.updateCustomerPasswordReset(customerPasswordResetId, customerPasswordReset, queryFilter);
+    return syncCall(call);
+  }
+
+  public void updateCustomerPasswordReset(String customerPasswordResetId,
+      CustomerPasswordReset customerPasswordReset, QueryFilter queryFilter,
+      ApiCallback<CustomerPasswordReset> callback) {
+    Call<CustomerPasswordReset> call = service.updateCustomerPasswordReset(customerPasswordResetId, customerPasswordReset, queryFilter);
     asyncCall(call, callback);
   }
 

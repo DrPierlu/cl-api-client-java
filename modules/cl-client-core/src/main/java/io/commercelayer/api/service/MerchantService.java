@@ -23,8 +23,16 @@ public interface MerchantService {
   @POST("merchants")
   Call<Merchant> createMerchant(@Body Merchant merchant);
 
+  @POST("merchants")
+  Call<Merchant> createMerchant(@Body Merchant merchant,
+      @QueryMap Map<String, String> queryStringParams);
+
   @PATCH("merchants/{merchantId}")
   Call<Merchant> updateMerchant(@Path("merchantId") String merchantId, @Body Merchant merchant);
+
+  @PATCH("merchants/{merchantId}")
+  Call<Merchant> updateMerchant(@Path("merchantId") String merchantId, @Body Merchant merchant,
+      @QueryMap Map<String, String> queryStringParams);
 
   @GET("merchants/{merchantId}")
   Call<Merchant> retrieveMerchant(@Path("merchantId") String merchantId);

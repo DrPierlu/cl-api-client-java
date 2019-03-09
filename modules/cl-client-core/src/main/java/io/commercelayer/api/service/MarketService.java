@@ -25,8 +25,15 @@ public interface MarketService {
   @POST("markets")
   Call<Market> createMarket(@Body Market market);
 
+  @POST("markets")
+  Call<Market> createMarket(@Body Market market, @QueryMap Map<String, String> queryStringParams);
+
   @PATCH("markets/{marketId}")
   Call<Market> updateMarket(@Path("marketId") String marketId, @Body Market market);
+
+  @PATCH("markets/{marketId}")
+  Call<Market> updateMarket(@Path("marketId") String marketId, @Body Market market,
+      @QueryMap Map<String, String> queryStringParams);
 
   @GET("markets/{marketId}")
   Call<Market> retrieveMarket(@Path("marketId") String marketId);

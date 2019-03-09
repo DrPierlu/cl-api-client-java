@@ -28,8 +28,15 @@ public interface OrderService {
   @POST("orders")
   Call<Order> createOrder(@Body Order order);
 
+  @POST("orders")
+  Call<Order> createOrder(@Body Order order, @QueryMap Map<String, String> queryStringParams);
+
   @PATCH("orders/{orderId}")
   Call<Order> updateOrder(@Path("orderId") String orderId, @Body Order order);
+
+  @PATCH("orders/{orderId}")
+  Call<Order> updateOrder(@Path("orderId") String orderId, @Body Order order,
+      @QueryMap Map<String, String> queryStringParams);
 
   @GET("orders/{orderId}")
   Call<Order> retrieveOrder(@Path("orderId") String orderId);

@@ -48,6 +48,17 @@ public class LineItemServiceClient extends AbstractServiceClient<LineItemService
     asyncCall(call, callback);
   }
 
+  public LineItem createLineItem(LineItem lineItem, QueryFilter queryFilter) throws ApiException {
+    Call<LineItem> call = service.createLineItem(lineItem, queryFilter);
+    return syncCall(call);
+  }
+
+  public void createLineItem(LineItem lineItem, QueryFilter queryFilter,
+      ApiCallback<LineItem> callback) {
+    Call<LineItem> call = service.createLineItem(lineItem, queryFilter);
+    asyncCall(call, callback);
+  }
+
   public LineItem createLineItem(LineItem lineItem) throws ApiException {
     Call<LineItem> call = service.createLineItem(lineItem);
     return syncCall(call);
@@ -55,6 +66,18 @@ public class LineItemServiceClient extends AbstractServiceClient<LineItemService
 
   public void createLineItem(LineItem lineItem, ApiCallback<LineItem> callback) {
     Call<LineItem> call = service.createLineItem(lineItem);
+    asyncCall(call, callback);
+  }
+
+  public LineItem updateLineItem(String lineItemId, LineItem lineItem, QueryFilter queryFilter)
+      throws ApiException {
+    Call<LineItem> call = service.updateLineItem(lineItemId, lineItem, queryFilter);
+    return syncCall(call);
+  }
+
+  public void updateLineItem(String lineItemId, LineItem lineItem, QueryFilter queryFilter,
+      ApiCallback<LineItem> callback) {
+    Call<LineItem> call = service.updateLineItem(lineItemId, lineItem, queryFilter);
     asyncCall(call, callback);
   }
 

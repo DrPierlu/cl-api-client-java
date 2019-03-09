@@ -27,8 +27,16 @@ public interface CustomerService {
   @POST("customers")
   Call<Customer> createCustomer(@Body Customer customer);
 
+  @POST("customers")
+  Call<Customer> createCustomer(@Body Customer customer,
+      @QueryMap Map<String, String> queryStringParams);
+
   @PATCH("customers/{customerId}")
   Call<Customer> updateCustomer(@Path("customerId") String customerId, @Body Customer customer);
+
+  @PATCH("customers/{customerId}")
+  Call<Customer> updateCustomer(@Path("customerId") String customerId, @Body Customer customer,
+      @QueryMap Map<String, String> queryStringParams);
 
   @GET("customers/{customerId}")
   Call<Customer> retrieveCustomer(@Path("customerId") String customerId);

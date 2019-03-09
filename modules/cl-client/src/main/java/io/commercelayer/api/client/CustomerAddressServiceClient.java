@@ -51,6 +51,18 @@ public class CustomerAddressServiceClient extends AbstractServiceClient<Customer
     asyncCall(call, callback);
   }
 
+  public CustomerAddress createCustomerAddress(CustomerAddress customerAddress,
+      QueryFilter queryFilter) throws ApiException {
+    Call<CustomerAddress> call = service.createCustomerAddress(customerAddress, queryFilter);
+    return syncCall(call);
+  }
+
+  public void createCustomerAddress(CustomerAddress customerAddress, QueryFilter queryFilter,
+      ApiCallback<CustomerAddress> callback) {
+    Call<CustomerAddress> call = service.createCustomerAddress(customerAddress, queryFilter);
+    asyncCall(call, callback);
+  }
+
   public CustomerAddress createCustomerAddress(CustomerAddress customerAddress) throws
       ApiException {
     Call<CustomerAddress> call = service.createCustomerAddress(customerAddress);
@@ -60,6 +72,18 @@ public class CustomerAddressServiceClient extends AbstractServiceClient<Customer
   public void createCustomerAddress(CustomerAddress customerAddress,
       ApiCallback<CustomerAddress> callback) {
     Call<CustomerAddress> call = service.createCustomerAddress(customerAddress);
+    asyncCall(call, callback);
+  }
+
+  public CustomerAddress updateCustomerAddress(String customerAddressId,
+      CustomerAddress customerAddress, QueryFilter queryFilter) throws ApiException {
+    Call<CustomerAddress> call = service.updateCustomerAddress(customerAddressId, customerAddress, queryFilter);
+    return syncCall(call);
+  }
+
+  public void updateCustomerAddress(String customerAddressId, CustomerAddress customerAddress,
+      QueryFilter queryFilter, ApiCallback<CustomerAddress> callback) {
+    Call<CustomerAddress> call = service.updateCustomerAddress(customerAddressId, customerAddress, queryFilter);
     asyncCall(call, callback);
   }
 

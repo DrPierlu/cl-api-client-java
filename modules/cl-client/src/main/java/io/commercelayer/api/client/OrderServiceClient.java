@@ -52,6 +52,16 @@ public class OrderServiceClient extends AbstractServiceClient<OrderService> {
     asyncCall(call, callback);
   }
 
+  public Order createOrder(Order order, QueryFilter queryFilter) throws ApiException {
+    Call<Order> call = service.createOrder(order, queryFilter);
+    return syncCall(call);
+  }
+
+  public void createOrder(Order order, QueryFilter queryFilter, ApiCallback<Order> callback) {
+    Call<Order> call = service.createOrder(order, queryFilter);
+    asyncCall(call, callback);
+  }
+
   public Order createOrder(Order order) throws ApiException {
     Call<Order> call = service.createOrder(order);
     return syncCall(call);
@@ -59,6 +69,18 @@ public class OrderServiceClient extends AbstractServiceClient<OrderService> {
 
   public void createOrder(Order order, ApiCallback<Order> callback) {
     Call<Order> call = service.createOrder(order);
+    asyncCall(call, callback);
+  }
+
+  public Order updateOrder(String orderId, Order order, QueryFilter queryFilter) throws
+      ApiException {
+    Call<Order> call = service.updateOrder(orderId, order, queryFilter);
+    return syncCall(call);
+  }
+
+  public void updateOrder(String orderId, Order order, QueryFilter queryFilter,
+      ApiCallback<Order> callback) {
+    Call<Order> call = service.updateOrder(orderId, order, queryFilter);
     asyncCall(call, callback);
   }
 

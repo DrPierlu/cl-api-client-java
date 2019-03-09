@@ -25,10 +25,21 @@ public interface CustomerPasswordResetService {
   Call<CustomerPasswordReset> createCustomerPasswordReset(
       @Body CustomerPasswordReset customerPasswordReset);
 
+  @POST("customer_password_resets")
+  Call<CustomerPasswordReset> createCustomerPasswordReset(
+      @Body CustomerPasswordReset customerPasswordReset,
+      @QueryMap Map<String, String> queryStringParams);
+
   @PATCH("customer_password_resets/{customerPasswordResetId}")
   Call<CustomerPasswordReset> updateCustomerPasswordReset(
       @Path("customerPasswordResetId") String customerPasswordResetId,
       @Body CustomerPasswordReset customerPasswordReset);
+
+  @PATCH("customer_password_resets/{customerPasswordResetId}")
+  Call<CustomerPasswordReset> updateCustomerPasswordReset(
+      @Path("customerPasswordResetId") String customerPasswordResetId,
+      @Body CustomerPasswordReset customerPasswordReset,
+      @QueryMap Map<String, String> queryStringParams);
 
   @GET("customer_password_resets/{customerPasswordResetId}")
   Call<CustomerPasswordReset> retrieveCustomerPasswordReset(

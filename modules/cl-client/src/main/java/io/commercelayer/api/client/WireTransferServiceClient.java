@@ -47,6 +47,18 @@ public class WireTransferServiceClient extends AbstractServiceClient<WireTransfe
     asyncCall(call, callback);
   }
 
+  public WireTransfer createWireTransfer(WireTransfer wireTransfer, QueryFilter queryFilter) throws
+      ApiException {
+    Call<WireTransfer> call = service.createWireTransfer(wireTransfer, queryFilter);
+    return syncCall(call);
+  }
+
+  public void createWireTransfer(WireTransfer wireTransfer, QueryFilter queryFilter,
+      ApiCallback<WireTransfer> callback) {
+    Call<WireTransfer> call = service.createWireTransfer(wireTransfer, queryFilter);
+    asyncCall(call, callback);
+  }
+
   public WireTransfer createWireTransfer(WireTransfer wireTransfer) throws ApiException {
     Call<WireTransfer> call = service.createWireTransfer(wireTransfer);
     return syncCall(call);
@@ -54,6 +66,18 @@ public class WireTransferServiceClient extends AbstractServiceClient<WireTransfe
 
   public void createWireTransfer(WireTransfer wireTransfer, ApiCallback<WireTransfer> callback) {
     Call<WireTransfer> call = service.createWireTransfer(wireTransfer);
+    asyncCall(call, callback);
+  }
+
+  public WireTransfer updateWireTransfer(String wireTransferId, WireTransfer wireTransfer,
+      QueryFilter queryFilter) throws ApiException {
+    Call<WireTransfer> call = service.updateWireTransfer(wireTransferId, wireTransfer, queryFilter);
+    return syncCall(call);
+  }
+
+  public void updateWireTransfer(String wireTransferId, WireTransfer wireTransfer,
+      QueryFilter queryFilter, ApiCallback<WireTransfer> callback) {
+    Call<WireTransfer> call = service.updateWireTransfer(wireTransferId, wireTransfer, queryFilter);
     asyncCall(call, callback);
   }
 

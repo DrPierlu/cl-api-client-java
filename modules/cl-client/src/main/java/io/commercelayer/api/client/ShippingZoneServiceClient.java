@@ -46,6 +46,18 @@ public class ShippingZoneServiceClient extends AbstractServiceClient<ShippingZon
     asyncCall(call, callback);
   }
 
+  public ShippingZone createShippingZone(ShippingZone shippingZone, QueryFilter queryFilter) throws
+      ApiException {
+    Call<ShippingZone> call = service.createShippingZone(shippingZone, queryFilter);
+    return syncCall(call);
+  }
+
+  public void createShippingZone(ShippingZone shippingZone, QueryFilter queryFilter,
+      ApiCallback<ShippingZone> callback) {
+    Call<ShippingZone> call = service.createShippingZone(shippingZone, queryFilter);
+    asyncCall(call, callback);
+  }
+
   public ShippingZone createShippingZone(ShippingZone shippingZone) throws ApiException {
     Call<ShippingZone> call = service.createShippingZone(shippingZone);
     return syncCall(call);
@@ -53,6 +65,18 @@ public class ShippingZoneServiceClient extends AbstractServiceClient<ShippingZon
 
   public void createShippingZone(ShippingZone shippingZone, ApiCallback<ShippingZone> callback) {
     Call<ShippingZone> call = service.createShippingZone(shippingZone);
+    asyncCall(call, callback);
+  }
+
+  public ShippingZone updateShippingZone(String shippingZoneId, ShippingZone shippingZone,
+      QueryFilter queryFilter) throws ApiException {
+    Call<ShippingZone> call = service.updateShippingZone(shippingZoneId, shippingZone, queryFilter);
+    return syncCall(call);
+  }
+
+  public void updateShippingZone(String shippingZoneId, ShippingZone shippingZone,
+      QueryFilter queryFilter, ApiCallback<ShippingZone> callback) {
+    Call<ShippingZone> call = service.updateShippingZone(shippingZoneId, shippingZone, queryFilter);
     asyncCall(call, callback);
   }
 

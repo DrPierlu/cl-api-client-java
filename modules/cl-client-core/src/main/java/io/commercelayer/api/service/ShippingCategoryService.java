@@ -24,10 +24,19 @@ public interface ShippingCategoryService {
   @POST("shipping_categories")
   Call<ShippingCategory> createShippingCategory(@Body ShippingCategory shippingCategory);
 
+  @POST("shipping_categories")
+  Call<ShippingCategory> createShippingCategory(@Body ShippingCategory shippingCategory,
+      @QueryMap Map<String, String> queryStringParams);
+
   @PATCH("shipping_categories/{shippingCategoryId}")
   Call<ShippingCategory> updateShippingCategory(
       @Path("shippingCategoryId") String shippingCategoryId,
       @Body ShippingCategory shippingCategory);
+
+  @PATCH("shipping_categories/{shippingCategoryId}")
+  Call<ShippingCategory> updateShippingCategory(
+      @Path("shippingCategoryId") String shippingCategoryId,
+      @Body ShippingCategory shippingCategory, @QueryMap Map<String, String> queryStringParams);
 
   @GET("shipping_categories/{shippingCategoryId}")
   Call<ShippingCategory> retrieveShippingCategory(

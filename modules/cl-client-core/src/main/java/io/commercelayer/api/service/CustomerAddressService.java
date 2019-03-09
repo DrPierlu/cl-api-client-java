@@ -25,9 +25,17 @@ public interface CustomerAddressService {
   @POST("customer_addresses")
   Call<CustomerAddress> createCustomerAddress(@Body CustomerAddress customerAddress);
 
+  @POST("customer_addresses")
+  Call<CustomerAddress> createCustomerAddress(@Body CustomerAddress customerAddress,
+      @QueryMap Map<String, String> queryStringParams);
+
   @PATCH("customer_addresses/{customerAddressId}")
   Call<CustomerAddress> updateCustomerAddress(@Path("customerAddressId") String customerAddressId,
       @Body CustomerAddress customerAddress);
+
+  @PATCH("customer_addresses/{customerAddressId}")
+  Call<CustomerAddress> updateCustomerAddress(@Path("customerAddressId") String customerAddressId,
+      @Body CustomerAddress customerAddress, @QueryMap Map<String, String> queryStringParams);
 
   @GET("customer_addresses/{customerAddressId}")
   Call<CustomerAddress> retrieveCustomerAddress(

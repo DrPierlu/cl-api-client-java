@@ -24,8 +24,16 @@ public interface LineItemService {
   @POST("line_items")
   Call<LineItem> createLineItem(@Body LineItem lineItem);
 
+  @POST("line_items")
+  Call<LineItem> createLineItem(@Body LineItem lineItem,
+      @QueryMap Map<String, String> queryStringParams);
+
   @PATCH("line_items/{lineItemId}")
   Call<LineItem> updateLineItem(@Path("lineItemId") String lineItemId, @Body LineItem lineItem);
+
+  @PATCH("line_items/{lineItemId}")
+  Call<LineItem> updateLineItem(@Path("lineItemId") String lineItemId, @Body LineItem lineItem,
+      @QueryMap Map<String, String> queryStringParams);
 
   @GET("line_items/{lineItemId}")
   Call<LineItem> retrieveLineItem(@Path("lineItemId") String lineItemId);

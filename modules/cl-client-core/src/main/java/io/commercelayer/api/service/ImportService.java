@@ -22,8 +22,15 @@ public interface ImportService {
   @POST("imports")
   Call<Import> createImport(@Body Import import_);
 
+  @POST("imports")
+  Call<Import> createImport(@Body Import import_, @QueryMap Map<String, String> queryStringParams);
+
   @PATCH("imports/{importId}")
   Call<Import> updateImport(@Path("importId") String importId, @Body Import import_);
+
+  @PATCH("imports/{importId}")
+  Call<Import> updateImport(@Path("importId") String importId, @Body Import import_,
+      @QueryMap Map<String, String> queryStringParams);
 
   @GET("imports/{importId}")
   Call<Import> retrieveImport(@Path("importId") String importId);

@@ -25,10 +25,19 @@ public interface DeliveryLeadTimeService {
   @POST("delivery_lead_times")
   Call<DeliveryLeadTime> createDeliveryLeadTime(@Body DeliveryLeadTime deliveryLeadTime);
 
+  @POST("delivery_lead_times")
+  Call<DeliveryLeadTime> createDeliveryLeadTime(@Body DeliveryLeadTime deliveryLeadTime,
+      @QueryMap Map<String, String> queryStringParams);
+
   @PATCH("delivery_lead_times/{deliveryLeadTimeId}")
   Call<DeliveryLeadTime> updateDeliveryLeadTime(
       @Path("deliveryLeadTimeId") String deliveryLeadTimeId,
       @Body DeliveryLeadTime deliveryLeadTime);
+
+  @PATCH("delivery_lead_times/{deliveryLeadTimeId}")
+  Call<DeliveryLeadTime> updateDeliveryLeadTime(
+      @Path("deliveryLeadTimeId") String deliveryLeadTimeId,
+      @Body DeliveryLeadTime deliveryLeadTime, @QueryMap Map<String, String> queryStringParams);
 
   @GET("delivery_lead_times/{deliveryLeadTimeId}")
   Call<DeliveryLeadTime> retrieveDeliveryLeadTime(

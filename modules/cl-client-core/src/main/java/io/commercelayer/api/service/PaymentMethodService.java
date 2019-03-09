@@ -24,9 +24,17 @@ public interface PaymentMethodService {
   @POST("payment_methods")
   Call<PaymentMethod> createPaymentMethod(@Body PaymentMethod paymentMethod);
 
+  @POST("payment_methods")
+  Call<PaymentMethod> createPaymentMethod(@Body PaymentMethod paymentMethod,
+      @QueryMap Map<String, String> queryStringParams);
+
   @PATCH("payment_methods/{paymentMethodId}")
   Call<PaymentMethod> updatePaymentMethod(@Path("paymentMethodId") String paymentMethodId,
       @Body PaymentMethod paymentMethod);
+
+  @PATCH("payment_methods/{paymentMethodId}")
+  Call<PaymentMethod> updatePaymentMethod(@Path("paymentMethodId") String paymentMethodId,
+      @Body PaymentMethod paymentMethod, @QueryMap Map<String, String> queryStringParams);
 
   @GET("payment_methods/{paymentMethodId}")
   Call<PaymentMethod> retrievePaymentMethod(@Path("paymentMethodId") String paymentMethodId);

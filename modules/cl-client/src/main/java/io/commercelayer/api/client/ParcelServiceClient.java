@@ -47,6 +47,16 @@ public class ParcelServiceClient extends AbstractServiceClient<ParcelService> {
     asyncCall(call, callback);
   }
 
+  public Parcel createParcel(Parcel parcel, QueryFilter queryFilter) throws ApiException {
+    Call<Parcel> call = service.createParcel(parcel, queryFilter);
+    return syncCall(call);
+  }
+
+  public void createParcel(Parcel parcel, QueryFilter queryFilter, ApiCallback<Parcel> callback) {
+    Call<Parcel> call = service.createParcel(parcel, queryFilter);
+    asyncCall(call, callback);
+  }
+
   public Parcel createParcel(Parcel parcel) throws ApiException {
     Call<Parcel> call = service.createParcel(parcel);
     return syncCall(call);
@@ -54,6 +64,18 @@ public class ParcelServiceClient extends AbstractServiceClient<ParcelService> {
 
   public void createParcel(Parcel parcel, ApiCallback<Parcel> callback) {
     Call<Parcel> call = service.createParcel(parcel);
+    asyncCall(call, callback);
+  }
+
+  public Parcel updateParcel(String parcelId, Parcel parcel, QueryFilter queryFilter) throws
+      ApiException {
+    Call<Parcel> call = service.updateParcel(parcelId, parcel, queryFilter);
+    return syncCall(call);
+  }
+
+  public void updateParcel(String parcelId, Parcel parcel, QueryFilter queryFilter,
+      ApiCallback<Parcel> callback) {
+    Call<Parcel> call = service.updateParcel(parcelId, parcel, queryFilter);
     asyncCall(call, callback);
   }
 

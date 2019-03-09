@@ -51,6 +51,17 @@ public class CustomerServiceClient extends AbstractServiceClient<CustomerService
     asyncCall(call, callback);
   }
 
+  public Customer createCustomer(Customer customer, QueryFilter queryFilter) throws ApiException {
+    Call<Customer> call = service.createCustomer(customer, queryFilter);
+    return syncCall(call);
+  }
+
+  public void createCustomer(Customer customer, QueryFilter queryFilter,
+      ApiCallback<Customer> callback) {
+    Call<Customer> call = service.createCustomer(customer, queryFilter);
+    asyncCall(call, callback);
+  }
+
   public Customer createCustomer(Customer customer) throws ApiException {
     Call<Customer> call = service.createCustomer(customer);
     return syncCall(call);
@@ -58,6 +69,18 @@ public class CustomerServiceClient extends AbstractServiceClient<CustomerService
 
   public void createCustomer(Customer customer, ApiCallback<Customer> callback) {
     Call<Customer> call = service.createCustomer(customer);
+    asyncCall(call, callback);
+  }
+
+  public Customer updateCustomer(String customerId, Customer customer, QueryFilter queryFilter)
+      throws ApiException {
+    Call<Customer> call = service.updateCustomer(customerId, customer, queryFilter);
+    return syncCall(call);
+  }
+
+  public void updateCustomer(String customerId, Customer customer, QueryFilter queryFilter,
+      ApiCallback<Customer> callback) {
+    Call<Customer> call = service.updateCustomer(customerId, customer, queryFilter);
     asyncCall(call, callback);
   }
 

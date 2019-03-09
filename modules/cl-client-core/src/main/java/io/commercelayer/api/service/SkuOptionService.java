@@ -23,9 +23,17 @@ public interface SkuOptionService {
   @POST("sku_options")
   Call<SkuOption> createSkuOption(@Body SkuOption skuOption);
 
+  @POST("sku_options")
+  Call<SkuOption> createSkuOption(@Body SkuOption skuOption,
+      @QueryMap Map<String, String> queryStringParams);
+
   @PATCH("sku_options/{skuOptionId}")
   Call<SkuOption> updateSkuOption(@Path("skuOptionId") String skuOptionId,
       @Body SkuOption skuOption);
+
+  @PATCH("sku_options/{skuOptionId}")
+  Call<SkuOption> updateSkuOption(@Path("skuOptionId") String skuOptionId,
+      @Body SkuOption skuOption, @QueryMap Map<String, String> queryStringParams);
 
   @GET("sku_options/{skuOptionId}")
   Call<SkuOption> retrieveSkuOption(@Path("skuOptionId") String skuOptionId);

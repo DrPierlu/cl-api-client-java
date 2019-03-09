@@ -49,6 +49,16 @@ public class MarketServiceClient extends AbstractServiceClient<MarketService> {
     asyncCall(call, callback);
   }
 
+  public Market createMarket(Market market, QueryFilter queryFilter) throws ApiException {
+    Call<Market> call = service.createMarket(market, queryFilter);
+    return syncCall(call);
+  }
+
+  public void createMarket(Market market, QueryFilter queryFilter, ApiCallback<Market> callback) {
+    Call<Market> call = service.createMarket(market, queryFilter);
+    asyncCall(call, callback);
+  }
+
   public Market createMarket(Market market) throws ApiException {
     Call<Market> call = service.createMarket(market);
     return syncCall(call);
@@ -56,6 +66,18 @@ public class MarketServiceClient extends AbstractServiceClient<MarketService> {
 
   public void createMarket(Market market, ApiCallback<Market> callback) {
     Call<Market> call = service.createMarket(market);
+    asyncCall(call, callback);
+  }
+
+  public Market updateMarket(String marketId, Market market, QueryFilter queryFilter) throws
+      ApiException {
+    Call<Market> call = service.updateMarket(marketId, market, queryFilter);
+    return syncCall(call);
+  }
+
+  public void updateMarket(String marketId, Market market, QueryFilter queryFilter,
+      ApiCallback<Market> callback) {
+    Call<Market> call = service.updateMarket(marketId, market, queryFilter);
     asyncCall(call, callback);
   }
 

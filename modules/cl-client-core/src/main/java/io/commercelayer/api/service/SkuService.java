@@ -27,8 +27,15 @@ public interface SkuService {
   @POST("skus")
   Call<Sku> createSku(@Body Sku sku);
 
+  @POST("skus")
+  Call<Sku> createSku(@Body Sku sku, @QueryMap Map<String, String> queryStringParams);
+
   @PATCH("skus/{skuId}")
   Call<Sku> updateSku(@Path("skuId") String skuId, @Body Sku sku);
+
+  @PATCH("skus/{skuId}")
+  Call<Sku> updateSku(@Path("skuId") String skuId, @Body Sku sku,
+      @QueryMap Map<String, String> queryStringParams);
 
   @GET("skus/{skuId}")
   Call<Sku> retrieveSku(@Path("skuId") String skuId);

@@ -25,10 +25,21 @@ public interface CustomerSubscriptionService {
   Call<CustomerSubscription> createCustomerSubscription(
       @Body CustomerSubscription customerSubscription);
 
+  @POST("customer_subscriptions")
+  Call<CustomerSubscription> createCustomerSubscription(
+      @Body CustomerSubscription customerSubscription,
+      @QueryMap Map<String, String> queryStringParams);
+
   @PATCH("customer_subscriptions/{customerSubscriptionId}")
   Call<CustomerSubscription> updateCustomerSubscription(
       @Path("customerSubscriptionId") String customerSubscriptionId,
       @Body CustomerSubscription customerSubscription);
+
+  @PATCH("customer_subscriptions/{customerSubscriptionId}")
+  Call<CustomerSubscription> updateCustomerSubscription(
+      @Path("customerSubscriptionId") String customerSubscriptionId,
+      @Body CustomerSubscription customerSubscription,
+      @QueryMap Map<String, String> queryStringParams);
 
   @GET("customer_subscriptions/{customerSubscriptionId}")
   Call<CustomerSubscription> retrieveCustomerSubscription(

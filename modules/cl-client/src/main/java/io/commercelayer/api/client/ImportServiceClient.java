@@ -46,6 +46,16 @@ public class ImportServiceClient extends AbstractServiceClient<ImportService> {
     asyncCall(call, callback);
   }
 
+  public Import createImport(Import import_, QueryFilter queryFilter) throws ApiException {
+    Call<Import> call = service.createImport(import_, queryFilter);
+    return syncCall(call);
+  }
+
+  public void createImport(Import import_, QueryFilter queryFilter, ApiCallback<Import> callback) {
+    Call<Import> call = service.createImport(import_, queryFilter);
+    asyncCall(call, callback);
+  }
+
   public Import createImport(Import import_) throws ApiException {
     Call<Import> call = service.createImport(import_);
     return syncCall(call);
@@ -53,6 +63,18 @@ public class ImportServiceClient extends AbstractServiceClient<ImportService> {
 
   public void createImport(Import import_, ApiCallback<Import> callback) {
     Call<Import> call = service.createImport(import_);
+    asyncCall(call, callback);
+  }
+
+  public Import updateImport(String importId, Import import_, QueryFilter queryFilter) throws
+      ApiException {
+    Call<Import> call = service.updateImport(importId, import_, queryFilter);
+    return syncCall(call);
+  }
+
+  public void updateImport(String importId, Import import_, QueryFilter queryFilter,
+      ApiCallback<Import> callback) {
+    Call<Import> call = service.updateImport(importId, import_, queryFilter);
     asyncCall(call, callback);
   }
 

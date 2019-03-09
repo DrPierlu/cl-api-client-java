@@ -47,6 +47,17 @@ public class MerchantServiceClient extends AbstractServiceClient<MerchantService
     asyncCall(call, callback);
   }
 
+  public Merchant createMerchant(Merchant merchant, QueryFilter queryFilter) throws ApiException {
+    Call<Merchant> call = service.createMerchant(merchant, queryFilter);
+    return syncCall(call);
+  }
+
+  public void createMerchant(Merchant merchant, QueryFilter queryFilter,
+      ApiCallback<Merchant> callback) {
+    Call<Merchant> call = service.createMerchant(merchant, queryFilter);
+    asyncCall(call, callback);
+  }
+
   public Merchant createMerchant(Merchant merchant) throws ApiException {
     Call<Merchant> call = service.createMerchant(merchant);
     return syncCall(call);
@@ -54,6 +65,18 @@ public class MerchantServiceClient extends AbstractServiceClient<MerchantService
 
   public void createMerchant(Merchant merchant, ApiCallback<Merchant> callback) {
     Call<Merchant> call = service.createMerchant(merchant);
+    asyncCall(call, callback);
+  }
+
+  public Merchant updateMerchant(String merchantId, Merchant merchant, QueryFilter queryFilter)
+      throws ApiException {
+    Call<Merchant> call = service.updateMerchant(merchantId, merchant, queryFilter);
+    return syncCall(call);
+  }
+
+  public void updateMerchant(String merchantId, Merchant merchant, QueryFilter queryFilter,
+      ApiCallback<Merchant> callback) {
+    Call<Merchant> call = service.updateMerchant(merchantId, merchant, queryFilter);
     asyncCall(call, callback);
   }
 

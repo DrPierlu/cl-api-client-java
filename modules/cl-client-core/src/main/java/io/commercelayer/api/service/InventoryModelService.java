@@ -23,9 +23,17 @@ public interface InventoryModelService {
   @POST("inventory_models")
   Call<InventoryModel> createInventoryModel(@Body InventoryModel inventoryModel);
 
+  @POST("inventory_models")
+  Call<InventoryModel> createInventoryModel(@Body InventoryModel inventoryModel,
+      @QueryMap Map<String, String> queryStringParams);
+
   @PATCH("inventory_models/{inventoryModelId}")
   Call<InventoryModel> updateInventoryModel(@Path("inventoryModelId") String inventoryModelId,
       @Body InventoryModel inventoryModel);
+
+  @PATCH("inventory_models/{inventoryModelId}")
+  Call<InventoryModel> updateInventoryModel(@Path("inventoryModelId") String inventoryModelId,
+      @Body InventoryModel inventoryModel, @QueryMap Map<String, String> queryStringParams);
 
   @GET("inventory_models/{inventoryModelId}")
   Call<InventoryModel> retrieveInventoryModel(@Path("inventoryModelId") String inventoryModelId);

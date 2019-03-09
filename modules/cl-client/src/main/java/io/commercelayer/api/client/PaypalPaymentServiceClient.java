@@ -49,6 +49,18 @@ public class PaypalPaymentServiceClient extends AbstractServiceClient<PaypalPaym
     asyncCall(call, callback);
   }
 
+  public PaypalPayment createPaypalPayment(PaypalPayment paypalPayment, QueryFilter queryFilter)
+      throws ApiException {
+    Call<PaypalPayment> call = service.createPaypalPayment(paypalPayment, queryFilter);
+    return syncCall(call);
+  }
+
+  public void createPaypalPayment(PaypalPayment paypalPayment, QueryFilter queryFilter,
+      ApiCallback<PaypalPayment> callback) {
+    Call<PaypalPayment> call = service.createPaypalPayment(paypalPayment, queryFilter);
+    asyncCall(call, callback);
+  }
+
   public PaypalPayment createPaypalPayment(PaypalPayment paypalPayment) throws ApiException {
     Call<PaypalPayment> call = service.createPaypalPayment(paypalPayment);
     return syncCall(call);
@@ -57,6 +69,18 @@ public class PaypalPaymentServiceClient extends AbstractServiceClient<PaypalPaym
   public void createPaypalPayment(PaypalPayment paypalPayment,
       ApiCallback<PaypalPayment> callback) {
     Call<PaypalPayment> call = service.createPaypalPayment(paypalPayment);
+    asyncCall(call, callback);
+  }
+
+  public PaypalPayment updatePaypalPayment(String paypalPaymentId, PaypalPayment paypalPayment,
+      QueryFilter queryFilter) throws ApiException {
+    Call<PaypalPayment> call = service.updatePaypalPayment(paypalPaymentId, paypalPayment, queryFilter);
+    return syncCall(call);
+  }
+
+  public void updatePaypalPayment(String paypalPaymentId, PaypalPayment paypalPayment,
+      QueryFilter queryFilter, ApiCallback<PaypalPayment> callback) {
+    Call<PaypalPayment> call = service.updatePaypalPayment(paypalPaymentId, paypalPayment, queryFilter);
     asyncCall(call, callback);
   }
 

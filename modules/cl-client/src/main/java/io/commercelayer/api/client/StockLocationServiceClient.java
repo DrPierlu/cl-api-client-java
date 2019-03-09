@@ -51,6 +51,18 @@ public class StockLocationServiceClient extends AbstractServiceClient<StockLocat
     asyncCall(call, callback);
   }
 
+  public StockLocation createStockLocation(StockLocation stockLocation, QueryFilter queryFilter)
+      throws ApiException {
+    Call<StockLocation> call = service.createStockLocation(stockLocation, queryFilter);
+    return syncCall(call);
+  }
+
+  public void createStockLocation(StockLocation stockLocation, QueryFilter queryFilter,
+      ApiCallback<StockLocation> callback) {
+    Call<StockLocation> call = service.createStockLocation(stockLocation, queryFilter);
+    asyncCall(call, callback);
+  }
+
   public StockLocation createStockLocation(StockLocation stockLocation) throws ApiException {
     Call<StockLocation> call = service.createStockLocation(stockLocation);
     return syncCall(call);
@@ -59,6 +71,18 @@ public class StockLocationServiceClient extends AbstractServiceClient<StockLocat
   public void createStockLocation(StockLocation stockLocation,
       ApiCallback<StockLocation> callback) {
     Call<StockLocation> call = service.createStockLocation(stockLocation);
+    asyncCall(call, callback);
+  }
+
+  public StockLocation updateStockLocation(String stockLocationId, StockLocation stockLocation,
+      QueryFilter queryFilter) throws ApiException {
+    Call<StockLocation> call = service.updateStockLocation(stockLocationId, stockLocation, queryFilter);
+    return syncCall(call);
+  }
+
+  public void updateStockLocation(String stockLocationId, StockLocation stockLocation,
+      QueryFilter queryFilter, ApiCallback<StockLocation> callback) {
+    Call<StockLocation> call = service.updateStockLocation(stockLocationId, stockLocation, queryFilter);
     asyncCall(call, callback);
   }
 

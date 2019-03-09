@@ -47,6 +47,17 @@ public class AddressServiceClient extends AbstractServiceClient<AddressService> 
     asyncCall(call, callback);
   }
 
+  public Address createAddress(Address address, QueryFilter queryFilter) throws ApiException {
+    Call<Address> call = service.createAddress(address, queryFilter);
+    return syncCall(call);
+  }
+
+  public void createAddress(Address address, QueryFilter queryFilter,
+      ApiCallback<Address> callback) {
+    Call<Address> call = service.createAddress(address, queryFilter);
+    asyncCall(call, callback);
+  }
+
   public Address createAddress(Address address) throws ApiException {
     Call<Address> call = service.createAddress(address);
     return syncCall(call);
@@ -54,6 +65,18 @@ public class AddressServiceClient extends AbstractServiceClient<AddressService> 
 
   public void createAddress(Address address, ApiCallback<Address> callback) {
     Call<Address> call = service.createAddress(address);
+    asyncCall(call, callback);
+  }
+
+  public Address updateAddress(String addressId, Address address, QueryFilter queryFilter) throws
+      ApiException {
+    Call<Address> call = service.updateAddress(addressId, address, queryFilter);
+    return syncCall(call);
+  }
+
+  public void updateAddress(String addressId, Address address, QueryFilter queryFilter,
+      ApiCallback<Address> callback) {
+    Call<Address> call = service.updateAddress(addressId, address, queryFilter);
     asyncCall(call, callback);
   }
 

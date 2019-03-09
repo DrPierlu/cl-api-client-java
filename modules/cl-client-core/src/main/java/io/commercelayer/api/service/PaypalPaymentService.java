@@ -23,9 +23,17 @@ public interface PaypalPaymentService {
   @POST("paypal_payments")
   Call<PaypalPayment> createPaypalPayment(@Body PaypalPayment paypalPayment);
 
+  @POST("paypal_payments")
+  Call<PaypalPayment> createPaypalPayment(@Body PaypalPayment paypalPayment,
+      @QueryMap Map<String, String> queryStringParams);
+
   @PATCH("paypal_payments/{paypalPaymentId}")
   Call<PaypalPayment> updatePaypalPayment(@Path("paypalPaymentId") String paypalPaymentId,
       @Body PaypalPayment paypalPayment);
+
+  @PATCH("paypal_payments/{paypalPaymentId}")
+  Call<PaypalPayment> updatePaypalPayment(@Path("paypalPaymentId") String paypalPaymentId,
+      @Body PaypalPayment paypalPayment, @QueryMap Map<String, String> queryStringParams);
 
   @GET("paypal_payments/{paypalPaymentId}")
   Call<PaypalPayment> retrievePaypalPayment(@Path("paypalPaymentId") String paypalPaymentId);

@@ -47,6 +47,18 @@ public class PriceListServiceClient extends AbstractServiceClient<PriceListServi
     asyncCall(call, callback);
   }
 
+  public PriceList createPriceList(PriceList priceList, QueryFilter queryFilter) throws
+      ApiException {
+    Call<PriceList> call = service.createPriceList(priceList, queryFilter);
+    return syncCall(call);
+  }
+
+  public void createPriceList(PriceList priceList, QueryFilter queryFilter,
+      ApiCallback<PriceList> callback) {
+    Call<PriceList> call = service.createPriceList(priceList, queryFilter);
+    asyncCall(call, callback);
+  }
+
   public PriceList createPriceList(PriceList priceList) throws ApiException {
     Call<PriceList> call = service.createPriceList(priceList);
     return syncCall(call);
@@ -54,6 +66,18 @@ public class PriceListServiceClient extends AbstractServiceClient<PriceListServi
 
   public void createPriceList(PriceList priceList, ApiCallback<PriceList> callback) {
     Call<PriceList> call = service.createPriceList(priceList);
+    asyncCall(call, callback);
+  }
+
+  public PriceList updatePriceList(String priceListId, PriceList priceList, QueryFilter queryFilter)
+      throws ApiException {
+    Call<PriceList> call = service.updatePriceList(priceListId, priceList, queryFilter);
+    return syncCall(call);
+  }
+
+  public void updatePriceList(String priceListId, PriceList priceList, QueryFilter queryFilter,
+      ApiCallback<PriceList> callback) {
+    Call<PriceList> call = service.updatePriceList(priceListId, priceList, queryFilter);
     asyncCall(call, callback);
   }
 

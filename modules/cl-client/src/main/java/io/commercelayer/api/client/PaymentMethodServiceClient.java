@@ -50,6 +50,18 @@ public class PaymentMethodServiceClient extends AbstractServiceClient<PaymentMet
     asyncCall(call, callback);
   }
 
+  public PaymentMethod createPaymentMethod(PaymentMethod paymentMethod, QueryFilter queryFilter)
+      throws ApiException {
+    Call<PaymentMethod> call = service.createPaymentMethod(paymentMethod, queryFilter);
+    return syncCall(call);
+  }
+
+  public void createPaymentMethod(PaymentMethod paymentMethod, QueryFilter queryFilter,
+      ApiCallback<PaymentMethod> callback) {
+    Call<PaymentMethod> call = service.createPaymentMethod(paymentMethod, queryFilter);
+    asyncCall(call, callback);
+  }
+
   public PaymentMethod createPaymentMethod(PaymentMethod paymentMethod) throws ApiException {
     Call<PaymentMethod> call = service.createPaymentMethod(paymentMethod);
     return syncCall(call);
@@ -58,6 +70,18 @@ public class PaymentMethodServiceClient extends AbstractServiceClient<PaymentMet
   public void createPaymentMethod(PaymentMethod paymentMethod,
       ApiCallback<PaymentMethod> callback) {
     Call<PaymentMethod> call = service.createPaymentMethod(paymentMethod);
+    asyncCall(call, callback);
+  }
+
+  public PaymentMethod updatePaymentMethod(String paymentMethodId, PaymentMethod paymentMethod,
+      QueryFilter queryFilter) throws ApiException {
+    Call<PaymentMethod> call = service.updatePaymentMethod(paymentMethodId, paymentMethod, queryFilter);
+    return syncCall(call);
+  }
+
+  public void updatePaymentMethod(String paymentMethodId, PaymentMethod paymentMethod,
+      QueryFilter queryFilter, ApiCallback<PaymentMethod> callback) {
+    Call<PaymentMethod> call = service.updatePaymentMethod(paymentMethodId, paymentMethod, queryFilter);
     asyncCall(call, callback);
   }
 

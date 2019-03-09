@@ -51,6 +51,18 @@ public class CustomerSubscriptionServiceClient extends AbstractServiceClient<Cus
     asyncCall(call, callback);
   }
 
+  public CustomerSubscription createCustomerSubscription(CustomerSubscription customerSubscription,
+      QueryFilter queryFilter) throws ApiException {
+    Call<CustomerSubscription> call = service.createCustomerSubscription(customerSubscription, queryFilter);
+    return syncCall(call);
+  }
+
+  public void createCustomerSubscription(CustomerSubscription customerSubscription,
+      QueryFilter queryFilter, ApiCallback<CustomerSubscription> callback) {
+    Call<CustomerSubscription> call = service.createCustomerSubscription(customerSubscription, queryFilter);
+    asyncCall(call, callback);
+  }
+
   public CustomerSubscription createCustomerSubscription(CustomerSubscription customerSubscription)
       throws ApiException {
     Call<CustomerSubscription> call = service.createCustomerSubscription(customerSubscription);
@@ -60,6 +72,19 @@ public class CustomerSubscriptionServiceClient extends AbstractServiceClient<Cus
   public void createCustomerSubscription(CustomerSubscription customerSubscription,
       ApiCallback<CustomerSubscription> callback) {
     Call<CustomerSubscription> call = service.createCustomerSubscription(customerSubscription);
+    asyncCall(call, callback);
+  }
+
+  public CustomerSubscription updateCustomerSubscription(String customerSubscriptionId,
+      CustomerSubscription customerSubscription, QueryFilter queryFilter) throws ApiException {
+    Call<CustomerSubscription> call = service.updateCustomerSubscription(customerSubscriptionId, customerSubscription, queryFilter);
+    return syncCall(call);
+  }
+
+  public void updateCustomerSubscription(String customerSubscriptionId,
+      CustomerSubscription customerSubscription, QueryFilter queryFilter,
+      ApiCallback<CustomerSubscription> callback) {
+    Call<CustomerSubscription> call = service.updateCustomerSubscription(customerSubscriptionId, customerSubscription, queryFilter);
     asyncCall(call, callback);
   }
 

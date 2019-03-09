@@ -51,6 +51,18 @@ public class DeliveryLeadTimeServiceClient extends AbstractServiceClient<Deliver
     asyncCall(call, callback);
   }
 
+  public DeliveryLeadTime createDeliveryLeadTime(DeliveryLeadTime deliveryLeadTime,
+      QueryFilter queryFilter) throws ApiException {
+    Call<DeliveryLeadTime> call = service.createDeliveryLeadTime(deliveryLeadTime, queryFilter);
+    return syncCall(call);
+  }
+
+  public void createDeliveryLeadTime(DeliveryLeadTime deliveryLeadTime, QueryFilter queryFilter,
+      ApiCallback<DeliveryLeadTime> callback) {
+    Call<DeliveryLeadTime> call = service.createDeliveryLeadTime(deliveryLeadTime, queryFilter);
+    asyncCall(call, callback);
+  }
+
   public DeliveryLeadTime createDeliveryLeadTime(DeliveryLeadTime deliveryLeadTime) throws
       ApiException {
     Call<DeliveryLeadTime> call = service.createDeliveryLeadTime(deliveryLeadTime);
@@ -60,6 +72,18 @@ public class DeliveryLeadTimeServiceClient extends AbstractServiceClient<Deliver
   public void createDeliveryLeadTime(DeliveryLeadTime deliveryLeadTime,
       ApiCallback<DeliveryLeadTime> callback) {
     Call<DeliveryLeadTime> call = service.createDeliveryLeadTime(deliveryLeadTime);
+    asyncCall(call, callback);
+  }
+
+  public DeliveryLeadTime updateDeliveryLeadTime(String deliveryLeadTimeId,
+      DeliveryLeadTime deliveryLeadTime, QueryFilter queryFilter) throws ApiException {
+    Call<DeliveryLeadTime> call = service.updateDeliveryLeadTime(deliveryLeadTimeId, deliveryLeadTime, queryFilter);
+    return syncCall(call);
+  }
+
+  public void updateDeliveryLeadTime(String deliveryLeadTimeId, DeliveryLeadTime deliveryLeadTime,
+      QueryFilter queryFilter, ApiCallback<DeliveryLeadTime> callback) {
+    Call<DeliveryLeadTime> call = service.updateDeliveryLeadTime(deliveryLeadTimeId, deliveryLeadTime, queryFilter);
     asyncCall(call, callback);
   }
 

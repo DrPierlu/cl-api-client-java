@@ -23,8 +23,15 @@ public interface ParcelService {
   @POST("parcels")
   Call<Parcel> createParcel(@Body Parcel parcel);
 
+  @POST("parcels")
+  Call<Parcel> createParcel(@Body Parcel parcel, @QueryMap Map<String, String> queryStringParams);
+
   @PATCH("parcels/{parcelId}")
   Call<Parcel> updateParcel(@Path("parcelId") String parcelId, @Body Parcel parcel);
+
+  @PATCH("parcels/{parcelId}")
+  Call<Parcel> updateParcel(@Path("parcelId") String parcelId, @Body Parcel parcel,
+      @QueryMap Map<String, String> queryStringParams);
 
   @GET("parcels/{parcelId}")
   Call<Parcel> retrieveParcel(@Path("parcelId") String parcelId);

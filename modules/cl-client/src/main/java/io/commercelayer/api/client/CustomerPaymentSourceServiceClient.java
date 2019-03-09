@@ -52,6 +52,18 @@ public class CustomerPaymentSourceServiceClient extends AbstractServiceClient<Cu
   }
 
   public CustomerPaymentSource createCustomerPaymentSource(
+      CustomerPaymentSource customerPaymentSource, QueryFilter queryFilter) throws ApiException {
+    Call<CustomerPaymentSource> call = service.createCustomerPaymentSource(customerPaymentSource, queryFilter);
+    return syncCall(call);
+  }
+
+  public void createCustomerPaymentSource(CustomerPaymentSource customerPaymentSource,
+      QueryFilter queryFilter, ApiCallback<CustomerPaymentSource> callback) {
+    Call<CustomerPaymentSource> call = service.createCustomerPaymentSource(customerPaymentSource, queryFilter);
+    asyncCall(call, callback);
+  }
+
+  public CustomerPaymentSource createCustomerPaymentSource(
       CustomerPaymentSource customerPaymentSource) throws ApiException {
     Call<CustomerPaymentSource> call = service.createCustomerPaymentSource(customerPaymentSource);
     return syncCall(call);
@@ -60,6 +72,19 @@ public class CustomerPaymentSourceServiceClient extends AbstractServiceClient<Cu
   public void createCustomerPaymentSource(CustomerPaymentSource customerPaymentSource,
       ApiCallback<CustomerPaymentSource> callback) {
     Call<CustomerPaymentSource> call = service.createCustomerPaymentSource(customerPaymentSource);
+    asyncCall(call, callback);
+  }
+
+  public CustomerPaymentSource updateCustomerPaymentSource(String customerPaymentSourceId,
+      CustomerPaymentSource customerPaymentSource, QueryFilter queryFilter) throws ApiException {
+    Call<CustomerPaymentSource> call = service.updateCustomerPaymentSource(customerPaymentSourceId, customerPaymentSource, queryFilter);
+    return syncCall(call);
+  }
+
+  public void updateCustomerPaymentSource(String customerPaymentSourceId,
+      CustomerPaymentSource customerPaymentSource, QueryFilter queryFilter,
+      ApiCallback<CustomerPaymentSource> callback) {
+    Call<CustomerPaymentSource> call = service.updateCustomerPaymentSource(customerPaymentSourceId, customerPaymentSource, queryFilter);
     asyncCall(call, callback);
   }
 

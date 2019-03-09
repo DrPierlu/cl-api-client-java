@@ -23,9 +23,17 @@ public interface WireTransferService {
   @POST("wire_transfers")
   Call<WireTransfer> createWireTransfer(@Body WireTransfer wireTransfer);
 
+  @POST("wire_transfers")
+  Call<WireTransfer> createWireTransfer(@Body WireTransfer wireTransfer,
+      @QueryMap Map<String, String> queryStringParams);
+
   @PATCH("wire_transfers/{wireTransferId}")
   Call<WireTransfer> updateWireTransfer(@Path("wireTransferId") String wireTransferId,
       @Body WireTransfer wireTransfer);
+
+  @PATCH("wire_transfers/{wireTransferId}")
+  Call<WireTransfer> updateWireTransfer(@Path("wireTransferId") String wireTransferId,
+      @Body WireTransfer wireTransfer, @QueryMap Map<String, String> queryStringParams);
 
   @GET("wire_transfers/{wireTransferId}")
   Call<WireTransfer> retrieveWireTransfer(@Path("wireTransferId") String wireTransferId);
