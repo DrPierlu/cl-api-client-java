@@ -3,6 +3,7 @@ package io.commercelayer.api.test;
 
 import io.commercelayer.api.client.common.query.QueryExpression;
 import io.commercelayer.api.client.common.query.QueryExpression.Predicate;
+import io.commercelayer.api.client.common.query.QueryFilter;
 
 public class QueryExpressionTest {
 
@@ -24,8 +25,12 @@ public class QueryExpressionTest {
 			.predicate(Predicate.IN, new String[] {"Val_A", "Val_B", "Val_C"},  "field_1", "field_2")
 			.build();
 		
-		System.out.println(qe.queryString());
+		printQueryFilter(qe);
 		
+	}
+	
+	private static void printQueryFilter(QueryFilter qf) {
+		System.out.println(qf.queryString());
 	}
 	
 }
